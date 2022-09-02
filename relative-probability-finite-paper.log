@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  2 SEP 2022 00:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  2 SEP 2022 17:58
 entering extended mode
 **./relative-probability-finite-paper.tex
 (relative-probability-finite-paper.tex
@@ -842,17 +842,21 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <153.57375> not available
 Underfull \vbox (badness 1590) has occurred while \output is active []
 
  [3]
-[4] [5] [6] [7] [8] [9] (relative-probability-finite-paper.aux)
+[4] [5] [6]
+Underfull \vbox (badness 6236) has occurred while \output is active []
+
+ [7]
+[8] (relative-probability-finite-paper.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 128.69374pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 24881 strings out of 478864
- 630880 string characters out of 2848660
- 1040570 words of memory out of 3000000
- 42386 multiletter control sequences out of 15000+600000
+ 24880 strings out of 478864
+ 630863 string characters out of 2848660
+ 1040572 words of memory out of 3000000
+ 42385 multiletter control sequences out of 15000+600000
  413151 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,13n,103p,784b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -880,10 +884,10 @@ xsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/
 Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10
 .pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
 symbols/msbm10.pfb>
-Output written on relative-probability-finite-paper.pdf (9 pages, 272004 bytes)
+Output written on relative-probability-finite-paper.pdf (8 pages, 270848 bytes)
 .
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
+ 137 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -135,30 +135,23 @@ In the last section, the relative probability function was derived from the abso
 
 \subsection{Definition of the Relative Probability Function on Outcome}
 
-Consider a \textit{relative probability function on outcomes} \(P\) with 2 inputs \(P: \Omega \times \Omega \rightarrow \mathbb{M}^*\). The expression \(p(h_1, h_2)\) can be read as the probability of \(h_1\) relative to \(h_2\).
+Consider a \textit{relative probability function on outcomes} \(P\) with 2 inputs \(P: \Omega \times \Omega \rightarrow \mathbb{M}^*\). The expression \(P(h_1, h_2)\) can be read as the probability of \(h_1\) relative to \(h_2\).
 
 A relative probability function is valid if and only if it obeys \textit{the fundamental property of relative probability} as follows.
 
-\[\forall h_1, h_2, h_3 \in \Omega, p(h_1, h_3) :\cong p(h_1, h_2) \cdot p(h_2, h_3)\]
+\[\forall h_1, h_2, h_3 \in \Omega, P(h_1, h_3) :\cong P(h_1, h_2) \cdot P(h_2, h_3)\]
 
-We also hold by convention that \(\forall h \in \Omega, P(h, h) = 1\). This can be nearly proven by the fundamental property, but it technically still allows for \(\forall h \in \Omega, P(h, h) = \ast\) in rare circumstances for which we have no reason to consider.
+We also require that \(\forall h \in \Omega, P(h, h) = 1\). This can be proven by the fundamental property in most but not all circumstances.
 
-Our next task is to upgrade \(P\) to work on the event level, but it helps to work on one
+Our next task is to upgrade \(P\) to operate on the event level. The relative probability of two events is going to be the ratios of their absolute probabilities [REFER TO PREVIOUS EQUATION], but we no longer have access to absolute probability. So, the best we can do is measure relative probability to a given event \(h^*\). Because this ratio might be indeterminate, we use the matching operator instead of equality.
 
---------
+For all \(h^* \in \Omega\), \[P(e_1, e_2) :\cong \frac{\sum_{h_1 \in e_1} P(h_1, h^*)}{\sum_{h_2 \in e_2} P(h_2, h^*)}\]
 
-Upgrading \(P\) to the event level, we get
-
-\[P(e_1, e_2) = \sum_{h_1 \in e_1} \frac{1}{\sum_{h_2 \in e_2} p(h_2, h_1)}\]
-
-The main exception to this is that \(P(\{\},\{\}) = 1\). CLUNKY - REWORK! The previous equation doesn't work if \(e_1\) or \(e_2\) is an empty set!
-- Basically, there's this huge problem with empty events that we may need a section to flesh out.
-
---------------
+While this is a true statement, does it work as a definition? An alternate definition could be \[P(e_1, e_2) = \sum_{h_1 \in e_1} \frac{1}{\sum_{h_2 \in e_2} p(h_2, h_1)}\], but it has an exception that for \(P(\{\},\{\}) = 1\). TODO: Come up with a better definition.
 
 We then derive the absolute probability function as
 
-\[P(e) = \sum_{h \in e} \frac{1}{\sum_{h' \in \Omega}p(h', h)}\].
+\[P(e) = \sum_{h \in e} \frac{1}{\sum_{h' \in \Omega}p(h', h)}\]
 
 \subsection{Matching and Equality}
 
@@ -314,7 +307,6 @@ How to implement this in code, and point to open source example
 \begin{thebibliography}{20}
 
 \bibitem{sklar_dirichlet}Sklar, M. (2014). Fast MLE computation for the Dirichlet multinomial. arXiv preprint arXiv:1405.0099.
-\bibitem{visitprediction}Sklar, M., Stewart, R., Li, R., Bakula, A., \& Spears, E. (2020). Visit prediction. U.S. Patent Application No. 16/405,481. [ Section 0037 ]
 
 \end{thebibliography}
 
