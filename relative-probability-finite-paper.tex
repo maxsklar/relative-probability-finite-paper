@@ -8,6 +8,7 @@
 \usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry}
 \usepackage{fullpage}
 \usepackage{pdflscape}
+\usepackage{tikz}
 \usepackage[toc,page]{appendix}
 \usepackage[shortlabels]{enumitem}\usepackage{draftwatermark}
 
@@ -41,7 +42,7 @@ This is an obviously incomplete draft/outline of an upcoming paper. Please do no
 
 \section{Magnitude Space and its Properties}
 
-Let \(\mathbb{M} = [0, +\infty]\) be the space of \textit{magnitudes}, which roughly correspons with our intuition for the concept of size. The magnitude space contains all positive real numbers, \(0\) and \(\infty\).
+Let \(\mathbb{M} = [0, +\infty]\) be the space of \textit{magnitudes}, which roughly corresponds with our intuition for the concept of size. The magnitude space contains all positive real numbers, \(0\) and \(\infty\).
 
 The following functions are defined for all \(m, m_1, m_2\) in \(\mathbb{M}\).
 
@@ -66,7 +67,7 @@ The set of magnitudes is a totally ordered set under \(\leq\), meaning that for 
 
 \subsection{Introducing the Wildcard}
 
-Let \(\mathbb{M}^* = \mathbb{M} \cup \{\ast\}\) be the set of magnitudes along with a \textbf{wildcard element}, \(\ast\). The wildcard corresponds with our notion of pattern matching in computer science, along with the indeterminate form \(\frac{0}{0}\) in mathematics. We define the following properties on this wildcard element in order for the addition and multiplication operations to be totally defined on \(\mathbb{M}\).
+Let \(\mathbb{M}^* = \mathbb{M} \cup \{\ast\}\) be the set of magnitudes along with a \textbf{wildcard element}, \(\ast\). The wildcard corresponds with our notion of pattern matching in computer science, along with the indeterminate form \(\frac{0}{0}\) in mathematics. It also corresponds to the standard \textit{NaN}, or \textit{Not a Number} value in floating point arithmetic. We define the following properties on \(\ast\) in order for the addition and multiplication operations to be totally defined on \(\mathbb{M}\).
 
 \(0 \cdot \infty = \ast\)
 
@@ -199,37 +200,94 @@ Theorem X: If the relative probability function is totally comparable, then the 
 
 Proof: FILL IN
 
-\subsection{Composing Relative Probability Functions}
+\subsection{Totally Mutually Possible}
 
-Let there be \(K\) relative probability functions - \(P_0, P_1, ..., P_{K-1}\).
-
-Each of these probability functions have unique categories in their own right, and each may have a different number of categories. For all \(0 \leq k < K\), let the set of outcomes acted upon by \(P_k\) be \(\Omega_K\). We take all \(\Omega_K\) to be disjoint from one another [TODO: neccesary assumption?].
-
-We can combine all of these relative probability functions together with a top level probability function \(P_{TOP}\) with outcome space \(\Omega_{TOP} = (0, 1, 2, ... K- 1)\).
-
-- Compose these into the final function \(P\)
-- Prove that the fundamental property still holds.
-
-\section{Topology of Relative Probability Spaces}
-
-One of the benefits of relative probability spaces is their properties with respect to limits. Specifically, if we look at the space of (absolute) categorical distributions on \(\Omega\) and we allow the probability of one outcome to approach 1, then all of the other probabilities will be forced down to 0 and become incomparable with one another. In the relative probability space, the information about the ratios of probabilities of the other outcomes can be preserved even as a single outcome reaches a probability of 1.
-
-- What does it mean to take a limit on relative probability space
-- What does it mean to approach 1, when if you change 1 value you need to change others as well
-
-Therefore, we want to look at the space of totally comparable relative probability functions. If that space can be shown to be compact, then we know that all limits of such functions are also totally comparable - in other words, the relative probabilites of outcomes and events are preserved even as they approach zero relative to another event.
-
-The key to defining limits on a space is to first define a topology on that space, which means finding the sets that are open (or intuitively, sets that fully surround all of it's members and don't contain its boundary). This starts with finding a \textit{basis of open sets} from which all other open sets can be constructed through countable unions.
-
-The open sets on the relative probability function are a little tricker than the open sets on the categorical distribution. Here is the construction of this basis.
-
-\subsection{Functions that are Totally Mutually Possible}
+Definition: A relative probability function is \textit{totally mutually possible} if all outcomes are mutually possible.
 
 A relative probability function is \textit{totally mutually possible} if all outcomes are mutually possible.
 
 Theorem: If a relative probability function is totally mutually possible, it can be represented by an absolute probability function \(P: \Omega \rightarrow (0, 1)\) which contains no zero-probability events.
 
 Proof: FILL IN
+
+
+\subsection{Composing Relative Probability Functions}
+
+Let there be \(K\) relative probability functions - \(P_0, P_1, ..., P_{K-1}\). Each of these probability functions have unique categories in their own right.
+
+Let the set of outcomes acted upon by \(P_k\) be \(\Omega_K\), so that \(P_k: \Omega_k \times \Omega_k \rightarrow \mathbb{M}\). We take all \(\Omega_K\) to be disjoint from one another.
+
+We can combine all of these relative probability functions together with a top level probability function \(P_{TOP}\) with outcome space \(\Omega_{TOP} = (\Omega_0, \Omega_1, \Omega_2, ... \Omega_{K- 1})\).
+
+\begin{tikzpicture}
+\node {\(\Omega_{TOP}\)} [sibling distance = 4cm]
+  child {node {\(\Omega_0\)}  [sibling distance = 1cm]
+    child {node {\(h_{0, 0}\)}}
+    child {node {\(h_{0, 1}\)}}
+    child {node {\dots}}
+    child {node {\(h_{0, |\Omega_0| - 1}\)}}
+  }
+  child {node {\(\Omega_1\)}  [sibling distance = 1cm]
+    child {node {\(h_{1, 0}\)}}
+    child {node {\dots}}  
+  }
+  child {node {\dots}
+    child {node {\dots}}
+  }
+  child {node {\(\Omega_{K-1}\)}   [sibling distance = 2cm]
+    child {node {\dots}}
+    child {node {\(h_{K-1, |\Omega_{K-1}| - 1}\)}}
+  };
+\end{tikzpicture}
+
+Now we let \(\Omega\) be the set of all outcomes \(\Omega_0 \cup \Omega_1 \cup \dots \Omega_{K-1}\), and we create a relative probability function \(P\) with the following assumptions:
+
+1) If the two outcomes fall under the same component, then their relative probabilities do not change:
+\[P(h_{k, i}, h_{k, j}) = P_k(h_{k, i}, h_{k, j})\]
+
+2) If the 2 outcomes fall under different components, then their relative probabilities are given as follows:
+\[P(h_{k_1, i}, h_{k_2, j}) = P_k(h_{k_1, i}, \Omega_{k_1}) \cdot  P_{TOP}(\Omega_{k_1}, \Omega_{k_2}) \cdot P_{TOP}(\Omega_{k_2}, h_{k_2, j})\]
+
+Theorem: \(P\) respects the fundamental property
+
+Proof: Fill IN
+
+Theorem: \(P\) is totally comparable if and only if the following three things are true:
+
+1) \(P_{TOP}\) is totally comparable
+
+2) For all \(0 \leq k < K\), \(P_k\) is totally comparable
+
+3) There is at most one component with impossible outcomes with respect to that component. Equivalently, if \(h_{k_1, i}\) and \(h_{k_2, j}\) are two components, and \(P_{k_1}(h_{k_1, i}) = P_{k_2}(h_{k_2, j}) = 0\), then \(k_1 = k_2\). Also equivalently, all components except at most one are totally mutually possible.
+
+Proof: FILL IN
+
+
+
+\section{Topology of Relative Probability Spaces}
+
+TODO: Warn people that background in topology is required for this section, and then we can shorten it up!
+
+One of the benefits of relative probability spaces is their properties with respect to limits. Specifically, if we look at the space of (absolute) categorical distributions on \(\Omega\) and we allow the probability of one outcome to approach 1, then all of the other probabilities will be forced down to 0 and become incomparable with one another. In the relative probability space, the information about the ratios of probabilities of the other outcomes can be preserved even as a single outcome reaches a probability of 1.
+
+- What does it mean to take a limit on relative probability space
+- What does it mean to approach 1, when if you change 1 value you need to change others as well
+
+Therefore, we want to look at the space of totally comparable relative probability functions. If that space can be shown to be compact, then we know that all limits of such functions are also totally comparable - in other words, the relative probabilites of outcomes and events are preserved even as they both approach zero relative to another event.
+
+The key to defining limits on a space is to first define a topology on that space, which means finding the sets that are open (or intuitively, sets that fully surround all of it's members and don't contain its boundary). This starts with finding a \textit{basis of open sets} from which all other open sets can be constructed through countable unions.
+
+For the absolute probability function, we can use the K-cell, or \(K-1\)-dimentional simplex embedded in \(\mathbb{R}^K\) to get a topology using the standard Euclidean space. For relative probability, we need to build some background mechanisms in order for this to work.
+
+First note that the notion of an open set can change even if a topological space is restricted. For example, on the real number line \(\mathbb{R}\), we take the open interval (0, 1) as an open set (as the term open interval suggests). However, once this is embedded into \(\mathbb{R}^2\), it is now a line segment in a plane and no longer open. It can be thought of as a restriction to an open set on \(\mathbb{R}^2\) to \(\mathbb{R}\). For example, the set \(\{(x, y): x \in (0, 1)\;  \text{and}\;  y \in (-\epsilon, +\epsilon)\}\) given an \(\epsilon > 0\) is such an open set on \(\mathbb{R}^2\). [ILLUSTRATION]
+
+Likewise, an open set on a relative probability space restricted on several outcomes might not be an open set on the relative probability spaces for all of \(\Omega\).
+
+STEP 1: Define the notion of an interior open patch for \(K = 2\)
+
+STEP 2: Using composition, define the notion of an interior open patch for any \(K\).
+
+STEP 3: Define an open patch (not neccesarily interior) using composition. In this case, \(P_{TOP}\) is broken into 2 pieces using a relative probability \(q\) where \(a < q < b\) - but this time it could be \(0 \leq q < b\). The side which could be zero is confined to an open patch, whereas the side that is definitely not zero is further confined to an interior open patch.
 
 Definition: Let an open set on the space of totally mutually possible events on \(\Omega\) correspond to the Euclidean notion of an open set.
 
@@ -246,23 +304,21 @@ Then - use these open intervals to form a basis, and declare that an open set of
 
 \subsection{Simple Limit Example}
 
-Start with a simple example of an absolute probability distribution:
+Let us define a simple relative probability distribution \(P_q\) where \(K = 3\) that is parameterized by the magnitude \(q \in \mathbb{M}\).
 
-\(P(h_0) = \frac{1}{2}\)
-\(P(h_1) = \frac{1}{3}\)
-\(P(h_2) = \frac{1}{6}\)
+Let \(P_q(h_0, h_1) = q\) and \(P_q(h_1, h_2) = 2\).
 
-We then derive the following for the relative probabilities:
-\(P(h_0, h_1) = \frac{3}{2}\)
-\(P(h_1, h_2) = 2\)
+By the fundamental property, \(P_q(h_0, h_2) :\cong P_q(h_0, h_1) \dot P_q(h_1, h_2) = 2q\).
 
-Now we want the probability of \(h_0\) to vary, so we set it's ratio to \(h_1\) to the positive variable \(q\)
-\(P_{q}(h_0, h_1) = q\) where \(q \in \mathbb{M}\)
+Now we want to consider the case where the relative probability of \(h_0\) grows infinitely large in comparison to \(h_1\) and \(h_2\).
 
-Now consider \(P = lim_{q \rightarrow \infty} P_q\)
+\[P = lim_{q \rightarrow \infty} P_q\]
 
-Prove that \(P(h_1, h_2) = 2\) still, even though \(P(h_1, \Omega) = P(h_2, \Omega) = 0\)
+We use the following topological definition for the limit in this case: For every open set A of relative probability distributions containing P, there exists an open interval \(B=(b, \infty)\) on \(\mathbb{M}\) such that for every value of \(q \in B\), \(P_q\) is in A.
 
+Proposition: The above limit that defines \(P\) exists, and \(P(h_1, h_2) = 2\). In other words, \(h_2\) is still half as likely as \(h_1\) and that information hasn't been lost on \(P\).
+
+Proof: TODO
 
 \section{Bayesian Inference on Relative Distributions}
 
@@ -280,7 +336,29 @@ Theorem: Once two outcome  become uncomparable, they will never be comparable ag
 
 \section{Implementation}
 
-How to implement this in code, and point to open source example
+How to implement this in code, and point to open source example.
+
+This can be implemented by storing K values.
+
+For each category, we have a tier. Items in the same tier are comparable. Each Tier has a parent tier, where items in this teir are said to be impossible relative to anything in its ancestor tiers.
+
+For each category, we also store a floating point number called the value, which should be taken as the log of an unnormalized probability. Note that we will not allow inf or NaN here.
+
+Get the relative probability of 2 categories. Algorithm: If they are in the same tier, then subtract their values and take the exp. If they are in different tiers, do a graph search on the tier. If the first is < the second, the answer is 0. If the first is > the second, the answer is 1. And if they are uncomparable, then the answer is Wildcard, NaN.
+
+Generate and indifferent distribution of category K. Algorithm: Create a single tier where all values are set to 0.
+
+Change the relative probability of item \(k_1\) with respect to \(k_2\), and set it to \(q\). Algorithm: UNSURE
+
+Set the probability \(k_1\) to some absolute value with respect to either the whole distribution, or to its tier.
+
+Randomly sample from this distribution. Algorithm: Only look at the top tier.
+
+Randomly sample from this distribution, but remove certain categories. Algorithm: If the top tier categories are gone, look to see if a top tier remains. If there are multiple top tiers, then there's no way to do it!
+
+Ask: Is this distribution totally mutually possible? Algorithm: Look are a single top tier.
+
+Ask: Is it totally mutually comparable? Algorithm: Look for a linear list of tiers.
 
 \section{Future Work}
 \subsection{Expansions to infinite spaces}
@@ -307,6 +385,8 @@ How to implement this in code, and point to open source example
 \begin{thebibliography}{20}
 
 \bibitem{sklar_dirichlet}Sklar, M. (2014). Fast MLE computation for the Dirichlet multinomial. arXiv preprint arXiv:1405.0099.
+\bibitem{mendelson}Mendelson, B. (1990). Introduction to topology. Courier Corporation.
+\bibitem{bradley}Bradley, T. D., Bryson, T., \& Terilla, J. (2020). Topology: A Categorical Approach. MIT Press.
 
 \end{thebibliography}
 

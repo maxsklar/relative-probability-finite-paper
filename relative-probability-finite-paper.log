@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  2 SEP 2022 17:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  3 SEP 2022 22:11
 entering extended mode
 **./relative-probability-finite-paper.tex
 (relative-probability-finite-paper.tex
@@ -740,20 +740,20 @@ File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
 ) (relative-probability-finite-paper.aux)
 \openout1 = `relative-probability-finite-paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -784,7 +784,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 16.
+ on input line 17.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -821,12 +821,12 @@ your preamble.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 33.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 33.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 34.
 
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -834,7 +834,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <153.57375> not available
-(Font)              size <24.88> substituted on input line 70.
+(Font)              size <24.88> substituted on input line 71.
 
 [1{C:/Users/maxsk/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
@@ -843,51 +843,58 @@ Underfull \vbox (badness 1590) has occurred while \output is active []
 
  [3]
 [4] [5] [6]
-Underfull \vbox (badness 6236) has occurred while \output is active []
+Underfull \vbox (badness 2671) has occurred while \output is active []
 
  [7]
-[8] (relative-probability-finite-paper.aux)
+Underfull \vbox (badness 4913) has occurred while \output is active []
+
+ [8]
+Underfull \vbox (badness 2460) has occurred while \output is active []
+
+ [9]
+[10] (relative-probability-finite-paper.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 128.69374pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 24880 strings out of 478864
- 630863 string characters out of 2848660
- 1040572 words of memory out of 3000000
- 42385 multiletter control sequences out of 15000+600000
+ 25043 strings out of 478864
+ 634886 string characters out of 2848660
+ 1041572 words of memory out of 3000000
+ 42548 multiletter control sequences out of 15000+600000
  413151 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,13n,103p,784b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,13n,103p,784b,934s stack positions out of 5000i,500n,10000p,200000b,80000s
 <C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmbx9.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts
 /type1/public/amsfonts/cm/cmex10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/maxsk/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/maxsk/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/maxsk/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users
-/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/maxsk/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/maxsk/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users
+/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><
 C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
-17.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmr5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmr6.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmr7.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/maxsk/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/maxsk/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/maxsk/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/ma
-xsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/
-Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10
-.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-symbols/msbm10.pfb>
-Output written on relative-probability-finite-paper.pdf (8 pages, 270848 bytes)
-.
+12.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmr17.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmr5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmr6.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/maxsk/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/maxsk/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/maxsk/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/ma
+xsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/
+Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.
+pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmti10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/symbols/msbm10.pfb>
+Output written on relative-probability-finite-paper.pdf (10 pages, 290614 bytes
+).
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
+ 148 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
