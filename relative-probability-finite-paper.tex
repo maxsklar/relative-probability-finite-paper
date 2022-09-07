@@ -40,6 +40,22 @@ This is an obviously incomplete draft/outline of an upcoming paper. Please do no
 
 \section{Introduction}
 
+[FILL IN - very rough right now]
+
+Since Kolmogov published axioms for probability theory in 1933, there have been calls to relax some of assumptions and rules for various applications. In the paper Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justification. One of the cases that is philosophically difficult is the idea of a conditional probability where the condition has a probability of zero. In colloquial term, we wish to talk about the probability of an event given a hypothetical situation which will not occur\footnote{There's another very unintuitive feature of probability theory where we allow that zero probability events occur all the time, particularly given a continuous distribution. This makes the statement \quotes(will not occur) questionable.}. Related to this question is whether was can talk about the relative probability of two events in a system, even though those 2 events may have probability zero.
+
+Interestingly, the standardized model for probability theory says no because relative probabilty can only be defined as the ratio of two events. However, mathematicians and engineers talk about this relative probability of these events all the time. For example, if you consider the continuous probability distributrion over \([0, 1]\) given by the probability distribution function \(2x\), we know that the PDF at \(x = \frac{1}{2}\) is twice as much as the PDF at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though the way we've set up our probability models only talk about \textit{probability density} or \textit{PDF} values.
+
+Here we take the stand that there are many non-standard probability distributions that we wish to model, and that it's a legitamate use of mathematics so long as the methods are logically consistent, and the advertised application relates to the resulting model\footnote{Lyon identifies this link to application as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting set of mathematics, but if that mathematics cannot be linked to any application that a person would reasonbly call probability, then it ought to go by a different name.}. Given the popularity of Bayesian methods as applied to machine learning in the 21st century, and given that the methods used to search a hypothesis space in Bayesian inference often rely on relative probability(CITE?), it seems like a good idea to understand whether we can derive a theory of probability that takes the relationships between outcomes and events as fundamental.
+
+Not only does this solve the conditional probability question, but it also gives rise to several new concepts and constructions when it comes to probability functions. In this paper we're going to construct a theory of relative probability on finite distributions only, as a jumping off point for more complex constructions down the line. As we shall see, even in this simple case the rabbit hole goes deep!
+
+We'll also look at potential applications of these new constructions - particularly around the idea of limits. Mathematics can be great at modelling the real world even if it's ideas are theoretically impossible. For example, we might take the position that it is impossible for a certain process occuring in nature to happen an infinite number of times, and still we may take its value to be infinity and plug it's results into an equation in order to get some kind of bound our estimate to what that system will look like in the long run. Likewise, it still makes sense to consider a certain outcome in a probabilistic system as certain while maintaining information about the other outcomes in order to calculate the effects of such a limit. [CLEAN UP WORDING OF PARAGRAPH] To this end, we prove that the space of fully comparable relative distributions is compact.
+
+These methods have applications in Bayesian statistics, even providing a new formulation of Bayes rule. This new formulation is arguably what is already used in practice.
+
+Finally, we implement relative probabiliy into code in order to demonstrate its usage and relevance.
+
 \section{Magnitude Space}
 
 Let \(\mathbb{M} = [0, +\infty]\) be the space of \textit{magnitudes}, which roughly corresponds with our intuition for the concept of size. The magnitude space contains all positive real numbers, \(0\) and \(\infty\).
@@ -469,6 +485,7 @@ Ask: Is it totally mutually comparable? Algorithm: Look for a linear list of tie
 \bibitem{mendelson}Mendelson, B. (1990). Introduction to topology. Courier Corporation.
 \bibitem{bradley}Bradley, T. D., Bryson, T., \& Terilla, J. (2020). Topology: A Categorical Approach. MIT Press.
 \bibitem{lyon}Lyon, A. (2016). Kolmogorov’s Axiomatisation and its Discontents. The Oxford handbook of probability and philosophy, 155-166.
+\bibitem{hajek}Hájek, A. (2003). What conditional probability could not be. Synthese, 137(3), 273-323.
 
 \end{thebibliography}
 
