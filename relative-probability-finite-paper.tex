@@ -40,23 +40,22 @@ This is an obviously incomplete draft/outline of an upcoming paper. Please do no
 
 \section{Introduction}
 
-[FILL IN - very rough right now]
+It may surprise many that the mathematical foundations of probability theory are still very much open to debate.
 
-Since Kolmogov published axioms for probability theory in 1933, there have been calls to relax some of assumptions and rules for various applications. In the paper Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justification. One of the cases that is philosophically difficult is the idea of a conditional probability where the condition has a probability of zero. In colloquial term, we wish to talk about the probability of an event given a hypothetical situation which will not occur\footnote{There's another very unintuitive feature of probability theory where we allow that zero probability events occur all the time, particularly given a continuous distribution. This makes the statement \quotes(will not occur) questionable.}. Related to this question is whether was can talk about the relative probability of two events in a system, even though those 2 events may have probability zero.
+Since Kolmogorov published the standard axioms for probability theory in 1933, there have been calls to relax some of those assumptions and rules for various applications. In the paper Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justification. One of difficult questions is the definition of a condiational probability where the condition has a probability of zero. Informally, this means that we wish to talk about the probability of an event given a hypothetical situation which will not occur\footnote{There is another very unintuitive feature of probability theory zero probability events do indeed occur all the time, particularly when given a continuous distribution.}. Related to this question is whether we can talk about the relative probability of two events in a system, even though those two events may have probability zero.
 
-Interestingly, the standardized model for probability theory says no because relative probabilty can only be defined as the ratio of two events. However, mathematicians and engineers talk about this relative probability of these events all the time. For example, if you consider the continuous probability distributrion over \([0, 1]\) given by the probability distribution function \(2x\), we know that the PDF at \(x = \frac{1}{2}\) is twice as much as the PDF at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though the way we've set up our probability models only talk about \textit{probability density} or \textit{PDF} values.
+The standard model defines these values as a ratio of one probability to another. As a result, every time the indeterminate form \(\frac{0}{0}\) appears, the relative probability must remain undefined. Undeterred by this state of affairs, mathematicians and engineers talk about this type of relative probability all the time. For example, if we consider the continuous probability distributrion over \([0, 1]\) given by the probability distribution function \(2x\), we know that the PDF at \(x = \frac{1}{2}\) is twice as much as the PDF at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though we are only talking about \textit{probability density} or \textit{PDF} values.
 
-Here we take the stand that there are many non-standard probability distributions that we wish to model, and that it's a legitamate use of mathematics so long as the methods are logically consistent, and the advertised application relates to the resulting model\footnote{Lyon identifies this link to application as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting set of mathematics, but if that mathematics cannot be linked to any application that a person would reasonbly call probability, then it ought to go by a different name.}. Given the popularity of Bayesian methods as applied to machine learning in the 21st century, and given that the methods used to search a hypothesis space in Bayesian inference often rely on relative probability(CITE?), it seems like a good idea to understand whether we can derive a theory of probability that takes the relationships between outcomes and events as fundamental.
+Let us take the position that we may model probability in a non-standard way, and we can do so as long as the framework is logically consistent, and the advertised applications match such a proposal\footnote{Lyon identifies this link to application as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting mathematics, but if that mathematics cannot be linked to any application that a person would reasonbly call probability, then it ought to go by a different name.}. Given the popularity of Bayesian methods as applied to machine learning in recent decades, and given that the methods used to search a hypothesis space in Bayesian inference relies on relative probability\cite{sklar_bias}, we ought to understand whether we can derive a framework for probability that takes the relationships between outcomes and events as fundamental.
 
-Not only does this solve the conditional probability question, but it also gives rise to several new concepts and constructions when it comes to probability functions. In this paper we're going to construct a theory of relative probability on finite distributions only, as a jumping off point for more complex constructions down the line. As we shall see, even in this simple case the rabbit hole goes deep!
+Not only would this solve the conditional probability question, but it would also give rise to several new concepts and objects to study. In this paper we will construct a theory of relative probability on finite distributions as a starting point for more complexity in future work. As we shall see, even for this simple case there is much work to be done!
 
-We'll also look at potential applications of these new constructions - particularly around the idea of limits. Mathematics can be great at modelling the real world even if it's ideas are theoretically impossible. For example, we might take the position that it is impossible for a certain process occuring in nature to happen an infinite number of times, and still we may take its value to be infinity and plug it's results into an equation in order to get some kind of bound our estimate to what that system will look like in the long run. Likewise, it still makes sense to consider a certain outcome in a probabilistic system as certain while maintaining information about the other outcomes in order to calculate the effects of such a limit. [CLEAN UP WORDING OF PARAGRAPH] To this end, we prove that the space of fully comparable relative distributions is compact.
+We will also look at potential applications of these ideas, including limit distributions, bayesian inference, and even implementation.
 
-These methods have applications in Bayesian statistics, even providing a new formulation of Bayes rule. This new formulation is arguably what is already used in practice.
+These methods have applications in Bayesian statistics, even providing a new formulation of Bayes rule. This new formulation is reflective of current practice.
 
-Finally, we implement relative probabiliy into code in order to demonstrate its usage and relevance.
-
-\section{Magnitude Space}
+\section{Preliminaries}
+\subsection{Magnitude Space}
 
 Let \(\mathbb{M} = [0, +\infty]\) be the space of \textit{magnitudes}, which roughly corresponds with our intuition for the concept of size. The magnitude space contains all positive real numbers, \(0\) and \(\infty\).
 
@@ -64,11 +63,11 @@ The following functions are defined for all \(m_1, m_2\) in \(\mathbb{M}\).
 
 \(\mathbb{M}\) is closed under addition. \(m_1 + m_2\) is the sum of \(m_1\) and \(m_2\).
 
-\(\forall m, m + \infty = \infty\)
+\[m + \infty = \infty\]
 
-\(\mathbb{M}\) is closed under multiplication. \(m_1 \cdot m_2\) is the product of \(m_1\) and \(m_2\). The product \(0 \cdot \infty\) is indeterminate.
+The products \(0 \cdot \infty\) and \(\infty \cdot 0\) are indeterminate. In all other cases, multiplication on \(\mathbb{M}\) is defined.
 
-\(m^{-1}\) is the reciprical of m. We let \(0^{-1} := \infty\) and \(\infty^{-1} := 0\).
+The multiplicative inverse \(m^{-1}\) is the defined on all \(\mathbb{M}\). We let \(0^{-1} := \infty\) and \(\infty^{-1} := 0\), even though it doesn't quite act as a multiplicative inverse in those cases.
 
 Any magnitude can be raised to the power of a real number and still be a magnitude.
 
@@ -83,23 +82,30 @@ The set of magnitudes is a totally ordered set under \(\leq\), meaning that for 
 
 \subsection{The Wildcard Element}
 
-Let \(\mathbb{M}^* = \mathbb{M} \cup \{\ast\}\) be the set of magnitudes along with a \textbf{wildcard element}, \(\ast\). The wildcard corresponds with our notion of pattern matching in computer science, along with the indeterminate form \(\frac{0}{0}\) in mathematics. It also corresponds to the standard \textit{NaN}, or \textit{Not a Number} value in floating point arithmetic. We define the following properties on \(\ast\) with respect to addition and multiplication.
+\[\mathbb{M}^* = \mathbb{M} \cup \{\ast\}\]
 
-\(0 \cdot \infty = \ast\)
+Let the \textit{magnitude-wildcard space} \(\mathbb{M}^*\) be defined as the set of magnitudes along with a \textit{wildcard element}, \(\ast\). The wildcard element corresponds to several different ideas depending on the context:
+\begin{itemize}
+  \item The \textit{wildcard pattern} used in pattern matching and regular expressions in type theory and computer science
+  \item The indeterminate form \(\frac{0}{0}\) in arithmatic.
+  \item The standard \textit{NaN}, or \textit{Not a Number}\footnote{\quotes{Not a Number} may have been an unfortunate choice, because it might actually represent \textbf{any} number!} value in the IEEE standard for floating point arithmetic.
+\end{itemize}
 
-For all \(m \in \mathbb{M}\)
-
-\(\ast + m = \ast\)
-
-\(\ast \cdot m = \ast\)
+We define the following properties on \(\ast\):
+\[0 \cdot \infty = \ast\]
+\[\ast + m = \ast\]
+\[\ast \cdot m = \ast\]
 
 Let the \textbf{matching relation}\footnote{It helps to read \(:\cong\) as \quotes{is matched by}.} \(:\cong\) be a binary relation on \(\mathbb{M}^*\) with the following properties.
 
-Property 1: For all non-wildcard elements, that is \(m_1, m_2 \in \mathbb{M}\), the matching relation is the same as equality. That is, \(m_1 = m_2  \Leftrightarrow m_1 :\cong m_2 \)
+-----------------------
 
-Property 2: Every element is matched by the wildcard element. That is \(\forall m \in \mathbb{M}^*, m :\cong \ast\).
+Property 1: Every element is matched by the wildcard element. \[m :\cong \ast\].
+Property 2: The wildcard element is matched only by itself. \[\ast :\cong m \Longrightarrow m = \ast\].
 
-Property 3: The wildcard element is matched only by itself. \(\forall m \in \mathbb{M}^*, \ast :\cong m \Rightarrow m = \ast\)
+Property 3: If an element is matched by a non-wildcard element, then it is equal to it. 
+\[m_1 :\cong m_2 \text{and} m_2 \neq \ast \Longrightarrow m_1 = m_2\]
+
 
 The matching relation is not symmetric. It is asking if the element on the left hand side could be represented by the element on the right hand side. The wildcard element represents every single value, but it cannot be said to be represented by any singular value. To put it another way, the wildcard element represents a loss of information about a value which can never be recovered.
 
@@ -313,6 +319,8 @@ Proof: FILL IN
 
 \section{Topology of Relative Probability Spaces}
 
+The idea of a limit distribution requires particularly around the idea of limits. Mathematics can be great at modelling the real world even if it's ideas are theoretically impossible. For example, we might believe that it is impossible for a certain natural process to repeat an infinite number of times, and yet we may still take its value to be infinity in order to get some kind of bound on what that system will look like in the long run. Likewise, it still makes sense to consider a particular outcome in a probabilistic system as certain while maintaining information about the other outcomes in order to calculate the effects of such a limit. [CLEAN UP WORDING OF PARAGRAPH] To this end, we will prove that the space of fully comparable relative distributions is compact.
+
 TODO: Warn people that background in topology is required for this section, and then we can shorten it up! Also, this section can be skipped if not interesting.
 
 One of the benefits of relative probability spaces is their properties with respect to limits. Specifically, if we look at the space of (absolute) categorical distributions on \(\Omega\) and we allow the probability of one outcome to approach 1, then all of the other probabilities will be forced down to 0 and become incomparable with one another. In the relative probability space, the information about the ratios of probabilities of the other outcomes can be preserved even as a single outcome reaches a probability of 1.
@@ -433,7 +441,11 @@ Proof: \(P(h_1, h_2|D) = L(D|h_1, h_2) P(h_1, h_2) = L(D|h_1, h_2) \cdot 0\). No
 
 \section{Implementation}
 
+Finally, we implement relative probabiliy as a python class as a demonstration of its usage and relevance.
+
 How to implement this in code, and point to open source example.
+
+Note the connection between magnitude space and the extended real number line, which we can implement through floating point numbers.
 
 This can be implemented by storing K values.
 
@@ -482,6 +494,7 @@ Ask: Is it totally mutually comparable? Algorithm: Look for a linear list of tie
 \begin{thebibliography}{20}
 
 \bibitem{sklar_dirichlet}Sklar, M. (2014). Fast MLE computation for the Dirichlet multinomial. arXiv preprint arXiv:1405.0099.
+\bibitem{sklar_bias}Sklar, M. (2022). Sampling Bias Correction for Supervised Machine Learning: A Bayesian Inference Approach with Practical Applications. arXiv preprint arXiv:2203.06239.
 \bibitem{mendelson}Mendelson, B. (1990). Introduction to topology. Courier Corporation.
 \bibitem{bradley}Bradley, T. D., Bryson, T., \& Terilla, J. (2020). Topology: A Categorical Approach. MIT Press.
 \bibitem{lyon}Lyon, A. (2016). Kolmogorov’s Axiomatisation and its Discontents. The Oxford handbook of probability and philosophy, 155-166.
