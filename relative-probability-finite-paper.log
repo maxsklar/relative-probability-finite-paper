@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  13 SEP 2022 17:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  14 SEP 2022 01:16
 entering extended mode
 **./relative-probability-finite-paper.tex
 (relative-probability-finite-paper.tex
@@ -842,8 +842,11 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <153.57375> not available
 [1{C:/Users/maxsk/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
 ] [2] [3]
-[4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17]
-(relative-probability-finite-paper.aux)
+[4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16]
+[17] (relative-probability-finite-paper.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 128.69374pt have occurred.
@@ -852,7 +855,7 @@ LaTeX Font Warning: Size substitutions with differences
 Here is how much of TeX's memory you used:
  25101 strings out of 478864
  635976 string characters out of 2848660
- 1043942 words of memory out of 3000000
+ 1043941 words of memory out of 3000000
  42602 multiletter control sequences out of 15000+600000
  413795 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -885,7 +888,7 @@ s/cm/cmsy5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public
 1/public/amsfonts/cm/cmsy8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/maxsk/AppData/Local/Programs/
 MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on relative-probability-finite-paper.pdf (17 pages, 344425 bytes
+Output written on relative-probability-finite-paper.pdf (17 pages, 344385 bytes
 ).
 PDF statistics:
  185 PDF objects out of 1000 (max. 8388607)
