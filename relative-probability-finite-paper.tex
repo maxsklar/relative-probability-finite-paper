@@ -36,8 +36,11 @@
 \thispagestyle{empty}
 
 \begin{abstract}
-This is an obviously incomplete draft/outline of an upcoming paper. Please do not share
+This is an incomplete draft/outline of an upcoming paper. Please do not share
 \end{abstract}
+
+\tableofcontents
+\newpage
 
 \section{Introduction}
 
@@ -263,8 +266,6 @@ The fundamental property on the event level is \(P(e_1, e_3) :\cong P(e_1, e_2) 
 
 FILL IN
 
-\subsection{Formulas for the Event Level Function}
-
 Theorem: Given events \(e_1\) and \(e_2\) where \(e_1 \cup e_2 \neq \varnothing\), we have \(P(e_1, e_2) = \sum_{h_1 \in e_1} \frac{1}{\sum_{h_2 \in e_2} p(h_2, h_1)}\).
 
 Proof: FILL IN
@@ -279,25 +280,31 @@ Proof: Using the transitive property, \(P(e_1, e_1) = 1 :\cong P(e_1, e_2) \cdot
 
 FILL IN
 
-Definition: Events \(e_1\) and \(e_2\) are \textit{comparable} if \(P(e_1, e_2) \neq \ast\).
-
 \subsection{Degenerate Cases}
 
 Suppose that \(K = 0\). Then \(\Omega\) is empty, and there are no outcomes. Surprisingly, there is still an RPF because of the event represented by the empty set \(\varnothing\). In this case \(P(\varnothing, \varnothing) = 1\) is the only RPF. This is a mathematical by product of our definition, but an interesting comparison to the case of absolute distributions where such a function does not exist (because with no outcomes, they cannot sum to 1).
 
 Now we let \(K = 1\), and \(\Omega = {h}\). There is still only a single, trivial RPF P, where \(P(h, h) = 1\), and \(P(\varnothing, h) = 0\). This matches the absolute case where the probability of the single outcome must be 1.
 
-\subsection{Matching and Equality}
+\section{New Concepts for Relative Probability}
 
-Let \(P_1\) and \(P_2\) be relative probability functions. 
+We have successfully defined the relative probability function in section \ref{section:new_relative_prob}, and we can construct examples. However, because we now allow zero probability outcomes and events to be assigned relative values, new situations arise that do not occur in the standard model. We therefore need some new vocabulary to talk about these situations. These include whether events are comparable or possible relative to each other, and how that affects the structure of the RPF.
 
-Definition: \(P_1 :\cong P_2\) if and only if all of relative probabilities of \(P_1\) are matched by those of \(P_2\).
+\subsection{Matching and Comparability}
+
+If an RPF assigns \(\ast\) to the two events, then it has lost information about the relationship between those two events.
+
+Definition: Events \(e_1\) and \(e_2\) are \textit{comparable} if \(P(e_1, e_2) \neq \ast\).
+
+A relative probability function is \textit{totally comparable} if every pair of events are comparable. [CITE DEFINITION USING amsthm]
+
+A totally comparable RPF has the maximum amount of information filled in about the relative probability of two events. Some RPFs may have less information but nevertheless are consistent with RPFs that have more. The following definition encapulates this relationship.
+
+Definition: Let \(P_1\) and \(P_2\) be relative probability functions. \(P_1\) is matched by \(P_2\) if and only if all of relative probabilities of \(P_1\) are matched by those of \(P_2\).
 
 \begin{equation}
 \forall e_1, e_2 \in \mathcal{F}, P_1(e_1, e_2) :\cong P_2(e_1, e_2)
 \end{equation}
-
-A relative probability function is \textit{totally comparable} if every pair of events are comparable. [CITE DEFINITION USING amsthm]
 
 Theorem: Let \(P_1\) and \(P_2\) be relative probability functions on \(\Omega\) where \(P_1 :\cong P_2\) and \(P_2\) is totally comparable. Then, \(P_1\) and \(P_2\) must be equal.
 
@@ -345,7 +352,7 @@ Theorem: If an RPF is totally comparable, then the equivalance classes of mutual
 
 Proof: FILL IN
 
-\subsection{Totally Mutually Possible}
+\subsection{Totally Mutually Possible RPFS}
 
 Definition: A relative probability function is \textit{totally mutually possible} if all outcomes are mutually possible.
 
@@ -361,7 +368,7 @@ Now let \(h^* = h\)
 
 Because \(P\) is totally mutually possible, \(P(h_1, h)\) will always be a value \(\notin \{0, \infty, \ast\). Therefore, the sum is the same and each \(P(h)\) is non-zero. This means that all of the relative probabilities \(P(h_1, h_2)\) will have to equal the ratio \(\frac{P(h_1)}{P(h_2}\). Therefore, the absolute probability function contains all the information needed to construct the relative probability function without loss of information.
 
-\subsection{Composing Relative Probability Functions}
+\section{Composing Relative Probability Functions}
 
 Let \(P_0, P_1, ..., P_{K-1}\) be relative probability functions. Each of these probability functions have unique categories in their own right.
 
@@ -431,85 +438,7 @@ Theorem: \(P\) is totally comparable if and only if the following are true:
 
 Proof: FILL IN (both directions)
 
-\section{Topology of Relative Probability Spaces}
 
-The idea of a limit distribution requires particularly around the idea of limits. Mathematics can be great at modelling the real world even if it's ideas are theoretically impossible. For example, we might believe that it is impossible for a certain natural process to repeat an infinite number of times, and yet we may still take its value to be infinity in order to get some kind of bound on what that system will look like in the long run. Likewise, it still makes sense to consider a particular outcome in a probabilistic system as certain while maintaining information about the other outcomes in order to calculate the effects of such a limit. [CLEAN UP WORDING OF PARAGRAPH] To this end, we will prove that the space of fully comparable relative distributions is compact.
-
-TODO: Warn people that background in topology is required for this section, and then we can shorten it up! Also, this section can be skipped if not interesting.
-
-One of the benefits of relative probability spaces is their properties with respect to limits. Specifically, if we look at the space of (absolute) categorical distributions on \(\Omega\) and we allow the probability of one outcome to approach 1, then all of the other probabilities will be forced down to 0 and become incomparable with one another. In the relative probability space, the information about the ratios of probabilities of the other outcomes can be preserved even as a single outcome reaches a probability of 1.
-
-If the space of totally comparable RPFs can be shown to be compact, then we know that relative probabilites of outcomes and events are preserved even as they both approach zero relative to another event.
-
-In order to prove compactness, we first must define a topology on the space of totally comparable RPFs. This means identifying the sets that are open (or intuitively, sets that fully surround all of it's members and don't contain its boundary). This starts with finding a \textit{basis of open sets} from which all other open sets can be constructed through countable unions.
-
-For the absolute probability function, we can use \(K-1\)-simplex embedded in \(\mathbb{R}^K\) to get a topology using the standard Euclidean space. There's no obvious way to embed an RPF into euclidean space, so some background is required.
-
-First note that the notion of an open set can change even if a topological space is restricted. For example, on the real number line \(\mathbb{R}\), we take the open interval (0, 1) as an open set (as the term open interval suggests). However, once this is embedded into \(\mathbb{R}^2\), it is now a line segment in a plane and no longer open. It can be thought of as a restriction to an open set on \(\mathbb{R}^2\) to \(\mathbb{R}\). For example, the set \(\{(x, y): x \in (0, 1)\;  \text{and}\;  y \in (-\epsilon, +\epsilon)\}\) given an \(\epsilon > 0\) is such an open set on \(\mathbb{R}^2\). [ILLUSTRATION]
-
-Likewise, an open set on a relative probability space restricted on several outcomes might not be an open set on the relative probability spaces for all of \(\Omega\).
-
-Theorem: Let \(\Omega = \{h_1, h_2\}\) have two elements, with relative probability function \(P\). Then, \(P\) is completely determined by \(P(h_1, h_2)\).
-
-Proof: Let \(q = P(h_1, h_2)\). By the inverse symmetric property, \(P(h_2, h_1) = q^{-1}\). These values completely determine \(P\) on the event level.
-
-Definition: An \textit{interior open patch} of \(\text{RPF}(\Omega)\) is one of the following:
-
-\begin{enumerate}
-  \item If \(K = 2\), a subset parameterized by an interior open interval of magnitudes. \(\{P | a < P(h_1, h_2) < b\}\) for some \(a, b \in \mathbb{M}\) 
-  \item If \(K > 2\), a composition of interor patches with composing function \(P_{TOP}\) also being an interior patch.
-\end{enumerate}
-
-Intuition: Interior open patches contain only totally mutually possible functions.
-
-TODO - diagram for interior and exterior open patches
-
-Definition: An \textit{exterior open patch} is a one of the following:
-
-\begin{enumerate}
-  \item If \(K = 2\), a subset parameterized by an open interval of magnitudes containing 0. \(\{P | 0 \leq P(h_1, h_2) < b\}\) for some \(b \in \mathbb{M}\) 
-  \item If \(K > 2\), a composition where \(P_{TOP}\) is an exterior open patch of size 2, and the component that might be zero relative to the other component - \(h_1\) above - is also an exterior open patch while the second component is an interior patch.
-\end{enumerate}
-
-Intuition: Exterior open patches contain only totally mutually comparable functions, but some are not totally mutually possible.
-
-TODO: Break this down because it's not that intuitive!
-
-Definition: An \textit{open patch} of \(\text{RPF}(\Omega)\) is a subset of \(\text{RPF}(\Omega)\) that is either an interior or exterior open patch.
-
-Every element of an open patch of \(\text{RPF}(\Omega)\) is totally mutually comparable.
-
-Now let the open patches be the bases for an open set thus defining a topology on the set of totally mutually comparable RPFs of \(\Omega\).
-
-Theorem: The topological space of totally comparable functions on an outcome space \(\Omega\) is \textit{compact}, meaning that for every open cover of it, there is a finite subcover.
-
-Proof - STILL A LOT TO DO:
-
-Let \(K = |\Omega|\). This is going to be an inductive proof where we assume that the theorem is true for all \(k < K\) and then prove that it is true for \(K\).
-
-If \(K \in {0, 1}\) then the set of open sets is finite, so we're good. (Reference degenerate cases)
-
-Let \(h \in \Omega\) be an outcome. The space of totally comparable functions on \(\Omega\) can be split into 2 regions: one where \(P(h, \Omega) = 0\) and one where \(P(h_1, \Omega) > 0\).
-
-- We're going to have to prove this - might be tough!
-
-\subsection{Simple Limit Example}
-
-Let us define a simple relative probability distribution \(P_q\) where \(K = 3\) that is parameterized by the magnitude \(q \in \mathbb{M}\).
-
-Let \(P_q(h_0, h_1) = q\) and \(P_q(h_1, h_2) = 2\).
-
-By the fundamental property, \(P_q(h_0, h_2) :\cong P_q(h_0, h_1) \cdot P_q(h_1, h_2) = 2q\).
-
-Now we want to consider the case where the relative probability of \(h_0\) grows infinitely large in comparison to \(h_1\) and \(h_2\).
-
-\[P = lim_{q \rightarrow \infty} P_q\]
-
-We use the following topological definition for the limit in this case: For every open set A of relative probability distributions containing P, there exists an open interval \(B=(b, \infty)\) on \(\mathbb{M}\) such that for every value of \(q \in B\), \(P_q\) is in A.
-
-Proposition: The above limit that defines \(P\) exists, and \(P(h_1, h_2) = 2\). In other words, \(h_2\) is still half as likely as \(h_1\) and that information hasn't been lost on \(P\).
-
-Proof: TODO
 
 \section{Bayesian Inference on Relative Distributions}
 
@@ -587,6 +516,86 @@ Randomly sample from this distribution, but remove certain categories. Algorithm
 Ask: Is this distribution totally mutually possible? Algorithm: Look are a single top tier.
 
 Ask: Is it totally mutually comparable? Algorithm: Look for a linear list of tiers.
+
+\section{Topology of Relative Probability Spaces}
+
+The idea of a limit distribution requires particularly around the idea of limits. Mathematics can be great at modelling the real world even if it's ideas are theoretically impossible. For example, we might believe that it is impossible for a certain natural process to repeat an infinite number of times, and yet we may still take its value to be infinity in order to get some kind of bound on what that system will look like in the long run. Likewise, it still makes sense to consider a particular outcome in a probabilistic system as certain while maintaining information about the other outcomes in order to calculate the effects of such a limit. [CLEAN UP WORDING OF PARAGRAPH] To this end, we will prove that the space of fully comparable relative distributions is compact.
+
+TODO: Warn people that background in topology is required for this section, and then we can shorten it up! Also, this section can be skipped if not interesting.
+
+One of the benefits of relative probability spaces is their properties with respect to limits. Specifically, if we look at the space of (absolute) categorical distributions on \(\Omega\) and we allow the probability of one outcome to approach 1, then all of the other probabilities will be forced down to 0 and become incomparable with one another. In the relative probability space, the information about the ratios of probabilities of the other outcomes can be preserved even as a single outcome reaches a probability of 1.
+
+If the space of totally comparable RPFs can be shown to be compact, then we know that relative probabilites of outcomes and events are preserved even as they both approach zero relative to another event.
+
+In order to prove compactness, we first must define a topology on the space of totally comparable RPFs. This means identifying the sets that are open (or intuitively, sets that fully surround all of it's members and don't contain its boundary). This starts with finding a \textit{basis of open sets} from which all other open sets can be constructed through countable unions.
+
+For the absolute probability function, we can use \(K-1\)-simplex embedded in \(\mathbb{R}^K\) to get a topology using the standard Euclidean space. There's no obvious way to embed an RPF into euclidean space, so some background is required.
+
+First note that the notion of an open set can change even if a topological space is restricted. For example, on the real number line \(\mathbb{R}\), we take the open interval (0, 1) as an open set (as the term open interval suggests). However, once this is embedded into \(\mathbb{R}^2\), it is now a line segment in a plane and no longer open. It can be thought of as a restriction to an open set on \(\mathbb{R}^2\) to \(\mathbb{R}\). For example, the set \(\{(x, y): x \in (0, 1)\;  \text{and}\;  y \in (-\epsilon, +\epsilon)\}\) given an \(\epsilon > 0\) is such an open set on \(\mathbb{R}^2\). [ILLUSTRATION]
+
+Likewise, an open set on a relative probability space restricted on several outcomes might not be an open set on the relative probability spaces for all of \(\Omega\).
+
+Theorem: Let \(\Omega = \{h_1, h_2\}\) have two elements, with relative probability function \(P\). Then, \(P\) is completely determined by \(P(h_1, h_2)\).
+
+Proof: Let \(q = P(h_1, h_2)\). By the inverse symmetric property, \(P(h_2, h_1) = q^{-1}\). These values completely determine \(P\) on the event level.
+
+Definition: An \textit{interior open patch} of \(\text{RPF}(\Omega)\) is one of the following:
+
+\begin{enumerate}
+  \item If \(K = 2\), a subset parameterized by an interior open interval of magnitudes. \(\{P | a < P(h_1, h_2) < b\}\) for some \(a, b \in \mathbb{M}\) 
+  \item If \(K > 2\), a composition of interor patches with composing function \(P_{\top}\) also being an interior patch.
+\end{enumerate}
+
+Intuition: Interior open patches contain only totally mutually possible functions.
+
+TODO - diagram for interior and exterior open patches
+
+Definition: An \textit{exterior open patch} is a one of the following:
+
+\begin{enumerate}
+  \item If \(K = 2\), a subset parameterized by an open interval of magnitudes containing 0. \(\{P | 0 \leq P(h_1, h_2) < b\}\) for some \(b \in \mathbb{M}\) 
+  \item If \(K > 2\), a composition where \(P_{\top}\) is an exterior open patch of size 2, and the component that might be zero relative to the other component - \(h_1\) above - is also an exterior open patch while the second component is an interior patch.
+\end{enumerate}
+
+Intuition: Exterior open patches contain only totally mutually comparable functions, but some are not totally mutually possible.
+
+TODO: Break this down because it's not that intuitive!
+
+Definition: An \textit{open patch} of \(\text{RPF}(\Omega)\) is a subset of \(\text{RPF}(\Omega)\) that is either an interior or exterior open patch.
+
+Every element of an open patch of \(\text{RPF}(\Omega)\) is totally mutually comparable.
+
+Now let the open patches be the bases for an open set thus defining a topology on the set of totally mutually comparable RPFs of \(\Omega\).
+
+Theorem: The topological space of totally comparable functions on an outcome space \(\Omega\) is \textit{compact}, meaning that for every open cover of it, there is a finite subcover.
+
+Proof - STILL A LOT TO DO:
+
+Let \(K = |\Omega|\). This is going to be an inductive proof where we assume that the theorem is true for all \(k < K\) and then prove that it is true for \(K\).
+
+If \(K \in {0, 1}\) then the set of open sets is finite, so we're good. (Reference degenerate cases)
+
+Let \(h \in \Omega\) be an outcome. The space of totally comparable functions on \(\Omega\) can be split into 2 regions: one where \(P(h, \Omega) = 0\) and one where \(P(h_1, \Omega) > 0\).
+
+- We're going to have to prove this - might be tough!
+
+\subsection{Simple Limit Example}
+
+Let us define a simple relative probability distribution \(P_q\) where \(K = 3\) that is parameterized by the magnitude \(q \in \mathbb{M}\).
+
+Let \(P_q(h_0, h_1) = q\) and \(P_q(h_1, h_2) = 2\).
+
+By the fundamental property, \(P_q(h_0, h_2) :\cong P_q(h_0, h_1) \cdot P_q(h_1, h_2) = 2q\).
+
+Now we want to consider the case where the relative probability of \(h_0\) grows infinitely large in comparison to \(h_1\) and \(h_2\).
+
+\[P = lim_{q \rightarrow \infty} P_q\]
+
+We use the following topological definition for the limit in this case: For every open set A of relative probability distributions containing P, there exists an open interval \(B=(b, \infty)\) on \(\mathbb{M}\) such that for every value of \(q \in B\), \(P_q\) is in A.
+
+Proposition: The above limit that defines \(P\) exists, and \(P(h_1, h_2) = 2\). In other words, \(h_2\) is still half as likely as \(h_1\) and that information hasn't been lost on \(P\).
+
+Proof: TODO
 
 \section{Future Work}
 \subsection{Expansions to infinite spaces}
