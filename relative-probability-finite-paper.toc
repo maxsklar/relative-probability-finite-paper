@@ -14,14 +14,14 @@
 \contentsline {subsection}{\numberline {5.1}Matching and Comparability}{10}{}%
 \contentsline {subsection}{\numberline {5.2}Possibility Classes}{11}{}%
 \contentsline {subsection}{\numberline {5.3}Totally Mutually Possible RPFS}{12}{}%
-\contentsline {section}{\numberline {6}Composing Relative Probability Functions}{12}{}%
+\contentsline {section}{\numberline {6}Composing Relative Probability Functions}{13}{}%
 \contentsline {section}{\numberline {7}Bayesian Inference on Relative Distributions}{14}{}%
 \contentsline {section}{\numberline {8}Implementation}{15}{}%
 \contentsline {section}{\numberline {9}Topology of Relative Probability Spaces}{16}{}%
 \contentsline {subsection}{\numberline {9.1}Simple Limit Example}{18}{}%
 \contentsline {section}{\numberline {10}Future Work}{18}{}%
 \contentsline {subsection}{\numberline {10.1}Expansions to infinite spaces}{18}{}%
-\contentsline {subsection}{\numberline {10.2}Connection Surreal Numbers}{18}{}%
+\contentsline {subsection}{\numberline {10.2}Connection Surreal Numbers}{19}{}%
 \contentsline {subsection}{\numberline {10.3}Shrinking the Measure Number System}{19}{}%
 \contentsline {subsection}{\numberline {10.4}Relationship to Category Theory}{19}{}%
 \contentsline {section}{Appendices}{19}{}%
