@@ -1,6 +1,7 @@
 \documentclass[twoside]{article}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{enumerate}% http://ctan.org/pkg/enumerate
@@ -9,11 +10,28 @@
 \usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry}
 \usepackage{fullpage}
 \usepackage{pdflscape}
+\usepackage{setspace}
 \usepackage{tikz}
 \usepackage[toc,page]{appendix}
 \usepackage[shortlabels]{enumitem}\usepackage{draftwatermark}
 
 \newcommand{\quotes}[1]{``#1''}
+
+\theoremstyle{plain}% default
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{exercise}[example]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
 
 \begin{document}
 \parindent=0in
@@ -44,112 +62,136 @@ This is an incomplete draft/outline of an upcoming paper. Please do not share
 
 \section{Introduction}
 
-It may surprise many that the mathematical foundations of probability theory are still very much open to debate.
+The mathematical foundations of probability theory are still very much open to debate!
 
-Since Kolmogorov published the standard axioms for probability theory in 1933, there have been calls to relax some of those assumptions and rules for various applications. In the paper Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justification. One of difficult questions is the definition of a condiational probability where the condition has a probability of zero. Informally, this means that we wish to talk about the probability of an event given a hypothetical situation which will not occur\footnote{There is another very unintuitive feature of probability theory zero probability events do indeed occur all the time, particularly when given a continuous distribution.}. Related to this question is whether we can talk about the relative probability of two events in a system, even though those two events may have probability zero.
+Since Kolmogorov published the standard axioms for probability in 1933, there have been calls to relax or alter them for various applications. In Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justifications. A question arises from this discuttion: can we discuss conditional probability when the condition event has probability zero? One would hope it not be forbidden to talk about the probability of an event given a hypothetical situation which will not occur\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution.}. Related to this question is whether we can talk about the relative probability of two events in a system, even though those two events may have probability zero.
 
-The standard model defines these values as a ratio of one probability to another. As a result, every time the indeterminate form \(\frac{0}{0}\) appears, the relative probability must remain undefined. Undeterred by this state of affairs, mathematicians and engineers talk about this type of relative probability all the time. For example, if we consider the continuous probability distributrion over \([0, 1]\) given by the probability distribution function \(2x\), we know that the PDF at \(x = \frac{1}{2}\) is twice as much as the PDF at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though we are only talking about \textit{probability density} or \textit{PDF} values.
+The Kolmogorov model defines these values as a ratio of one probability to another. As a result, every time the indeterminate form \(\frac{0}{0}\) appears, the relative probability remains undefined. Undeterred by this state of affairs, mathematicians and engineers refer to this type of relative probability all the time. For example, if we consider the continuous probability distributrion over \([0, 1]\) given by the probability distribution function \(2x\), we know that the PDF at \(x = \frac{1}{2}\) is twice as much as the PDF at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though we are only talking about \textit{probability density} or \textit{PDF} values.
 
-Let us take the position that we may model probability in a non-standard way, and we can do so as long as the framework is logically consistent, and the advertised applications match such a proposal\footnote{Lyon identifies this link to application as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting mathematics, but if that mathematics cannot be linked to any application that a person would reasonbly call probability, then it ought to go by a different name.}. Given the popularity of Bayesian methods as applied to machine learning in recent decades, and given that the methods used to search a hypothesis space in Bayesian inference relies on relative probability\cite{sklar_bias}, we ought to understand whether we can derive a framework for probability that takes the relationships between outcomes and events as fundamental.
+Let us take the position that we may model probability in a non-standard way, and we can do so as long our new framework is logically consistent, and that the advertised applications correspond to the mathematical model\footnote{Lyon identifies this link between application and model as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting mathematics, but if that mathematics cannot be linked to any application that anyone would reasonbly call probability, then it ought to go by a different name.}. Given the popularity of Bayesian methods as applied to machine learning in recent decades, and given that the methods used to search a hypothesis space in Bayesian inference relies on relative probability\cite{sklar_bias}, we ought to understand whether we can derive a framework for probability that takes the relationships between outcomes and events as fundamental.
 
-Not only would this solve the conditional probability question, but it would also give rise to several new concepts and objects to study. In this paper we will construct a theory of relative probability on finite distributions as a starting point for more complexity in future work. As we shall see, even for this simple case there is much work to be done!
+This improves the Kolmogorov model - that takes absolute probability as fundamental - by both solving the conditional probability question and giving rise to new concepts and constructions to study.
 
-We will also look at potential applications of these ideas, including limit distributions, bayesian inference, and even implementation.
+\subsection{Goals}
 
-These methods have applications in Bayesian statistics, even providing a new formulation of Bayes rule. This new formulation is reflective of current practice.
+We aim to demonstrate that a relative probability approach is not only viable, but has many properties that practicioners of all kinds will find attractive.
+
+As a proof of this concept, we will construct a theory of relative probability on finite distributions. By omitting infinite distributions, we can temporarily set aside the concepts of measurable sets and countable additivity. This work will demonstrate that even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental rules and vocabulary to be a viable foundation, which we will construct.
+
+These methods have applications in Bayesian statistics, even providing a new formulation of Bayes rule that is reflective of current practice. We will look at these applications of these ideas along with their algorithmic implementation.
+
+Finally, we will discuss a critical feature of prelative probability functions, which is their ability to retain information when taking limits - for which absolute probability fails. In order to certify this feature, we delve into the topology and finish with a proof of compactness.
 
 \section{Preliminaries}
 \subsection{Magnitude Space}
+\begin{definition}
+The \textit{magnitude space} \(\mathbb{M}\) is the set of all positive real numbers, \(0\) and \(\infty\).
+\[\mathbb{M} = [0, +\infty]\]
+\end{definition}
 
-Let \(\mathbb{M} = [0, +\infty]\) be the space of \textit{magnitudes}, which roughly corresponds with our intuition for the concept of size. The magnitude space contains all positive real numbers, \(0\) and \(\infty\).
+Magnitudes roughly corresponding with our intuition of size.
 
-The following functions are defined for all \(m_1, m_2\) in \(\mathbb{M}\).
-
-\(\mathbb{M}\) is closed under addition. \(m_1 + m_2\) is the sum of \(m_1\) and \(m_2\).
-
-\[m + \infty = \infty\]
+\(\mathbb{M}\) is closed under addition with \(m + \infty = \infty\).
 
 The products \(0 \cdot \infty\) and \(\infty \cdot 0\) are indeterminate. In all other cases, multiplication on \(\mathbb{M}\) is defined.
 
 The multiplicative inverse \(m^{-1}\) is the defined on all \(\mathbb{M}\). We let \(0^{-1} := \infty\) and \(\infty^{-1} := 0\), even though it doesn't quite act as a multiplicative inverse in those cases.
 
-Any magnitude can be raised to the power of a real number and still be a magnitude.
-
-\(\forall x \in \mathbb{R}, m^x \in \mathbb{M}\).
-
-If we consider the \textit{extended real number line} to contain values at \(+\infty\) and \(-\infty\), we can continue to define these exponential operations, except for when \(m = 1\):
-
-If \(m > 1\), then \(m^{+\infty} = \infty\) and \(m^{-\infty} = 0\)
-If \(m < 1\), then \(m^{+\infty} = 0\) and \(m^{-\infty} = \infty\)
-
-The set of magnitudes is a totally ordered set under \(\leq\), meaning that for every two magnitudes either \(m_1 \leq m_2\) or \(m_2 \leq m_1\), and if both are true then \(m_1 = m_2\)
+The set of magnitudes is a totally ordered set under \(\leq\), meaning that for every two magnitudes either \(m_1 \leq m_2\) or \(m_2 \leq m_1\), and if both are true then \(m_1 = m_2\). The point at infinity can be considered a limit element, larger than all other magnitudes.
 
 \subsection{The Wildcard Element}
 
-\[\mathbb{M}^* = \mathbb{M} \cup \{\ast\}\]
+\begin{definition}
+Let the \textit{magnitude-wildcard space} \(\mathbb{M}^*= \mathbb{M} \cup \{\ast\}\) be the set of magnitudes along with a \textit{wildcard element}, \(\ast\).
+\end{definition}
 
-Let the \textit{magnitude-wildcard space} \(\mathbb{M}^*\) be defined as the set of magnitudes along with a \textit{wildcard element}, \(\ast\). The wildcard element corresponds to several different ideas depending on the context:
+The wildcard element corresponds to several different concept, each appearing in a different type of practice:
 \begin{itemize}
   \item The \textit{wildcard pattern} used in pattern matching and regular expressions in type theory and computer science
-  \item The indeterminate form \(\frac{0}{0}\) in arithmatic.
-  \item The standard \textit{NaN}, or \textit{Not a Number}\footnote{\quotes{Not a Number} may have been an unfortunate naming choice because it actually represents \textbf{any} number!} value in the IEEE standard for floating point arithmetic.
+  \item The indeterminate form \(\frac{0}{0}\) in arithmetic.
+  \item The standard \textit{NaN}, or \textit{Not a Number}\footnote{\quotes{Not a Number} may have been an unfortunate naming choice because it actually represents \textbf{any} number!} value in the IEEE standard for floating point arithmetic\cite{ieee}.
 \end{itemize}
 
-We define the following properties on \(\ast\):
+We define the following properties on \(\ast\) to allow addition and multiplication of any two magnitude-wildcard values.
 \begin{enumerate}[(i)]
   \item \(0 \cdot \infty = \ast\)
   \item \(\ast + m = \ast\)
   \item \(\ast \cdot m = \ast\)
 \end{enumerate}
 
-Let the \textbf{matching relation}\footnote{It helps to read \(:\cong\) as \quotes{is matched by}.} \(:\cong\) be a binary relation on \(\mathbb{M}^*\). A value \(m_1\) is matched by \(m_2\) whenever \(m_2\) is the wildcard, or the two values are equal.
+Note that we now lose some basic properties of these operations. For example, we can no longer simplfy an expression like \(0x\) to \(0\). This will take some getting used to, but programmers familiar with the \textit{NaN} value in floating point arithmetic have long adapted to this adjustment.
 
-\[m_1 :\cong m_2 \Longleftrightarrow [m_2 = \ast] \vee [m_1 = m_1]\]
+\subsection{The Matching Relation}
 
-From this definition, several important properties quickly follow.
-\begin{enumerate}[(i)]
-  \item \label{wild_prop_1} If a magnitude matches a non-wildcard element, then the two values are equal. \[m_1 :\cong m_2 \wedge m_2 \neq \ast \Longrightarrow m_1 = m_2\]
-  \item \label{wild_prop_2} Every element is matched by the wildcard element. \[m :\cong \ast\]
-  \item \label{wild_prop_3} The wildcard element is matched only by itself. \[\ast :\cong m \Longrightarrow m = \ast\]
-\end{enumerate}
+\begin{definition}
+The \textit{matching relation}\footnote{It helps to read \(:\cong\) as \quotes{is matched by}.} \(:\cong\) is a binary relation on \(\mathbb{M}^*\). \(m_1\) is matched by \(m_2\) when either \(m_1 = m_2\) or  \(m_2\) is the wildcard.
+\[m_1 :\cong m_2 \Longleftrightarrow (m_1 = m_1) \vee (m_2 = \ast)\]
+\end{definition}
 
-The matching relation ask if the element on the left hand side could be represented by the element on the right. The wildcard element represents every single value, but it cannot be represented by any specific value. To put it another way, the wildcard element represents a loss of information about a value which can never be recovered.\footnote{Hajek\cite{hajek} calls these matching relations contraints, in that they may or may not bind the right hand side to a specific value.}
+We say that the left hand side of a matching relation is the \textit{parameter} and the right hand side is the \textit{constraint}. This reinforces the idea that the \(contraint\) may or may not contrain the parameter.
 
-The matching relation is reflexive, but in general is not symmetric.
+The following lemmas quickly follow from the definition.
 
-Theorem: The matching relation is transitive. In other words, for all \(m_1, m_2, m_3\) in \(\mathbb{M}\), if \(m_1 :\cong m_2\) and \(m_2 :\cong m_3\), then \(m_1 :\cong m_3\).
+\begin{lemma}
+\label{wild_prop_1} If a magnitude matches a non-wildcard element, then the two values are equal. \[m_1 :\cong m_2 \wedge m_2 \neq \ast \Longrightarrow m_1 = m_2\]
+\end{lemma}
 
-Proof: Assume that \(m_1 :\cong m_2\) and \(m_2 :\cong m_3\). If none of these values are the wildcards, then by property \ref{wild_prop_1}, they are all equal and \(m_1 :\cong m_3\). If \(m_1 = \ast\) then by property \ref{wild_prop_3}, \(m_2 = \ast\) and finally \(m_3 = \ast\) so the theorem holds. If \(m_2 = \ast\) then \(m_3 = \ast\) and \(m_1 :\cong m_3\) by property \ref{wild_prop_2}. And of course if \(m_3 = \ast\) alone, then by property \ref{wild_prop_2}, \(m_1\) is still matched by \(m_3\).
+\begin{lemma}
+\label{wild_prop_2}
+Every element is matched by the wildcard element. \(m :\cong \ast\)
+\end{lemma}
 
-Theorem: The matching relation preserves multiplication.
+\begin{lemma}
+\label{wild_prop_3}
+The wildcard element is matched only by itself. \(\ast :\cong m \Longrightarrow m = \ast\)
+\end{lemma}
 
-\begin{equation}
-\label{eq:matching_multiplication}
-\forall a,b,a',b' \in \mathbb{M^*}, a :\cong a' \wedge b :\cong b' \Rightarrow ab :\cong a'b'
-\end{equation}
+The matching relation asks if the parameter could be represented by the constraint. The wildcard element represents every single value, but it cannot be represented by any specific value. Alternatively, the wildcard element represents a loss of information about a parameter which can never be recovered. Hajek\cite{hajek} also calls these matching relations contraints, in that they may or may not bind the right hand side to a specific value.
 
-Proof: Let \(a,b,a',b' \in \mathbb{M^*}\), and let \(a :\cong a'\) and \(b :\cong b'\). If either \(a'\) or \(b'\) are a wildcard, then \(a'b'\) is also a wildcard by definition of wildcard multiplication and the theorem holds. If \(a'\) and \(b'\) are not wildcards, then \(a = a'\) and \(b = b'\), making the statement obvious.
+The matching relation is reflexive and transitive, but unlike equality is not symmetric.
+
+\begin{theorem}
+The matching relation is transitive. In other words, for all \(m_1, m_2, m_3\) in \(\mathbb{M}\), if \(m_1 :\cong m_2\) and \(m_2 :\cong m_3\), then \(m_1 :\cong m_3\).
+\end{theorem}
+
+\begin{proof}
+Assume that \(m_1 :\cong m_2\) and \(m_2 :\cong m_3\). If none of these values are the wildcards, then by property \ref{wild_prop_1}, they are all equal and \(m_1 :\cong m_3\). If \(m_1 = \ast\) then by property \ref{wild_prop_3}, \(m_2 = \ast\) and finally \(m_3 = \ast\) so the theorem holds. If \(m_2 = \ast\) then \(m_3 = \ast\) and \(m_1 :\cong m_3\) by property \ref{wild_prop_2}. And of course if \(m_3 = \ast\) alone, then by property \ref{wild_prop_2}, \(m_1\) is still matched by \(m_3\).
+\end{proof}
+
+
+\begin{theorem}
+\label{theorem:matching_multiplication}
+The matching relation preserves multiplication and addition. \(\forall a,b,a',b' \in \mathbb{M^*}\) if \(a :\cong a'\) and \(b :\cong b'\), then \(ab :\cong a'b'\) and \(a+b :\cong a'+b'\).
+\end{theorem}
+
+\begin{proof}
+Let \(a,b,a',b' \in \mathbb{M^*}\), and let \(a :\cong a'\) and \(b :\cong b'\). If either \(a'\) or \(b'\) are wildcards, then \(a'b'\) is also a wildcard. If \(a'\) and \(b'\) are not wildcards, then \(a = a'\) and \(b = b'\), also making \(ab :\cong a'b'\). The same argument proves \(a+b :\cong a'+b'\).
+\end{proof}
 
 \section{Categorical Distribution}
 
-\subsection{Definition}
+Let \(\Omega\) be a set of mutually exclusive \textit{outcomes}. We assume that \(\Omega\) is finite so that we can count its members as \(|\Omega| = K\). We say there are \(K\) outcomes, or \textit{categories}.
 
-Let \(\Omega\) be a set of mutually exclusive \textit{outcomes}. We will assume that \(\Omega\) is finite so that we can count its members as \(|\Omega| = K\). We say there are \(K\) outcomes, or \textit{categories}.
-
+\begin{definition}
 A \textit{categorical distribution} on a \(\Omega\) is a function \(P: \Omega \rightarrow [0, 1]\) such that \(\sum_{h \in \Omega} P(h) = 1\)
+\end{definition}
 
-The set of all categorical distributions can be embedded in \(\mathbb{R}^K\) as a (K-1)-dimentional object called a (K-1)-simplex. For example, if \(K = 3\), the resulting space of categorical distributions is an equilateral triangle embedded in \(\mathbb{R}^3\) connecting the points (1, 0, 0), (0, 1, 0), and (0, 0, 1).
+The set of all categorical distributions of size \(K\) can be embedded in \(\mathbb{R}^K\) as a (K-1)-dimentional object called a (K-1)-simplex. For example, if \(K = 3\), the resulting space of categorical distributions is an equilateral triangle embedded in \(\mathbb{R}^3\) connecting the points (1, 0, 0), (0, 1, 0), and (0, 0, 1).
 
-Because the set of categorical distributions is embedded in Euclidean space \(\mathbb{R}^K\), its topological properties are well understood. We take the topology of the simplex to be the sub-topology from \(\mathbb{R}^K\). The simplex is closed, bounded, and compact. Practically, this means that any sequnce of points on the simple will converge to one or more points on the simplex allowing both pure and applied practicioners to talk about limit and boundary conditions.
+Because the set of categorical distributions is embedded in \(\mathbb{R}^K\), its topological properties are well understood. The simplex is closed, bounded, and compact. Practically, this means that any sequnce of points on the simple will converge to one or more points on the simplex allowing both pure and applied practicioners to talk about limit and boundary conditions.
+
+Because we are talking about absolute probability, relative information is lost at the boundaries. For example, if \(\Omega = {a, b, c}\) with \(P(a) = 1\) and \(P(b) = P(c) = 0\), we cannot compare the probabilities of \(b\) and \(c\) as we can in the rest of the simplex.
 
 \subsection{Events}
 
-An \textit{event} is a set of outcomes. We define \(\mathcal{F}\) as the space of all possible events. \(\mathcal{F}\) is the power set\footnote{In general, \(\mathcal{F}\) is not the entire power set of \(\Omega\) but typically is when \(\Omega\) is finite.} of \(\Omega\), meaning that \(\mathcal{F} = \mathcal{P}(\Omega)\), and for any event \(e \in \mathcal{F}\), \(e \subseteq \Omega\).
+An \textit{event} is a set of outcomes. We define \(\mathcal{F}\) as the space of all possible events. \(\mathcal{F}\) is the power set\footnote{In general, \(\mathcal{F}\) is not the entire power set of \(\Omega\) but typically is when \(\Omega\) is finite. We need not concern ourselves with the \(\sigma\)-algebra of measurable sets here.} of \(\Omega\), meaning that \(\mathcal{F} = \mathcal{P}(\Omega)\), and for any subset \(e \subseteq \Omega\), \(e \in \mathcal{F}\).
 
-In the previous section, we defined the probability of individual outcomes. We can now define the probability function on events instead of outcomes. For finite distributions, this is simple. For all \(e\) in \(\mathcal{F}\),
+In the previous section, we defined the probability of individual outcomes. We can now define the probability function on events instead of outcomes. Definiting probability on the event level rather than the outcome level is a curcial insight in the development of probability theory (and measure theory more generally). Even though the process is far simpler for finite distributions, we must pay attention to this layer in order for the framework to generalize.
+
+For all \(e\) in \(\mathcal{F}\),
 \[ P(e) = \sum_{h \in e}{P(h)}\]
 
-We can take \(P\) as acting either on outcomes or events using the convention \(P(\{h\}) = P(h)\).
+We can take \(P\) as acting either on outcomes or events using the convention \(P(h) = P(\{h\})\).
 
 \(\Omega\) itself the \textit{universal event} of all outcomes, with probability 1.
 
@@ -166,49 +208,49 @@ We continue to use P to represent the RPF but with two inputs instead of one. Th
 
 We define relative probability in terms of absolute probability as a ratio, in the style of the standard Kolmogorov framework.
 
-\begin{equation}
-\label{eq:ratio_definition}
-P(e_1, e_2) = \frac{P(e_1)}{P(e_2)}
-\end{equation}
+\begin{definition}
+\label{def:ratio}
+The relative probability of events \(e_1\) and \(e_2\) on an categorical distribution \(P\) is given as
+\[P(e_1, e_2) = \frac{P(e_1)}{P(e_2)}\]
+\end{definition}
 
 If \(P(e_1) = p(e_2) = 0\), then \(P(e_1, e_2) = \ast\), representing the classical problem of zero-probability events being incomparable.
 
-Theorem: \[\forall e_1, e_2, e_3 \in \mathcal{F}, P(e_1, e_3) :\cong P(e_1, e_2) \cdot P(e_2, e_3)\]
+\begin{theorem}
+For all events \(e_1, e_2, e_3\), \(P(e_1, e_3) :\cong P(e_1, e_2) \cdot P(e_2, e_3)\)
+\end{theorem}
 
-Proof: Start with the case that \(e_2 \neq 0\). Then \(P(e_1, e_2) \cdot P(e_2, e_3) = \frac{P(e_1)}{P(e_2)}\frac{P(e_2)}{P(e_3)} = \frac{P(e_1)}{P(e_3)} = P(e_1, e_3)\). When \(e_2 = 0\), \(P(e_1, e_2) \cdot P(e_2, e_3) = \frac{P(e_1)}{P(e_2)}\frac{P(e_2)}{P(e_3)} = \ast\). Because \(\ast\) matches everything, then the matching statement holds. Because it holds in both cases, the theorem is true.
+\begin{proof}
+Start with the case that \(e_2 \neq 0\). Then \(P(e_1, e_2) \cdot P(e_2, e_3) = \frac{P(e_1)}{P(e_2)}\frac{P(e_2)}{P(e_3)} = \frac{P(e_1)}{P(e_3)} = P(e_1, e_3)\). When \(e_2 = 0\), \(P(e_1, e_2) \cdot P(e_2, e_3) = \frac{P(e_1)}{P(e_2)}\frac{P(e_2)}{P(e_3)} = \ast\). Because \(\ast\) matches everything, then the matching statement holds. Because it holds in both cases, the theorem is true.
+\end{proof}
 
 \section{Relative Categorical Probability Functions}
 \label{section:new_relative_prob}
 
 In section \ref{section:standard_relative_prob}, the relative probability function was derived from the absolute probability function. Here in section \ref{section:new_relative_prob}, we start with the relative probability function as the fundamental object of study.
 
-\subsection{Relative Probability Functions on Outcomes}
-
 Consider a relative probability function \(P\) that acts on outcomes only.
 
-\[P: \Omega \times \Omega \rightarrow \mathbb{M}^*\]
+\begin{definition}
+\label{def:fundamental_laws}
+Let \(\Omega\) be the set of outcomes, and \(P: \Omega \times \Omega \rightarrow \mathbb{M}^*\) be a function acting on two outcomes to product a magnitude-wildcard. \(P\) is a \textit{relative probability function on the outcomes of \(\Omega\)} if it obeys the following \textit{3 fundamental axioms of relative probability}:
 
-The expression \(P(h_1, h_2)\) can be read as the probability of \(h_1\) relative to \(h_2\). A relative probability function is valid if and only if it obeys \textit{the fundamental properties of relative probability} as follows.
+\begin{enumerate}[(i)]
+\item The \textit{identity axiom}: \(P(h, h) = 1\)
+\item The \textit{inverse axiom}: \(P(h_1, h_2) = P(h_2, h_1)^{-1}\)
+\item The \textit{composition axiom}: \(P(h_1, h_3) :\cong P(h_1, h_2) \cdot P(h_2, h_3)\)
+\end{enumerate}
 
-The \textit{reflexive property of relative probability} states that the relative probability of every element relative to itself is one.
+\end{definition}
 
-\begin{equation}
-\label{eq:fundamental_prop_reflexive}
-P(h, h) = 1
-\end{equation}
+If \(P\) is such a relative probability function, \(P(h_1, h_2)\) can be read as the probability of \(h_1\) relative to \(h_2\).
 
-[ADD SYMMETRIC]
 
-The \textit{transitive property of relative probability} states that the relative probabilities of outcomes must make sense when compared to a third outcome. 
-
-\begin{equation}
-\label{eq:fundamental_prop_transitive}
-P(h_1, h_3) :\cong P(h_1, h_2) \cdot P(h_2, h_3)
-\end{equation}
+[ ADD NOTES ON HOW THE LAWS WERE CHOSEN]
 
 \subsection{From Outcomes to Events}
 
-Our next task is to upgrade \(P\) to operate on the event level. In definition \ref{eq:ratio_definition}, the relative probability of two events were set as the ratio of their absolute probabilities. Because we no longer have access to absolute probability, the best we can do is measure relative probability to a given event \(h^*\). Because this ratio might be indeterminate, we use the matching relation instead of equality.
+Our next task is to upgrade \(P\) to operate on the event level. In definition \ref{def:ratio}, the relative probability of two events are the ratio of their absolute probabilities. Because we no longer have access to absolute probability, the best we can do is measure their probability relative to a \textit{reference outcome} \(h^*\). Because this ratio might be indeterminate, we use the matching relation instead of equality.
 
 For all \(h^* \in \Omega\),
 
@@ -217,7 +259,7 @@ For all \(h^* \in \Omega\),
 P(e_1, e_2) :\cong \frac{\sum_{h_1 \in e_1} P(h_1, h^*)}{\sum_{h_2 \in e_2} P(h_2, h^*)}
 \end{equation}
 
-In addition, we require that \(P\) obeys the fundamental properties of relative probability given in equations \ref{eq:fundamental_prop_reflexive} and \ref{eq:fundamental_prop_transitive}. Finally, if a relative probability is not constrained by any of these requirements, then it remains a wildcard.
+In addition, we require that \(P\) obeys the 3 fundamental laws of relative probability in \ref{def:fundamental_laws}. Finally, if a relative probability is not constrained by any of these requirements, then it remains a wildcard.
 
 These requirements seem reasonable, but how can we know for sure that they consitute a complete and consistent definition of \(P: \mathcal{F} \times \mathcal{F} \rightarrow \mathbb{M}^*\)? The following must be shown:
 
@@ -470,7 +512,7 @@ Now we get bayes rule for relative probability:
  
  Theorem: Let \(P_1\) and \(P_2\) be relative probability functions on \(\Omega\). Define \(P(h_1, h_2) = P_1(h_1, h_2) \cdot P_2(h_1, h_2)\). Then, \(P\) is also an RPF, that it is obeys the fundamental properties.
  
- Proof: Use the multiplication property of the matching relation in equation \ref{eq:matching_multiplication}.
+ Proof: Use the multiplication property of the matching relation in equation \ref{theorem:matching_multiplication}.
  
  \[P(h_1, h_1) = P_1(h_1, h_1) P_2(h_1, h_1)=1 \cdot 1=1\]
  
@@ -611,7 +653,10 @@ Proof: TODO
 - Can this system work for all non-standard probability value systems?
 - There is practical application in this work, since computers cannot work with real numbers directly. We implement this system with floating point numbers and this approximation should be good enough for most applications - but can we have a version with more precise arithmetic
 \subsection{Relationship to Category Theory}
+
 Category theorists will instantly recognize that an RPF describes a category perfectly. This construction can be analyzed and approached through the lens of category theory.
+
+The recent work of Censi et al.\cite{censi} concerns negative information in categories, which here corresponds to the wildcard element. It represents regions of the probability function that remain unassigned or uncomparable. This work could be used to subsume and further develop the idea of the wildcard.
 
 \begin{appendices}
 
@@ -629,6 +674,8 @@ Category theorists will instantly recognize that an RPF describes a category per
 \bibitem{bradley}Bradley, T. D., Bryson, T., \& Terilla, J. (2020). Topology: A Categorical Approach. MIT Press.
 \bibitem{lyon}Lyon, A. (2016). Kolmogorov’s Axiomatisation and its Discontents. The Oxford handbook of probability and philosophy, 155-166.
 \bibitem{hajek}Hájek, A. (2003). What conditional probability could not be. Synthese, 137(3), 273-323.
+\bibitem{censi}Censi, A., Frazzoli, E., Lorand, J., \& Zardini, G. (2022). Categorification of Negative Information using Enrichment. arXiv preprint arXiv:2207.13589.
+\bibitem{ieee}Kahan, W. (1996). IEEE standard 754 for binary floating-point arithmetic. Lecture Notes on the Status of IEEE, 754(94720-1776), 11.
 
 \end{thebibliography}
 

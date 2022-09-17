@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  14 SEP 2022 15:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  16 SEP 2022 20:47
 entering extended mode
 **./relative-probability-finite-paper.tex
 (relative-probability-finite-paper.tex
@@ -90,6 +90,18 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
 )
+(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks22
+\thm@bodyfont=\toks23
+\thm@headfont=\toks24
+\thm@notefont=\toks25
+\thm@headpunct=\toks26
+\thm@preskip=\skip52
+\thm@postskip=\skip53
+\thm@headsep=\skip54
+\dth@everypar=\toks27
+)
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithm.st
 y
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
@@ -97,15 +109,15 @@ nment
  (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count268
-\float@exts=\toks22
+\float@exts=\toks28
 \float@box=\box52
-\@float@everytoks=\toks23
+\@float@everytoks=\toks29
 \@floatcapt=\box53
 )
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
 Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\@float@every@algorithm=\toks24
+\@float@every@algorithm=\toks30
 \c@algorithm=\count269
 )
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algpseudoc
@@ -120,18 +132,18 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \c@ALG@line=\count270
 \c@ALG@rem=\count271
 \c@ALG@nested=\count272
-\ALG@tlm=\skip52
-\ALG@thistlm=\skip53
+\ALG@tlm=\skip55
+\ALG@thistlm=\skip56
 \c@ALG@Lnr=\count273
 \c@ALG@blocknr=\count274
 \c@ALG@storecount=\count275
 \c@ALG@tmpcounter=\count276
-\ALG@tmplength=\skip54
+\ALG@tmplength=\skip57
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/tools\enumerate.sty
 Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
-\@enLab=\toks25
+\@enLab=\toks31
 )
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/pgfplots\pgfplots.sty
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.rev
@@ -143,7 +155,7 @@ Package: graphicx 2020/12/05 v1.2c Enhanced LaTeX Graphics (DPC,SPQR)
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks26
+\KV@toks@=\toks32
 )
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
@@ -170,7 +182,7 @@ sty
 y
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
 -common.tex
-\pgfutil@everybye=\toks27
+\pgfutil@everybye=\toks33
 \pgfutil@tempdima=\dimen150
 \pgfutil@tempdimb=\dimen151
 
@@ -197,12 +209,12 @@ Package: pgfsys 2021/05/15 v3.1.9a (3.1.9a)
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
 .code.tex
-\pgfkeys@pathtoks=\toks28
-\pgfkeys@temptoks=\toks29
+\pgfkeys@pathtoks=\toks34
+\pgfkeys@temptoks=\toks35
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
 filtered.code.tex
-\pgfkeys@tmptoks=\toks30
+\pgfkeys@tmptoks=\toks36
 ))
 \pgf@x=\dimen152
 \pgf@y=\dimen153
@@ -220,9 +232,9 @@ filtered.code.tex
 \c@pgf@countb=\count278
 \c@pgf@countc=\count279
 \c@pgf@countd=\count280
-\t@pgf@toka=\toks31
-\t@pgf@tokb=\toks32
-\t@pgf@tokc=\toks33
+\t@pgf@toka=\toks37
+\t@pgf@tokb=\toks38
+\t@pgf@tokc=\toks39
 \pgf@sys@id@count=\count281
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.c
@@ -281,9 +293,9 @@ r.code.tex
 \pgfmath@dimen=\dimen162
 \pgfmath@count=\count284
 \pgfmath@box=\box55
-\pgfmath@toks=\toks34
-\pgfmath@stack@operand=\toks35
-\pgfmath@stack@operation=\toks36
+\pgfmath@toks=\toks40
+\pgfmath@stack@operand=\toks41
+\pgfmath@stack@operation=\toks42
 )
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
 ions.code.tex
@@ -444,8 +456,8 @@ Package: pgffor 2021/05/15 v3.1.9a (3.1.9a)
 .tex)
 \pgffor@iter=\dimen189
 \pgffor@skip=\dimen190
-\pgffor@stack=\toks37
-\pgffor@toks=\toks38
+\pgffor@stack=\toks43
+\pgffor@toks=\toks44
 ))
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z\tikz.code.tex
@@ -491,9 +503,9 @@ File: tikzlibrarytopaths.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 e.tex
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscore
 .code.tex
-\t@pgfplots@toka=\toks39
-\t@pgfplots@tokb=\toks40
-\t@pgfplots@tokc=\toks41
+\t@pgfplots@toka=\toks45
+\t@pgfplots@tokb=\toks46
+\t@pgfplots@tokc=\toks47
 \pgfplots@tmpa=\dimen256
 \c@pgfplots@coordindex=\count298
 \c@pgfplots@scanlineindex=\count299
@@ -521,7 +533,7 @@ e\pgfplotsmatrix.code.tex)
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgf
 plotstableshared.code.tex
 \c@pgfplotstable@counta=\count301
-\t@pgfplotstable@a=\toks42
+\t@pgfplotstable@a=\toks48
 )
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
 e\pgfplotsdeque.code.tex)
@@ -616,8 +628,8 @@ Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
 \page@free=\dimen272
 \premulticols=\dimen273
 \postmulticols=\dimen274
-\multicolsep=\skip55
-\multicolbaselineskip=\skip56
+\multicolsep=\skip58
+\multicolbaselineskip=\skip59
 \partial@page=\box67
 \last@line=\box68
 \maxbalancingoverflow=\dimen275
@@ -692,12 +704,12 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@layoutheight=\dimen284
 \Gm@layouthoffset=\dimen285
 \Gm@layoutvoffset=\dimen286
-\Gm@dimlist=\toks43
+\Gm@dimlist=\toks49
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/preprint\fullpage.sty
 Package: fullpage 1999/02/23 1.1 (PWD)
-\FP@margin=\skip57
+\FP@margin=\skip60
 )
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/pdflscape\pdflscape.sty
 Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
@@ -705,6 +717,9 @@ Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
 Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
+(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
 )
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/appendix\appendix.sty
 Package: appendix 2020/02/08 v1.2c extra appendix facilities
@@ -714,9 +729,9 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 )
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip58
+\labelindent=\skip61
 \enit@outerparindent=\dimen287
-\enit@toks=\toks44
+\enit@toks=\toks50
 \enit@inbox=\box112
 \enit@count@id=\count321
 \enitdp@description=\count322
@@ -735,43 +750,48 @@ Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 ty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )))
+\c@theorem=\count323
+\c@definition=\count324
+\c@example=\count325
+\c@case=\count326
+
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count323
+\l__color_backend_stack_int=\count327
 \l__pdf_internal_box=\box113
 ) (relative-probability-finite-paper.aux)
 \openout1 = `relative-probability-finite-paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count324
+\scratchcounter=\count328
 \scratchdimen=\dimen288
 \scratchbox=\box114
-\nofMPsegments=\count325
-\nofMParguments=\count326
-\everyMPshowfont=\toks45
-\MPscratchCnt=\count327
+\nofMPsegments=\count329
+\nofMParguments=\count330
+\everyMPshowfont=\toks51
+\MPscratchCnt=\count331
 \MPscratchDim=\dimen289
-\MPnumerator=\count328
-\makeMPintoPDFobject=\count329
-\everyMPtoPDFconversion=\toks46
+\MPnumerator=\count332
+\makeMPintoPDFobject=\count333
+\everyMPtoPDFconversion=\toks52
 )
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
@@ -787,7 +807,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 18.
+ on input line 36.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -824,12 +844,12 @@ your preamble.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 35.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
 
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -846,15 +866,12 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <153.57375> not available
 \tf@toc=\write4
 \openout4 = `relative-probability-finite-paper.toc'.
 
- [2]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+ [2] [3]
+[4] [5]
+Underfull \vbox (badness 1348) has occurred while \output is active []
 
- [3]
-[4] [5] [6] [7] [8]
-Underfull \vbox (badness 1708) has occurred while \output is active []
-
- [9]
-[10] [11] [12] [13] [14] [15]
+ [6]
+[7] [8] [9] [10] [11] [12] [13] [14] [15]
 Underfull \vbox (badness 2671) has occurred while \output is active []
 
  [16]
@@ -865,13 +882,13 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 25107 strings out of 478864
- 636189 string characters out of 2848660
- 1044942 words of memory out of 3000000
- 42605 multiletter control sequences out of 15000+600000
+ 25260 strings out of 478864
+ 638231 string characters out of 2848660
+ 1048149 words of memory out of 3000000
+ 42750 multiletter control sequences out of 15000+600000
  413795 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,13n,103p,950b,934s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,13n,103p,983b,934s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\maxsk\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1000.pk><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -900,7 +917,7 @@ s/cm/cmsy5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public
 1/public/amsfonts/cm/cmsy8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/maxsk/AppData/Local/Programs/
 MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on relative-probability-finite-paper.pdf (19 pages, 354090 bytes
+Output written on relative-probability-finite-paper.pdf (19 pages, 357149 bytes
 ).
 PDF statistics:
  192 PDF objects out of 1000 (max. 8388607)
