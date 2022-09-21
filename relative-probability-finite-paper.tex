@@ -147,7 +147,11 @@ Every element is matched by the wildcard element. \(m :\cong \ast\)
 The wildcard element is matched only by itself. \(\ast :\cong m \Longrightarrow m = \ast\)
 \end{lemma}
 
-The matching relation asks if the parameter could be represented by the constraint. The wildcard element represents every single value, but it cannot be represented by any specific value. Alternatively, the wildcard element represents a loss of information about a parameter which can never be recovered. Hajek\cite{hajek} also calls these matching relations contraints, in that they may or may not bind the right hand side to a specific value.
+The matching relation asks if the parameter could be represented by the
+constraint. The wildcard element represents every single value, but it cannot be
+represented by any specific value. Alternatively, the wildcard element
+represents a loss of information about a parameter which can never be recovered.
+Hajek\cite{hajek} also calls these matching relations constraints, in that they may or may not bind the right hand side to a specific value.
 
 The matching relation is reflexive and transitive, but unlike equality is not symmetric.
 
@@ -179,7 +183,10 @@ A \textit{categorical distribution} on a \(\Omega\) is a function \(P: \Omega \r
 
 The set of all categorical distributions of size \(K\) can be embedded in \(\mathbb{R}^K\) as a (K-1)-dimentional object called a (K-1)-simplex. For example, if \(K = 3\), the resulting space of categorical distributions is an equilateral triangle embedded in \(\mathbb{R}^3\) connecting the points (1, 0, 0), (0, 1, 0), and (0, 0, 1).
 
-Because the set of categorical distributions is embedded in \(\mathbb{R}^K\), its topological properties are well understood. The simplex is closed, bounded, and compact. Practically, this means that any sequnce of points on the simple will converge to one or more points on the simplex allowing both pure and applied practicioners to talk about limit and boundary conditions.
+Because the set of categorical distributions is embedded in \(\mathbb{R}^K\),
+its topological properties are well understood. The simplex is closed, bounded,
+and compact. Practically, this means that any sequence of points on the
+simplex will converge to one or more points on the simplex allowing both pure and applied practicioners to talk about limit and boundary conditions.
 
 Because we are talking about absolute probability, relative information is lost at the boundaries. For example, if \(\Omega = {a, b, c}\) with \(P(a) = 1\) and \(P(b) = P(c) = 0\), we cannot compare the probabilities of \(b\) and \(c\) as we can in the rest of the simplex.
 
@@ -187,7 +194,10 @@ Because we are talking about absolute probability, relative information is lost 
 
 An \textit{event} is a set of outcomes. We define \(\mathcal{F}\) as the space of all possible events. \(\mathcal{F}\) is the power set\footnote{In general, \(\mathcal{F}\) is not the entire power set of \(\Omega\) but typically is when \(\Omega\) is finite. We need not concern ourselves with the \(\sigma\)-algebra of measurable sets here.} of \(\Omega\), meaning that \(\mathcal{F} = \mathcal{P}(\Omega)\), and for any subset \(e \subseteq \Omega\), \(e \in \mathcal{F}\).
 
-In the previous section, we defined the probability of individual outcomes. We can now define the probability function on events instead of outcomes. Definiting probability on the event level rather than the outcome level is a curcial insight in the development of probability theory (and measure theory more generally). Even though the process is far simpler for finite distributions, we must pay attention to this layer in order for the framework to generalize.
+In the previous section, we defined the probability of individual outcomes. We
+can now define the probability function on events instead of outcomes.
+Definiting probability on the event level rather than the outcome level is a
+crucial insight in the development of probability theory (and measure theory more generally). Even though the process is far simpler for finite distributions, we must pay attention to this layer in order for the framework to generalize.
 
 For all \(e\) in \(\mathcal{F}\),
 \[ P(e) = \sum_{h \in e}{P(h)}\]
@@ -215,7 +225,7 @@ The relative probability of events \(e_1\) and \(e_2\) on an categorical distrib
 \[P(e_1, e_2) = \frac{P(e_1)}{P(e_2)}\]
 \end{definition}
 
-If \(P(e_1) = p(e_2) = 0\), then \(P(e_1, e_2) = \ast\), representing the classical problem of zero-probability events being incomparable.
+If \(P(e_1) = P(e_2) = 0\), then \(P(e_1, e_2) = \ast\), representing the classical problem of zero-probability events being incomparable.
 
 \begin{theorem}
 For all events \(e_1, e_2, e_3\), \(P(e_1, e_3) :\cong P(e_1, e_2) \cdot P(e_2, e_3)\)
