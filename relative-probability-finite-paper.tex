@@ -64,7 +64,10 @@ This is an incomplete draft/outline of an upcoming paper. Please do not share
 
 The mathematical foundations of probability theory are still very much open to debate!
 
-Since Kolmogorov published the standard axioms for probability in 1933, there have been calls to relax or alter them for various applications. In Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justifications. A question arises from this discuttion: can we discuss conditional probability when the condition event has probability zero? One would hope it not be forbidden to talk about the probability of an event given a hypothetical situation which will not occur\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution.}. Related to this question is whether we can talk about the relative probability of two events in a system, even though those two events may have probability zero.
+Since Kolmogorov published the standard axioms for probability in 1933, there
+have been calls to relax or alter them for various applications. In Kolmogorov's
+Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and
+their justifications. A question arises from this discussion: can we discuss conditional probability when the condition event has probability zero? One would hope it not be forbidden to talk about the probability of an event given a hypothetical situation which will not occur\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution.}. Related to this question is whether we can talk about the relative probability of two events in a system, even though those two events may have probability zero.
 
 The Kolmogorov model defines these values as a ratio of one probability to another. As a result, every time the indeterminate form \(\frac{0}{0}\) appears, the relative probability remains undefined. Undeterred by this state of affairs, mathematicians and engineers refer to this type of relative probability all the time. For example, if we consider the continuous probability distributrion over \([0, 1]\) given by the probability distribution function \(2x\), we know that the PDF at \(x = \frac{1}{2}\) is twice as much as the PDF at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though we are only talking about \textit{probability density} or \textit{PDF} values.
 
@@ -80,7 +83,8 @@ As a proof of this concept, we will construct a theory of relative probability o
 
 These methods have applications in Bayesian statistics, even providing a new formulation of Bayes rule that is reflective of current practice. We will look at these applications of these ideas along with their algorithmic implementation.
 
-Finally, we will discuss a critical feature of prelative probability functions, which is their ability to retain information when taking limits - for which absolute probability fails. In order to certify this feature, we delve into the topology and finish with a proof of compactness.
+Finally, we will discuss a critical feature of relative probability functions,
+which is their ability to retain information when taking limits\textemdash for which absolute probability fails. In order to certify this feature, we delve into the topology and finish with a proof of compactness.
 
 \section{Preliminaries}
 \subsection{Magnitude Space}
