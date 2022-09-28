@@ -5,26 +5,27 @@
 \contentsline {subsection}{\numberline {2.2}The Wildcard Element}{4}{}%
 \contentsline {subsection}{\numberline {2.3}The Matching Relation}{5}{}%
 \contentsline {section}{\numberline {3}Categorical Distribution}{6}{}%
-\contentsline {subsection}{\numberline {3.1}Events}{6}{}%
+\contentsline {subsection}{\numberline {3.1}Events}{7}{}%
 \contentsline {subsection}{\numberline {3.2}Relative Probability Function}{7}{}%
-\contentsline {section}{\numberline {4}Finite Relative Probability}{7}{}%
-\contentsline {subsection}{\numberline {4.1}Examples}{8}{}%
-\contentsline {subsection}{\numberline {4.2}Matching and Comparability}{8}{}%
-\contentsline {subsection}{\numberline {4.3}From Outcomes to Events}{10}{}%
-\contentsline {section}{\numberline {5}Possibility Classes}{13}{}%
-\contentsline {subsection}{\numberline {5.1}Totally Mutually Possible RPFs}{14}{}%
-\contentsline {section}{\numberline {6}Composing Relative Probability Functions}{14}{}%
-\contentsline {section}{\numberline {7}Bayesian Inference on Relative Distributions}{17}{}%
-\contentsline {section}{\numberline {8}Implementation}{18}{}%
-\contentsline {section}{\numberline {9}Topology of Relative Probability Spaces}{19}{}%
-\contentsline {subsection}{\numberline {9.1}Open Patches}{20}{}%
-\contentsline {subsection}{\numberline {9.2}Compactness}{21}{}%
-\contentsline {subsection}{\numberline {9.3}Simple Limit Example}{22}{}%
-\contentsline {section}{\numberline {10}Future Work}{22}{}%
-\contentsline {subsection}{\numberline {10.1}Expansions to infinite spaces}{22}{}%
-\contentsline {subsection}{\numberline {10.2}Connection Surreal Numbers}{22}{}%
-\contentsline {subsection}{\numberline {10.3}Shrinking the Measure Number System}{22}{}%
-\contentsline {subsection}{\numberline {10.4}Relationship to Category Theory}{23}{}%
-\contentsline {subsection}{\numberline {10.5}Embedding in Euclidean Space}{23}{}%
-\contentsline {section}{Appendices}{23}{}%
-\contentsline {section}{\numberline {A}Is an Appendix Needed}{23}{}%
+\contentsline {section}{\numberline {4}The Relative Probability Approach}{8}{}%
+\contentsline {subsection}{\numberline {4.1}Fundamental Axioms}{8}{}%
+\contentsline {subsection}{\numberline {4.2}Examples}{9}{}%
+\contentsline {section}{\numberline {5}New Concepts for Relative Probability}{10}{}%
+\contentsline {subsection}{\numberline {5.1}Matching and Comparability}{10}{}%
+\contentsline {subsection}{\numberline {5.2}Possibility Classes}{11}{}%
+\contentsline {subsection}{\numberline {5.3}Totally Mutually Possible RPFs}{12}{}%
+\contentsline {section}{\numberline {6}From Outcomes to Events}{13}{}%
+\contentsline {section}{\numberline {7}Composing Relative Probability Functions}{15}{}%
+\contentsline {section}{\numberline {8}Bayesian Inference on Relative Distributions}{18}{}%
+\contentsline {subsection}{\numberline {8.1}Example: A Noisy Channel}{19}{}%
+\contentsline {section}{\numberline {9}Implementation}{20}{}%
+\contentsline {section}{\numberline {10}Topology and Limits in Relative Probability Space}{21}{}%
+\contentsline {subsection}{\numberline {10.1}Open Patches}{22}{}%
+\contentsline {subsection}{\numberline {10.2}Compactness}{23}{}%
+\contentsline {subsection}{\numberline {10.3}Simple Limit Example}{23}{}%
+\contentsline {section}{\numberline {11}Future Work}{24}{}%
+\contentsline {subsection}{\numberline {11.1}Expansions to infinite spaces}{24}{}%
+\contentsline {subsection}{\numberline {11.2}Connection Surreal Numbers}{24}{}%
+\contentsline {subsection}{\numberline {11.3}Shrinking the Measure Number System}{24}{}%
+\contentsline {subsection}{\numberline {11.4}Relationship to Category Theory}{24}{}%
+\contentsline {subsection}{\numberline {11.5}Embedding in Euclidean Space}{25}{}%
