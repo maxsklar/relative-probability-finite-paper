@@ -4,6 +4,8 @@
 \usepackage{amsthm}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage{enumerate}% http://ctan.org/pkg/enumerate
 \usepackage{pgfplots}
 \usepackage{multicol}
@@ -11,9 +13,82 @@
 \usepackage{fullpage}
 \usepackage{pdflscape}
 \usepackage{setspace}
+\usepackage{url}
 \usepackage{tikz}
+\usetikzlibrary{tikzmark}
+\usepackage{color}
+\usepackage{pgfplots}
+\usepackage{bm}
+\usepackage{tikz-cd}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{fillbetween}
 \usepackage[toc,page]{appendix}
 \usepackage[shortlabels]{enumitem}\usepackage{draftwatermark}
+
+\usetikzlibrary{arrows.meta,
+                calc, chains,
+                patterns,
+                patterns.meta,
+                fit,
+                quotes,
+                positioning,
+                shapes.geometric,
+                shapes.misc,
+                automata
+                }
+%Flowchart Tikzset
+\tikzset{
+   recbox/.style = {
+         rectangle,
+         draw, 
+         align = center, 
+         text badly centered,
+         inner sep = 6 pt,
+         font=\footnotesize,
+         line width = 0.3mm,
+      },
+      circlebox/.style = {
+         rounded rectangle,
+         draw, 
+         align = center, 
+         text badly centered,
+         inner sep = 7 pt,
+         font=\large,
+         line width = 0.5mm,
+      },
+      roundbox/.style = {
+         rectangle,
+         draw, 
+         align = center, 
+         rounded corners,
+         text badly centered,
+         inner sep = 6 pt,
+         font=\large,
+         line width = 0.5mm,
+      },
+     box1/.style = {
+         rectangle,
+         draw, 
+         align = center, 
+         text badly centered,
+         inner sep = 6 pt,
+         font=\large,
+         line width = 0.5mm,
+         minimum width = 30mm,
+         minimum height = 7mm,
+      },
+    papLine/.style = {
+         draw,
+         -stealth,
+         font=\ttfamily,
+         line width = 0.5mm,
+      },
+      }
+%end flowcahrt tikz set   
+
+%Colors 
+\definecolor{darkgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{shaded_green}{RGB}{151, 194, 157}
 
 \newcommand{\quotes}[1]{``#1''}
 
@@ -188,10 +263,48 @@ The same argument proves \(a+b :\cong a'+b'\).
 Let \(\Omega\) be a set of mutually exclusive \textit{outcomes}\footnote{Each outcome could be thought of as a possible result of a random trial, or a possible outcome for an unknown variable}. We assume that \(\Omega\) is finite so that we can count its members as \(|\Omega| = K\). We say there are \(K\) outcomes, or \textit{categories}.
 
 \begin{definition}
+\label{def:categorical_abs}
 A \textit{categorical distribution} on a \(\Omega\) is a function \(P: \Omega \rightarrow [0, 1]\) such that \(\sum_{h \in \Omega} P(h) = 1\)
 \end{definition}
 
 The set of all categorical distributions of size \(K\) can be embedded in \(\mathbb{R}^K\) as a (K-1)-dimentional object called a (K-1)-simplex. For example, if \(K = 3\), the resulting space of categorical distributions is an equilateral triangle embedded in \(\mathbb{R}^3\) connecting the points (1, 0, 0), (0, 1, 0), and (0, 0, 1).
+
+\begin{figure}
+\centering
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture} %Segment P_0,P_1
+\draw[-latex,line width=0.5mm] (0,2)--(0,0) -- (3.5,0) node[right]{\(P_{0}\)};
+\draw[-latex,line width=0.5mm] (0,0)--(0,3.5) node[above]{\(P_{1}\)};
+\draw[red,line width=0.5mm] (2,0)--(0,2);
+\draw[fill=black] (2,0) circle (2pt) node[black,below,scale=0.8] {(0,1)};
+\draw[fill=black] (0,2) circle (2pt) node[black,left,scale=0.8] {(1,0)};
+\end{tikzpicture}
+}
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture} %Triangle P_0,P_1,P_2
+\draw[-latex,line width=0.5mm] (0,2,0)--(0,0,0) -- (4,0,0) node[right]{\(P_{0}\)};
+\draw[-latex,line width=0.5mm] (0,0,0) -- (0,4,0) node[above]{\(P_{1}\)};
+\draw[-latex,line width=0.5mm,dashed] (0,0,0) -- (0,0,-6.5) node[above right]{\(P_{2}\)};
+\draw[fill=red!70!,fill opacity=0.5] (2,0)--(1.3,1.3)--(0,2)--cycle;
+\draw[fill=black] (2,0) circle (2pt) node[black,below,scale=0.8] {(1,0,0)};
+\draw[fill=black] (1.3,1.3) circle (2pt) node[black,below right,scale=0.8] {(0,0,1)};
+\draw[fill=black] (0,2) circle (2pt) node[black, left,scale=0.8] {(0,1,0)};
+\end{tikzpicture}
+}
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture} %Tetrahedron 
+\draw[line width=0.5mm] (0,3)--(-2,0)--(2,0)--cycle;
+\draw[line width=0.5mm,dotted] (0,1.3)--(2,0);
+\draw[line width=0.5mm,dotted] (0,1.3)--(-2,0);
+\draw[line width=0.5mm,dotted] (0,1.3)--(0,3);
+\draw[fill=black] (2,0) circle (2pt) node[black,below,scale=0.8] {(0,1,0,0)};
+\draw[fill=black] (0,1.3) circle (2pt) node[black,right,rotate=0, scale=0.8] {(0,0,0,1)};
+\draw[fill=black] (0,3) circle (2pt) node[black,above,scale=0.8] {(1,0,0,0)};
+\draw[fill=black] (-2,0) circle (2pt) node[black,below,scale=0.8] {(0,0,1,0)};
+\end{tikzpicture}
+}
+\caption{An illustration of probability simplecies for K = 2, 3, and 4. These objects are respectively, a segment embedded in \(\mathbb{R}^2\), an equilateral triangle embedded in \(\mathbb{R}^3\), and a normal tetrahedron embedded in \(\mathbb{R}^4\). We make no attempt to visualize the 4D space that contains the tetrahedron.}
+\end{figure}
 
 With absolute probability, information about relative probability is lost at the vertices where several probabilities might go to zero. For example, if \(\Omega = {a, b, c}\) with \(P(a) = 1\) and \(P(b) = P(c) = 0\), we cannot compare the probabilities of \(b\) and \(c\) as we can in the rest of the simplex.
 
@@ -312,12 +425,14 @@ The \textit{empty} RPF has no outcomes \(K = 0\), and therefore the function \(P
 It is surprising that there is still an RPF with \(\Omega = \varnothing\).This is an interesting comparison to absolute distributions where such a function does not exist (because with no outcomes, they cannot sum to 1).
 
 \begin{definition}
+\label{def:unit_rpf}
 The \textit{unit} RPF has a single outcome where \(K = 1\) and \(\Omega = h\). There is only one such RPF where \(P(h, h) = 1\).
 \end{definition}
 
 The unit RPF is a special case of the uniform RPF and the certain RPF. This matches the absolute case where the probability of the single outcome must be 1.
 
 \begin{definition}
+\label{def:finite_geometric_rpf}
 Let \(P\) be an RPF with K outcomes labeled \((h_0, h_1, ..., h_{K-1})\). \(P\) is a \textit{finite geometric} RPF with ratio \(r\) if the relative probabilities of each outcome with its neighbor is always \(r\). In other words, for all \(i \in (0, 1, ..., K-2)\),
 \[P(h_{i+1}, h_i) = r\]
 When \(r\) is 0 or \(\infty\), we can call this the \textit{limit finite geometric} RPF.
@@ -326,6 +441,7 @@ When \(r\) is 0 or \(\infty\), we can call this the \textit{limit finite geometr
 Finally, to include an example that is both common and has powerful applications, there is a relative version of the Binomial distribution.
 
 \begin{definition}
+\label{def:binomial_rpf}
 A \textit{binomial distribution} has a sample size we can call \(n\), and a probability of success \(p\). The RPF is uses\(\Omega = \{0, 1, 2, ..., n\}\), and thus \(K = n + 1\). It is given as follows:
 \[P(h_1, h_2) = \frac{h_2!(n-h_2)!}{h_1!(n-h_1)!}\left(\frac{p}{1-p}\right)^{h_1 - h_2}\]
 \end{definition}
@@ -337,13 +453,102 @@ We have successfully defined the relative probability in section \ref{section:ne
 
 Fortunately, we can look at the absolute probability function as a special case of relative probability, defined by \(P(h_1, h_2) = \frac{P(h_1)}{P(h_2)}\).
 
+The following figure gives us a roadmap of these new concepts and their relationship to each other.
+
+\begin{figure}
+\label{fig:flow_chart}
+\begin{tikzpicture}    %Flowchart
+[node distance = 1.3in] %Node distance
+
+%node0 for Relative Probability Functions
+\node (node0) [roundbox] {Relative Probability Function \\ Definition \ref{def:fundamental_laws}} ;
+
+%node1 Anchored RPF
+\node (node1) [circlebox, below of=node0] {Anchored RPF\\ Definition \ref{def:anchored_rpf}};
+
+%lnode1 Empty RPF
+\node (lnode1) [recbox, fill=shaded_green,below left=0.5 and 2.2 of node0] {Empty RPF\\ Definition \ref{def:empty_rpf}};
+
+%lnode2 Uncomparable RPF
+\node (lnode2) [recbox, fill=shaded_green,below left=2 and 0.5 of node0] {Uncomparable RPF\\ Definition \ref{def:uncomparable_rpf}};
+
+%node2 Non-empty Totally Comparable RPF
+\node (node2) [roundbox, below right= and 2 of node1] {Non-empty\\ Totally Comparable RPF\\ Definition \ref{def:totally_comparable}};
+
+%bnode2 Finite Limit Geometric Distribution, \(K>2\)
+\node (bnode2) [recbox, fill=shaded_green, below right=1 and -3.5 of node2] {Finite Limit \\Geometric Distribution,\\ \(K>2\)\\ Definition \ref{def:finite_geometric_rpf}};
+
+%node3 Absolute Probability\\ Function
+\node (node3) [roundbox, below left= and 2 of node1] {Absolute Probability\\ Function\\ Definition \ref{def:categorical_abs}};
+
+%node4 Union
+\node (node4) [circlebox, below right=and 2.8 of node3] {Union};
+
+%node5 Facet Probability\\ Functions\\(single impossible event)
+\node (node5) [box1, below left=and -0.5 of node4,yshift=-0.38in] {Facet Probability\\ RPF\\(single impossible event)\\ Definition \ref{}};
+
+%node6 Mutually Possible\\ RPFs
+\node (node6) [box1, right=-0.07 of node5] {Totally Mutually Possible\\ RPF\\ Definition \ref{def:totally_mutually_possible}\\};
+
+%rnode4 (Non-Empty)\\ Uniform
+\node (rnode4) [recbox, fill=shaded_green, below of=node6,xshift=-1.0in,yshift=-0.0in] {(Non-Empty)\\ Uniform\\ Definition \ref{def:uniform_rpf}};
+
+%rnode3 Unit\\ Distribution
+\node (rnode3) [recbox, fill=shaded_green, below of=node6,yshift=-0.1in] {Unit\\ Distribution\\ Definition \ref{def:unit_rpf}};
+
+%rnode2 Finite Geometric\\Distribution
+\node (rnode2) [recbox, fill=shaded_green, below of=node6,xshift=1.1in,yshift=-0.0in] {Finite Geometric\\Distribution\\ Definition \ref{def:finite_geometric_rpf}};
+
+%rnode1 Binormal\\Distribution
+\node (rnode1) [recbox, fill=shaded_green, right=1 of node6] {Binormal\\Distribution\\ Definition \ref{def:binomial_rpf}};
+
+%lnode3 Limit Finite\\Geometry\\ with \(K=2\)
+\node (lnode3) [recbox, fill=shaded_green, below of=node5,yshift=-0.0in,xshift=-0.5in] {Limit Finite\\Geometric\\ with \(K=2\)};
+
+%Arrow paths for all nodes
+\path[papLine] (rnode1) -- (node6);
+
+\path[papLine] (rnode2) --+ (node6);
+
+\path[papLine] (rnode3) -- (node6);
+
+%\path[papLine] (rnode4) --+(0,0.56in)--+(1in,0.56in)-- +(1in,0.87in); (node6);
+\path[papLine] (rnode4) --+ (node6);
+
+\path[papLine] (lnode1) --+ (node0);
+
+\path[papLine] (lnode2) --+ (node0);
+
+\path[papLine] (node1) -- (node0);
+
+\path[papLine] (node2) -- (node1) node[pos=0.4, above, sloped]{Lemma \ref{lemma:totally_comp_anchored}};
+
+\path[papLine] (node3) -- (node1) node[pos=0.5, above, sloped]{Theorem \ref{thm:absolute_anchored}};
+
+\path[papLine] (node4) -- (node3);
+
+\path[papLine] (node4) -- (node2);
+
+\draw[-stealth,transform canvas={xshift=1mm},line width=0.5mm] (lnode3) -- +(0,0.86in);
+
+\draw[-stealth,transform canvas={xshift=24mm},line width=0.5mm] (node5) --+(0,1.22in) node[left,pos=0.5]{Theorem \ref{thm:abs_totally_comparable}};
+
+\path[papLine,dashed] (node1) |- (node3) node[above,pos=0.75]{Matched By} node[below,pos=0.75]{Theorem \ref{thm:absolute_prob_formula}};
+
+\path[papLine] ([xshift=0.6in]bnode2) -- (node2);
+\end{tikzpicture}
+\caption{This is our roadmap for all of the sub-types of relative probability functions and their relationship to one another. }
+\end{figure}
+
 \subsection{Matching and Comparability}
 
 \begin{definition}
+\label{def:totally_comparable}
 A relative probability function is \textit{totally comparable} if every pair of outcomes are comparable.
 \end{definition}
 
 \begin{theorem}
+\label{thm:abs_totally_comparable}
 An absolute probability function is totally comparable if and only if \(P(h) = 0\) for at most one outcome.
 \end{theorem}
 
@@ -352,10 +557,20 @@ Let P be an \textbf{absolute} probability function, with \(h_1\) and \(h_2\) bei
 \end{proof}
 
 \begin{definition}
+\label{def:anchored_rpf}
 An \(anchored\) RPF has at least 1 outcome whose probability relative to every other outcome is greater than zero. We call this outcome an \(anchor\) element, and there may be multiple.
 \end{definition}
 
 The anchored concept is useful because it means that every pair of outcomes, even if they are not comparable, are at least going to be 0 compared to a larger outcome. The anchoring of a distribution is important to ensure that it is well behaved.
+
+\begin{theorem}
+\label{thm:absolute_anchored}
+All absolute probability distributions are anchored.
+\end{theorem}
+
+\begin{proof}
+Let P be an absolute probability distribution on \(\Omega\). Because \(\sum_{h \in \Omega} P(h) = 1\), there must be at least one \(h\) such that \(P(h) > 0\).  Therefore, for any comparison outcome \(h'\), \(P(h, h') > 0\)
+\end{proof}
 
 \begin{lemma}
 \label{lemma:totally_comp_anchored}
@@ -435,7 +650,156 @@ It must be reflexive because \(P(h, h) = 1\). If \(P(h_1, h_2) > 0\) and \(P(h_2
 
 If we consider a possibility relationship with respect to the equivalence classes of mutually possibility, then we have a partial order.
 
-INSERT: diagram of mutually possible equivalence classes
+\begin{figure}
+\centering
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture} %Anchored
+\begin{scope}[scale=0.25]
+\node(t)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] at (0,2) {}; 
+\node(ml)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] at (-2,0.5){}; 
+\node(mr)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] at (2,0.5) {}; 
+\node(bl)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] at (-1.3,-1.8){}; 
+\node(br)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] at (1.3,-1.8){}; 
+
+\path[stealth-stealth,draw,line width=0.2mm] (t)--(ml);
+\path[stealth-stealth,draw,line width=0.2mm] (t)--(mr);
+\path[stealth-stealth,draw,line width=0.2mm] (t)--(bl);
+\path[stealth-stealth,draw,line width=0.2mm] (t)--(br);
+
+\path[stealth-stealth,draw,line width=0.2mm] (ml)--(mr);
+\path[stealth-stealth,draw,line width=0.2mm] (ml)--(br);
+\path[stealth-stealth,draw,line width=0.2mm] (ml)--(bl);
+
+\path[stealth-stealth,draw,line width=0.2mm] (mr)--(br);
+\path[stealth-stealth,draw,line width=0.2mm] (bl)--(br);
+
+\node[circle,fill=darkgreen, fill opacity = 0.5, draw=black,line width=0.3mm, fit=(t) (ml) (mr) (bl)(br), inner sep=-1pt] (r1) {};
+\end{scope}
+
+
+\begin{scope}[yshift=-0.8in,xshift=0.7in]
+\node (t)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] {}; 
+\node (b)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below=0.8 of t] {}; 
+\node(ml)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below left =0.35 and 0.3 of t]{}; 
+\node(mr)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below right=0.35 and 0.3 of t]{}; 
+
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(ml);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (b)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (b)--(ml);
+\path[stealth-stealth,draw,line width=0.3mm] (b)--(t);
+
+\node[circle, draw=black,line width=0.3mm, fit=(t) (ml) (mr) (b), inner sep=-1.8pt] (r2) {};
+\end{scope}
+
+\begin{scope}[yshift=-0.88in,xshift=-0.7in]
+\node (t)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] {}; 
+\node(ml)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below left =0.5 and 0.3 of t]{}; 
+\node(mr)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below right=0.5 and 0.3 of t]{}; 
+
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(ml);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(mr);
+
+\node[circle, draw=black,line width=0.3mm, fit=(t) (ml) (mr), inner sep=1pt] (r3) {};
+\end{scope}
+
+\begin{scope}[yshift=-2.1in,xshift=-0.89in]
+\node(l)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black]{}; 
+\node(r)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,right=0.7 of l]{}; 
+
+\path[stealth-stealth,draw,line width=0.3mm] (l)--(r);
+
+\node[circle, draw=black,line width=0.3mm, fit=(l) (r), inner sep=4.7pt] (r4) {};
+\end{scope}
+
+\path[-stealth,draw,line width=0.3mm] (r2) -- (r1);
+\path[-stealth,draw,line width=0.3mm] (r3) -- (r1);
+\path[-stealth,draw,line width=0.3mm] (r4) -- (r3);
+
+\end{tikzpicture}
+}
+\caption{A diagram of an anchored RPF with its mutually possible classes. The anchor class is shaded.}
+\end{figure}
+
+\begin{figure}
+\centering
+\resizebox{0.5\textwidth}{!}{
+\begin{tikzpicture} %Non-Anchored
+\begin{scope}[scale=0.25]
+\node(t)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] at (0,2) {}; 
+\node(ml)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] at (-2,0.5){}; 
+\node(mr)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] at (2,0.5) {}; 
+\node(bl)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] at (-1.3,-1.8){}; 
+\node(br)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] at (1.3,-1.8){}; 
+
+\path[stealth-stealth,draw,line width=0.2mm] (t)--(ml);
+\path[stealth-stealth,draw,line width=0.2mm] (t)--(mr);
+\path[stealth-stealth,draw,line width=0.2mm] (t)--(bl);
+\path[stealth-stealth,draw,line width=0.2mm] (t)--(br);
+
+\path[stealth-stealth,draw,line width=0.2mm] (ml)--(mr);
+\path[stealth-stealth,draw,line width=0.2mm] (ml)--(br);
+\path[stealth-stealth,draw,line width=0.2mm] (ml)--(bl);
+
+\path[stealth-stealth,draw,line width=0.2mm] (mr)--(br);
+\path[stealth-stealth,draw,line width=0.2mm] (bl)--(br);
+
+\node[circle, draw=black,line width=0.3mm, fit=(t) (ml) (mr) (bl)(br), inner sep=-1pt] (r1) {};
+\end{scope}
+
+
+\begin{scope}[yshift=-0.8in,xshift=0.7in]
+\node (t)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] {}; 
+\node (b)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below=0.8 of t] {}; 
+\node(ml)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below left =0.35 and 0.3 of t]{}; 
+\node(mr)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below right=0.35 and 0.3 of t]{}; 
+
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(ml);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (b)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (b)--(ml);
+\path[stealth-stealth,draw,line width=0.3mm] (b)--(t);
+
+\node[circle, draw=black,line width=0.3mm, fit=(t) (ml) (mr) (b), inner sep=-1.8pt] (r2) {};
+\end{scope}
+
+\begin{scope}[yshift=-0.88in,xshift=-0.7in]
+\node (t)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] {}; 
+\node(ml)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below left =0.5 and 0.3 of t]{}; 
+\node(mr)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below right=0.5 and 0.3 of t]{}; 
+
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(ml);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(mr);
+
+\node[circle, draw=black,line width=0.3mm, fit=(t) (ml) (mr), inner sep=1pt] (r3) {};
+\end{scope}
+
+\begin{scope}[xshift=1.5in]
+\node(l)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black]{}; 
+\node(r)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,right=0.7 of l]{}; 
+
+\path[stealth-stealth,draw,line width=0.3mm] (l)--(r);
+
+\node[circle, draw=black,line width=0.3mm, fit=(l) (r), inner sep=4.7pt] (r4) {};
+\end{scope}
+
+\begin{scope}[yshift=-1.01in,xshift=1.7in]
+\node(l)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black]{}; 
+
+\node[circle, draw=black,line width=0.3mm, fit=(l), inner sep=12.8pt] (r5) {};
+\end{scope}
+
+\path[-stealth,draw,line width=0.3mm] (r2) -- (r1);
+\path[-stealth,draw,line width=0.3mm] (r3) -- (r1);
+\path[-stealth,draw,line width=0.3mm] (r5) -- (r4);
+\end{tikzpicture}
+}
+\caption{This is the diagram for a single RPF that is not anchored. Notice that there is no anchored mutually possible class. This meams that we cannot turn this into an absolute probability function.}
+\end{figure}
 
 \begin{theorem}
 If an RPF is totally comparable, then the equivalance classes of mutually possible outcomes are \textit{totally ordered}. That is, each member of an equivalence class of outcomes is comparable to each member of another class with that comparison always being 0 or \(\infty\).
@@ -447,14 +811,42 @@ Let A and B be 2 distinct mutually possible equivalence classes on \(\Omega\), a
 Let \(a' \in A\) and \(b' \in B\). Then \(0 < P(a', a) < \infty\) and \(0 < P(b, b') < \infty\) due to the definition of mutual comparability. Thus with composition we get
 \[P(a', b') :\cong P(a', a) \cdot P(a, b) \cdot P(b, b') = P(a, b)\]
 
-Therefore, all comparisons between the 2 classes will be the same, and they will either be 0 or \(\infty\)
+Therefore, all comparisons between the 2 classes will be the same, and they will either be 0 or \(\infty\).
 \end{proof}
 
 \subsection{Totally Mutually Possible RPFs}
 
 \begin{definition}
-A relative probability function is called \textit{totally mutually possible} if all of its outcomes\footnote{Note that this one of the few definitions that cannot be upgraded from outcomes to events. The empty event \(e = \{\}\) for example will be impossible with respect to any outcome.\cite{theorem:empty_event_impossible}} are mutually possible. Mutually possible RPFs satisfy \textit{Cromwell's rule} in Bayesian inference, which states that prior beliefs should not assign probability zero or one to events\footnote{It would be stated differently in continuous space.}.
+\label{def:totally_mutually_possible}
+A relative probability function is called \textit{totally mutually possible} if all of its outcomes\footnote{Note that this one of the few definitions that cannot be upgraded from outcomes to events. The empty event \(e = \{\}\) for example will be impossible with respect to any outcome by theorem \ref{thm:empty_event_impossible}.} are mutually possible. Mutually possible RPFs satisfy \textit{Cromwell's rule} in Bayesian inference, which states that prior beliefs should not assign probability zero or one to events\footnote{It would be stated differently in continuous space.}.
 \end{definition}
+
+Totally mutually possible RPFs have a simple diagram where all the outcomes are completely connected. All of the outcome are anchor outcomes, and there is a single mutually possible class.
+
+\begin{center}
+\resizebox{0.2\textwidth}{!}{
+\begin{tikzpicture} %Totally Possible
+\node(t)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (0,2) {}; 
+\node(ml)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (-2,0.5){}; 
+\node(mr)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (2,0.5) {}; 
+\node(bl)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (-1.3,-1.8){}; 
+\node(br)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (1.3,-1.8){}; 
+
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(ml);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(bl);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(br);
+
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(br);
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(bl);
+
+\path[stealth-stealth,draw,line width=0.3mm] (mr)--(br);
+\path[stealth-stealth,draw,line width=0.3mm] (bl)--(br);
+
+\end{tikzpicture}
+}
+\end{center}
 
 \begin{theorem}
 A non-empty totally mutually possible RPF is equal to an absolute probability function.
@@ -472,7 +864,53 @@ Theorem \ref{thm:absolute_prob_formula} states that \(P(h_1, h_2) :\cong \frac{P
 
 We have thus constructed an RPF from its absoulte probability function without loss of information.
 
-DIAGRAM: Totally comparable set, but not mutually possible
+\begin{figure}
+\centering
+\resizebox{0.1\textwidth}{!}{
+\begin{tikzpicture} %Totally Comparable
+\begin{scope}
+\node (t)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] {}; 
+\node(ml)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below left =0.5 and 0.3 of t]{}; 
+\node(mr)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below right=0.5 and 0.3 of t]{}; 
+
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(ml);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(mr);
+
+\node[circle, fill=darkgreen, fill opacity = 0.5, draw=black,line width=0.3mm, fit=(t) (ml) (mr), inner sep=1pt] (r1) {};
+\end{scope}
+
+\begin{scope}[yshift=-1.1in,xshift=-0.2in]
+\node(l)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black]{}; 
+\node(r)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,right=0.7 of l]{}; 
+
+\path[stealth-stealth,draw,line width=0.3mm] (l)--(r);
+
+\node[circle, draw=black,line width=0.3mm, fit=(l) (r), inner sep=4.7pt] (r2) {};
+\end{scope}
+
+\begin{scope}[yshift=-1.85in]
+\node (t)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black] {}; 
+\node (b)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below=0.8 of t] {}; 
+\node(ml)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below left =0.35 and 0.3 of t]{}; 
+\node(mr)[circle,draw,inner sep=2pt,outer sep=1pt,line width=0.2mm,fill=black,below right=0.35 and 0.3 of t]{}; 
+
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(ml);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (b)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (b)--(ml);
+\path[stealth-stealth,draw,line width=0.3mm] (b)--(t);
+
+\node[circle, draw=black,line width=0.3mm, fit=(t) (ml) (mr) (b), inner sep=-1.8pt] (r3) {};
+\end{scope}
+
+\path[-stealth,draw,line width=0.3mm] (r2) -- (r1);
+\path[-stealth,draw,line width=0.3mm] (r3) -- (r2);
+\end{tikzpicture}
+}
+\caption{This is a diagram of a totally comparable RPF that is not mutually possible. The mutually possible components form a total order, with the \textit{anchored component} - which contains all anchor elements - is on top.}
+\end{figure}
 
 \section{From Outcomes to Events}
 
@@ -502,7 +940,7 @@ Let \(P\) be a totally comparable finite RPF. \(P\) can also measure the probabi
 Because we no longer have access to absolute probability, the best we can do is measure it relative to a \textit{reference outcome} \(h^*\). This ratio might be indeterminate, so we use the matching relation instead of equality. Fortunately, we can show that there exists at least one reference outcome that will constrain \(P(e_1, e_2\) in \ref{eq:event_def_ratio_match} if they are non-empty.
 
 \begin{proof}
-Each event in a totally comparable RPF must have an anchor internally, using the same argument made for proving the existance of anchors in lemma \label{lemma:totally_comp_anchored}. Choose an internal anchor \(a\) from one of the events, say \(e_1\). Then the sum \(\sum_{h_1 \in e_1} P(h_1, a)\) will be non-infinite by definition of anchors, and non-zero because \(P(a, a) = 1\) is a term in the sum. Therefore, the constraint as a whole cannot be indeterminate.
+Each event in a totally comparable RPF must have an anchor internally, using the same argument made for proving the existance of anchors in lemma \ref{lemma:totally_comp_anchored}. Choose an internal anchor \(a\) from one of the events, say \(e_1\). Then the sum \(\sum_{h_1 \in e_1} P(h_1, a)\) will be non-infinite by definition of anchors, and non-zero because \(P(a, a) = 1\) is a term in the sum. Therefore, the constraint as a whole cannot be indeterminate.
 
 If both events are empty, then we are unable to create an anchor element, but by the identity axiom \(P(\varnothing, \varnothing) = 1\).
 \end{proof}
@@ -564,7 +1002,7 @@ We then derive the absolute probability function as
 \[P(e) = P(e, \Omega) = \sum_{h \in e} \frac{1}{\sum_{h' \in \Omega}p(h', h)}\]
 
 \begin{theorem}
-\label{theorem:empty_event_impossible}
+\label{thm:empty_event_impossible}
 The empty event \(\varnothing\) has probability 0 with respect to any non-empty event.
 \end{theorem}
 
@@ -817,30 +1255,48 @@ Ask: Is it totally comparable? Algorithm: Look for a linear list of tiers.
 
 \section{Topology and Limits in Relative Probability Space}
 
+Mathematics can model the real world even through ideas that are theoretically impossible. For example, we might believe that a certain natural process cannot repeat an infinite number of times - that it just is not something allowed by the physical limitations of our universe. And even so, we might still take its value to be infinity in a model in order to get a bound on what that system will look like in \quotes{the long run}. One of the benefits of relative probability spaces is their properties with respect to limits. To this end, we prove here that when we take limits of totally comparable RPFs, the resulting RPF will also be totally comparable.
+
+This effort caps off the most significant argument in favor of totally comparable RPFs. They hold their information under the operation of limits, while absolute probability does not.
+
+There is some background in topology\footnote{See Mendelson (1990) \cite{mendelson} and Bradley et al. (2020) \cite{bradley} for texts with formal definitions and theorems.} required for this section.
+
+\subsection{RPF Space and Compactness}
+
+Because the set of absolute distributions for K is embedded in \(\mathbb{R}^K\), its topological properties are well understood. The simplex is closed, bounded, and compact. Practically, this means that any sequence of points on the simplex will converge to one or more points on the simplex allowing both pure and applied practicioners to talk about limit and boundary conditions.
+
+This strategy fails for relative probabilities, because there is no obvious way to embed an RPF into euclidean space\footnote{Though it may be possible! See section \ref{section:euclidean_embedding}}. The relative probability space is more complicated, because at the corners of the simplex lurk entire subspaces where outcomes are still being compared in different ways!
+
 \begin{definition}
-\(\Omega\) is a set of outcomes. Define \(\text{RPF}^{\ast}(\Omega)\) as the set of relative probability functions on \(\Omega\). Likewise, define \(\text{RPF}(\Omega)\) as the set of all totally comparable RPFs. 
+\(\text{RPF}^{\ast}(K)\) is the set of relative probability functions of size K (where \(\Omega = \{0, 1, ..., K - 1\}\)). Likewise \(\text{RPF}(K)\) is the set of all totally comparable RPFs of size K.
 \end{definition}
 
-Mathematics can be great at modelling the real world even through ideas that are theoretically impossible. For example, we might believe that it is impossible for a certain natural process to repeat an infinite number of times, and yet we may still take its value to be infinity in order to get some kind of bound on what that system will look like in the long run. Likewise, it still makes sense to consider a particular outcome in a probabilistic system as certain while maintaining information about the other outcomes in order to calculate the effects of such a limit. One of the benefits of relative probability spaces is their properties with respect to limits. To this end, we will prove that when we take limits of totally mutually comparable RPFs, the resulting RPF will also be titally mutually comparable.
+If the \(\text{RPF}(K)\) is compact, then information about the relative probabilites of events are preserved even as they approach zero relative to another event.
 
-If we look at the space of (absolute) categorical distributions on \(\Omega\) and we allow the probability of one outcome to approach 1, then all of the other probabilities will be forced down to 0 and become incomparable with one another. In the relative probability space, the information about the ratios of probabilities of the other outcomes can be preserved even as a single outcome reaches a probability of 1.
+In order to prove compactness, we first must define a topology on \(\text{RPF}(K)\). This starts with finding a \textit{basis of open sets}.
 
----- Repeated ---
-Because the set of categorical distributions is embedded in \(\mathbb{R}^K\),
-its topological properties are well understood. The simplex is closed, bounded,
-and compact. Practically, this means that any sequence of points on the
-simplex will converge to one or more points on the simplex allowing both pure and applied practicioners to talk about limit and boundary conditions.
---------------------
+The notion of an open set can change even if a topological space is restricted. For example, on the real number line \(\mathbb{R}\), we take the open interval (0, 1) as an open set (as the term open interval suggests). However, once this is embedded into \(\mathbb{R}^2\), it is now a line segment in a plane and no longer open. It can be thought of as a restriction to an open set on \(\mathbb{R}^2\) to \(\mathbb{R}\). For example, the set \(\{(x, y): x \in (0, 1)\;  \text{and}\;  y \in (-\epsilon, +\epsilon)\}\) given an \(\epsilon > 0\) is such an open set on \(\mathbb{R}^2\).
 
-TODO: Warn people that background in topology is required for this section, and then we can shorten it up! Also, this section can be skipped if not interesting.
+\begin{figure}
+\centering
+\resizebox{0.5\textwidth}{!}{
+\begin{tikzpicture} %episilon diagram
+\draw[<->] (-0.7,0)--(2,0) node[right] {\(x\)};
+\draw[<->] (0,-1,0)--(0,1) node[above] {\(y\)};
+\draw[densely dashed,red,thick] (0,-0.5) rectangle (1.5,0.5);
+\draw[draw=blue,thick] (0,0) circle (2pt) node[above left=-0.1,font=\ttfamily\tiny] {0};
+\draw[draw=blue,thick] (1.5,0) circle (2pt) node [above right=-0.1,font=\ttfamily\tiny] {1};
 
-If the space of totally comparable RPFs is compact, then information about the relative probabilites of events are preserved even as they approach zero relative to another event.
+\node[left=-0.05,font=\ttfamily\footnotesize] at (0,-0.5) {\(-\varepsilon\)};
+\node[left=-0.05,font=\ttfamily\footnotesize] at (0,0.5) {\(\varepsilon\)};
+\node[circle,inner sep=1pt] at (0,0) (0){};
+\node[circle,inner sep=1pt] at (1.5,0) (1){};
+\path[draw,blue,thick] (0)--(1);
+\end{tikzpicture}
+}
+\caption{The small box that is the interior of the dotted rectangle is an open set in \(\mathbb{R}^2\), and therefor its restriction to \(\mathbb{R}\) - the line segment - is an open set in \(\mathbb{R}\). But the line segment is not open in \(\mathbb{R}^2\).}
+\end{figure}
 
-In order to prove compactness, we first must define a topology on the space of totally comparable RPFs. This means identifying the open sets.\footnote{This author finds it useful for intuition to think of an open set as a set that fully surrounds all of it's members and therefore does not contain a boundary.}. This starts with finding a \textit{basis of open sets} from which all other open sets can be constructed through intersections and countable unions.
-
-For the absolute probability function, we can use a \(K-1\)-simplex embedded in \(\mathbb{R}^K\) to get a topology using the standard Euclidean space. This strategy fails for relative probabilities, because there is no obvious way to embed an RPF into euclidean space\footnote{Though it may be possible! See section \ref{section:euclidean_embedding}}.
-
-The notion of an open set can change even if a topological space is restricted. For example, on the real number line \(\mathbb{R}\), we take the open interval (0, 1) as an open set (as the term open interval suggests). However, once this is embedded into \(\mathbb{R}^2\), it is now a line segment in a plane and no longer open. It can be thought of as a restriction to an open set on \(\mathbb{R}^2\) to \(\mathbb{R}\). For example, the set \(\{(x, y): x \in (0, 1)\;  \text{and}\;  y \in (-\epsilon, +\epsilon)\}\) given an \(\epsilon > 0\) is such an open set on \(\mathbb{R}^2\). [ILLUSTRATION]
 
 Likewise, an open set on a relative probability space restricted on several outcomes might not be an open set on the relative probability spaces for all of \(\Omega\).
 
@@ -850,17 +1306,15 @@ We start by looking at RPFs with \(K = 2\). Fortunately, we find a totally compa
 Let \(\Omega = \{h_1, h_2\}\) have two elements, with relative probability function \(P\). Then, \(P\) is completely determined by \(P(h_1, h_2)\).
 \end{theorem}
 
-\subsection{Open Patches}
-
-We now develop a notion of open patches, which will be a bases of open sets on the space \(\text{RPF}_{\text{comp}}(\Omega)\).
-
 \begin{proof}
-Let \(q = P(h_1, h_2)\). By the inverse symmetric property, \(P(h_2, h_1) = q^{-1}\). These values completely determine \(P\) on the event level.
+Let \(q = P(h_1, h_2)\). By the inverse symmetric property, \(P(h_2, h_1) = q^{-1}\). These values completely determine \(P\) on the outcome level.
 \end{proof}
 
-\begin{corollary}
-The space of RPFs with \(K = 2\) corresponds 1:1 with \(\mathbb{M}^*\), and the space of totally mutually comparable RPFS corresponds to \(\mathbb{M}\)
-\end{corollary}
+This gives us both a topology and a compactness proof for K = 2 for free because \(\text{RPF}(2)\) is isomorphic to \(\mathbb{M}\) which already has a natural topology. Its basis for open sets are the open intervals of \(\mathbb{B}\), including those intervals that include 0 and \(\infty\). For \(K > 2\), we will need more powerful tools.
+
+\subsection{Open Patches}
+
+We now develop a notion of open patches, which will be a basis of open sets on the space \(\text{RPF}(K)\).
 
 \begin{definition}
 An \textit{interior open patch} of \(\text{RPF}_{\text{comp}}(\Omega)\) is one of the following:
@@ -871,12 +1325,52 @@ An \textit{interior open patch} of \(\text{RPF}_{\text{comp}}(\Omega)\) is one o
 \end{enumerate}
 \end{definition}
 
-Intuition: Interior open patches contain only totally mutually possible functions. (should this be a theorem?)
+Intuition: Interior open patches contain only totally mutually possible functions.
 
-Insert: diagram for interior open patches
+\begin{figure}
+\centering
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture}
+\node {\(P_\top\)} [sibling distance = 3cm]
+  child {node {\(P_0\)}  [sibling distance = 3cm]
+    child {node {A}}
+    child {node {B}}
+  }
+  child {node  {C}};
+\end{tikzpicture}
+}
+\resizebox{0.4\textwidth}{!}{
+\begin{tikzpicture} %Triangle 3
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(1,0) node [font=\tiny\bf] {)};
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(0,0) node [font=\tiny\bf] {(};
+\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (0,1.2)--(0.66,1.2)--(0.43,2)--(0,2)--cycle;
+
+\node[rectangle,rotate=45,draw=none,pattern=crosshatch, pattern color=darkgreen] at (1.2,3) (P){};
+
+\node(Q)[rectangle,draw=none,align=center,below right=-0.3 and 0.1 of P,font=\ttfamily\footnotesize] {Interior Open\\ Patch};
+
+\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
+
+\node (A) at (-2,0) [below] {\(A\)}; 
+\node (B) at (2,0) [below] {\(B\)}; 
+\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
+
+\draw[thick, dashed,red] (0.8,2)--(-3,2) node[font=\tiny\bf,rotate=90] {)};
+\draw[thick, dashed,red] (1.2,1.2)--(-3,1.2) node[font=\tiny\bf,rotate=90] {(};
+
+\draw[thick, dashed,red] (1,-0.1)--(1,-0.9);
+\draw[thick, dashed,red] (0,-0.1)--(0,-0.9);
+
+\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
+
+\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (1,-1) {)}
+node[red,font=\tiny\bf] at (0,-1) {(};
+\end{tikzpicture}
+}
+\end{figure}
 
 \begin{definition}
-A \textit{facet patch} of \(\text{RPF}_{\text{comp}}(\Omega)\) is one of the following:
+A \textit{facet\footnote{A facet of a simplex is a subset where one parameter is equal to zero - equivalent to a face on a 3D object.} patch} of \(\text{RPF}_{\text{comp}}(\Omega)\) is one of the following:
 
 \begin{enumerate}
   \item If \(K = 2\), an interval of the form \(\{P | 0 < P(h_1, h_2) < a\}\) for some \(a \in \mathbb{M}\) 
@@ -884,45 +1378,114 @@ A \textit{facet patch} of \(\text{RPF}_{\text{comp}}(\Omega)\) is one of the fol
 \end{enumerate}
 \end{definition}
 
-Insert: diagram for facet patches
-
 Definition: An \textit{exterior open patch} is a one of the following:
 
 \begin{enumerate}
-  \item Any facet patch is also and exterior open patch
-  \item A composition where \(P_{\top}\) is a facet patch. The \textit{facet component} is itself drawn from an exterior open patch, and all the other components are drawn from interior open patches.
+  \item Any facet patch.
+  \item A composition where \(P_{\top}\) is a facet patch. The \textit{facet component} is itself drawn from any open patch, and all the other components are drawn from interior open patches.
 \end{enumerate}
 
-Intuition: Exterior open patches contain only totally mutually comparable functions, but some are not totally mutually possible.
+Exterior open patches contain only totally mutually comparable functions, but some are not totally mutually possible.
 
-Insert: diagram for exterior open patches
+\begin{figure}
+\centering
+\resizebox{0.4\textwidth}{!}{
+\begin{tikzpicture} %Triangle 1
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(-1,0) node [font=\tiny\bf] {)};
+\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (-0.36,2.2)--(0,{2*sqrt(3)})--(-0.75,2.2)--cycle;
+
+\node[rectangle,rotate=45,draw=none,pattern=crosshatch, pattern color=darkgreen,align=center] at (1.2,3) (P){};
+
+\node(Q)[rectangle,draw=none,align=center,below right=-0.3 and -0.2 of P,font=\ttfamily\footnotesize]  {Exterior Open \\ Patch (non-facet)};
+
+\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
+
+\node (A) at (-2,0) [below] {\(A\)}; 
+\node (B) at (2,0) [below] {\(B\)}; 
+\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
+\draw[thick, dashed,red] (0.8,2.2)--(-3,2.2) node[font=\tiny\bf,rotate=90] {(};
+\draw[thick, dashed,red] (-1,-0.1)--(-1,-0.9);
+\draw[thick, darkgreen] (-0.73,2.2)--(0,{2*sqrt(3)});
+
+\draw[draw=darkgreen] (-0.73,2.2) circle (2pt);
+
+\draw[draw=darkgreen] (0,{2*sqrt(3)}) circle (2pt);
+
+\fill[darkgreen] (0,{2*sqrt(3)}) + (0, 2pt) arc (90:270:2pt);
+
+\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
+
+\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (-1,-1) {)};
+\end{tikzpicture}
+}
+\resizebox{0.4\textwidth}{!}{
+\begin{tikzpicture} %Triangle 2
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(-1,0) node [font=\tiny\bf] {)};
+\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (-1.3,1.2)--(-0.66,1.2)--(-0.43,2)--(-0.86,2)--cycle;
+
+\node[rectangle,rotate=45,draw=none,pattern=crosshatch, pattern color=darkgreen] at (1.2,3) (P){};
+
+\node(Q)[rectangle,draw=none,align=center,below right=-0.3 and 0.1 of P,font=\ttfamily\footnotesize] {Facet Patch};
+
+\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
+
+\node (A) at (-2,0) [below] {\(A\)}; 
+\node (B) at (2,0) [below] {\(B\)}; 
+\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
+
+\draw[thick, dashed,red] (0.8,2)--(-3,2) node[font=\tiny\bf,rotate=90] {)};
+\draw[thick, dashed,red] (1.2,1.2)--(-3,1.2) node[font=\tiny\bf,rotate=90] {(};
+
+\draw[thick, dashed,red] (-1,-0.1)--(-1,-0.9);
+\draw[thick, darkgreen] (-1.3,1.2)--(-0.85,2);
+
+\draw[draw=darkgreen] (-1.3,1.2) circle (2pt);
+\draw[draw=darkgreen] (-0.85,2) circle (2pt);
+
+\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
+
+\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (-1,-1) {)};
+\end{tikzpicture}
+}
+\end{figure}
 
 TODO: Break this down because it's not that intuitive!
 
-Definition: An \textit{open patch} is a subset of \(\text{RPF}_{\text{comp}}(\Omega)\) that is either an interior or exterior open patch.
-
-Every element of an open patch of \(\text{RPF}(\Omega)\) is totally mutually comparable.
-
-Now let the open patches be the bases for an open set thus defining a topology on the set of totally mutually comparable RPFs of \(\Omega\).
-
 \begin{definition}
-Let the set of open patches define a basis for the topology on \(\text{RPF}_{\text{comp}}(\Omega)\).
+An \textit{open patch} is a subset of \(\text{RPF}(K)\) that is either an interior or exterior open patch.
 \end{definition}
+
+Now let the open patches be the bases for an open set thus defining a topology on \(\text{RPF}(K)\).
 
 \subsection{Compactness}
 
+Before we prove that \(\text{RPF}(K)\) is compact, we need a few lemmas.
+
+\begin{lemma}
+Let \(h\) be an outcome in \(\{0, 1, ..., K-1\}\), and let q be a number such that \(0 < q \leq 1\). The region of \(\text{RPF}(K)\) where the absolute probability of h is q is isomorphic to \(\text{RPF}(K-1)\).
+\end{lemma}
+
+\begin{proof}
+Roughly: If \(P(h) > 0\) then it is in the anchored equivalence class of mutually possibility. If \(P(h) = 1\) then the outcome \(h\) can be appended above any function in \(\text{RPF}(K - 1)\), and if \(P(h) < 1\) then \(h\) can be appended into the anchored equivalence class of any function in \(\text{RPF}(K-1)\). In both cases, a separate \(h\) with a given absolute probability can be appended to anything in \(\text{RPF}(K-1)\) to produce an element of \(\text{RPF}(K)\), and all elements of \(\text{RPF}(K)\) are accounted for.
+\end{proof}
+
+\begin{lemma}
+Let \(h\) be an outcome in \(\{0, 1, ..., K-1\}\). Let R be the region of \(\text{RPF}(K)\) where the absolute probability of h is 0. Any open set containing all of R must contain every function in \(\text{RPF}(K)\) where \(P(h) < \epsilon\) for some \(\epsilon < 0\).
+\end{lemma}
+
 \begin{theorem}
-The topological space of totally comparable functions on an outcome space \(\Omega\) is \textit{compact}, meaning that for every open cover of it, there is a finite subcover.
+\(\text{RPF}(K)\) is \textit{compact}, meaning that for every open cover of it, there is a finite subcover.
 \end{theorem}
 
 \begin{proof}
-STILL A LOT TO DO:
+This is an inductive proof where we assume that the theorem is true for all \(k < K\) and then prove that it is true for \(K\).
 
-Let \(K = |\Omega|\). This is going to be an inductive proof where we assume that the theorem is true for all \(k < K\) and then prove that it is true for \(K\).
+If \(K \in {0, 1}\) then \(\text{RPF}(K)\) is finite and singular (either the empty RPF or unit RPF respectively). These are obviously compact. If \(K = 2\) then we have the topology of \(\mathbb{M}\) which is also compact (thanks to the \(\infty\) element).
 
-If \(K \in {0, 1}\) then the set of open sets is finite, so we're good. (Reference degenerate cases)
+Now we assume that \(K > 2\).
 
-Let \(h \in \Omega\) be an outcome. The space of totally comparable functions on \(\Omega\) can be split into 2 regions: one where \(P(h, \Omega) = 0\) and one where \(P(h_1, \Omega) > 0\).
+Let \(h \in \Omega\) be an outcome.
+
 
 - We're going to have to prove this - might be tough!
 \end{proof}
@@ -966,14 +1529,79 @@ TODO
 
 Category theorists will instantly recognize that an RPF describes a category perfectly. This construction can be analyzed and approached through the lens of category theory.
 
-The recent work of Censi et al.\cite{censi} concerns negative information in categories, which here corresponds to the wildcard element. It represents regions of the probability function that remain unassigned or uncomparable. This work could be used to subsume and further develop the idea of the wildcard.
+\begin{center}
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture} %Commute Diagram
+[node distance=0.8in]
+\tikzset{
+  shift left/.style ={commutative diagrams/shift left={#1}},
+  shift right/.style={commutative diagrams/shift right={#1}},
+  com/.style={circle,draw=none,inner sep=1pt,font=\LARGE}
+}
+\node (C) [com] {\(C\)};
+\node (B) [com, above right = of C] {\(B\)};
+\node (A) [com, above left = of C] {\(A\)};
+
+\path[-stealth,thick,shift right=0.7ex] (C) edge node[right] {6} (A);
+\path[-stealth,thick,shift right=0.7ex] (C) edge node[right] {3} (B);
+\path[-stealth,thick,shift right=0.7ex] (B) edge node[above] {2} (A);
+
+
+\path[-stealth,thick,shift right=0.7ex] (A) edge node[left,xshift=-0.6ex] {\(\frac{1}{6}\)} (C);
+\path[-stealth,thick,shift right=0.7ex] (B) edge node[left,yshift=0.6ex] {\(\frac{1}{3}\)} (C);
+\path[-stealth,thick,shift right=0.7ex] (A) edge node[below] {\(\frac{1}{2}\)} (B);
+
+\path[<-,every loop/.style={looseness=5},thick] (A)
+         edge  [in=170,out=90,loop,below] node {1} (); 
+\path[<-,every loop/.style={looseness=5},thick] (B)
+         edge  [in=80,out=0,loop,below] node {1} (); 
+\path[<-,every loop/.style={looseness=9},thick,rotate=180] (C)
+         edge  [in=-235,out=-315,loop,above] node {1} ();
+
+%\path[-stealth,thick] (A) edge [loop above] node {1} ();
+\end{tikzpicture}
+}
+\end{center}
+
+The recent work of Censi et al.\cite{censi} concerns negative information in categories, which here corresponds to the wildcard element \(\ast\). It represents regions of the probability function that remain unassigned or uncomparable. This work could be used to subsume and further develop the idea of the indeterminate wildcard.
+
 \subsection{Embedding in Euclidean Space}
 \label{section:euclidean_embedding}
-FILL IN
-Hexagon diagram
+
+Absolute probability functions have this advantage where they can be embedded into a simplex in \(\mathbb{R}^K\). For relative probability functions, it is not so straightforward. However, it might be possible to derive a system for embedding RPFs into euclidean space. For example, the space \(\text{RPF}(3)\) can be mapped as a hexagon, where each point can be assigned a probability based on its distance between two parallel sides, which exist for each outcome.
+
+\begin{center}
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture}
+\node[regular polygon,draw,minimum size=4cm,line width=0.5mm,regular polygon sides = 6] (p) at (0,0) {};
+
+\node at (p.corner 1) [anchor=360/6*(1-1)+270] {};
+\node at (p.corner 2) [anchor=360/6*(2-1)+270] {};
+\node at (p.corner 3) [anchor=360/6*(3-1)+270] {};
+\node at (p.corner 4) [anchor=360/6*(4-1)+270] {};
+\node at (p.corner 5) [anchor=360/6*(5-1)+270] {};
+\node at (p.corner 6) [anchor=360/6*(6-1)+270] {};
+
+\node[regular polygon,draw=none,rotate=30,minimum size=3.4cm,line width=0.5mm,regular polygon sides = 6] (A) at (0,0) {};
+\node at (A.corner 1) [anchor=360/6*(1-1)+270] {\(P(a)=1\)};
+\node at (A.corner 2) [anchor=360/6*(2-1)+230,rotate=58] {\(P(c)=0\)};
+\node at (A.corner 3) [anchor=360/6*(4-1)+260,rotate=-60] {\(P(b)=1\)};
+\node at (A.corner 4) [anchor=360/6*(4-1)+270] {\(P(a)=0\)};
+\node at (A.corner 5) [anchor=360/6*(5-1)+230,rotate=55] {\(P(c)=1\)};
+\node at (A.corner 6) [anchor=360/6*(7-1)+260,rotate=-60] {\(P(b)=0\)};
+
+\draw[fill=black] (0.5,0.6) circle (3pt);
+
+\draw[line width=0.5mm,dashed] (0.5,0.6) -- ($(p.corner 1)!(0.5,0.6)!(p.corner 6)$);
+\draw[line width=0.5mm,dashed] (0.5,0.6) -- ($(p.corner 2)!(0.5,0.6)!(p.corner 3)$);
+\draw[line width=0.5mm,dashed] (0.5,0.6) -- ($(p.corner 5)!(0.5,0.6)!(p.corner 4)$);
+\end{tikzpicture}
+}
+\end{center}
+
+In this case, the probability triangle has been truncated. For higher order simplcies, this appears to become exceedingly unweidly unless there is developed some simplifying trick. If it is successfully done, then the topological properties of \(\text{RPF}(K)\) fall into place easily.
 
 %\subsubsection*{References}
-
 \begin{thebibliography}{20}
 
 \bibitem{sklar_dirichlet}Sklar, M. (2014). Fast MLE computation for the Dirichlet multinomial. arXiv preprint arXiv:1405.0099.

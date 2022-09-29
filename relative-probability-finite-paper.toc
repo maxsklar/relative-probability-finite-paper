@@ -12,20 +12,21 @@
 \contentsline {subsection}{\numberline {4.2}Examples}{9}{}%
 \contentsline {section}{\numberline {5}New Concepts for Relative Probability}{10}{}%
 \contentsline {subsection}{\numberline {5.1}Matching and Comparability}{10}{}%
-\contentsline {subsection}{\numberline {5.2}Possibility Classes}{11}{}%
-\contentsline {subsection}{\numberline {5.3}Totally Mutually Possible RPFs}{12}{}%
-\contentsline {section}{\numberline {6}From Outcomes to Events}{13}{}%
-\contentsline {section}{\numberline {7}Composing Relative Probability Functions}{15}{}%
-\contentsline {section}{\numberline {8}Bayesian Inference on Relative Distributions}{18}{}%
-\contentsline {subsection}{\numberline {8.1}Example: A Noisy Channel}{19}{}%
-\contentsline {section}{\numberline {9}Implementation}{20}{}%
-\contentsline {section}{\numberline {10}Topology and Limits in Relative Probability Space}{21}{}%
-\contentsline {subsection}{\numberline {10.1}Open Patches}{22}{}%
-\contentsline {subsection}{\numberline {10.2}Compactness}{23}{}%
-\contentsline {subsection}{\numberline {10.3}Simple Limit Example}{23}{}%
-\contentsline {section}{\numberline {11}Future Work}{24}{}%
-\contentsline {subsection}{\numberline {11.1}Expansions to infinite spaces}{24}{}%
-\contentsline {subsection}{\numberline {11.2}Connection Surreal Numbers}{24}{}%
-\contentsline {subsection}{\numberline {11.3}Shrinking the Measure Number System}{24}{}%
-\contentsline {subsection}{\numberline {11.4}Relationship to Category Theory}{24}{}%
-\contentsline {subsection}{\numberline {11.5}Embedding in Euclidean Space}{25}{}%
+\contentsline {subsection}{\numberline {5.2}Possibility Classes}{13}{}%
+\contentsline {subsection}{\numberline {5.3}Totally Mutually Possible RPFs}{15}{}%
+\contentsline {section}{\numberline {6}From Outcomes to Events}{15}{}%
+\contentsline {section}{\numberline {7}Composing Relative Probability Functions}{18}{}%
+\contentsline {section}{\numberline {8}Bayesian Inference on Relative Distributions}{20}{}%
+\contentsline {subsection}{\numberline {8.1}Example: A Noisy Channel}{22}{}%
+\contentsline {section}{\numberline {9}Implementation}{23}{}%
+\contentsline {section}{\numberline {10}Topology and Limits in Relative Probability Space}{24}{}%
+\contentsline {subsection}{\numberline {10.1}RPF Space and Compactness}{24}{}%
+\contentsline {subsection}{\numberline {10.2}Open Patches}{25}{}%
+\contentsline {subsection}{\numberline {10.3}Compactness}{26}{}%
+\contentsline {subsection}{\numberline {10.4}Simple Limit Example}{27}{}%
+\contentsline {section}{\numberline {11}Future Work}{28}{}%
+\contentsline {subsection}{\numberline {11.1}Expansions to infinite spaces}{28}{}%
+\contentsline {subsection}{\numberline {11.2}Connection Surreal Numbers}{28}{}%
+\contentsline {subsection}{\numberline {11.3}Shrinking the Measure Number System}{28}{}%
+\contentsline {subsection}{\numberline {11.4}Relationship to Category Theory}{28}{}%
+\contentsline {subsection}{\numberline {11.5}Embedding in Euclidean Space}{29}{}%
