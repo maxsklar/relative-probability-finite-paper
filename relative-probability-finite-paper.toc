@@ -13,20 +13,20 @@
 \contentsline {section}{\numberline {5}New Concepts for Relative Probability}{10}{}%
 \contentsline {subsection}{\numberline {5.1}Matching and Comparability}{10}{}%
 \contentsline {subsection}{\numberline {5.2}Possibility Classes}{13}{}%
-\contentsline {subsection}{\numberline {5.3}Totally Mutually Possible RPFs}{15}{}%
+\contentsline {subsection}{\numberline {5.3}Totally Mutually Possible RPFs}{14}{}%
 \contentsline {section}{\numberline {6}From Outcomes to Events}{15}{}%
 \contentsline {section}{\numberline {7}Composing Relative Probability Functions}{18}{}%
 \contentsline {section}{\numberline {8}Bayesian Inference on Relative Distributions}{20}{}%
-\contentsline {subsection}{\numberline {8.1}Example: A Noisy Channel}{22}{}%
-\contentsline {section}{\numberline {9}Implementation}{23}{}%
-\contentsline {section}{\numberline {10}Topology and Limits in Relative Probability Space}{24}{}%
-\contentsline {subsection}{\numberline {10.1}RPF Space and Compactness}{24}{}%
+\contentsline {subsection}{\numberline {8.1}Example: A Noisy Channel}{21}{}%
+\contentsline {section}{\numberline {9}Implementation}{22}{}%
+\contentsline {section}{\numberline {10}Topology and Limits in Relative Probability Space}{23}{}%
+\contentsline {subsection}{\numberline {10.1}RPF Space and Compactness}{23}{}%
 \contentsline {subsection}{\numberline {10.2}Open Patches}{25}{}%
 \contentsline {subsection}{\numberline {10.3}Compactness}{26}{}%
 \contentsline {subsection}{\numberline {10.4}Simple Limit Example}{27}{}%
-\contentsline {section}{\numberline {11}Future Work}{28}{}%
-\contentsline {subsection}{\numberline {11.1}Expansions to infinite spaces}{28}{}%
-\contentsline {subsection}{\numberline {11.2}Connection Surreal Numbers}{28}{}%
-\contentsline {subsection}{\numberline {11.3}Shrinking the Measure Number System}{28}{}%
+\contentsline {section}{\numberline {11}Future Work}{27}{}%
+\contentsline {subsection}{\numberline {11.1}Expansions to infinite spaces}{27}{}%
+\contentsline {subsection}{\numberline {11.2}Connection Surreal Numbers}{27}{}%
+\contentsline {subsection}{\numberline {11.3}Shrinking the Measure Number System}{27}{}%
 \contentsline {subsection}{\numberline {11.4}Relationship to Category Theory}{28}{}%
-\contentsline {subsection}{\numberline {11.5}Embedding in Euclidean Space}{29}{}%
+\contentsline {subsection}{\numberline {11.5}Embedding in Euclidean Space}{28}{}%

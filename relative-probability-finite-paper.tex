@@ -152,7 +152,7 @@ This improves the Kolmogorov model - that starts with an absolute probability fu
 
 The relative approach to probability is not only viable, but has many properties that practicioners will find attractive. It great promise in its ability to simplify and focus topics in applied probability. For example, many Bayesian inference algorithms rely on relative probability alone to search for optimal parameters. 
 
-As a proof of this concept, we will construct a theory of relative probability on finite distributions. By omitting infinite distributions, we can temporarily set aside the concepts of measurable sets and countable additivity. This work will demonstrate that even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental rules and vocabulary to be a viable foundation, which we will construct.
+As a proof of this concept, we will construct a theory of relative probability on finite distributions. By omitting infinite distributions, we can temporarily set aside the concepts of measurable sets and countable additivity\footnote{In the textbook Invitation to Discrete Mathematics, Matoušek et al. write \quote{By restricting ourselves to finite probability spaces we have simplified the situation considerably... A true probability theorist would probability say that we have excluded everything interesting.}}. This work will demonstrate that even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental rules and vocabulary to be a viable foundation, which we will construct without the distractions of infinite and continuous outcome spaces.
 
 We then provide a new formulation of Bayes rule that uses only relative proability, and that is reflective of current practice. We will look at these applications of these ideas along with their algorithmic implementation.
 
@@ -383,7 +383,7 @@ Let \(\Omega\) be the set of outcomes, and \(P: \Omega \times \Omega \rightarrow
 
 If \(P\) is a relative probability function, \(P(h_1, h_2)\) can be read as the probability of \(h_1\) relative to \(h_2\). Outcomes \(h_1\) and \(h_2\) are said to be \textit{comparable} if \(P(h_1, h_2) \neq \ast\).
 
-Let us pause for a moment to discuss how these axioms where chosen. It really is the composition axiom that expresses how relative probability works. If \(A\) is twice as likely as \(B\), and \(B\) is 3 times as likely as \(C\), then \(A\) had better be 6 times as likely as \(C\). If it were not, then these relative probability assignments would have no meaning.
+Let us pause for a moment to discuss how these axioms where chosen. The star of the show is the composition axiom which succinctly encodes how relative probability works. If \(A\) is twice as likely as \(B\), and \(B\) is 3 times as likely as \(C\), then \(A\) had better be 6 times as likely as \(C\). If it were not, then these relative probability assignments would have no meaning.
 
 The composition axiom is enough to show that the identity axiom works most of the time. For example, if one can compare an outcome \(h_1\) to any other outcome \(h_2\) then through composition we get \(P(h_1, h_2) :\cong P(h_1, h_1) \cdot P(h_1, h_2)\). So long as \(P(h_1, h_2)\) isn't \(0\), \(\infty\), or \(\ast\), then we would have to conclude \(P(h_1, h_1) = 1\).
 
@@ -1607,6 +1607,7 @@ In this case, the probability triangle has been truncated. For higher order simp
 \bibitem{kolmogorov}A. N. Kolmogorov. Foundations of the Theory of Probability. Chelsea Publishing Company, New York
 (1956). 
 \bibitem{heinemann}Heinemann, F. (1997). Relative Probabilities. Working paper, http://www. sfm. vwl. uni-muenchen. de/heinemann/publics/relative probabilities-intro. htm.
+\bibitem{discrete}Matoušek, J., \& Nešetřil, J. (2008). Invitation to discrete mathematics. OUP Oxford.
 
 \end{thebibliography}
 
