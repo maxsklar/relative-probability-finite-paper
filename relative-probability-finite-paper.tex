@@ -920,19 +920,19 @@ Our next task is to upgrade \(P\) to operate on the event level. This is more di
 P(e_1, e_2) = \sum_{h_1 \in e_1}P(h_1, e_2)
 \end{equation}
 
-Equation \ref{eq:incorrect_additive_event_def} looks uncontroversial, but it actually leads to a contradition if we want to keep the fundamental axioms! If we let \(e_1 = \varnothing\), then we have an empty sum on the right hand side of the equation, and we get \(P(\varnothing, e_2) = 0\). Likewise, if we allow \(e_2\) to be empty, we get \(P(e_1, \varnothing) = P(\varnothing, e_1)^{-1}=0^{-1}=\infty\). Both of these statements make sense until you realize that \(P(\varnothing, \varnothing) = 0 = \infty\), and what's worse is that they are also equal 1 under the identity axiom!
+Equation \ref{eq:incorrect_additive_event_def} looks uncontroversial, but it actually contradicts the fundamental axioms! If we let \(e_1 = \varnothing\), then we have an empty sum on the right hand side of the equation, and we get \(P(\varnothing, e_2) = 0\). Likewise, if we allow \(e_2\) to be empty, we get \(P(e_1, \varnothing) = P(\varnothing, e_1)^{-1}=0^{-1}=\infty\). Both of these statements make sense until you realize that \(P(\varnothing, \varnothing) = 0 = \infty\), and what's worse is that they are also equal 1 under the identity axiom!
 
-Another problem arises when events are \textit{internally non-comparable}, meaning that event \(e\) contains outcomes \(h_1\) and \(h_2\) where \(P(h_1, h_2) = \ast\). Perhaps there are still a few theorems we can prove with respect to such an event, but here we will constrain ourselves entirely to totally comparable outcome spaces in order to avoid such questions.
+Another problem arises when events are \textit{internally non-comparable}, meaning that event \(e\) contains outcomes \(h_1\) and \(h_2\) where \(P(h_1, h_2) = \ast\). Perhaps there are still a few interesting things we can say about such an event, but here we will constrain ourselves entirely to totally comparable outcome spaces in order to avoid such questions.
 
 \begin{definition}
 Let \(P\) be a totally comparable finite RPF. \(P\) can also measure the probability of two events relative to each other using the following rules:
 
 \begin{enumerate}[(i)]
   \item \label{event_def_1} \(P(e_1, e_2)\) obeys the fundamental axioms of relative probability.
-  \item \label{event_def_2} Sums over a reference event
+  \item \label{event_def_2} \(P(e_1, e_2)\) sums over any reference outcome \(h\), so long as the result isn't indeterminate.
     \begin{equation}
       \label{eq:event_def_ratio_match}
-      P(e_1, e_2) :\cong \frac{\sum_{h_1 \in e_1} P(h_1, h^*)}{\sum_{h_2 \in e_2} P(h_2, h^*)}
+      P(e_1, e_2) :\cong \frac{\sum_{h_1 \in e_1} P(h_1, h)}{\sum_{h_2 \in e_2} P(h_2, h)}
     \end{equation}
 \end{enumerate}
 \end{definition}
@@ -952,7 +952,8 @@ These requirements again seem reasonable, but how can we know for sure that they
   \item \label{event_def_proof_2} The constraint in \ref{eq:event_def_ratio_match} will not violate the fundamental axioms.
 \end{enumerate}
 
-Proof of \ref{event_def_proof_1}
+\begin{proof}
+For \ref{event_def_proof_1}:
 
 Let \(r_1\) and \(r_2\) be distinct reference outcomes, and both constrain \(P(e_1, e_2)\). Then we want to check that
 
@@ -963,42 +964,33 @@ Let \(r_1\) and \(r_2\) be distinct reference outcomes, and both constrain \(P(e
 
 Neither expression is a wildcard, and none of the individual terms are either. The key to this argument is in looking at the value of \(P(r_1, r_2)\).
 
-Assume \(P(r_1, r_2) = 0\). For every term from equation \ref{eq:relative_event_unique} of the form \(P(h_1, r_2)\), we can say \(P(h_1, r_2):\cong P(h_1, r_1) \cdot P(r_1, r_2) = P(h_1, r_1) \cdot 0\). Then either \(P(h_1, r_2) = 0\) or \(P(h_1, r_1) = \infty\). More generally, this means that every term in equation \ref{eq:relative_event_unique} is either \(0\) or \(\infty\) and its analogous term on the opposite side is the inverse.
+Assume \(P(r_1, r_2) = 0\). 
 
-Looking at the sums as a whole, each sum is made up either entirely of 0s or contains an \(\infty\) in which case the sum is \(\infty\).
+Then if \(\sum_{h_1 \in e_1} P(h_1, r_1)\) is not infinite, then \(\sum_{h_1 \in e_1} P(h_1, r_2)\) must be zero. The same argument applies to \(\sum_{h_2 \in e_2} P(h_2, r_2)\). Since they can't both be zero, we can say that one of the sums on the left hand side is infinite, so that \(P(e_1, e_2)\) is either \(\infty\) or 0. Let's say it is 0. Then \(\sum_{h_1 \in e_1} P(h_1, r_1) = 0\) and \(\sum_{h_2 \in e_2} P(h_2, r_1) = \infty\) and by the argument above \(\sum_{h_1 \in e_1} P(h_1, r_2) = 0\). Because the right hand side is not \(\ast\) - it must resolve to zero as well. The same agument holds for \(P(e_1, e_2) = \infty\).
 
-[ GOTTA FILL THIS IN ]
-------------------------------------
-
-By an analogous argument  \(P(h_1^*, h_2^*) \neq \infty\)
+By an analogous argument, if \(P(r_1, r_2) \infty\) then equation \ref{eq:relative_event_unique} must hold.
 
 So now we can assume that \(P(r_1, r_2) \notin {0, \infty} \). The allows us to multiply the left hand side of equation \ref{eq:relative_event_unique} by \(1 = \frac{P(r_1, r_2)}{P(r_1, r_2)}\) and distribute into the sum to get:
 
 \[\frac{\sum_{h_1 \in e_1} P(h_1, r_1) \cdot P(r_1, r_2)}{\sum_{h_2 \in e_2} P(h_2, r_1) \cdot P(r_1, r_2)} = \frac{\sum_{h_1 \in e_1} P(h_1, h_2^*)}{\sum_{h_2 \in e_2} P(h_2, h_2^*)}\]
 
-Proof of \ref{event_def_proof_2}
+For \ref{event_def_proof_2}:
 
-Starting with the identity axiom:
-
-\[P(e_1, e_1) :\cong \frac{\sum_{h_1 \in e_1} P(h_1, h^*)}{\sum_{h_1 \in h_2} P(h_1, h^*)}\]
-
-The constraint - being the ratio of two identical terms - is either 1 or \(ast\) in the case that the sums are \(0\) or \(\infty\). Therefore, there cannot be a contradiction to \(P(e_1, e_1) = 1\)
-
-The inverse property...
-The composition property on the event level is \(P(e_1, e_3) :\cong P(e_1, e_2) \cdot P(e_2, e_3)\)
-
-FILL IN
+The identity, inverse, and composition axioms easily follow from the fact that equation \ref{eq:event_def_ratio_match} is a ratio with identical terms for \(e_1\) in the numerator and \(e_2\) in the denominator. Therefore, if it resolves it is just a ratio of positive numbers - which can be shown to follow the 3 axioms.
+\end{proof}
 
 \begin{theorem}
-Given events \(e_1\) and \(e_2\) where \(|e_1 \cup e_2 \neq \varnothing\), we have \[P(e_1, e_2) = \sum_{h_1 \in e_1} \frac{1}{\sum_{h_2 \in e_2} p(h_2, h_1)}\].
+Given events \(e_1\) and \(e_2\) where they are not both empty, we have \[P(e_1, e_2) = \sum_{h_1 \in e_1} \frac{1}{\sum_{h_2 \in e_2} P(h_2, h_1)}.\]
 \end{theorem}
 
 \begin{proof}
-FILL IN
+Start with the equation and multiply and use a suitable reference outcome \(h\).
+\[\sum_{h_1 \in e_1} \frac{1}{\sum_{h_2 \in e_2} p(h_2, h_1)} :\cong \sum_{h_1 \in e_1} \frac{P(h_1, h)}{\sum_{h_2 \in e_2} P(h_2, h_1) P(h_1, h)} = \frac{\sum_{h_1 \in e_1} P(h_1, h)}{\sum_{h_2 \in e_2} P(h_2, h)}\]
+
+Since both \(P(e_1, e_2)\) and the formula above match the same thing which is not always \(\ast\), they must be equal.
 \end{proof}
 
 We then derive the absolute probability function as
-
 \[P(e) = P(e, \Omega) = \sum_{h \in e} \frac{1}{\sum_{h' \in \Omega}p(h', h)}\]
 
 \begin{theorem}
@@ -1007,11 +999,11 @@ The empty event \(\varnothing\) has probability 0 with respect to any non-empty 
 \end{theorem}
 
 \begin{proof}
-Let \(e\) be a non-empty event, and let \(h^*\) be an outcome in \(e\).
+Let \(e\) be a non-empty event, and let \(h\) be an outcome in \(e\).
 
-\[P(\varnothing, e) = \frac{\sum_{h_1 \in \varnothing} P(h_1, e^*)}{\sum_{h \in e} P(h_2, e^*)}\]
+\[P(\varnothing, e) :\cong \frac{\sum_{h_1 \in \varnothing} P(h_1, h)}{\sum_{h_2 \in e} P(h_2, h)} = \frac{0}{\sum_{h_2 \in e} P(h_2, h)}\]
 
-FILL IN! - right now this doesn't work!!!
+The denominator cannot itself be zero because \(P(h, h)\) is one of the terms. Therefore, \(P(\varnothing, e) = 0\)
 \end{proof}
 
 \section{Composing Relative Probability Functions}
