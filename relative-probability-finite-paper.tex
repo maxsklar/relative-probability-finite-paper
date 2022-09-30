@@ -167,15 +167,15 @@ The \textit{magnitude space} \(\mathbb{M}\) is the set of all positive real numb
 \[\mathbb{M} = [0, +\infty]\]
 \end{definition}
 
-Magnitudes roughly corresponding with our intuition of size. Unlike the set of non-negative real numbers, magnitudes include a point at infinity. The point at infinity can be considered a limit element, larger that all of the other magnitudes. It provides the magnitude space with several important properties.
+Magnitudes correspond with our intuition of size. Unlike the set of non-negative real numbers, magnitudes include a point at infinity. The point at infinity can be considered a limit element, larger that all of the other magnitudes. It provides the magnitude space with several important properties.
 
 \begin{enumerate}
-\item \(Compactness:\) sequences that go off to infinity could still be considered to have a limit point at \(\infty\)
+\item \(Compactness:\) sequences that go off to infinity still a limit (at \(\infty\)).
 \item Symmetry around ratios: When we compare the probability of two events, we get their \textit{odds}. If the odds are 0, then we are comparing an event with probability 0 to an event with probability > 0. We should be able to reverse this comparison, and talk about it from either side. If we're comparing the probability of an event to its converse, then \(\infty\) represents events that have probability 1.
-\item Actual measurement value: Whereas physical objects may not be able to have infinite size, mathematical objects do. The infinite element is introduced in measure theory because many mathematical systems (real numbers for one) necessarily contain subsets of infinite measurement.
+\item Actual measurement value: Whereas physical objects may not be able to have infinite size, mathematical objects do. The infinite element is introduced in measure theory because many mathematical systems (real and natural numbers for example) contain sets of infinite measure.
 \end{enumerate}
 
-We will set \(0^{-1} := \infty\) and \(\infty^{-1} := 0\), even though their product is indeterminate within \(\mathbb{M}\) and they do quite act as a multiplicative inverses of each other.
+We set \(0^{-1} := \infty\) and \(\infty^{-1} := 0\), even though their product is indeterminate within \(\mathbb{M}\) and they do quite act as a multiplicative inverses of each other.
 
 \subsection{The Wildcard Element}
 
@@ -1056,7 +1056,7 @@ Note the use of the composition property to traverse up and down the tree. One c
 \begin{proof}
 Identity is obvious because an outcome is on the same component as itself, so we can use equation \ref{rpf_composition_same_branch} to get \(P(h_{k, i}, h_{k, i}) = P_k(h_{k, i}, h_{k, i}) = 1\)
 
-The inverse and composition laws must be true if both inputs are in the same component, because that component already follows the axioms. We not assume that the two inputs are from different components.
+The inverse and composition laws must be true if both inputs are in the same component, because that component already follows the axioms. We now look at two inputs are from different components.
 
 The inverse law can be proven by calculation.
 \begin{equation}
