@@ -137,22 +137,22 @@ This is an incomplete draft/outline of an upcoming paper. Please do not share
 
 \section{Introduction}
 
-The mathematical foundations of probability theory are still very much open to debate!
+The foundations of probability theory are still very much open to debate!
 
-Since Kolmogorov published the standard axioms for probability in 1933\cite{kolmogorov}, there have been calls to relax or alter them for various applications. In Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justifications.
-One question that arises concerns conditional probability. We talk about \quotes{the probability of A given that B occured} and denote it as \(P(A|B)\) - but does this make sense if \(B\) never occurs (or has probability zero\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution.})? It appears not if we stick to the Kolmogorov model, which would define the conditional probability above as the ratio \(\frac{P(A \cap B)}{P(B)}\). If the probability of B is zero, the indeterminate form \(\frac{0}{0}\) appears, making the relative probability remains undefined.
+Since Kolmogorov published the standard axioms for probability\cite{kolmogorov} in 1933, there have been calls to relax or alter them for various applications. In Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justifications.
+One controversy concerns conditional probability. We talk about \quotes{the probability of A given that B occured} and denote it as \(P(A|B)\) - but can this make sense if \(B\) never occurs (or has probability zero\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution.})? We are out of luck if we stick to the Kolmogorov model, which defines the conditional probability above as the ratio \(\frac{P(A \cap B)}{P(B)}\). If the probability of B is zero, the indeterminate form \(\frac{0}{0}\) appears.
 
-Feeling undeterred, mathematicians and engineers refer to relative probability all the time. For example, if we consider a continuous probability distributrion over \([0, 1]\) given by the probability distribution function \(2x\), we know that the PDF at \(x = \frac{1}{2}\) is twice as much as the PDF at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though we are only talking about \textit{probability density}. Hajek\cite{hajek} (citing Borel) gives a much more compelling example: if a random point on the Earth is selected, what is the probability that it is in the eastern hemisphere given that it is on the equator? Most people would not hesitate to answer one half, and yet the equator - being a mere 1-dimentional object - has probability 0 compared to the rest of the globe. Sadly, we are reduced to the indeterminate form if we stick to the standard model.
+Undeterred, mathematicians and engineers refer to this type relative probability all the time. For example, if we consider a continuous probability distributrion over \([0, 1]\) given by the probability distribution function \(2x\), we know that the PDF at \(x = \frac{1}{2}\) is twice as much as the PDF at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though we are only talking about \textit{probability density}. Hajek\cite{hajek} (citing Borel) gives a much more compelling example: if a random point on the Earth is selected, what is the probability that it is in the eastern hemisphere given that it is on the equator? Most people would not hesitate to answer one half, and yet the equator - being a mere 1-dimentional object - has probability 0 compared to the rest of the globe.
 
-Let us take the position that we may model probability in a non-standard way, and we can do so as long our new framework is logically consistent, and the advertised applications correspond to the mathematical model\footnote{Lyon identifies this link between application and model as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting mathematics, but if that mathematics cannot be linked to any application that anyone would reasonbly call probability, then it ought to go by a different name.}. We ought to understand whether we can derive a framework for probability that takes the relationships between outcomes and events as the fundamental unit.
+Let us take the position that we may model probability in a non-standard way, and we can do so as long our new framework is logically consistent, and the advertised applications correspond to the new model\footnote{Lyon identifies this link between application and model as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting mathematics, but if that mathematics cannot be linked to any application that anyone would reasonbly call probability, then it ought to go by a different name.}. We ought to understand whether we can derive a framework for probability that takes the relationships between outcomes and events as the fundamental unit.
 
-This improves the Kolmogorov model - that starts with an absolute probability function - by both solving the conditional probability question and giving rise to new concepts and constructions to study. 
+This improves the Kolmogorov model - that starts with an absolute probability function - by both solving the conditional probability question and giving rise to new objects and patterns to study. 
 
 \subsection{Goals}
 
-The relative approach to probability is not only viable, but has many properties that practicioners will find attractive. It great promise in its ability to simplify and focus topics in applied probability. For example, many Bayesian inference algorithms rely on relative probability alone to search for optimal parameters. 
+The relative approach to probability is not only viable, but has many properties that practicioners will find attractive. For example, many Bayesian inference algorithms rely on relative probability alone to search for optimal parameters. 
 
-As a proof of this concept, we will construct a theory of relative probability on finite distributions. By omitting infinite distributions, we can temporarily set aside the concepts of measurable sets and countable additivity\footnote{In the textbook Invitation to Discrete Mathematics, Matoušek et al. write \quote{By restricting ourselves to finite probability spaces we have simplified the situation considerably... A true probability theorist would probability say that we have excluded everything interesting.}}. This work will demonstrate that even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental rules and vocabulary to be a viable foundation, which we will construct without the distractions of infinite and continuous outcome spaces.
+As a proof of this concept, we will construct a theory of relative probability on finite distributions. By omitting infinite distributions, we temporarily set aside the concepts of measurable sets and countable additivity\footnote{In the textbook Invitation to Discrete Mathematics, Matoušek et al. write \quote{By restricting ourselves to finite probability spaces we have simplified the situation considerably... A true probability theorist would probability say that we have excluded everything interesting.}}. This work will demonstrate that even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental rules and vocabulary, which we will construct without the distractions of infinite and continuous outcome spaces.
 
 We then provide a new formulation of Bayes rule that uses only relative proability, and that is reflective of current practice. We will look at these applications of these ideas along with their algorithmic implementation.
 
@@ -175,13 +175,7 @@ Magnitudes roughly corresponding with our intuition of size. Unlike the set of n
 \item Actual measurement value: Whereas physical objects may not be able to have infinite size, mathematical objects do. The infinite element is introduced in measure theory because many mathematical systems (real numbers for one) necessarily contain subsets of infinite measurement.
 \end{enumerate}
 
-This element at infinity has the following properties:
-
-\(m + \infty = \infty\).
-
-\(m \cdot \infty = \infty\) for non-zero \(m\). The products \(0 \cdot \infty\) and \(\infty \cdot 0\) are indeterminate.
-
-The inverse \(m^{-1}\) is the defined as \(0^{-1} := \infty\) and \(\infty^{-1} := 0\), even though it doesn't quite act as a multiplicative inverse.
+We will set \(0^{-1} := \infty\) and \(\infty^{-1} := 0\), even though their product is indeterminate within \(\mathbb{M}\) and they do quite act as a multiplicative inverses of each other.
 
 \subsection{The Wildcard Element}
 
@@ -267,9 +261,9 @@ Let \(\Omega\) be a set of mutually exclusive \textit{outcomes}\footnote{Each ou
 A \textit{categorical distribution} on a \(\Omega\) is a function \(P: \Omega \rightarrow [0, 1]\) such that \(\sum_{h \in \Omega} P(h) = 1\)
 \end{definition}
 
-The set of all categorical distributions of size \(K\) can be embedded in \(\mathbb{R}^K\) as a (K-1)-dimentional object called a (K-1)-simplex. For example, if \(K = 3\), the resulting space of categorical distributions is an equilateral triangle embedded in \(\mathbb{R}^3\) connecting the points (1, 0, 0), (0, 1, 0), and (0, 0, 1).
+The set of all categorical distributions of size \(K\) can be embedded in \(\mathbb{R}^K\) as a (K-1)-dimentional object called a (K-1)-simplex (see figure \ref{fig:simplecies}). For example, if \(K = 3\), the resulting space of categorical distributions is an equilateral triangle embedded in \(\mathbb{R}^3\) connecting the points (1, 0, 0), (0, 1, 0), and (0, 0, 1).
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \resizebox{0.3\textwidth}{!}{
 \begin{tikzpicture} %Segment P_0,P_1
@@ -304,6 +298,7 @@ The set of all categorical distributions of size \(K\) can be embedded in \(\mat
 \end{tikzpicture}
 }
 \caption{An illustration of probability simplecies for K = 2, 3, and 4. These objects are respectively, a segment embedded in \(\mathbb{R}^2\), an equilateral triangle embedded in \(\mathbb{R}^3\), and a normal tetrahedron embedded in \(\mathbb{R}^4\). We make no attempt to visualize the 4D space that contains the tetrahedron.}
+\label{fig:simplecies}
 \end{figure}
 
 With absolute probability, information about relative probability is lost at the vertices where several probabilities might go to zero. For example, if \(\Omega = {a, b, c}\) with \(P(a) = 1\) and \(P(b) = P(c) = 0\), we cannot compare the probabilities of \(b\) and \(c\) as we can in the rest of the simplex.
@@ -453,10 +448,9 @@ We have successfully defined the relative probability in section \ref{section:ne
 
 Fortunately, we can look at the absolute probability function as a special case of relative probability, defined by \(P(h_1, h_2) = \frac{P(h_1)}{P(h_2)}\).
 
-The following figure gives us a roadmap of these new concepts and their relationship to each other.
+Figure \ref{fig:flow_chart} gives us a roadmap of these new concepts and their relationship to each other.
 
 \begin{figure}
-\label{fig:flow_chart}
 \begin{tikzpicture}    %Flowchart
 [node distance = 1.3in] %Node distance
 
@@ -538,6 +532,7 @@ The following figure gives us a roadmap of these new concepts and their relation
 \path[papLine] ([xshift=0.6in]bnode2) -- (node2);
 \end{tikzpicture}
 \caption{This is our roadmap for all of the sub-types of relative probability functions and their relationship to one another. }
+\label{fig:flow_chart}
 \end{figure}
 
 \subsection{Matching and Comparability}
@@ -1267,11 +1262,11 @@ If the \(\text{RPF}(K)\) is compact, then information about the relative probabi
 
 In order to prove compactness, we first must define a topology on \(\text{RPF}(K)\). This starts with finding a \textit{basis of open sets}.
 
-The notion of an open set can change even if a topological space is restricted. For example, on the real number line \(\mathbb{R}\), we take the open interval (0, 1) as an open set (as the term open interval suggests). However, once this is embedded into \(\mathbb{R}^2\), it is now a line segment in a plane and no longer open. It can be thought of as a restriction to an open set on \(\mathbb{R}^2\) to \(\mathbb{R}\). For example, the set \(\{(x, y): x \in (0, 1)\;  \text{and}\;  y \in (-\epsilon, +\epsilon)\}\) given an \(\epsilon > 0\) is such an open set on \(\mathbb{R}^2\).
+The notion of an open set can change even if a topological space is restricted. For example, on the real number line \(\mathbb{R}\), we take the open interval (0, 1) as an open set (as the term open interval suggests). However, once this is embedded into \(\mathbb{R}^2\), it is now a line segment in a plane and no longer open (see figure \ref{fig:sub_topology}). It can be thought of as a restriction to an open set on \(\mathbb{R}^2\) to \(\mathbb{R}\). For example, the set \(\{(x, y): x \in (0, 1)\;  \text{and}\;  y \in (-\epsilon, +\epsilon)\}\) given an \(\epsilon > 0\) is such an open set on \(\mathbb{R}^2\).
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\resizebox{0.5\textwidth}{!}{
+\resizebox{0.4\textwidth}{!}{
 \begin{tikzpicture} %episilon diagram
 \draw[<->] (-0.7,0)--(2,0) node[right] {\(x\)};
 \draw[<->] (0,-1,0)--(0,1) node[above] {\(y\)};
@@ -1287,6 +1282,7 @@ The notion of an open set can change even if a topological space is restricted. 
 \end{tikzpicture}
 }
 \caption{The small box that is the interior of the dotted rectangle is an open set in \(\mathbb{R}^2\), and therefor its restriction to \(\mathbb{R}\) - the line segment - is an open set in \(\mathbb{R}\). But the line segment is not open in \(\mathbb{R}^2\).}
+\label{fig:sub_topology}
 \end{figure}
 
 
@@ -1563,7 +1559,7 @@ The recent work of Censi et al.\cite{censi} concerns negative information in cat
 Absolute probability functions have this advantage where they can be embedded into a simplex in \(\mathbb{R}^K\). For relative probability functions, it is not so straightforward. However, it might be possible to derive a system for embedding RPFs into euclidean space. For example, the space \(\text{RPF}(3)\) can be mapped as a hexagon, where each point can be assigned a probability based on its distance between two parallel sides, which exist for each outcome.
 
 \begin{center}
-\resizebox{0.3\textwidth}{!}{
+\resizebox{0.25\textwidth}{!}{
 \begin{tikzpicture}
 \node[regular polygon,draw,minimum size=4cm,line width=0.5mm,regular polygon sides = 6] (p) at (0,0) {};
 
