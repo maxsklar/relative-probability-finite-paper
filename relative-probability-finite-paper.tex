@@ -240,7 +240,7 @@ The transitive property states that for all \(m_1, m_2, m_3\) in \(\mathbb{M}\),
 
 Assume that \(m_1 :\cong m_2\) and \(m_2 :\cong m_3\). If none of these values are the wildcards, then by property \ref{wild_prop_1}, they are all equal and \(m_1 :\cong m_3\). If \(m_1 = \ast\) then by property \ref{wild_prop_3}, \(m_2 = \ast\) and finally \(m_3 = \ast\) so the theorem holds. If \(m_2 = \ast\) then \(m_3 = \ast\) and \(m_1 :\cong m_3\) by property \ref{wild_prop_2}. And of course if \(m_3 = \ast\) alone, then by property \ref{wild_prop_2}, \(m_1\) is still matched by \(m_3\).
 
-For non-symmetric, we present a counterexample: \(1 :\ncong \ast\) but \(\ast :\ncong 1\)
+For non-symmetric, we present a counterexample: \(1 :\cong \ast\) but \(\ast :\ncong 1\)
 \end{proof}
 
 We could also define a symmetric matching relation \(m_1 :\cong: m_2\) to mean \(m_1 :\cong m_2 \vee m_2 :\cong m_1\). This would be symmetric, but not transitive.
@@ -1603,7 +1603,7 @@ The recent work of Censi et al.\cite{censi} concerns negative information in cat
 
 Absolute probability functions have this advantage where they can be embedded into a simplex in \(\mathbb{R}^K\). For relative probability functions, it is not so straightforward. However, it might be possible to derive a system for embedding RPFs into euclidean space. For example, the space \(\text{RPF}(3)\) can be mapped as a hexagon, where each point can be assigned a probability based on its distance between two parallel sides, which exist for each outcome.
 
-\begin{center}[h]
+\begin{center}
 \resizebox{0.25\textwidth}{!}{
 \begin{tikzpicture}
 \node[regular polygon,draw,minimum size=4cm,line width=0.5mm,regular polygon sides = 6] (p) at (0,0) {};
