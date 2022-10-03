@@ -159,6 +159,9 @@ We then provide a new formulation of Bayes rule that uses only relative proabili
 Finally, we discuss a critical feature of relative probability functions,
 which is their ability to retain information when taking limits\textemdash for which absolute probability fails. To that end, we delve into the topology of the relative probability space, and finish with a proof of compactness.
 
+\subsection{Previous Work}
+Mention the work of heinemann\cite{heinemann} and previous work on condition probability spaces.
+
 \section{Preliminaries}
 \subsection{Magnitude Space}
 
@@ -175,7 +178,7 @@ Magnitudes correspond with our intuition of size. Unlike the set of non-negative
 \item Actual measurement value: Whereas physical objects may not be able to have infinite size, mathematical objects do. The infinite element is introduced in measure theory because many mathematical systems (real and natural numbers for example) contain sets of infinite measure.
 \end{enumerate}
 
-We set \(0^{-1} := \infty\) and \(\infty^{-1} := 0\), even though their product is indeterminate within \(\mathbb{M}\) and they do quite act as a multiplicative inverses of each other.
+We set \(0^{-1} := \infty\) and \(\infty^{-1} := 0\), even though their product is indeterminate.
 
 \subsection{The Wildcard Element}
 
@@ -197,7 +200,7 @@ The following properties on \(\ast\) to allow addition and multiplication of any
   \item \(\ast \cdot m = \ast\)
 \end{enumerate}
 
-Note that we now lose some basic properties of these operations. For example, we can no longer simplfy an expression like \(0x\) to \(0\). This will take some getting used to, but programmers familiar with the floating point value \textit{NaN} have long adapted to this.
+Unfortunately, we now lose some basic algebraic properties: we can no longer simplfy an expression like \(0x\) to \(0\) for example. This will take some getting used to, but programmers familiar with the floating point value \textit{NaN} have long adapted to this.
 
 \subsection{The Matching Relation}
 
@@ -261,7 +264,7 @@ Let \(\Omega\) be a set of mutually exclusive \textit{outcomes}\footnote{Each ou
 A \textit{categorical distribution} on a \(\Omega\) is a function \(P: \Omega \rightarrow [0, 1]\) such that \(\sum_{h \in \Omega} P(h) = 1\)
 \end{definition}
 
-The set of all categorical distributions of size \(K\) can be embedded in \(\mathbb{R}^K\) as a (K-1)-dimentional object called a (K-1)-simplex (see figure \ref{fig:simplecies}). For example, if \(K = 3\), the resulting space of categorical distributions is an equilateral triangle embedded in \(\mathbb{R}^3\) connecting the points (1, 0, 0), (0, 1, 0), and (0, 0, 1).
+The set of all categorical distributions of size \(K\) can be embedded in \(\mathbb{R}^K\) as a (K-1)-dimentional object called a (K-1)-simplex (see figure \ref{fig:simplex}). For example, if \(K = 3\), the resulting space of categorical distributions is an equilateral triangle embedded in \(\mathbb{R}^3\) connecting the points (1, 0, 0), (0, 1, 0), and (0, 0, 1).
 
 \begin{figure}[h]
 \centering
@@ -297,18 +300,23 @@ The set of all categorical distributions of size \(K\) can be embedded in \(\mat
 \draw[fill=black] (-2,0) circle (2pt) node[black,below,scale=0.8] {(0,0,1,0)};
 \end{tikzpicture}
 }
-\caption{An illustration of probability simplecies for K = 2, 3, and 4. These objects are respectively, a segment embedded in \(\mathbb{R}^2\), an equilateral triangle embedded in \(\mathbb{R}^3\), and a normal tetrahedron embedded in \(\mathbb{R}^4\). We make no attempt to visualize the 4D space that contains the tetrahedron.}
-\label{fig:simplecies}
+\caption{An illustration of the probability simplex for K = 2, 3, and 4. These objects are respectively, a segment embedded in \(\mathbb{R}^2\), an equilateral triangle embedded in \(\mathbb{R}^3\), and a normal tetrahedron embedded in \(\mathbb{R}^4\). We make no attempt to visualize the 4D space that contains the tetrahedron.}
+\label{fig:simplex}
 \end{figure}
 
 With absolute probability, information about relative probability is lost at the vertices where several probabilities might go to zero. For example, if \(\Omega = {a, b, c}\) with \(P(a) = 1\) and \(P(b) = P(c) = 0\), we cannot compare the probabilities of \(b\) and \(c\) as we can in the rest of the simplex.
 
-This poses an interesting problem for limits. Consider the following categorical distribution function, with parameter \(\epsilon > 0\):
+This poses an interesting problem for limits.
+
+\begin{example}
+\label{ex:abs_lose_info}
+Consider the following categorical distribution function, with parameter \(\epsilon > 0\):
 \[
 P(a) = 1 - \epsilon
 P(b) = \frac{2}{3}\epsilon
 P(c) = \frac{1}{3}\epsilon
 \]
+\end{example}
 
 This is clearly an absolute probability, and its clear that the limit as \(\epsilon\) goes to zero should be \(P(a) = 1, P(b) = P(c) = 0\). The fact that b is twice as likely as c is lost!
 
@@ -403,10 +411,8 @@ The \textit{uniform} RPF can be constructed from any number of outcomes where ea
 
 \begin{definition}
 \label{def:uncomparable_rpf}
-The \textit{uncomparable} RPF has \(P(h_1, h_2) = \ast\) for every pair of outcomes.
+The \textit{uncomparable} RPF has \(P(h_1, h_2) = \ast\) for every pair of outcomes. It is as if the subjective probability agent gave up.
 \end{definition}
-
-Perhaps it is seens unpolished to put such a qualitative statment towards a math object, but the uncomparable RPF is a real downer! It's as if the observer gave up.
 
 \begin{definition}
 A \textit{certain} RPF contains a single outcome that has infinite probability relative to all other outcomes. Let \(h_C\) be the certain outcome with \(h_C \neq h\). Then \(P(h_C, h) = \infty\). The relative probability of the other \(K-1\) outcomes could be anything.
@@ -479,7 +485,7 @@ Figure \ref{fig:flow_chart} gives us a roadmap of these new concepts and their r
 \node (node4) [circlebox, below right=and 2.8 of node3] {Union};
 
 %node5 Facet Probability\\ Functions\\(single impossible event)
-\node (node5) [box1, below left=and -0.5 of node4,yshift=-0.38in] {Facet Probability\\ RPF\\(single impossible event)\\ Definition \ref{}};
+\node (node5) [box1, below left=and -0.5 of node4,yshift=-0.38in] {Facet Probability\\ RPF\\(single impossible event)\\};
 
 %node6 Mutually Possible\\ RPFs
 \node (node6) [box1, right=-0.07 of node5] {Totally Mutually Possible\\ RPF\\ Definition \ref{def:totally_mutually_possible}\\};
@@ -643,9 +649,9 @@ The relationship of being possible is a \textit{preorder}, being both reflexive 
 It must be reflexive because \(P(h, h) = 1\). If \(P(h_1, h_2) > 0\) and \(P(h_2, h_3) > 0\) then their product is also greater than zero, and by composition, equal to \(P(h_1, h_3)\). Thus \(h_1\) is also possible with respect to \(h_3\).
 \end{proof}
 
-If we consider a possibility relationship with respect to the equivalence classes of mutually possibility, then we have a partial order.
+If we consider a possibility relationship with respect to the equivalence classes of mutually possibility, then we have a partial order. Figure \ref{fig:anchored_rpf} is an example of outcomes grouped by mutually possible equivalence classes, and because it is anchored it has a maximal class. Figure \ref{fig:unanchored_rpf} is not anchored.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \resizebox{0.3\textwidth}{!}{
 \begin{tikzpicture} %Anchored
@@ -716,9 +722,10 @@ If we consider a possibility relationship with respect to the equivalence classe
 \end{tikzpicture}
 }
 \caption{A diagram of an anchored RPF with its mutually possible classes. The anchor class is shaded.}
+\label{fig:anchored_rpf}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \resizebox{0.5\textwidth}{!}{
 \begin{tikzpicture} %Non-Anchored
@@ -794,7 +801,10 @@ If we consider a possibility relationship with respect to the equivalence classe
 \end{tikzpicture}
 }
 \caption{This is the diagram for a single RPF that is not anchored. Notice that there is no anchored mutually possible class. This meams that we cannot turn this into an absolute probability function.}
+\label{fig:unanchored_rpf} 
 \end{figure}
+
+Finally, we look at totally comparable RPFs, where the graph of mutually possible components is a straight line (see figure \ref{fig:totally_comparable_rpf}).
 
 \begin{theorem}
 If an RPF is totally comparable, then the equivalance classes of mutually possible outcomes are \textit{totally ordered}. That is, each member of an equivalence class of outcomes is comparable to each member of another class with that comparison always being 0 or \(\infty\).
@@ -809,57 +819,7 @@ Let \(a' \in A\) and \(b' \in B\). Then \(0 < P(a', a) < \infty\) and \(0 < P(b,
 Therefore, all comparisons between the 2 classes will be the same, and they will either be 0 or \(\infty\).
 \end{proof}
 
-\subsection{Totally Mutually Possible RPFs}
-
-\begin{definition}
-\label{def:totally_mutually_possible}
-A relative probability function is called \textit{totally mutually possible} if all of its outcomes\footnote{Note that this one of the few definitions that cannot be upgraded from outcomes to events. The empty event \(e = \{\}\) for example will be impossible with respect to any outcome by theorem \ref{thm:empty_event_impossible}.} are mutually possible. Mutually possible RPFs satisfy \textit{Cromwell's rule} in Bayesian inference, which states that prior beliefs should not assign probability zero or one to events\footnote{It would be stated differently in continuous space.}.
-\end{definition}
-
-Totally mutually possible RPFs have a simple diagram where all the outcomes are completely connected. All of the outcome are anchor outcomes, and there is a single mutually possible class.
-
-\begin{center}
-\resizebox{0.2\textwidth}{!}{
-\begin{tikzpicture} %Totally Possible
-\node(t)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (0,2) {}; 
-\node(ml)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (-2,0.5){}; 
-\node(mr)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (2,0.5) {}; 
-\node(bl)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (-1.3,-1.8){}; 
-\node(br)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (1.3,-1.8){}; 
-
-\path[stealth-stealth,draw,line width=0.3mm] (t)--(ml);
-\path[stealth-stealth,draw,line width=0.3mm] (t)--(mr);
-\path[stealth-stealth,draw,line width=0.3mm] (t)--(bl);
-\path[stealth-stealth,draw,line width=0.3mm] (t)--(br);
-
-\path[stealth-stealth,draw,line width=0.3mm] (ml)--(mr);
-\path[stealth-stealth,draw,line width=0.3mm] (ml)--(br);
-\path[stealth-stealth,draw,line width=0.3mm] (ml)--(bl);
-
-\path[stealth-stealth,draw,line width=0.3mm] (mr)--(br);
-\path[stealth-stealth,draw,line width=0.3mm] (bl)--(br);
-
-\end{tikzpicture}
-}
-\end{center}
-
-\begin{theorem}
-A non-empty totally mutually possible RPF is equal to an absolute probability function.
-\end{theorem}
-
-\begin{proof}
-If \(P\) is non-empty, and totally mutually possible, all of it's outcomes are anchors. Therefore, we can use theorem \ref{thm:absolute_prob_formula} to find a matching absolute probability function
-\[P(h) = \frac{P(h, a)}{\sum_{h' \in \Omega}P(h', a)}\]
-
-Because every element of \(\Omega\) is an anchor, we can let \(a = h\) and get
-\[P(h) = \frac{P(h, h)}{\sum_{h' \in \Omega}P(h', h)}=\frac{1}{\sum_{h' \in \Omega}P(h', h)}\]
-
-Theorem \ref{thm:absolute_prob_formula} states that \(P(h_1, h_2) :\cong \frac{P(h_1)}{P(h_2}\), but since the constraint is never \(\ast\), they must be equal.
-\end{proof}
-
-We have thus constructed an RPF from its absoulte probability function without loss of information.
-
-\begin{figure}
+\begin{figure}[h]
 \centering
 \resizebox{0.1\textwidth}{!}{
 \begin{tikzpicture} %Totally Comparable
@@ -905,7 +865,61 @@ We have thus constructed an RPF from its absoulte probability function without l
 \end{tikzpicture}
 }
 \caption{This is a diagram of a totally comparable RPF that is not mutually possible. The mutually possible components form a total order, with the \textit{anchored component} - which contains all anchor elements - is on top.}
+\label{fig:totally_comparable_rpf}
 \end{figure}
+
+\subsection{Totally Mutually Possible RPFs}
+
+\begin{definition}
+\label{def:totally_mutually_possible}
+A relative probability function is called \textit{totally mutually possible} if all of its outcomes\footnote{Note that this one of the few definitions that cannot be upgraded from outcomes to events. The empty event \(e = \{\}\) for example will be impossible with respect to any outcome by theorem \ref{thm:empty_event_impossible}.} are mutually possible. Mutually possible RPFs satisfy \textit{Cromwell's rule} in Bayesian inference, which states that prior beliefs should not assign probability zero or one to events\footnote{It would be stated differently in continuous space.}.
+\end{definition}
+
+Totally mutually possible RPFs have a simple diagram where all the outcomes are completely connected as in figure \ref{fig:mutually_possible_rpf}. All of the outcome are anchor outcomes, and there is a single mutually possible class.
+
+\begin{figure}[]
+\centering
+\resizebox{0.2\textwidth}{!}{
+\begin{tikzpicture} %Totally Possible
+\node(t)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (0,2) {}; 
+\node(ml)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (-2,0.5){}; 
+\node(mr)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (2,0.5) {}; 
+\node(bl)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (-1.3,-1.8){}; 
+\node(br)[circle,draw,inner sep=4pt,outer sep=1pt,line width=0.2mm,fill=black] at (1.3,-1.8){}; 
+
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(ml);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(bl);
+\path[stealth-stealth,draw,line width=0.3mm] (t)--(br);
+
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(mr);
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(br);
+\path[stealth-stealth,draw,line width=0.3mm] (ml)--(bl);
+
+\path[stealth-stealth,draw,line width=0.3mm] (mr)--(br);
+\path[stealth-stealth,draw,line width=0.3mm] (bl)--(br);
+
+\end{tikzpicture}
+}
+\caption{A totally mutually possible RFP has - unsurprisingly - a complete graph of mutually possibility.}
+\label{fig:mutually_possible_rpf}
+\end{figure}
+
+\begin{theorem}
+A non-empty totally mutually possible RPF is equal to an absolute probability function.
+\end{theorem}
+
+\begin{proof}
+If \(P\) is non-empty, and totally mutually possible, all of it's outcomes are anchors. Therefore, we can use theorem \ref{thm:absolute_prob_formula} to find a matching absolute probability function
+\[P(h) = \frac{P(h, a)}{\sum_{h' \in \Omega}P(h', a)}\]
+
+Because every element of \(\Omega\) is an anchor, we can let \(a = h\) and get
+\[P(h) = \frac{P(h, h)}{\sum_{h' \in \Omega}P(h', h)}=\frac{1}{\sum_{h' \in \Omega}P(h', h)}\]
+
+Theorem \ref{thm:absolute_prob_formula} states that \(P(h_1, h_2) :\cong \frac{P(h_1)}{P(h_2}\), but since the constraint is never \(\ast\), they must be equal.
+\end{proof}
+
+We have thus constructed an RPF from its absoulte probability function without loss of information.
 
 \section{From Outcomes to Events}
 
@@ -1241,6 +1255,7 @@ Ask: Is this distribution totally mutually possible? Algorithm: Look are a singl
 Ask: Is it totally comparable? Algorithm: Look for a linear list of tiers.
 
 \section{Topology and Limits in Relative Probability Space}
+\label{section:topology}
 
 Mathematics can model the real world even through ideas that are theoretically impossible. For example, we might believe that a certain natural process cannot repeat an infinite number of times - that it just is not something allowed by the physical limitations of our universe. And even so, we might still take its value to be infinity in a model in order to get a bound on what that system will look like in \quotes{the long run}. One of the benefits of relative probability spaces is their properties with respect to limits. To this end, we prove here that when we take limits of totally comparable RPFs, the resulting RPF will also be totally comparable.
 
@@ -1268,20 +1283,20 @@ The notion of an open set can change even if a topological space is restricted. 
 \centering
 \resizebox{0.4\textwidth}{!}{
 \begin{tikzpicture} %episilon diagram
-\draw[<->] (-0.7,0)--(2,0) node[right] {\(x\)};
+\draw[<->] (-0.7,0)--(5,0) node[right] {\(x\)};
 \draw[<->] (0,-1,0)--(0,1) node[above] {\(y\)};
-\draw[densely dashed,red,thick] (0,-0.5) rectangle (1.5,0.5);
+\draw[densely dashed,red,thick] (0,-0.5) rectangle (4.5,0.5);
 \draw[draw=blue,thick] (0,0) circle (2pt) node[above left=-0.1,font=\ttfamily\tiny] {0};
-\draw[draw=blue,thick] (1.5,0) circle (2pt) node [above right=-0.1,font=\ttfamily\tiny] {1};
+\draw[draw=blue,thick] (4.5,0) circle (2pt) node [above right=-0.1,font=\ttfamily\tiny] {1};
 
 \node[left=-0.05,font=\ttfamily\footnotesize] at (0,-0.5) {\(-\varepsilon\)};
 \node[left=-0.05,font=\ttfamily\footnotesize] at (0,0.5) {\(\varepsilon\)};
 \node[circle,inner sep=1pt] at (0,0) (0){};
-\node[circle,inner sep=1pt] at (1.5,0) (1){};
+\node[circle,inner sep=1pt] at (4.5,0) (1){};
 \path[draw,blue,thick] (0)--(1);
 \end{tikzpicture}
 }
-\caption{The small box that is the interior of the dotted rectangle is an open set in \(\mathbb{R}^2\), and therefor its restriction to \(\mathbb{R}\) - the line segment - is an open set in \(\mathbb{R}\). But the line segment is not open in \(\mathbb{R}^2\).}
+\caption{The small box that is the interior of the dotted rectangle is an open set in \(\mathbb{R}^2\), and therefore its restriction to \(\mathbb{R}\) - the line segment - is an open set in \(\mathbb{R}\). But the line segment is not open in \(\mathbb{R}^2\).}
 \label{fig:sub_topology}
 \end{figure}
 
@@ -1313,11 +1328,11 @@ An \textit{interior open patch} of \(\text{RPF}_{\text{comp}}(\Omega)\) is one o
 \end{enumerate}
 \end{definition}
 
-Intuition: Interior open patches contain only totally mutually possible functions.
+Interior open patches contain only totally mutually possible functions. See figure \ref{fig:interior_open_patch}.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\resizebox{0.3\textwidth}{!}{
+\resizebox{0.4\textwidth}{!}{
 \begin{tikzpicture}
 \node {\(P_\top\)} [sibling distance = 3cm]
   child {node {\(P_0\)}  [sibling distance = 3cm]
@@ -1327,6 +1342,7 @@ Intuition: Interior open patches contain only totally mutually possible function
   child {node  {C}};
 \end{tikzpicture}
 }
+ \hspace{3em}
 \resizebox{0.4\textwidth}{!}{
 \begin{tikzpicture} %Triangle 3
 \draw[thick, dashed,red] (0,{2*sqrt(3)})--(1,0) node [font=\tiny\bf] {)};
@@ -1355,6 +1371,8 @@ Intuition: Interior open patches contain only totally mutually possible function
 node[red,font=\tiny\bf] at (0,-1) {(};
 \end{tikzpicture}
 }
+\caption{An interior open patch captures a contiguous set inside the probability simplex. Above is an example of a composite probability distribution where the diagram on the left shows how \(P_\top\) and \(P_0\) are composed, and the right shows how the interior segments on both interact to form a patch. }
+\label{fig:interior_open_patch}
 \end{figure}
 
 \begin{definition}
@@ -1366,54 +1384,23 @@ A \textit{facet\footnote{A facet of a simplex is a subset where one parameter is
 \end{enumerate}
 \end{definition}
 
-Definition: An \textit{exterior open patch} is a one of the following:
+\begin{definition}
+An \textit{exterior open patch} is a one of the following:
 
 \begin{enumerate}
   \item Any facet patch.
   \item A composition where \(P_{\top}\) is a facet patch. The \textit{facet component} is itself drawn from any open patch, and all the other components are drawn from interior open patches.
 \end{enumerate}
+\end{definition}
 
-Exterior open patches contain only totally mutually comparable functions, but some are not totally mutually possible.
+Exterior open patches contain only totally mutually comparable functions, but some are not totally mutually possible. As seen in figure \ref{fig:exterior_open_patch}, they touch the hyperfaces (facets) of the simplex as well as the vertices and corners.  As the number of dimentions increase and the composition diagram changes, many more permutations are possible. Note that the point containing the corner at \(C\) is only half filled because the patch contains some values where \(P(C) = 1\) and not others, depending on the relative probability between \(A\) and \(B\).
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\resizebox{0.4\textwidth}{!}{
-\begin{tikzpicture} %Triangle 1
-\draw[thick, dashed,red] (0,{2*sqrt(3)})--(-1,0) node [font=\tiny\bf] {)};
-\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (-0.36,2.2)--(0,{2*sqrt(3)})--(-0.75,2.2)--cycle;
-
-\node[rectangle,rotate=45,draw=none,pattern=crosshatch, pattern color=darkgreen,align=center] at (1.2,3) (P){};
-
-\node(Q)[rectangle,draw=none,align=center,below right=-0.3 and -0.2 of P,font=\ttfamily\footnotesize]  {Exterior Open \\ Patch (non-facet)};
-
-\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
-
-\node (A) at (-2,0) [below] {\(A\)}; 
-\node (B) at (2,0) [below] {\(B\)}; 
-\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
-\draw[thick, dashed,red] (0.8,2.2)--(-3,2.2) node[font=\tiny\bf,rotate=90] {(};
-\draw[thick, dashed,red] (-1,-0.1)--(-1,-0.9);
-\draw[thick, darkgreen] (-0.73,2.2)--(0,{2*sqrt(3)});
-
-\draw[draw=darkgreen] (-0.73,2.2) circle (2pt);
-
-\draw[draw=darkgreen] (0,{2*sqrt(3)}) circle (2pt);
-
-\fill[darkgreen] (0,{2*sqrt(3)}) + (0, 2pt) arc (90:270:2pt);
-
-\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
-
-\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (-1,-1) {)};
-\end{tikzpicture}
-}
-\resizebox{0.4\textwidth}{!}{
+\resizebox{0.3\textwidth}{!}{
 \begin{tikzpicture} %Triangle 2
 \draw[thick, dashed,red] (0,{2*sqrt(3)})--(-1,0) node [font=\tiny\bf] {)};
 \path[draw=none,pattern=crosshatch, pattern color=darkgreen] (-1.3,1.2)--(-0.66,1.2)--(-0.43,2)--(-0.86,2)--cycle;
-
-\node[rectangle,rotate=45,draw=none,pattern=crosshatch, pattern color=darkgreen] at (1.2,3) (P){};
-
-\node(Q)[rectangle,draw=none,align=center,below right=-0.3 and 0.1 of P,font=\ttfamily\footnotesize] {Facet Patch};
 
 \draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
 
@@ -1435,9 +1422,63 @@ Exterior open patches contain only totally mutually comparable functions, but so
 \draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (-1,-1) {)};
 \end{tikzpicture}
 }
-\end{figure}
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture} %Triangle 1
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(-1,0) node [font=\tiny\bf] {)};
+\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (-0.36,2.2)--(0,{2*sqrt(3)})--(-0.75,2.2)--cycle;
 
-TODO: Break this down because it's not that intuitive!
+\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
+
+\node (A) at (-2,0) [below] {\(A\)}; 
+\node (B) at (2,0) [below] {\(B\)}; 
+\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
+\draw[thick, dashed,red] (0.8,2.2)--(-3,2.2) node[font=\tiny\bf,rotate=90] {(};
+\draw[thick, dashed,red] (-1,-0.1)--(-1,-0.9);
+\draw[thick, darkgreen] (-0.73,2.2)--(0,{2*sqrt(3)});
+
+\draw[draw=darkgreen] (-0.73,2.2) circle (2pt);
+
+\draw[draw=darkgreen] (0,{2*sqrt(3)}) circle (2pt);
+
+\fill[darkgreen] (0,{2*sqrt(3)}) + (0, 2pt) arc (90:270:2pt);
+
+\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
+
+\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (-1,-1) {)};
+\end{tikzpicture}
+}
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture} %Triangle 1
+\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (0.36,2.2)--(0,{2*sqrt(3)})--(0,2.2)--cycle;
+
+\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
+
+\node (A) at (-2,0) [below] {\(A\)}; 
+\node (B) at (2,0) [below] {\(B\)}; 
+\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
+\draw[thick, dashed,red] (0.8,2.2)--(-3,2.2) node[font=\tiny\bf,rotate=90] {(};
+
+\draw[draw=darkgreen] (0,{2*sqrt(3)}) circle (2pt);
+
+\fill[darkgreen] (0,{2*sqrt(3)}) + (0, 2pt) arc (90:270:2pt);
+
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(1,0) node [font=\tiny\bf] {)};
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(0,0) node [font=\tiny\bf] {(};
+
+\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
+\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)};
+
+\draw[thick, dashed,red] (1,-0.1)--(1,-0.9);
+\draw[thick, dashed,red] (0,-0.1)--(0,-0.9);
+
+\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)}
+node[red,font=\tiny\bf] at (1,-1) {)}
+node[red,font=\tiny\bf] at (0,-1) {(};
+\end{tikzpicture}
+}
+\caption{Examples of open patches. On the left is the facet patch, because it only touches a side (facet) of the simplex and not a corner. In the center is an exterior open patch where the facet component \(P_0\) is itself a facet patch (touching an edge and a corner), and on the right is an exterior open patch that touches a corner only because \(P_0\) is an interior open patch.}
+\label{fig:exterior_open_patch}
+\end{figure}
 
 \begin{definition}
 An \textit{open patch} is a subset of \(\text{RPF}(K)\) that is either an interior or exterior open patch.
@@ -1445,25 +1486,47 @@ An \textit{open patch} is a subset of \(\text{RPF}(K)\) that is either an interi
 
 Now let the open patches be the bases for an open set thus defining a topology on \(\text{RPF}(K)\).
 
+\begin{definition}
+An \textit{open set} of \(\text{RPF}(K)\) is any (potentially infinite) union of open patches on \(\text{RPF}(K)\), or any finite intersection of open patches on \(\text{RPF}(K)\).
+\end{definition}
+
 \subsection{Compactness}
 
-Before we prove that \(\text{RPF}(K)\) is compact, we need a few lemmas.
+We will sketch out the compactness proof for \(\text{RPF}(K)\) here for brevity. First, we need a few lemmas.
 
 \begin{lemma}
+\label{lem:withhold_possible_outcome}
 Let \(h\) be an outcome in \(\{0, 1, ..., K-1\}\), and let q be a number such that \(0 < q \leq 1\). The region of \(\text{RPF}(K)\) where the absolute probability of h is q is isomorphic to \(\text{RPF}(K-1)\).
 \end{lemma}
 
 \begin{proof}
-Roughly: If \(P(h) > 0\) then it is in the anchored equivalence class of mutually possibility. If \(P(h) = 1\) then the outcome \(h\) can be appended above any function in \(\text{RPF}(K - 1)\), and if \(P(h) < 1\) then \(h\) can be appended into the anchored equivalence class of any function in \(\text{RPF}(K-1)\). In both cases, a separate \(h\) with a given absolute probability can be appended to anything in \(\text{RPF}(K-1)\) to produce an element of \(\text{RPF}(K)\), and all elements of \(\text{RPF}(K)\) are accounted for.
+If \(P(h) > 0\) then it is in the anchored equivalence class of mutually possibility. If \(P(h) = 1\) then the outcome \(h\) can be appended above any function in \(\text{RPF}(K - 1)\), and if \(P(h) < 1\) then \(h\) can be appended into the anchored equivalence class of any function in \(\text{RPF}(K-1)\). In both cases, a separate \(h\) with a given absolute probability can be appended to anything in \(\text{RPF}(K-1)\) to produce an element of \(\text{RPF}(K)\), with all elements of \(\text{RPF}(K)\) accounted for.
 \end{proof}
 
 \begin{lemma}
-Let \(h\) be an outcome in \(\{0, 1, ..., K-1\}\). Let R be the region of \(\text{RPF}(K)\) where the absolute probability of h is 0. Any open set containing all of R must contain every function in \(\text{RPF}(K)\) where \(P(h) < \epsilon\) for some \(\epsilon < 0\).
+\label{lem:change_one_anchor_outcome}
+Let \(h\) be an outcome in \(\{0, 1, ..., K-1\}\), and let \(P(h) > 0\). Given a number \(0 < q \leq 1\), there is a unique RPF \(P'\) which is equal to \(P\) when evaluated on outcomes \(\neq h\) and such that \(P'(h) = q\).
 \end{lemma}
+
+\begin{proof}
+This will be a proof by construction. Let \(P'\) be the new distribution where \(h\) remains an anchor outcome, but its absolute probability has been changed to \(q\). For any anchor outcome \(a\), we set \(P'(a, h) = P(a, h) \cdot q \cdot P(a)^{-1} \)
+
+For any non-anchor outcome \(b\), we note that \(P(b, h) = 0\) and therefore also \(P'(b, h) = 0\), otherwise \(b\) would now be possible relative to other anchors where it wasn't before.
+\end{proof}
+
+\begin{lemma}
+\label{lem:open_anchor_outcome}
+Let \(h\) be an outcome in \(\{0, 1, ..., K-1\}\), and let \(P(h) > 0\). Any open patch of \(\text{RPF}(K)\) that contains \(P\), also contains, for some open interval on \(\mathbb(M)\) containing \(P(h)\), all the values \(P'\) constructed through lemma \ref{lem:change_one_anchor_outcome} by setting \(P(h) = q\) for any \(q\) in that open interval.
+\end{lemma}
+
+\begin{proof}
+\end{proof}
 
 \begin{theorem}
 \(\text{RPF}(K)\) is \textit{compact}, meaning that for every open cover of it, there is a finite subcover.
 \end{theorem}
+
+We will provide a sketch for the compactness proof here.
 
 \begin{proof}
 This is an inductive proof where we assume that the theorem is true for all \(k < K\) and then prove that it is true for \(K\).
@@ -1472,50 +1535,32 @@ If \(K \in {0, 1}\) then \(\text{RPF}(K)\) is finite and singular (either the em
 
 Now we assume that \(K > 2\).
 
-Let \(h \in \Omega\) be an outcome.
+Consider the region of \(\text{RPF}(K)\) where a specific outcome is required to be the largest (or possibly ties for largest). In other words, for this special outcome \(h\), look at the region of \(\text{RPF}(K)\) where \(P(h', h) \leq  1\) for any other outcome \(h'\). There is one region for every outcome - \(K\)such regions overall - and collectively they cover \(\text{RPF}(K)\) but they are not disjoint. In fact, the uniform distribution belongs to all \(K\) regions!
 
+If we can show that an open cover on \(\text{RPF}(K)\) has a finite subcover on a region, then it must have a finite subcover overall because there are a finite number of regions.
 
-- We're going to have to prove this - might be tough!
-\end{proof}
+So consider one such region, and let \(h\) be the largest outcome from that region. \(h\) is an anchor element, which means that \(P(h, h') > 0\) for all \(h'\) when in fact it is \(\geq 1\). If \(P(h) = q\), then we know that \(\frac{1}{k} \leq q \leq 1\). By lemma \ref{lem:withhold_possible_outcome}, the rest of the distribution is isomorphic to \(\text{RPF}(K - 1)\) - and therefore compact by our inductive assumption. Therefore, there is a finite subcover covering all elements where \(P(h) = q\).
 
-\subsection{Simple Limit Example}
+By lemma \ref{lem:open_anchor_outcome}, finite subcover will not just include cases where \(P(h) = q\), but will hold for some open interval around q as well.
 
-Let us define a simple relative probability distribution \(P_q\) where \(K = 3\) that is parameterized by the magnitude \(q \in \mathbb{M}\).
-
-Let \(P_q(h_0, h_1) = q\) and \(P_q(h_1, h_2) = 2\).
-
-By the fundamental property, \(P_q(h_0, h_2) :\cong P_q(h_0, h_1) \cdot P_q(h_1, h_2) = 2q\).
-
-Now we want to consider the case where the relative probability of \(h_0\) grows infinitely large in comparison to \(h_1\) and \(h_2\).
-
-\[P = lim_{q \rightarrow \infty} P_q\]
-
-We use the following topological definition for the limit in this case: For every open set A of relative probability distributions containing P, there exists an open interval \(B=(b, \infty)\) on \(\mathbb{M}\) such that for every value of \(q \in B\), \(P_q\) is in A.
-
-\begin{proposition}
-The above limit that defines \(P\) exists, and \(P(h_1, h_2) = 2\). In other words, \(h_2\) is still half as likely as \(h_1\) and that information hasn't been lost on \(P\).
-\end{proposition}
-
-\begin{proof}
-TODO
+So for each q where \(\frac{1}{K} \leq q \leq 1\), we have a finite subcover, with each subcover covering some open set around q. Because \([\frac{1}{K}, 1]\) is compact, all of these open sets around q have a finite subcover for the whole segment. This means that only finitely many of these q-based subcovers are required, and with each one being finite we have finitely many open sets for the entire region where \(h\) is the largest outcome.
 \end{proof}
 
 \section{Future Work}
 \subsection{Expansions to infinite spaces}
-- Including topological and metric
-- Much richer world, more complex mathematics, more applications
-- Is it possible to create a univified version of the Hausdorff measure, where objects are categorized by dimention \(d\), and a smaller-dimentional object is always mutually impossible to a larger dimentional object.
-\subsection{Connection Surreal Numbers}
-- This is greater, richer than the real number system
-- Does this abrograte the need for the relative probability function (not for incomparable values)
-- If the infinite case is dealt with above, then more questions are raised about both the power of surreal numbers and their suitability
-\subsection{Shrinking the Measure Number System}
-- We still have a usable system if we want Rational Numbers
-- Can this system work for all non-standard probability value systems?
-- There is practical application in this work, since computers cannot work with real numbers directly. We implement this system with floating point numbers and this approximation should be good enough for most applications - but can we have a version with more precise arithmetic
+The obvious extention is to expand relative probability to a generalized space which may be infinite, and thus capture all of the variety of probability distributions that one might wish to study and apply. This would start by modifying constaint \(eq:event_def_ratio_match\) to ask for an additive property on the level of families of infinite sets. The relative probability function would then become a \textit{relative probability distribution}.
+
+This raises certain question which - while decisions have been made in prior work and certainly measure theory - should be open to discussion.
+\begin{enumerate}
+\item Do we need to keep countable additivity as set forth in the Kolmogorov axioms, or can we relax this to allow for a fair countable lottery? RPFs would provide a great way to analyze the fair countable lottery and this should be exploited!
+\item If we derive a notion of probability density, then can these densities at a particular pair of events be used to compare the relative probability of those events? What specific properties of the relative probability distribution are required to make this work?
+\end{enumerate}
+
+It appears possible to use these ideas to create a unified version of the Hausdorff measure - which finds the size of an object given its dimention. Instead of considering it to be multiple measures - we can have a single measure where set can be compared to other sets of equal dimention, and smaller-dimentional objects are always mutually impossible to a larger dimentional objects.
+
 \subsection{Relationship to Category Theory}
 
-Category theorists will instantly recognize that an RPF describes a category perfectly. This construction can be analyzed and approached through the lens of category theory.
+Category theorists will instantly recognize that an RPF describes a category perfectly. This construction can be analyzed and approached through the lens of category theory. Specifically, and RPF describes something called a \textit{thin category} where any pair of objects have at most one morphism connecting them (per direction).
 
 \begin{center}
 \resizebox{0.3\textwidth}{!}{
@@ -1551,14 +1596,14 @@ Category theorists will instantly recognize that an RPF describes a category per
 }
 \end{center}
 
-The recent work of Censi et al.\cite{censi} concerns negative information in categories, which here corresponds to the wildcard element \(\ast\). It represents regions of the probability function that remain unassigned or uncomparable. This work could be used to subsume and further develop the idea of the indeterminate wildcard.
+The recent work of Censi et al.\cite{censi} concerns negative information in categories, ftwhich here corresponds to the wildcard element \(\ast\). It represents regions of the probability function that remain unassigned or uncomparable. This work could be used to subsume and further develop the idea of the indeterminate wildcard.
 
 \subsection{Embedding in Euclidean Space}
 \label{section:euclidean_embedding}
 
 Absolute probability functions have this advantage where they can be embedded into a simplex in \(\mathbb{R}^K\). For relative probability functions, it is not so straightforward. However, it might be possible to derive a system for embedding RPFs into euclidean space. For example, the space \(\text{RPF}(3)\) can be mapped as a hexagon, where each point can be assigned a probability based on its distance between two parallel sides, which exist for each outcome.
 
-\begin{center}
+\begin{center}[h]
 \resizebox{0.25\textwidth}{!}{
 \begin{tikzpicture}
 \node[regular polygon,draw,minimum size=4cm,line width=0.5mm,regular polygon sides = 6] (p) at (0,0) {};
@@ -1588,6 +1633,8 @@ Absolute probability functions have this advantage where they can be embedded in
 \end{center}
 
 In this case, the probability triangle has been truncated. For higher order simplcies, this appears to become exceedingly unweidly unless there is developed some simplifying trick. If it is successfully done, then the topological properties of \(\text{RPF}(K)\) fall into place easily.
+
+It is also possible to hack a metric space for \(\text{RPF}(K)\) by assigning distances to elements based on their eucliean distance within their mutually possible class, and adding a corrective term depending on its location in the comparability graph. This may simplify the arguments in section \ref{section:topology}, and could potentially find use in algorithmic implementation.
 
 %\subsubsection*{References}
 \begin{thebibliography}{20}

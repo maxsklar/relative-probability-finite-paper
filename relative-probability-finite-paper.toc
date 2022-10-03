@@ -1,5 +1,6 @@
 \contentsline {section}{\numberline {1}Introduction}{3}{}%
 \contentsline {subsection}{\numberline {1.1}Goals}{3}{}%
+\contentsline {subsection}{\numberline {1.2}Previous Work}{4}{}%
 \contentsline {section}{\numberline {2}Preliminaries}{4}{}%
 \contentsline {subsection}{\numberline {2.1}Magnitude Space}{4}{}%
 \contentsline {subsection}{\numberline {2.2}The Wildcard Element}{4}{}%
@@ -23,10 +24,7 @@
 \contentsline {subsection}{\numberline {10.1}RPF Space and Compactness}{23}{}%
 \contentsline {subsection}{\numberline {10.2}Open Patches}{25}{}%
 \contentsline {subsection}{\numberline {10.3}Compactness}{26}{}%
-\contentsline {subsection}{\numberline {10.4}Simple Limit Example}{27}{}%
 \contentsline {section}{\numberline {11}Future Work}{27}{}%
 \contentsline {subsection}{\numberline {11.1}Expansions to infinite spaces}{27}{}%
-\contentsline {subsection}{\numberline {11.2}Connection Surreal Numbers}{27}{}%
-\contentsline {subsection}{\numberline {11.3}Shrinking the Measure Number System}{27}{}%
-\contentsline {subsection}{\numberline {11.4}Relationship to Category Theory}{28}{}%
-\contentsline {subsection}{\numberline {11.5}Embedding in Euclidean Space}{28}{}%
+\contentsline {subsection}{\numberline {11.2}Relationship to Category Theory}{28}{}%
+\contentsline {subsection}{\numberline {11.3}Embedding in Euclidean Space}{28}{}%

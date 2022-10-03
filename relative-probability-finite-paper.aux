@@ -4,7 +4,9 @@
 \citation{hajek}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{3}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Goals}{3}{}\protected@file@percent }
+\citation{heinemann}
 \citation{ieee}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Previous Work}{4}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Preliminaries}{4}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Magnitude Space}{4}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}The Wildcard Element}{4}{}\protected@file@percent }
@@ -15,9 +17,10 @@
 \newlabel{theorem:matching_multiplication}{{2.5}{6}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Categorical Distribution}{6}{}\protected@file@percent }
 \newlabel{def:categorical_abs}{{3.1}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces An illustration of probability simplecies for K = 2, 3, and 4. These objects are respectively, a segment embedded in \(\mathbb  {R}^2\), an equilateral triangle embedded in \(\mathbb  {R}^3\), and a normal tetrahedron embedded in \(\mathbb  {R}^4\). We make no attempt to visualize the 4D space that contains the tetrahedron.\relax }}{6}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces An illustration of the probability simplex for K = 2, 3, and 4. These objects are respectively, a segment embedded in \(\mathbb  {R}^2\), an equilateral triangle embedded in \(\mathbb  {R}^3\), and a normal tetrahedron embedded in \(\mathbb  {R}^4\). We make no attempt to visualize the 4D space that contains the tetrahedron.\relax }}{6}{}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:simplecies}{{1}{6}}
+\newlabel{fig:simplex}{{1}{6}}
+\newlabel{ex:abs_lose_info}{{3.1}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Events}{7}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Relative Probability Function}{7}{}\protected@file@percent }
 \newlabel{section:standard_relative_prob}{{3.2}{7}}
@@ -43,12 +46,17 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces This is our roadmap for all of the sub-types of relative probability functions and their relationship to one another. \relax }}{11}{}\protected@file@percent }
 \newlabel{fig:flow_chart}{{2}{11}}
 \newlabel{thm:absolute_prob_formula}{{5.4}{12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces A diagram of an anchored RPF with its mutually possible classes. The anchor class is shaded.\relax }}{13}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Possibility Classes}{13}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces A diagram of an anchored RPF with its mutually possible classes. The anchor class is shaded.\relax }}{13}{}\protected@file@percent }
+\newlabel{fig:anchored_rpf}{{3}{13}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces This is the diagram for a single RPF that is not anchored. Notice that there is no anchored mutually possible class. This meams that we cannot turn this into an absolute probability function.\relax }}{14}{}\protected@file@percent }
+\newlabel{fig:unanchored_rpf}{{4}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces This is a diagram of a totally comparable RPF that is not mutually possible. The mutually possible components form a total order, with the \textit  {anchored component} - which contains all anchor elements - is on top.\relax }}{14}{}\protected@file@percent }
+\newlabel{fig:totally_comparable_rpf}{{5}{14}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Totally Mutually Possible RPFs}{14}{}\protected@file@percent }
 \newlabel{def:totally_mutually_possible}{{5.6}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces This is a diagram of a totally comparable RPF that is not mutually possible. The mutually possible components form a total order, with the \textit  {anchored component} - which contains all anchor elements - is on top.\relax }}{15}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces A totally mutually possible RFP has - unsurprisingly - a complete graph of mutually possibility.\relax }}{15}{}\protected@file@percent }
+\newlabel{fig:mutually_possible_rpf}{{6}{15}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}From Outcomes to Events}{15}{}\protected@file@percent }
 \newlabel{eq:incorrect_additive_event_def}{{2}{15}}
 \newlabel{event_def_1}{{{{(i)}}}{16}}
@@ -67,24 +75,29 @@
 \citation{mendelson}
 \citation{bradley}
 \@writefile{toc}{\contentsline {section}{\numberline {10}Topology and Limits in Relative Probability Space}{23}{}\protected@file@percent }
+\newlabel{section:topology}{{10}{23}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.1}RPF Space and Compactness}{23}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The small box that is the interior of the dotted rectangle is an open set in \(\mathbb  {R}^2\), and therefor its restriction to \(\mathbb  {R}\) - the line segment - is an open set in \(\mathbb  {R}\). But the line segment is not open in \(\mathbb  {R}^2\).\relax }}{24}{}\protected@file@percent }
-\newlabel{fig:sub_topology}{{6}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The small box that is the interior of the dotted rectangle is an open set in \(\mathbb  {R}^2\), and therefore its restriction to \(\mathbb  {R}\) - the line segment - is an open set in \(\mathbb  {R}\). But the line segment is not open in \(\mathbb  {R}^2\).\relax }}{24}{}\protected@file@percent }
+\newlabel{fig:sub_topology}{{7}{24}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Open Patches}{25}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces An interior open patch captures a contiguous set inside the probability simplex. Above is an example of a composite probability distribution where the diagram on the left shows how \(P_\top \) and \(P_0\) are composed, and the right shows how the interior segments on both interact to form a patch. \relax }}{25}{}\protected@file@percent }
+\newlabel{fig:interior_open_patch}{{8}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Examples of open patches. On the left is the facet patch, because it only touches a side (facet) of the simplex and not a corner. In the center is an exterior open patch where the facet component \(P_0\) is itself a facet patch (touching an edge and a corner), and on the right is an exterior open patch that touches a corner only because \(P_0\) is an interior open patch.\relax }}{26}{}\protected@file@percent }
+\newlabel{fig:exterior_open_patch}{{9}{26}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Compactness}{26}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}Simple Limit Example}{27}{}\protected@file@percent }
+\newlabel{lem:withhold_possible_outcome}{{10.2}{26}}
+\newlabel{lem:change_one_anchor_outcome}{{10.3}{26}}
+\newlabel{lem:open_anchor_outcome}{{10.4}{26}}
 \@writefile{toc}{\contentsline {section}{\numberline {11}Future Work}{27}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {11.1}Expansions to infinite spaces}{27}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}Connection Surreal Numbers}{27}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}Shrinking the Measure Number System}{27}{}\protected@file@percent }
 \citation{censi}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}Relationship to Category Theory}{28}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}Embedding in Euclidean Space}{28}{}\protected@file@percent }
+\newlabel{section:euclidean_embedding}{{11.3}{28}}
 \bibcite{sklar_dirichlet}{1}
 \bibcite{sklar_bias}{2}
 \bibcite{mendelson}{3}
 \bibcite{bradley}{4}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.4}Relationship to Category Theory}{28}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.5}Embedding in Euclidean Space}{28}{}\protected@file@percent }
-\newlabel{section:euclidean_embedding}{{11.5}{28}}
 \bibcite{lyon}{5}
 \bibcite{hajek}{6}
 \bibcite{censi}{7}
