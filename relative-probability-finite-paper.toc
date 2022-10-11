@@ -13,18 +13,17 @@
 \contentsline {subsection}{\numberline {4.2}Examples}{9}{}%
 \contentsline {section}{\numberline {5}New Concepts for Relative Probability}{10}{}%
 \contentsline {subsection}{\numberline {5.1}Matching and Comparability}{10}{}%
-\contentsline {subsection}{\numberline {5.2}Possibility Classes}{13}{}%
-\contentsline {subsection}{\numberline {5.3}Totally Mutually Possible RPFs}{14}{}%
+\contentsline {subsection}{\numberline {5.2}Mutual Possibility}{13}{}%
+\contentsline {subsection}{\numberline {5.3}Possibility Classes}{14}{}%
 \contentsline {section}{\numberline {6}From Outcomes to Events}{15}{}%
 \contentsline {section}{\numberline {7}Composing Relative Probability Functions}{18}{}%
 \contentsline {section}{\numberline {8}Bayesian Inference on Relative Distributions}{20}{}%
-\contentsline {subsection}{\numberline {8.1}Example: A Noisy Channel}{21}{}%
-\contentsline {section}{\numberline {9}Implementation}{22}{}%
-\contentsline {section}{\numberline {10}Topology and Limits in Relative Probability Space}{23}{}%
-\contentsline {subsection}{\numberline {10.1}RPF Space and Compactness}{23}{}%
-\contentsline {subsection}{\numberline {10.2}Open Patches}{25}{}%
-\contentsline {subsection}{\numberline {10.3}Compactness}{26}{}%
-\contentsline {section}{\numberline {11}Future Work}{27}{}%
-\contentsline {subsection}{\numberline {11.1}Expansions to infinite spaces}{27}{}%
-\contentsline {subsection}{\numberline {11.2}Relationship to Category Theory}{28}{}%
-\contentsline {subsection}{\numberline {11.3}Embedding in Euclidean Space}{28}{}%
+\contentsline {subsection}{\numberline {8.1}Example: A Noisy Channel}{22}{}%
+\contentsline {section}{\numberline {9}Topology and Limits in Relative Probability Space}{23}{}%
+\contentsline {subsection}{\numberline {9.1}RPF Space and Compactness}{23}{}%
+\contentsline {subsection}{\numberline {9.2}Open Patches}{24}{}%
+\contentsline {subsection}{\numberline {9.3}Compactness}{25}{}%
+\contentsline {section}{\numberline {10}Future Work}{27}{}%
+\contentsline {subsection}{\numberline {10.1}Expansions to infinite spaces}{27}{}%
+\contentsline {subsection}{\numberline {10.2}Relationship to Category Theory}{27}{}%
+\contentsline {subsection}{\numberline {10.3}Embedding in Euclidean Space}{28}{}%

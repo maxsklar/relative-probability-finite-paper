@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  11 OCT 2022 15:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  11 OCT 2022 18:54
 entering extended mode
 **./relative-probability-finite-paper.tex
 (relative-probability-finite-paper.tex
@@ -1037,48 +1037,26 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <153.57375> not available
 \openout4 = `relative-probability-finite-paper.toc'.
 
  [2] [3]
-[4] [5] [6] [7] [8] [9] [10] [11]
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/it' in size <153.57375> not available
-
-(Font)              size <24.88> substituted on input line 630.
-
-[12]
+[4] [5] [6] [7] [8] [9] [10] [11] [12] [13]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[13] [14]
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 880.
-
-[15] [16] [17]
-Underfull \vbox (badness 1337) has occurred while \output is active []
-
- [18]
-[19] [20] [21] [22] [23] [24]
+[14] [15] [16] [17] [18] [19] [20] [21] [22]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[25] [26] [27]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [28]
-[29] (relative-probability-finite-paper.aux)
+[23] [24] [25] [26] [27] [28] [29] (relative-probability-finite-paper.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 128.69374pt have occurred.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 30887 strings out of 478864
- 784368 string characters out of 2848660
+ 30895 strings out of 478864
+ 784490 string characters out of 2848660
  1203990 words of memory out of 3000000
- 48246 multiletter control sequences out of 15000+600000
- 421507 words of font info for 93 fonts, out of 8000000 for 9000
+ 48255 multiletter control sequences out of 15000+600000
+ 421160 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,14n,103p,862b,1181s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\maxsk\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
@@ -1109,16 +1087,15 @@ fonts/cm/cmsy5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/amsfonts/cm/cmsy7.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/maxsk/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/maxsk/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/maxsk/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users
-/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10
-.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-symbols/msbm7.pfb>
-Output written on relative-probability-finite-paper.pdf (29 pages, 473421 bytes
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/maxsk/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/maxsk/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/
+Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/m
+sbm7.pfb>
+Output written on relative-probability-finite-paper.pdf (29 pages, 460358 bytes
 ).
 PDF statistics:
- 249 PDF objects out of 1000 (max. 8388607)
+ 244 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  17 words of extra memory for PDF output out of 10000 (max. 10000000)
 
