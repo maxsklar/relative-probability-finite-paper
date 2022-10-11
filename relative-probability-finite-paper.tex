@@ -137,27 +137,29 @@ This is an incomplete draft/outline of an upcoming paper. Please do not share
 
 \section{Introduction}
 
-The foundations of probability theory are still very much open to debate!
+The foundations of probability theory are still very much open to explore!
 
-Since Kolmogorov published the standard axioms for probability\cite{kolmogorov} in 1933, there have been calls to relax or alter them for various applications. In Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justifications.
-One controversy concerns conditional probability. We talk about \quotes{the probability of A given that B occured} and denote it as \(P(A|B)\) - but can this make sense if \(B\) never occurs (or has probability zero\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution.})? We are out of luck if we stick to the Kolmogorov model, which defines the conditional probability above as the ratio \(\frac{P(A \cap B)}{P(B)}\). If the probability of B is zero, the indeterminate form \(\frac{0}{0}\) appears.
+Since Kolmogorov published the standard axioms for probability\cite{kolmogorov} in 1933, there have been calls to alter them for various applications. In Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justifications.
+One area of \quotes{discontentment} concerns conditional probability. We often want to identify the probability of event A given event B - or \(P(A|B)\) - but can this be done if \(B\) has probability zero\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution.}?
 
-Undeterred, mathematicians and engineers refer to this type relative probability all the time. For example, if we consider a continuous probability distributrion over \([0, 1]\) given by the probability distribution function \(2x\), we know that the PDF at \(x = \frac{1}{2}\) is twice as much as the PDF at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though we are only talking about \textit{probability density}. Hajek\cite{hajek} (citing Borel) gives a much more compelling example: if a random point on the Earth is selected, what is the probability that it is in the eastern hemisphere given that it is on the equator? Most people would not hesitate to answer one half, and yet the equator - being a mere 1-dimentional object - has probability 0 compared to the rest of the globe.
+We are out of luck with the Kolmogorov model, which defines \(P(A|B)\) as the ratio \(\frac{P(A \cap B)}{P(B)}\). When \(P(B) = 0\), the indeterminate form \(\frac{0}{0}\) appears leaving the conditional probability undefined. This will happen whenever one wishes to compare two events that each have an overall probability of zero.
 
-Let us take the position that we may model probability in a non-standard way, and we can do so as long our new framework is logically consistent, and the advertised applications correspond to the new model\footnote{Lyon identifies this link between application and model as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting mathematics, but if that mathematics cannot be linked to any application that anyone would reasonbly call probability, then it ought to go by a different name.}. We ought to understand whether we can derive a framework for probability that takes the relationships between outcomes and events as the fundamental unit.
+Undeterred, mathematicians and engineers refer to relative probabilities of this type all the time. For example, if we consider a probability distributrion over \([0, 1]\) given by \(2x\), we know that the value at \(x = \frac{1}{2}\) is twice as much as the value at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though we are only talking about \textit{probability density}. Hajek\cite{hajek} (citing Borel) gives a much more compelling example: if a random point on the Earth is selected, what is the probability that it is in the eastern hemisphere given that it is on the equator? Most people would not hesitate to answer one half, and yet the equator - being a mere 1-dimentional object - has probability 0 compared to the rest of the globe.
 
-This improves the Kolmogorov model - that starts with an absolute probability function - by both solving the conditional probability question and giving rise to new objects and patterns to study. 
+Let us then model probability in a non-standard way, which we can do so as long our new framework is logically consistent and corresponds to the advertised applications\footnote{Lyon identifies this link between application and model as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting mathematics, but if that mathematics cannot be linked to any application that anyone would reasonbly call probability, then it ought to go by a different name.}. We ought to understand whether a different framework for probability can take the relationships between outcomes and events as the fundamental unit.
+
+This improves on the Kolmogorov model - that starts with an absolute probability function - by solving both the conditional probability question and giving rise to new objects to study. Furthermore, the model fits nicely into many modern frameworks such as category theory and bayesian distribution sampling.
 
 \subsection{Goals}
 
-The relative approach to probability is not only viable, but has many properties that practicioners will find attractive. For example, many Bayesian inference algorithms rely on relative probability alone to search for optimal parameters. 
+The relative approach to probability has many properties that practitioners will find attractive. For one, most sampling algorithms in Bayesian inference (from Markov Chains to the no U-Turn Sampler) rely on relative probability alone to search for optimal parameters. 
 
-As a proof of this concept, we will construct a theory of relative probability on finite distributions. By omitting infinite distributions, we temporarily set aside the concepts of measurable sets and countable additivity\footnote{In the textbook Invitation to Discrete Mathematics, Matoušek et al. write \quote{By restricting ourselves to finite probability spaces we have simplified the situation considerably... A true probability theorist would probability say that we have excluded everything interesting.}}. This work will demonstrate that even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental rules and vocabulary, which we will construct without the distractions of infinite and continuous outcome spaces.
+As a proof of concept, we will construct a theory of relative probability on finite distributions. By omitting infinite distributions, we temporarily set aside the concepts of measurable sets and countable additivity\footnote{In the textbook Invitation to Discrete Mathematics, Matoušek et al. write \quote{By restricting ourselves to finite probability spaces we have simplified the situation considerably... A true probability theorist would probability say that we have excluded everything interesting.}}. This work will demonstrate that even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental definitions, which we will construct without the distractions of infinite and continuous outcome spaces.
 
-We then provide a new formulation of Bayes rule that uses only relative proability, and that is reflective of current practice. We will look at these applications of these ideas along with their algorithmic implementation.
+We then derive a new form of Bayes rule that uses only relative probability. This new form will simplify the formulas for specific distributions in the bayesian framwork.
 
 Finally, we discuss a critical feature of relative probability functions,
-which is their ability to retain information when taking limits\textemdash for which absolute probability fails. To that end, we delve into the topology of the relative probability space, and finish with a proof of compactness.
+which is their ability to retain information when taking limits. To that end, we delve into the topology of the relative probability space, and finish with a proof of its compactness.
 
 \subsection{Previous Work}
 Mention the work of heinemann\cite{heinemann} and previous work on condition probability spaces.
@@ -166,19 +168,19 @@ Mention the work of heinemann\cite{heinemann} and previous work on condition pro
 \subsection{Magnitude Space}
 
 \begin{definition}
-The \textit{magnitude space} \(\mathbb{M}\) is the set of all positive real numbers, \(0\) and \(\infty\).
+The \textit{magnitude space} \(\mathbb{M}\) is the set of all positive real numbers along with \(0\) and \(\infty\).
 \[\mathbb{M} = [0, +\infty]\]
 \end{definition}
 
-Magnitudes correspond with our intuition of size. Unlike the set of non-negative real numbers, magnitudes include a point at infinity. The point at infinity can be considered a limit element, larger that all of the other magnitudes. It provides the magnitude space with several important properties.
+Magnitudes correspond with our intuition of size. The value of infinity is a \textit{limit element}, larger that all of the other magnitudes. It endows the magnitude space with several important properties:
 
 \begin{enumerate}
-\item \(Compactness:\) sequences that go off to infinity still a limit (at \(\infty\)).
-\item Symmetry around ratios: When we compare the probability of two events, we get their \textit{odds}. If the odds are 0, then we are comparing an event with probability 0 to an event with probability > 0. We should be able to reverse this comparison, and talk about it from either side. If we're comparing the probability of an event to its converse, then \(\infty\) represents events that have probability 1.
-\item Actual measurement value: Whereas physical objects may not be able to have infinite size, mathematical objects do. The infinite element is introduced in measure theory because many mathematical systems (real and natural numbers for example) contain sets of infinite measure.
+\item Compactness: Sequences that go off to infinity still a limit (at \(\infty\)).
+\item Symmetry around ratios: When we compare the probability of two events, we get their \textit{odds}. If the odds are 0, then we are comparing an event with probability 0 to an event with probability \(>0\). We should be able to reverse this comparison, and say there are infinite odds when an event with probability \(>0\) is compared to an event with probability 0. It is also common to find the odds of an event and its converse as its \quotes{odds.} In this case, \(\infty\) corresponds to events that are certain.
+\item The infinite element is introduced in measure theory because many mathematical systems (real and natural numbers for example) contain sets of infinite measure.
 \end{enumerate}
 
-We set \(0^{-1} := \infty\) and \(\infty^{-1} := 0\), even though their product is indeterminate.
+We set \(0^{-1} = \infty\) and \(\infty^{-1} = 0\), even though the product \(0 \cdot \infty\) is indeterminate.
 
 \subsection{The Wildcard Element}
 
@@ -186,7 +188,7 @@ We set \(0^{-1} := \infty\) and \(\infty^{-1} := 0\), even though their product 
 Let the \textit{magnitude-wildcard space} \(\mathbb{M}^*= \mathbb{M} \cup \{\ast\}\) be the set of magnitudes along with a \textit{wildcard element}, \(\ast\).
 \end{definition}
 
-The wildcard element corresponds to several different concepts, each appearing in a different type of practice:
+The wildcard element corresponds to several different concepts, each appearing in a unique discipline:
 \begin{itemize}
   \item The \textit{NaN}, or \textit{Not a Number}\footnote{\quotes{Not a Number} may have been an unfortunate naming choice because it actually represents \textbf{any} number!} value in the IEEE standard for floating point arithmetic\cite{ieee}.
   \item The indeterminate form \(\frac{0}{0}\) in arithmetic.
@@ -194,13 +196,11 @@ The wildcard element corresponds to several different concepts, each appearing i
 \end{itemize}
 
 The following properties on \(\ast\) to allow addition and multiplication of any two magnitude-wildcard values.
-\begin{enumerate}[(i)]
-  \item \(0 \cdot \infty = \ast\)
-  \item \(\ast + m = \ast\)
-  \item \(\ast \cdot m = \ast\)
-\end{enumerate}
+\[0 \cdot \infty = \ast\]
+\[\ast + m = \ast\]
+\[\ast \cdot m = \ast\]
 
-Unfortunately, we now lose some basic algebraic properties: we can no longer simplfy an expression like \(0x\) to \(0\) for example. This will take some getting used to, but programmers familiar with the floating point value \textit{NaN} have long adapted to this.
+There is a cost to the wildcard introduction in that we now lose some basic properties of sums and products. For instance, we can no longer simplfy an expression like \(0x\) to \(0\). This will take some getting used to, but programmers familiar with the floating point value \textit{NaN} have long adjusted to this.
 
 \subsection{The Matching Relation}
 
