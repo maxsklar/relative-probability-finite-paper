@@ -1285,11 +1285,13 @@ The simplest RPF to represent in this form is the uniform RPF. In this case, the
 \section{Topology and Limits in Relative Probability Space}
 \label{section:topology}
 
-Mathematics can be used to model the real world even through seemingly impossible ideas. For example, we might believe that a certain natural process cannot repeat an infinite number of times - that it is just not something allowed by the physical limitations of our universe. And even so, we might still speak of \quotes{infinite iterations} in order to get a bound or estimate on what that system will look like in \quotes{the long run}. One of the benefits of relative probability spaces is their properties with respect to limits. To this end, we prove here that when we take limits of totally comparable RPFs, the result will also be totally comparable.
+Mathematics can be used to model the real world even through seemingly impossible ideas. For example, we might believe that a natural process can only repeat a finite number of times and that this is just a physical limitation of our universe. And yet at the same time, we will still speak of \quotes{infinite iterations} in order to get a bound or estimate on what that system looks like in \quotes{the long run}.
 
-This effort caps off a significant argument in favor of totally comparable RPFs. They hold their information under the operation of limits, while absolute probability does not.
+One of the benefits of relative probability spaces is their properties with respect to limits. To this end, we prove here that when we take limits of totally comparable RPFs, the result will also be a totally comparable RPF.
 
-There is some background in topology\footnote{See Mendelson (1990) \cite{mendelson} and Bradley et al. (2020) \cite{bradley} for texts with formal definitions and theorems.} required for this section.
+This effort caps off a significant argument in favor of relative probability. RPFs hold on to certain pieces information under the limit operation, while absolute probability does not.
+
+Some background in topology\footnote{See Mendelson (1990) \cite{mendelson} and Bradley et al. (2020) \cite{bradley} for texts with formal definitions and theorems.} required for this section.
 
 \subsection{Relative Probability Spaces}
 
@@ -1299,9 +1301,9 @@ There is some background in topology\footnote{See Mendelson (1990) \cite{mendels
 
 Because the set of absolute distributions with \(|\Omega| = K\) is embedded in \(\mathbb{R}^K\) as seen in figure \ref{fig:simplex}, its topological properties are well understood. The simplex is closed, bounded, and compact.
 
-For relative probability distributions, there is no obvious way to embed it into K-dimentional euclidean space\footnote{Though it may be possible! See section \ref{section:euclidean_embedding}}. The relative probability space is more complicated, because at the corners and edges of the simplex lurk entire subspaces where zero-probability outcomes are still being compared in different ways.
+For relative probability distributions, there is no obvious way to embed it into K-dimentional euclidean space\footnote{Though it may be possible! See section \ref{section:euclidean_embedding}}. The relative probability space is more complicated, because at the corners and edges of the simplex lurk entire subspaces where zero-probability outcomes are still being compared in different configurations.
 
-Fortunately, the set of all RPFs can still be embedded into a much larger euclidean space. Any \(P\) in \(\text{RPF}(K)\) is a function of type \(\Omega \times \Omega \rightarrow \mathbb{M}\) that satisfies the fundamental properties. Therefore \(\text{RPF}(K)\) can at least be embedded into \(\mathbb{M}^{K^2}\).
+Fortunately, the set of all RPFs can still be embedded into a much larger euclidean space. Any \(P \in \text{RPF}(K)\) is a function of type \(\Omega \times \Omega \rightarrow \mathbb{M}\) that satisfies the fundamental properties. Therefore \(\text{RPF}(K)\) can at least be embedded into \(\mathbb{M}^{K^2}\).
 
 A topology can be defined by as \textit{basis of open sets}, and for euclidean space (and metric spaces more generally) the basis is the set of open balls on \(\mathbb{R}^n\).
 
@@ -1309,7 +1311,7 @@ A topology can be defined by as \textit{basis of open sets}, and for euclidean s
 An open ball of size \(\epsilon\) around point \(x \in \mathbb{R}^n\) is the set of all points y such that \(|x - y| < \epsilon\).
 \end{definition}
 
-Open balls do not work as a basis on the set \(\mathbb{M}\) because an open ball around \(\infty\) would contain only \(\infty\) - when in reality we want an open set around \(\infty\) to also contain some interval \((y, \infty]\). This is remedies by using the following transformation, which we take to be continuous (or conserve the topology between \(\mathbb{M}\) and \([0, 1]\).
+Open balls do not work as a basis on the set \(\mathbb{M}\) because an open ball around \(\infty\) would contain only \(\infty\) - when in reality we want an open set around \(\infty\) to also contain some interval \((x, \infty]\). This is remedied by using the following transformation, which we take to be continuous (topology conserving) between \(\mathbb{M}\) and \([0, 1]\).
 
 \begin{definition}
 The \textit{inverse odds transform} is the function \(\text{odds}^{-1}: \mathbb{M} \rightarrow [0, 1]\) with \(\text{odds}^{-1}(0) = 0\) and \(\text{odds}^{-1}(\infty) = 1\) defined by
@@ -1318,7 +1320,7 @@ The \textit{inverse odds transform} is the function \(\text{odds}^{-1}: \mathbb{
 
 The inverse odds transformation establishes \(\mathbb{M}\) as topologically equivalent to the closed interval \([0, 1]\). Now \(\text{RPF}(K)\) can be embedded into a bounded region of euclidean space, namely \([0, 1]^{K^2}\).
 
-There are other ways to define a topology on \(\text{RPF}^K\). One in particular using compositions of open patches was discarded due to its complexity during the course of this research, but its usefulness is dubious\footnote{It will be posted separately as an addendum in case that assessment turns out to be incorrect}.
+There are other ways to define a topology on \(\text{RPF}^K\). One in particular using compositions of open patches was discarded due to its complexity during the course of this research\footnote{Its usefulness is dubious, but it will be posted separately as an addendum note in case that assessment turns out to be incorrect}.
 
 \subsection{Limit Points and Compactness}
 
@@ -1356,7 +1358,7 @@ A subset of \(\mathbb{R}^n\) is compact if and onely if it is closed and bounded
 \end{theorem}
 
 \begin{proof}
-Theorem \ref{thm:rpf_closed} states that \(\text{RPF}(K)\) is closed, and by the odds transform it is also bounded. Therefore, by the Heine-Borel Theorem, it is compact.
+Theorem \ref{thm:rpf_closed} states that \(\text{RPF}(K)\) is closed, and by the odds transform it is also bounded. By the Heine-Borel theorem, it is compact.
 \end{proof}
 
 \section{Future Work}
