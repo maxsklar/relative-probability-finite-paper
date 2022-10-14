@@ -144,7 +144,7 @@ One area of \quotes{discontentment} concerns conditional probability. We often w
 
 We are out of luck with the Kolmogorov model, which defines \(P(A|B)\) as the ratio \(\frac{P(A \cap B)}{P(B)}\). When \(P(B) = 0\), the indeterminate form \(\frac{0}{0}\) appears leaving the conditional probability undefined. This will happen whenever one wishes to compare two events that each have an overall probability of zero.
 
-Undeterred, mathematicians and engineers refer to relative probabilities of this type all the time. For example, if we consider a probability distributrion over \([0, 1]\) given by \(2x\), we know that the value at \(x = \frac{1}{2}\) is twice as much as the value at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though we are only talking about \textit{probability density}. Hajek\cite{hajek} (citing Borel) gives a much more compelling example: if a random point on the Earth is selected, what is the probability that it is in the eastern hemisphere given that it is on the equator? Most people would not hesitate to answer one half, and yet the equator - being a mere 1-dimentional object - has probability 0 compared to the rest of the globe.
+Undeterred, mathematicians and engineers refer to relative probabilities of this type all the time. For example, if we consider a probability distributrion over \([0, 1]\) given by \(2x\), we know that the value at \(x = \frac{1}{2}\) is twice as much as the value at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though we are only talking about \textit{probability density}. Hajek\cite{hajek} (citing Borel) gives a much more compelling example: if a random point on the Earth is selected, what is the probability that it is in the eastern hemisphere given that it is on the equator? Most people would not hesitate to answer one half, and yet the equator - being a mere 1-dimensional object - has probability 0 compared to the rest of the globe.
 
 Let us then model probability in a non-standard way, which we can do so as long our new framework is logically consistent and corresponds to the advertised applications\footnote{Lyon identifies this link between application and model as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting mathematics, but if that mathematics cannot be linked to any application that anyone would reasonbly call probability, then it ought to go by a different name.}. We ought to understand whether a different framework for probability can take the relationships between outcomes and events as the fundamental unit.
 
@@ -270,7 +270,7 @@ Let \(\Omega\) be a set of mutually exclusive \textit{outcomes}\footnote{Each ou
 A \textit{categorical distribution} on a \(\Omega\) is a function \(P: \Omega \rightarrow [0, 1]\) such that \(\sum_{h \in \Omega} P(h) = 1\)
 \end{definition}
 
-The set of all categorical distributions of size \(K\) can be embedded in \(\mathbb{R}^K\) as a (K-1)-dimentional object called a simplex (see figure \ref{fig:simplex}). For example, if \(K = 3\), the resulting space of categorical distributions is an equilateral triangle embedded in \(\mathbb{R}^3\) connecting the points (1, 0, 0), (0, 1, 0), and (0, 0, 1).
+The set of all categorical distributions of size \(K\) can be embedded in \(\mathbb{R}^K\) as a (K-1)-dimensional object called a simplex (see figure \ref{fig:simplex}). For example, if \(K = 3\), the resulting space of categorical distributions is an equilateral triangle embedded in \(\mathbb{R}^3\) connecting the points (1, 0, 0), (0, 1, 0), and (0, 0, 1).
 
 \begin{figure}[h]
 \centering
@@ -955,6 +955,7 @@ Equation \ref{eq:incorrect_additive_event_def} looks uncontroversial, but it act
 Another problem arises when an event is \textit{internally non-comparable}, meaning that it contains outcomes \(h_1\) and \(h_2\) where \(P(h_1, h_2) = \ast\). Perhaps there are interesting things we can say about such an events, but here we will constrain ourselves to totally comparable RPFs in order to avoid such questions.
 
 \begin{definition}
+\label{def:event_comparison}
 Let \(P\) be a totally comparable RPF. \(P\) can also measure the probability of two events relative to each other using the following rules:
 
 \begin{enumerate}[(i)]
@@ -1301,7 +1302,7 @@ Some background in topology\footnote{See Mendelson (1990) \cite{mendelson} and B
 
 Because the set of absolute distributions with \(|\Omega| = K\) is embedded in \(\mathbb{R}^K\) as seen in figure \ref{fig:simplex}, its topological properties are well understood. The simplex is closed, bounded, and compact.
 
-For relative probability distributions, there is no obvious way to embed it into K-dimentional euclidean space\footnote{Though it may be possible! See section \ref{section:euclidean_embedding}}. The relative probability space is more complicated, because at the corners and edges of the simplex lurk entire subspaces where zero-probability outcomes are still being compared in different configurations.
+For relative probability distributions, there is no obvious way to embed it into K-dimensional euclidean space\footnote{Though it may be possible! See section \ref{section:euclidean_embedding}}. The relative probability space is more complicated, because at the corners and edges of the simplex lurk entire subspaces where zero-probability outcomes are still being compared in different configurations.
 
 Fortunately, the set of all RPFs can still be embedded into a much larger euclidean space. Any \(P \in \text{RPF}(K)\) is a function of type \(\Omega \times \Omega \rightarrow \mathbb{M}\) that satisfies the fundamental properties. Therefore \(\text{RPF}(K)\) can at least be embedded into \(\mathbb{M}^{K^2}\).
 
@@ -1367,15 +1368,15 @@ The obvious extention to this work is to expand relative probability to a genera
 
 This raises certain question which - while decisions have been made in prior work and certainly in measure theory - should be open to discussion.
 \begin{enumerate}
-\item Do we need to keep countable additivity as set forth in the Kolmogorov axioms, or can we relax this to allow for a fair countable lottery? RPFs would provide a great way to analyze the fair countable lottery and this should be exploited!
+\item We may not need to keep countable additivity as set forth in the Kolmogorov axioms; we can relax this to allow for a fair countable lottery (also known as a De Finetti Lottery\cite{de_finetti}). RPFs would provide a great way to analyze the fair countable lottery as a uniform distribution and this should be exploited!
 \item If we derive a notion of probability density, then can these densities at a particular pair of events be used to compare the relative probability of those events? What specific properties of the relative probability distribution are required to make this work?
 \end{enumerate}
 
-It appears possible to use these ideas to create a unified version of the Hausdorff measure - which finds the size of an object given its dimention. Instead of considering it to be multiple measures - we can have a single measure where bounded sets of equal dimention are mutually possible, and smaller-dimentional objects are always mutually impossible with respect to a larger dimentional objects.
+It appears possible to use these ideas to create a unified version of the Hausdorff measure - which finds the size of an object given its dimention. Instead of considering it to be multiple measures - we can have a single measure where bounded sets of equal dimention are mutually possible, and smaller-dimensional objects are always mutually impossible with respect to a larger dimensional objects.
 
 \subsection{Relationship to Category Theory}
 
-Category theorists will instantly recognize that an RPF describes a category. This construction can be analyzed and approached through the lens of category theory. Specifically, and RPF describes something called a \textit{thin category} where any pair of objects have at most one morphism connecting them (per direction).
+Category theorists will recognize that an RPF describes a category. Specifically, and RPF describes something called a \textit{thin category} where any pair of objects have at most one morphism connecting them (per direction). The relative probability axioms can analyzed and approached through the lens of category theory in order to learn more about them.
 
 \begin{center}
 \resizebox{0.3\textwidth}{!}{
@@ -1416,7 +1417,7 @@ The recent work of Censi et al.\cite{censi} concerns negative information in cat
 \subsection{Embedding in Euclidean Space}
 \label{section:euclidean_embedding}
 
-Absolute probability functions have this advantage where they can be embedded into a simplex in \(\mathbb{R}^K\). For relative probability functions, it is not so straightforward. However, it should still be possible to embed finite RPFs into euclidean space. For example, the space \(\text{RPF}(3)\) can be mapped as a hexagon, where each point can be assigned a probability based on its distance between two parallel sides, which exist for each outcome.
+Absolute probability functions have this advantage where they can be embedded into a simplex in \(\mathbb{R}^K\). For relative probability functions it is not so straightforward but it should still be possible given that \(\text{RPF}^K\) is a (K-1)-dimensional set that can be embedded into \([0, 1]^{K^2}\). For example, the space \(\text{RPF}(3)\) can be mapped as a hexagon, where each point can be assigned a probability based on its distance between two parallel sides, which exist for each outcome.
 
 \begin{center}
 \resizebox{0.25\textwidth}{!}{
@@ -1447,9 +1448,19 @@ Absolute probability functions have this advantage where they can be embedded in
 }
 \end{center}
 
-In this case, the probability triangle has been truncated. For higher order simplices, this appears to become exceedingly unweidly unless some simplifying trick is developed. If it is successfully done, then the topological properties of \(\text{RPF}(K)\) fall into place easily.
+In this case, the probability triangle has been truncated. For higher order simplices, this appears to become exceedingly unweidly unless some simplifying trick is developed. If it is successfully done, then a new, cleaner, representation for memebers of \(\text{RPF}(K)\) falls into place.
 
-It is also possible to hack a metric space for \(\text{RPF}(K)\) by assigning distances to elements based on their euclidean distance within their mutually possible class, and adding a corrective term depending on its location in the comparability graph. This would simplify the arguments in section \ref{section:topology}, and could potentially find use in algorithmic implementation.
+\subsection{Dirichlet Distributions over \(RPF(K)\)}
+
+The Dirichlet distribution of dimention K is a probability distribution \textbf{over} the K-dimensional simplex. This distribution's PDF may assign 0 to various edges and corners of the simplex when it's parameters are large. When it's parameters approach zero, it assigns zero probability to the interior of the simplex and infinite probability to the boundary.
+
+The Dirichlet distribution should be re-analyzed as a (continuous) relative probability measure over the space of \(\text{RPF}(K)\). This allows the set of possible dirichlet distributions to take on its limit values.
+
+The relative version of the dirichlet is given as follows. The there are K magnitude parameters represented by \(\mathbf{\alpha} = (\alpha_0, \alpha_1, ..., \alpha_{K-1})\) with the type of \(\mathbf{\alpha}\) being \(\mathbb{M}^K\). The relative probability compares two RPFs, \(P_1\) and \(P_2\). It makes use of a reference outcome \(r\), similar to the event comparison in definition \ref{def:event_comparison}. The simplifying powers of relative probability are on full display.
+
+\[\mathcal{D}_{\mathbf{\alpha}}(P_1, P_2)= \prod_{k=0}^{K-1}{\left(\frac{P_1(k, r)}{P_2(k, r)}\right)}^{\alpha_k-1}\]
+
+The Dirichlet is already extremely useful to machine learning in areas such as topic modeling\cite{blei} and prior distribution generation\cite{sklar_dirichlet}. It represents a \quotes{fuzzier} version of the categorical distribution for applications where we do not want to rely on knowing the categorical exactly at the expense of computational complexity. If the Dirichlet were allowed to include its limit values, then it would be a valuable tool for feature selection by telling us where to rely on a pure categorical parameters, where to hedge on the (fuzzier) dirichlet.
 
 %\subsubsection*{References}
 \begin{thebibliography}{20}
@@ -1470,6 +1481,9 @@ It is also possible to hack a metric space for \(\text{RPF}(K)\) by assigning di
 \bibitem{november}November, D. D. (2018). Zero Probability.
 \bibitem{discrete}Matoušek, J., \& Nešetřil, J. (2008). Invitation to discrete mathematics. OUP Oxford.
 \bibitem{kohlberg}Kohlberg, E., \& Reny, P. J. (1997). Independence on relative probability spaces and consistent assessments in game trees. Journal of Economic Theory, 75(2), 280-313.
+\bibitem{blei}Blei, D. M., Ng, A. Y., \& Jordan, M. I. (2003). Latent dirichlet allocation. the Journal of machine
+Learning research, 3, 993-1022.
+\bibitem{de_finetti}Finetti, B. D. (1974). Theory of probability, vol. 1 and vol. 2.
 
 \end{thebibliography}
 

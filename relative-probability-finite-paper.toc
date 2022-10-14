@@ -27,3 +27,4 @@
 \contentsline {subsection}{\numberline {10.1}Expansions to infinite spaces}{26}{}%
 \contentsline {subsection}{\numberline {10.2}Relationship to Category Theory}{26}{}%
 \contentsline {subsection}{\numberline {10.3}Embedding in Euclidean Space}{27}{}%
+\contentsline {subsection}{\numberline {10.4}Dirichlet Distributions over \(RPF(K)\)}{27}{}%
