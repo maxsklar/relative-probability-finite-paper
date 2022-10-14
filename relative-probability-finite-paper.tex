@@ -441,19 +441,17 @@ Let \(P\) be an RPF with K outcomes labeled \((h_0, h_1, ..., h_{K-1})\). \(P\) 
 When \(r\) is 0 or \(\infty\), we can call this the \textit{limit finite geometric} RPF.
 \end{definition}
 
-Finally, to include an example that is both common and has powerful applications, there is a relative version of the Binomial distribution.
+Finally, to include an example that is both common and has powerful applications, there is a relative version of the binomial distribution.
 
 \begin{definition}
 \label{def:binomial_rpf}
-A \textit{binomial distribution} has a sample size we can call \(n\), and a probability of success \(p\). The RPF is uses \(\Omega = \{0, 1, 2, ..., n\}\), and thus \(K = n + 1\). It is given as follows:
+A \textit{binomial distribution} has a sample size \(n\), and a probability of success \(p\). The RPF has outcome space \(\Omega = \{0, 1, 2, ..., n\}\) and thus \(K = n + 1\). It is given as follows:
 \[P(h_1, h_2) = \frac{h_2!(n-h_2)!}{h_1!(n-h_1)!}\left(\frac{p}{1-p}\right)^{h_1 - h_2}\]
 \end{definition}
 
-\section{New Concepts for Relative Probability}
+\section{Concepts for Relative Probability Functions}
 
-We have successfully defined the relative probability in section \ref{section:new_relative_prob} with fundamental axioms and have constructed some examples. Because new situations arise that do not occur in the Kolmogorov model, we need to define some new vocabulary.
-
-Fortunately, the absolute probability function is a special case of relative probability through definition \ref{def:ratio}, defined by \(P(h_1, h_2) = \frac{P(h_1)}{P(h_2)}\). This ratio can be adjusted to follow all of the fundamental axioms, notably composition from theorem \ref{thm:abs_composition}.
+We defined the relative probability function in section \ref{section:new_relative_prob} with the fundamental axioms and have constructed some examples. Because new situations arise that do not occur in the Kolmogorov model, we also need to define some new vocabulary.
 
 Figure \ref{fig:flow_chart} gives us a roadmap of these new concepts and their relationship to each other.
 
@@ -542,7 +540,13 @@ Figure \ref{fig:flow_chart} gives us a roadmap of these new concepts and their r
 \label{fig:flow_chart}
 \end{figure}
 
-\subsection{Matching and Comparability}
+\subsection{Absolute Probability Functions as a Special Case}
+
+Fortunately, the absolute probability function is a special case an RPF through definition \ref{def:ratio}, defined by \(P(h_1, h_2) = \frac{P(h_1)}{P(h_2)}\) with the exception that if \(P(h) = 0\), then \(P(h, h) = 1\) instead of \(\ast\) in order to satisfy the identity axiom.
+
+This formula was shown to follow the composition axiom in theorem \ref{thm:abs_composition}, and the inverse axiom follows easily from the formula as well.
+
+\subsection{Comparability, Possibility, and Anchors}
 
 \begin{definition}
 \label{def:totally_comparable}
@@ -555,12 +559,18 @@ An absolute probability function is totally comparable if and only if \(P(h) = 0
 \end{theorem}
 
 \begin{proof}
-Let P be an \textbf{absolute} probability function, with \(h_1\) and \(h_2\) being two outcomes. If \(P(h_1) = P(h_2) = 0\), then \(P(h_1, h_2) = \frac{0}{0} = \ast\). If only outcome \(h_1\) is assigned 0, then \(P(h_1, h_1) = 1\), \(P(h_1, h_2) = 0\), and \(P(h_2, h_1) = \infty\). Any other pairing that does not involve \(h_1\) will be the quotient of two positive numbers, and thus also comparable.
+Let P be an \textbf{absolute} probability function, with \(h_1\) and \(h_2\) being two outcomes. If \(P(h_1) = P(h_2) = 0\), then \(P(h_1, h_2) = \frac{0}{0} = \ast\). If only outcome \(h_1\) is assigned 0, then \(P(h_1, h_1) = 1\), \(P(h_1, h_2) = 0\), and \(P(h_2, h_1) = \infty\). Any other pairing that does not involve \(h_1\) will be the quotient of two positive numbers, and thus is also comparable.
 \end{proof}
+
+With relative probability, it is important to know not only which outcomes are comparable, but whether their relative probability is positive and finite (that is, not equalt to 0, \(\infty\), or \(\ast\)).
+
+\begin{definition}
+Outcome \(h_1\) is \textit{impossible} with respect to \(h_2\) if \(P(h_1, h_2) = 0\). Outcome \(h_1\) is \textit{possible} with respect to \(h_2\) if it is comparable and \(P(h_1, h_2) > 0\).
+\end{definition}
 
 \begin{definition}
 \label{def:anchored_rpf}
-An \(anchored\) RPF has at least 1 outcome whose probability relative to every other outcome is greater than zero. We call this outcome an \(anchor\).
+An \textit{anchor} of an RPF is an outcome that is possible with respect to every other outcome. An RPF that has at least 1 anchor is called an \textit{anchored RPF}.
 \end{definition}
 
 Anchor outcomes are those outcomes that have a non-zero absolute probability. The anchoring of a distribution ensures that it is well behaved.
@@ -571,7 +581,7 @@ All absolute probability distributions are anchored.
 \end{theorem}
 
 \begin{proof}
-Let P be an absolute probability distribution on \(\Omega\). Because \(\sum_{h \in \Omega} P(h) = 1\), there must be at least one \(h\) such that \(P(h) > 0\).  Therefore, for any comparison outcome \(h'\), \(P(h, h') > 0\)
+Let P be an absolute probability distribution on \(\Omega\). Because \(\sum_{h \in \Omega} P(h) = 1\), there must be at least one \(h\) such that \(P(h) > 0\).  Therefore, for any comparison outcome \(h'\), \(P(h, h') = \frac{P(h)}{P(h')} > 0\)
 \end{proof}
 
 \begin{lemma}
@@ -580,19 +590,19 @@ Every non-empty, totally comparable RPF is anchored.
 \end{lemma}
 
 \begin{proof}
-Let \(P\) be non-empty and totally comparable RPF. Assume the opposite - that is for every outcome \(h\), there exists another outcome \(h'\) such that P(h, h') = 0.
+Let \(P\) be non-empty and totally comparable RPF. Assume the opposite - that for every outcome \(h\), there exists another outcome \(h'\) such that \(P(h, h') = 0\).
 
-A function \(f: \Omega \rightarrow \Omega\) can be created so that for every \(h\), \(P(h, f(h)) = 0\).
+Create a function \(f: \Omega \rightarrow \Omega\) so that for every \(h\), \(P(h, f(h)) = 0\).
 
 Let \(f^n\) be the function \(f\) applied n times. Then \(P(h, f^n(h)) = 0\) for all n greater than 0. This is by induction because the case of \(n = 1\) was assumed above, and for for inductive step
 \[P(h, f^{n+1}(h)) :\cong P(h, f^n(h)) \cdot P(f^n(h), f(f^n(h)) = 0 \cdot 0 = 0\]
 
 Because \(\Omega\) is finite, repeated applications of \(f\) on \(h\) must evenually return to an outcome that has already been visited. In more rigorous terms, there exists an \(N\) such that \(f^N(h) = f^i(h)\) for some \(i < N\).
 
-But this is a contradiction because \(P(f^i(h), f^N(h))\) should equal 0 by the argument above, but 1 by the identity axiom.
+This is a contradiction because \(P(f^i(h), f^N(h))\) should equal 0 by the argument above, but 1 by the identity axiom.
 \end{proof}
 
-A totally comparable RPF contains the maximum amount of information about the relative probability of two outcomes. Some RPFs have less information but are nevertheless consistent with RPFs that have more. The following definition encapulates this relationship.
+A totally comparable RPF contains the maximum amount of information about the relative probability of its outcomes. Some RPFs have less information but are nevertheless consistent with RPFs that have more. The following definition encapulates this relationship.
 
 \begin{definition}
 Let \(P_1\) and \(P_2\) be relative probability functions. \(P_1\) is matched by \(P_2\) if and only if all of relative probabilities of \(P_1\) are matched by those of \(P_2\). For all outcomes \(h_1\) and \(h_2\),
@@ -608,14 +618,14 @@ Every anchored RPF is matched by an absolute probability function, given by the 
 \begin{proof}
 We need to show that \(P(h)\) is a valid absolute probability function, and that it matches the original RPF.
 
-Because \(a\) is an anchor element, we know that \(P(h', a) < \infty\). This means that the sum \(\sum_{h' \in \Omega}P(h', a) < \infty\). It is also non-zero, because included in that sum is \(P(a, a) = 1\). The numerator \(P(h, a)\) is also a magnitude \(< \infty\). Therefore, this formula yields \(P(h) \notin \{\infty, \ast\}\).
+Because \(a\) is an anchor element, \(P(h', a) < \infty\). Therefore the sum \(\sum_{h' \in \Omega}P(h', a) < \infty\). \(\sum_{h' \in \Omega}P(h', a)\) is also \(>0\), because it includes the term \(P(a, a) = 1\). The numerator \(P(h, a)\) is also \(< \infty\). Therefore, \(P(h) \notin \{\infty, \ast\}\).
 
 We next check that the values of \(P(h)\) sum to 1 as follows:
 \[\sum_{h \in \Omega}P(h) = \sum_{h \in \Omega} \frac{P(h, a)}{\sum_{h' \in \Omega}P(h', a)} = \frac{\sum_{h \in \Omega}P(h, a)}{\sum_{h' \in \Omega}P(h', a)} = 1\]
 
-Cancellation of these equal sums is justified because we have argued above that they cannot be \(0\) or \(\infty\).
+Cancellation of these equal sums is justified because we have shown previously that they cannot be \(0\) or \(\infty\).
 
-Therefore, \(P(h)\) is a valid absolute probability function. The relative probability function is shows to be matched by it though calculation:
+Therefore, \(P(h)\) is a valid absolute probability function. We show that the RPF is matched by it though the following calculation:
 \begin{equation}
 P(h_1, h_2) :\cong P(h_1, a) \cdot P(a, h_2) = \frac{P(h_1, a)}{\sum_{h' \in \Omega}P(h', a)} \div \frac{P(h_2, a)}{\sum_{h' \in \Omega}P(h', a)} = \frac{P(h_1)}{P(h_2)}
 \end{equation}
@@ -623,36 +633,29 @@ P(h_1, h_2) :\cong P(h_1, a) \cdot P(a, h_2) = \frac{P(h_1, a)}{\sum_{h' \in \Om
 
 \subsection{Mutual Possibility}
 
-With relative probability, it is important to know not only which outcomes are comparable, but whether their relative probability is positive and finite (that is, not equalt to 0, \(\infty\), or \(\ast\)). We start with a few definitions.
-
 \begin{definition}
-Outcome \(h_1\) is \textit{impossible} with respect to \(h_2\) if \(P(h_1, h_2) = 0\). Outcome \(h_1\) is \textit{possible} with respect to \(h_2\) if \(P(h_1, h_2) > 0\).
-\end{definition}
-
-\begin{definition}
-Outcomes \(h_1\) and \(h_2\) are \textit{mutually possible} if they are comparable and \(0 < P(h_1, h_2) < \infty\).
+Outcomes \(h_1\) and \(h_2\) are \textit{mutually possible} if they are comparable and \(0 < P(h_1, h_2) < \infty\). In other words, \(h_1\) and \(h_2\) are each possible with respect to the other.
 \end{definition}
 
 \begin{theorem}
-The relationship of mutually possible events is an \textit{equivalence relation}, being reflexive, symmetric and transitive.
+Mutually possibility is an \textit{equivalence relation}, being reflexive, symmetric and transitive.
 \end{theorem}
 
 \begin{proof}
-For reflexive, \(P(h_1, h_1) = 1\) by the identity axiom.
 
-For symmetric, \(P(h_1, h_2) = P(h_2, h_1)^{-1}\), which means that each can be in \(\{0, \infty, \ast\}\) if and only if the other is as well.
+Reflexive: \(P(h_1, h_1) = 1\) by the identity axiom.
 
-For transitive, use the composition axiom which states that \(P(h_1, h_3) :\cong P(h_1, h_2) \cdot P(h_2, h_3)\). If the last 2 values are positive and finite, then their product is also positive and finite.
+Symmetric: \(P(h_1, h_2) = P(h_2, h_1)^{-1}\), which means that each can be in \(\{0, \infty, \ast\}\) if and only if the other is as well.
+
+Transitive: use the composition axiom which states that \(P(h_1, h_3) :\cong P(h_1, h_2) \cdot P(h_2, h_3)\). If the last 2 values are positive and finite, then their product is also positive and finite.
 \end{proof}
 
 \begin{definition}
 \label{def:totally_mutually_possible}
-A relative probability function is called \textit{totally mutually possible} if all of its outcomes\footnote{Note that this one of the few definitions that cannot later be upgraded from outcomes to events. The empty event \(e = \{\}\) for example will be impossible with respect to any outcome by theorem \ref{thm:empty_event_impossible}.} are mutually possible.
+An RPF is \textit{totally mutually possible} if all of its outcomes\footnote{Note that this one of the few definitions that cannot later be upgraded from outcomes to events. The empty event \(e = \{\}\) for example will be impossible with respect to any outcome by theorem \ref{thm:empty_event_impossible}.} are mutually possible - and therefore all anchors.
 \end{definition}
 
-In a totally mutually possible RPF, every outcome is an anchor because it will have a \(>0\) probability compared to every other outcome.
-
-It is helpful to make diagrams of possibility and impossibility through a \textit{directed graph}. In these graphs, each outcome is represented by a point, and an arrow from A to B means that B is possible with respect to A. A bidirectional arrow means that A and B are mutually possible. Totally mutually possible RPFs have a simple diagram where all the outcomes are completely connected as in figure \ref{fig:mutually_possible_rpf}.
+It is helpful to make diagrams of possibility and impossibility through a \textit{directed graph}. In these graphs, each outcome is represented by a point, and an arrow from A to B means that B is possible with respect to A. A bidirectional arrow means that A and B are mutually possible. Totally mutually possible RPFs have a simple diagram where all the outcomes are connected as in figure \ref{fig:mutually_possible_rpf}.
 
 \begin{figure}[h]
 \centering
@@ -780,7 +783,7 @@ If we consider a possibility relationship with respect to the equivalence classe
 
 \end{tikzpicture}
 }
-\caption{A diagram of an anchored RPF with its mutually possible classes. The anchor class is the maximal class in the partial order. It is shaded.}
+\caption{A diagram of an anchored RPF with its mutually possible classes. The anchor class (shaded) is the maximal class in the partial order.}
 \label{fig:anchored_rpf}
 \end{figure}
 
@@ -873,7 +876,7 @@ If we consider a possibility relationship with respect to the equivalence classe
 Finally, we look at totally comparable RPFs, where the graph of mutually possible components is a straight line (see figure \ref{fig:totally_comparable_rpf}).
 
 \begin{theorem}
-If an RPF is totally comparable, then the equivalance classes of mutually possible outcomes are \textit{totally ordered}. That is, each member of an equivalence class of outcomes is comparable to each member of another class with that comparison always being 0 or \(\infty\).
+If an RPF is totally comparable, then the equivalance classes of mutually possible outcomes are \textit{totally ordered}. That is, the relative probability of outcomes from one class with respect to outcomes from another are always the same, and are either 0 or \(\infty\).
 \end{theorem}
 
 \begin{proof}
@@ -1247,7 +1250,7 @@ P_c(h_1, h_2) &= \left(\frac{pK[h_1 = h_1] + 1-p}{pK[h_2 = h_1] + 1-p}\right)^{c
 Because the prior is uniform, the posterior is just equal to the likelihood.
 \[P(h_1, h_2 | c) = P_c(h_1, h_2) \cdot P(h_1, h_2) = \left(1 + \frac{pK}{1-p}\right)^{c_{h_1} - c_{h_2}} \]
 
-We now have an insight! The relative probability between two hypotheses is exponential on the difference between their counts. Formulating these problems in terms of relative probability often lead to easily interpretable results, even before converting into absolute probability (if that is even required). Using a different prior would be as easy as appending an additional term to the formula for \(P(h_1, h_2|c)\).
+We now have an insight: the relative probability between two hypotheses is exponential on the difference between their counts. Formulating these problems in terms of relative probability often lead to easily interpretable results, even before converting into absolute probability (which may not be required). Using a different prior would be as easy as appending an additional term to the formula for \(P(h_1, h_2|c)\).
 
 \section{Topology and Limits in Relative Probability Space}
 \label{section:topology}
@@ -1258,288 +1261,72 @@ This effort caps off a significant argument in favor of totally comparable RPFs.
 
 There is some background in topology\footnote{See Mendelson (1990) \cite{mendelson} and Bradley et al. (2020) \cite{bradley} for texts with formal definitions and theorems.} required for this section.
 
-\subsection{RPF Space and Compactness}
-
-Because the set of absolute distributions is embedded in \(\mathbb{R}^K\), its topological properties are well understood. The simplex is closed, bounded, and compact. Practically, this means that any sequence of points on the simplex will converge to one or more points on the simplex allowing both pure and applied practicioners to talk about limit and boundary conditions.
-
-This strategy fails for relative probabilities, because there is no obvious way to embed an RPF into euclidean space\footnote{Though it may be possible! See section \ref{section:euclidean_embedding}}. The relative probability space is more complicated, because at the corners and edges of the simplex lurk entire subspaces where zero-probability outcomes are still being compared in different ways.
+\subsection{Relative Probability Spaces}
 
 \begin{definition}
 \(\text{RPF}^{\ast}(K)\) is the set of relative probability functions of size K (where \(\Omega = \{0, 1, ..., K - 1\}\)). Likewise \(\text{RPF}(K)\) is the set of all totally comparable RPFs of size K.
 \end{definition}
 
-If the \(\text{RPF}(K)\) is compact, then information about the relative probabilites of events are preserved even as they approach zero relative to another event.
+Because the set of absolute distributions with \(|\Omega| = K\) is embedded in \(\mathbb{R}^K\) as seen in figure \ref{fig:simplex}, its topological properties are well understood. The simplex is closed, bounded, and compact.
 
-In order to prove compactness, we first must define a \textit{topology} on \(\text{RPF}(K)\). This starts with finding a \textit{basis of open sets}.
+For relative probability distributions, there is no obvious way to embed it into K-dimentional euclidean space\footnote{Though it may be possible! See section \ref{section:euclidean_embedding}}. The relative probability space is more complicated, because at the corners and edges of the simplex lurk entire subspaces where zero-probability outcomes are still being compared in different ways.
 
-The notion of an open set changes when a topological space is restricted to a lower dimention. For example, on the real number line \(\mathbb{R}\), we take the open interval (0, 1) as an open set. However, once this is embedded into \(\mathbb{R}^2\), it is now a line segment in a plane and no longer open (see figure \ref{fig:sub_topology}). It can be thought of as the restriction of an open set on \(\mathbb{R}^2\) to \(\mathbb{R}\). For example, the set \(\{(x, y): x \in (0, 1)\;  \text{and}\;  y \in (-\epsilon, +\epsilon)\}\) given an \(\epsilon > 0\) is such an open set on \(\mathbb{R}^2\).
+Fortunately, the set of all RPFs can still be embedded into a much larger euclidean space. Any \(P\) in \(\text{RPF}(K)\) is a function of type \(\Omega \times \Omega \rightarrow \mathbb{M}\) that satisfies the fundamental properties. Therefore \(\text{RPF}(K)\) can at least be embedded into \(\mathbb{M}^{K^2}\).
 
-\begin{figure}[h]
-\centering
-\resizebox{0.4\textwidth}{!}{
-\begin{tikzpicture} %episilon diagram
-\draw[<->] (-0.7,0)--(5,0) node[right] {\(x\)};
-\draw[<->] (0,-1,0)--(0,1) node[above] {\(y\)};
-\draw[densely dashed,red,thick] (0,-0.5) rectangle (4.5,0.5);
-\draw[draw=blue,thick] (0,0) circle (2pt) node[above left=-0.1,font=\ttfamily\tiny] {0};
-\draw[draw=blue,thick] (4.5,0) circle (2pt) node [above right=-0.1,font=\ttfamily\tiny] {1};
+A topology can be defined by as \textit{basis of open sets}, and for euclidean space (and metric spaces more generally) the basis is the set of open balls on \(\mathbb{R}^n\).
 
-\node[left=-0.05,font=\ttfamily\footnotesize] at (0,-0.5) {\(-\varepsilon\)};
-\node[left=-0.05,font=\ttfamily\footnotesize] at (0,0.5) {\(\varepsilon\)};
-\node[circle,inner sep=1pt] at (0,0) (0){};
-\node[circle,inner sep=1pt] at (4.5,0) (1){};
-\path[draw,blue,thick] (0)--(1);
-\end{tikzpicture}
-}
-\caption{The small box that is the interior of the dotted rectangle is an open set in \(\mathbb{R}^2\), and therefore its restriction to \(\mathbb{R}\) - the line segment - is an open set in \(\mathbb{R}\). But the line segment is not open in \(\mathbb{R}^2\).}
-\label{fig:sub_topology}
-\end{figure}
+\begin{definition}
+An open ball of size \(\epsilon\) around point \(x \in \mathbb{R}^n\) is the set of all points y such that \(|x - y| < \epsilon\).
+\end{definition}
 
+Open balls do not work as a basis on the set \(\mathbb{M}\) because an open ball around \(\infty\) would contain only \(\infty\) - when in reality we want an open set around \(\infty\) to also contain some interval \((y, \infty]\). This is remedies by using the following transformation, which we take to be continuous (or conserve the topology between \(\mathbb{M}\) and \([0, 1]\).
 
-Likewise, an open set on a relative probability space restricted on several outcomes might not be an open set on the relative probability spaces for all of \(\Omega\).
+\begin{definition}
+The \textit{inverse odds transform} is the function \(\text{odds}^{-1}: \mathbb{M} \rightarrow [0, 1]\) with \(\text{odds}^{-1}(0) = 0\) and \(\text{odds}^{-1}(\infty) = 1\) defined by
+\[\text{odds}^{-1}(x) = \frac{x}{x + 1}\]
+\end{definition}
 
-We start by looking at RPFs with \(K = 2\). Fortunately, we find a totally comparable RPF that corresponds 1:1 with the magnitude space.
+The inverse odds transformation establishes \(\mathbb{M}\) as topologically equivalent to the closed interval \([0, 1]\). Now \(\text{RPF}(K)\) can be embedded into a bounded region of euclidean space, namely \([0, 1]^{K^2}\).
+
+There are other ways to define a topology on \(\text{RPF}^K\). One in particular using compositions of open patches was discarded due to its complexity during the course of this research, but its usefulness is dubious\footnote{It will be posted separately as an addendum in case that assessment turns out to be incorrect}.
+
+\subsection{Limit Points and Compactness}
+
+We now close with an argument for the closure of \(\text{RPF}^{\ast}(K)\) under limits.
+
+\begin{definition}
+A \textit{limit point} of a set \(A\) is a point \(x\) such that any open set containing \(x\) also contains points in \(A\). Equivalently for euclidean space, any open ball containing \(x\) also intersects with \(A\).
+\end{definition}
 
 \begin{theorem}
-Let \(\Omega = \{h_1, h_2\}\) have two elements, with relative probability function \(P\). Then, \(P\) is completely determined by \(P(h_1, h_2)\).
+\label{thm:rpf_closed}
+Let \(P\) be a \textit{limit point} of \(\text{RPF}(K)\). Then \(P\) satisfies all of the fundamental axioms and is therefore a member of \(\text{RPF}(K)\).
 \end{theorem}
 
 \begin{proof}
-Let \(q = P(h_1, h_2)\). By the inverse symmetric property, \(P(h_2, h_1) = q^{-1}\). These values completely determine \(P\) on the outcome level.
+Let \(P\) be a limit point of \(\text{RPF}(K)\). We can show that for each fundamental axiom, if \(P\) doesn't satisfy the axiom then some open ball around \(P\) also doesn't satisfy the axiom.
+
+Identity: If \(P\) doesn't satisfy the identity axiom, then \(P(h, h) \neq 1\) for some outcome \(h\). The inverse odds transform maps the value \(1\) to \(\frac{1}{2}\), so a choice of \(\epsilon\) less than \(|\text{odds}^{-1}(P(h, h)) - \frac{1}{2}|\) will contain only elements \(P'\) where \(P'(h, h) \neq 1\).
+
+Inverse: A similar argument applies here if for some pair \(h_1\) and \(h_2\), \(P(h_1, h_2) \neq P(h_1, h_2)\). An \(\epsilon\) can be selected that is small enough so that \(P(h_1, h_2)\) is never equal to \(P(h_1, h_2)\)
+
+Composition: Suppose \(P(a, c) :\ncong P(a, b) \cdot P(b, c) \). This means that the constraint cannot be \(\ast\) by lemma \ref{wild_prop_2}, so by lemma \ref{wild_prop_1} we can conclude that \(P(a, c) \neq P(a, b) \cdot P(b, c) \). But then again, the same argument from identity and inverse apply; for some sufficiently small \(\epsilon\)-ball around \(P\), the composition axiom will still always be false.
+
+This means that only functions \(P\) which satisfy the fundamental axioms can be limit points to \(\text{RPF}(K)\), and therefore \(\text{RPF}(K)\) contains all its limit points.
 \end{proof}
 
-This gives us both a topology and a compactness proof for K = 2 for free because \(\text{RPF}(2)\) is isomorphic to \(\mathbb{M}\) which already has a natural topology. Its basis for open sets are the open intervals of \(\mathbb{B}\), including those intervals that include 0 and \(\infty\). For \(K > 2\), we will need more powerful tools.
+As a bonus, we can prove that \(\text{RPF}(K)\) is compact thanks to the Heine-Borel theorem, stated as follows (wording from Bradley \cite{bradley}).
 
-\subsection{Open Patches}
-
-We now develop a notion of open patches, which will be a basis of open sets on the space \(\text{RPF}(K)\).
-
-\begin{definition}
-An \textit{interior open patch} of \(\text{RPF}(K)\) is one of the following:
-
-\begin{enumerate}
-  \item If \(K = 2\), a subset parameterized by an interior open interval of magnitudes. \(\{P | a < P(h_1, h_2) < b\}\) for some \(a, b \in \mathbb{M}\) 
-  \item If \(K > 2\), a composition of interor patches with composing function \(P_{\top}\) also being an interior patch.
-\end{enumerate}
-\end{definition}
-
-Interior open patches contain only totally mutually possible functions as illustrated in figure \ref{fig:interior_open_patch}.
-
-\begin{figure}[h]
-\centering
-\resizebox{0.4\textwidth}{!}{
-\begin{tikzpicture}
-\node {\(P_\top\)} [sibling distance = 3cm]
-  child {node {\(P_0\)}  [sibling distance = 3cm]
-    child {node {A}}
-    child {node {B}}
-  }
-  child {node  {C}};
-\end{tikzpicture}
-}
- \hspace{3em}
-\resizebox{0.4\textwidth}{!}{
-\begin{tikzpicture} %Triangle 3
-\draw[thick, dashed,red] (0,{2*sqrt(3)})--(1,0) node [font=\tiny\bf] {)};
-\draw[thick, dashed,red] (0,{2*sqrt(3)})--(0,0) node [font=\tiny\bf] {(};
-\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (0,1.2)--(0.66,1.2)--(0.43,2)--(0,2)--cycle;
-
-\node[rectangle,rotate=45,draw=none,pattern=crosshatch, pattern color=darkgreen] at (1.2,3) (P){};
-
-\node(Q)[rectangle,draw=none,align=center,below right=-0.3 and 0.1 of P,font=\ttfamily\footnotesize] {Interior Open\\ Patch};
-
-\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
-
-\node (A) at (-2,0) [below] {\(A\)}; 
-\node (B) at (2,0) [below] {\(B\)}; 
-\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
-
-\draw[thick, dashed,red] (0.8,2)--(-3,2) node[font=\tiny\bf,rotate=90] {)};
-\draw[thick, dashed,red] (1.2,1.2)--(-3,1.2) node[font=\tiny\bf,rotate=90] {(};
-
-\draw[thick, dashed,red] (1,-0.1)--(1,-0.9);
-\draw[thick, dashed,red] (0,-0.1)--(0,-0.9);
-
-\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
-
-\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (1,-1) {)}
-node[red,font=\tiny\bf] at (0,-1) {(};
-\end{tikzpicture}
-}
-\caption{An interior open patch captures a contiguous set inside the probability simplex. Above is an example of a composite probability distribution where the diagram on the left shows how \(P_\top\) and \(P_0\) are composed, and the right shows how the interior segments on both interact to form a patch. }
-\label{fig:interior_open_patch}
-\end{figure}
-
-\begin{definition}
-A \textit{facet\footnote{A facet of a simplex is a subset where one parameter is equal to zero - equivalent to a face on a 3D object.} patch} of \(\text{RPF}(K)\) is one of the following:
-
-\begin{enumerate}
-  \item If \(K = 2\), an interval of the form \(\{P | 0 < P(h_1, h_2) < a\}\) for some \(a \in \mathbb{M}\) 
-  \item If \(K > 2\), a composition where \(P_{\top}\) is drawn from an interior open patch, and all but one of the components are drawn from interior open patches. The final component - the \textit{facet component} - is itself drawn from a facet patch.
-\end{enumerate}
-\end{definition}
-
-\begin{definition}
-An \textit{exterior open patch} is a one of the following:
-
-\begin{enumerate}
-  \item A facet patch.
-  \item A composition where \(P_{\top}\) is a facet patch. The \textit{facet component} is itself drawn from any open patch, and all the other components are drawn from interior open patches.
-\end{enumerate}
-\end{definition}
-
-As seen in figure \ref{fig:exterior_open_patch}, exterior open patches touch the hyperfaces (facets) of the simplex as well as the vertices and edges.  As the number of dimentions increases and the composition diagram changes, more permutations are possible.
-
-\begin{figure}[h]
-\centering
-\resizebox{0.3\textwidth}{!}{
-\begin{tikzpicture} %Triangle 2
-\draw[thick, dashed,red] (0,{2*sqrt(3)})--(-1,0) node [font=\tiny\bf] {)};
-\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (-1.3,1.2)--(-0.66,1.2)--(-0.43,2)--(-0.86,2)--cycle;
-
-\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
-
-\node (A) at (-2,0) [below] {\(A\)}; 
-\node (B) at (2,0) [below] {\(B\)}; 
-\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
-
-\draw[thick, dashed,red] (0.8,2)--(-3,2) node[font=\tiny\bf,rotate=90] {)};
-\draw[thick, dashed,red] (1.2,1.2)--(-3,1.2) node[font=\tiny\bf,rotate=90] {(};
-
-\draw[thick, dashed,red] (-1,-0.1)--(-1,-0.9);
-\draw[thick, darkgreen] (-1.3,1.2)--(-0.85,2);
-
-\draw[draw=darkgreen] (-1.3,1.2) circle (2pt);
-\draw[draw=darkgreen] (-0.85,2) circle (2pt);
-
-\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
-
-\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (-1,-1) {)};
-\end{tikzpicture}
-}
-\resizebox{0.3\textwidth}{!}{
-\begin{tikzpicture} %Triangle 1
-\draw[thick, dashed,red] (0,{2*sqrt(3)})--(-1,0) node [font=\tiny\bf] {)};
-\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (-0.36,2.2)--(0,{2*sqrt(3)})--(-0.75,2.2)--cycle;
-
-\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
-
-\node (A) at (-2,0) [below] {\(A\)}; 
-\node (B) at (2,0) [below] {\(B\)}; 
-\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
-\draw[thick, dashed,red] (0.8,2.2)--(-3,2.2) node[font=\tiny\bf,rotate=90] {(};
-\draw[thick, dashed,red] (-1,-0.1)--(-1,-0.9);
-\draw[thick, darkgreen] (-0.73,2.2)--(0,{2*sqrt(3)});
-
-\draw[draw=darkgreen] (-0.73,2.2) circle (2pt);
-
-\draw[draw=darkgreen] (0,{2*sqrt(3)}) circle (2pt);
-
-\fill[darkgreen] (0,{2*sqrt(3)}) + (0, 2pt) arc (90:270:2pt);
-
-\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
-
-\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (-1,-1) {)};
-\end{tikzpicture}
-}
-\resizebox{0.3\textwidth}{!}{
-\begin{tikzpicture} %Triangle 1
-\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (0.36,2.2)--(0,{2*sqrt(3)})--(0,2.2)--cycle;
-
-\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
-
-\node (A) at (-2,0) [below] {\(A\)}; 
-\node (B) at (2,0) [below] {\(B\)}; 
-\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
-\draw[thick, dashed,red] (0.8,2.2)--(-3,2.2) node[font=\tiny\bf,rotate=90] {(};
-
-\draw[draw=darkgreen] (0,{2*sqrt(3)}) circle (2pt);
-
-\fill[darkgreen] (0,{2*sqrt(3)}) + (0, 2pt) arc (90:270:2pt);
-
-\draw[thick, dashed,red] (0,{2*sqrt(3)})--(1,0) node [font=\tiny\bf] {)};
-\draw[thick, dashed,red] (0,{2*sqrt(3)})--(0,0) node [font=\tiny\bf] {(};
-
-\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
-\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)};
-
-\draw[thick, dashed,red] (1,-0.1)--(1,-0.9);
-\draw[thick, dashed,red] (0,-0.1)--(0,-0.9);
-
-\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)}
-node[red,font=\tiny\bf] at (1,-1) {)}
-node[red,font=\tiny\bf] at (0,-1) {(};
-\end{tikzpicture}
-}
-\caption{Exterior open patches. On the left is the facet patch, because it only touches a side (facet) of the simplex and not a corner. In the center is an exterior open patch where the facet component \(P_0\) is itself a facet patch (touching an edge and a corner), and on the right is an exterior open patch that touches a corner only because \(P_0\) is an interior open patch. Note that the point containing the corner at \(C\) in the middle and third diagram is only half filled because the patch contains some values where \(P(C) = 1\) and not others, depending on the relative probability between \(A\) and \(B\).}
-\label{fig:exterior_open_patch}
-\end{figure}
-
-\begin{definition}
-An \textit{open patch} is a subset of \(\text{RPF}(K)\) that is either an interior or exterior open patch.
-\end{definition}
-
-Now let the open patches be the bases for an open set thus defining a topology on \(\text{RPF}(K)\).
-
-\begin{definition}
-An \textit{open set} of \(\text{RPF}(K)\) is any (potentially infinite) union of open patches on \(\text{RPF}(K)\), or any finite intersection of open patches on \(\text{RPF}(K)\).
-\end{definition}
-
-\subsection{Compactness}
-
-The compactness proof for \(\text{RPF}(K)\) will be sketched here for brevity. First, we need a few lemmas.
-
-\begin{lemma}
-\label{lem:withhold_possible_outcome}
-Let \(h\) be an outcome, and let q be a number such that \(0 < q \leq 1\). The region of \(\text{RPF}(K)\) where the \(P(h) = q\) is isomorphic to \(\text{RPF}(K-1)\).
-\end{lemma}
-
-\begin{proof}
-If \(P(h) > 0\) then it is in the anchored equivalence class of mutually possibility. If \(P(h) = 1\) then the outcome \(h\) can be appended above any function in \(\text{RPF}(K - 1)\), and if \(P(h) < 1\) then \(h\) can be appended into the anchored equivalence class of any function in \(\text{RPF}(K-1)\). In both cases, a separate \(h\) with a given absolute probability can be appended to anything in \(\text{RPF}(K-1)\) to produce an element of \(\text{RPF}(K)\), with all elements of \(\text{RPF}(K)\) accounted for.
-\end{proof}
-
-\begin{lemma}
-\label{lem:change_one_anchor_outcome}
-Let \(h\) be an outcome, and let \(P(h) > 0\). Given a number \(0 < q \leq 1\), there is a unique RPF \(P'\) which is equal to \(P\) when evaluated on outcomes \(\neq h\) and such that \(P'(h) = q\).
-\end{lemma}
-
-\begin{proof}
-This will be a proof by construction. Let \(P'\) be the new distribution where \(h\) remains an anchor outcome, but its absolute probability has been changed to \(q\). For any anchor outcome \(a\), we set \(P'(a, h) = P(a, h) \cdot q \cdot P(a)^{-1} \)
-
-For any non-anchor outcome \(b\), we note that \(P(b, h) = 0\) and therefore also \(P'(b, h) = 0\), otherwise \(b\) would now be possible relative to other anchors where it wasn't before.
-\end{proof}
-
-\begin{lemma}
-\label{lem:open_anchor_outcome}
-Let \(h\) be an outcome, and let \(P(h) > 0\). Any open patch of \(\text{RPF}(K)\) that contains \(P\), also contains, for some open interval on \(\mathbb{M}\) containing \(P(h)\), all the values \(P'\) constructed through lemma \ref{lem:change_one_anchor_outcome} by setting \(P'(h) = q\) for any \(q\) in that open interval.
-\end{lemma}
-
-\begin{proof}
-TODO
-\end{proof}
-
-\begin{theorem}
-\(\text{RPF}(K)\) is \textit{compact}, meaning that for every open cover of it, there is a finite subcover.
+\begin{theorem}[Heine-Borel Theorem]
+A subset of \(\mathbb{R}^n\) is compact if and onely if it is closed and bounded.
 \end{theorem}
 
-We will provide a sketch for the compactness proof here.
+\begin{theorem}
+\(\text{RPF}(K)\) is compact.
+\end{theorem}
 
 \begin{proof}
-This is an inductive proof where we assume that the theorem is true for all \(k < K\) and then prove that it is true for \(K\).
-
-If \(K \in {0, 1}\) then \(\text{RPF}(K)\) is finite and singular (either the empty RPF or unit RPF respectively). These are obviously compact. If \(K = 2\) then we have the topology of \(\mathbb{M}\) which is also compact (thanks to the \(\infty\) element).
-
-Now we assume that \(K > 2\).
-
-Consider the region of \(\text{RPF}(K)\) where a specific outcome is required to be the largest (or possibly ties for largest). In other words, for this special outcome \(h\), look at the region of \(\text{RPF}(K)\) where \(P(h', h) \leq  1\) for any other outcome \(h'\). There is one region for every outcome - \(K\)such regions overall - and collectively they cover \(\text{RPF}(K)\) but they are not disjoint. In fact, the uniform distribution belongs to all \(K\) regions!
-
-If we can show that an open cover on \(\text{RPF}(K)\) has a finite subcover on a region, then it must have a finite subcover overall because there are a finite number of regions.
-
-So consider one such region, and let \(h\) be the largest outcome from that region. \(h\) is an anchor element, which means that \(P(h, h') > 0\) for all \(h'\) when in fact it is \(\geq 1\). If \(P(h) = q\), then we know that \(\frac{1}{k} \leq q \leq 1\). By lemma \ref{lem:withhold_possible_outcome}, the rest of the distribution is isomorphic to \(\text{RPF}(K - 1)\) - and therefore compact by our inductive assumption. Therefore, there is a finite subcover covering all elements where \(P(h) = q\).
-
-By lemma \ref{lem:open_anchor_outcome}, finite subcover will not just include cases where \(P(h) = q\), but will hold for some open interval around q as well.
-
-So for each q where \(\frac{1}{K} \leq q \leq 1\), we have a finite subcover, with each subcover covering some open set around q. Because \([\frac{1}{K}, 1]\) is compact, all of these open sets around q have a finite subcover for the whole segment. This means that only finitely many of these q-based subcovers are required, and with each one being finite we have finitely many open sets for the entire region where \(h\) is the largest outcome.
+Theorem \ref{thm:rpf_closed} states that \(\text{RPF}(K)\) is closed, and by the odds transform it is also bounded. Therefore, by the Heine-Borel Theorem, it is compact.
 \end{proof}
 
 \section{Future Work}
