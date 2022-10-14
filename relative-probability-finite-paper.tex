@@ -140,7 +140,7 @@ This is an incomplete draft/outline of an upcoming paper. Please do not share
 The foundations of probability theory are still very much open to explore!
 
 Since Kolmogorov published the standard axioms for probability\cite{kolmogorov} in 1933, there have been calls to alter them for various applications. In Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justifications.
-One area of \quotes{discontentment} concerns conditional probability. We often want to identify the probability of event A given event B - or \(P(A|B)\) - but can this be done if \(B\) has probability zero\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution.}?
+One area of \quotes{discontentment} concerns conditional probability. We often want to identify the probability of event A given event B - or \(P(A|B)\) - but can this be done if \(B\) has probability zero\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution. November\ref{november} gave a more recent philosophical treatment of this phenomenon.}?
 
 We are out of luck with the Kolmogorov model, which defines \(P(A|B)\) as the ratio \(\frac{P(A \cap B)}{P(B)}\). When \(P(B) = 0\), the indeterminate form \(\frac{0}{0}\) appears leaving the conditional probability undefined. This will happen whenever one wishes to compare two events that each have an overall probability of zero.
 
@@ -150,19 +150,23 @@ Let us then model probability in a non-standard way, which we can do so as long 
 
 This improves on the Kolmogorov model - that starts with an absolute probability function - by solving both the conditional probability question and giving rise to new objects to study. Furthermore, the model fits nicely into many modern frameworks such as category theory and bayesian distribution sampling.
 
-\subsection{Goals}
+\subsection{Previous Work and Goals}
 
-The relative approach to probability has many properties that practitioners will find attractive. For one, most sampling algorithms in Bayesian inference (from Markov Chains to the no U-Turn Sampler) rely on relative probability alone to search for optimal parameters. 
+Leading probability theorists in the twentieth century have developed axiomatic systems for conditional probability, notably Renyi\cite{renyi}. Kohlberg and Reny\cite{kohlberg} introduced the idea of relative probability and applied it to game theory. Heinemann\cite{heinemann} further developed the idea of \textit{relative probability measures} along with their axioms and definitions, and found applications in bayesian inference and economics\cite{heinemann_econ}.
 
-As a proof of concept, we will construct a theory of relative probability on finite distributions. By omitting infinite distributions, we temporarily set aside the concepts of measurable sets and countable additivity\footnote{In the textbook Invitation to Discrete Mathematics, Matoušek et al. write \quote{By restricting ourselves to finite probability spaces we have simplified the situation considerably... A true probability theorist would probability say that we have excluded everything interesting.}}. This work will demonstrate that even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental definitions, which we will construct without the distractions of infinite and continuous outcome spaces.
+This work will expand on the idea of relative probability in several ways.
 
-We then derive a new form of Bayes rule that uses only relative probability. This new form will simplify the formulas for specific distributions in the bayesian framwork.
+First, as a proof of concept, we will construct a theory of relative probability on finite distributions. By omitting infinite distributions, we temporarily set aside the concepts of measurable sets and countable additivity\footnote{In the textbook Invitation to Discrete Mathematics, Matoušek et al. write \quote{By restricting ourselves to finite probability spaces we have simplified the situation considerably... A true probability theorist would probability say that we have excluded everything interesting.}}. This work will demonstrate that even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental definitions, which we will construct without the distractions of infinite and continuous outcome spaces.
 
-Finally, we discuss a critical feature of relative probability functions,
-which is their ability to retain information when taking limits. To that end, we delve into the topology of the relative probability space, and finish with a proof of its compactness.
+Our focus on probability at the outcome level will lead us to separate out three funamental axioms of relative probability from those related to summation and measurability. These fundamental axioms establish relative probability as a thin category on an outcome space, ultimately provide a bridge to category theory.
 
-\subsection{Previous Work}
-Mention the work of heinemann\cite{heinemann} and previous work on condition probability spaces.
+Second, we will categorize the various patterns and states that arise when dealing with relative probability, including total comparability, possibility classes, and anchor outcomes. 
+
+Third, we focus on the computational properties of bayesian inference on relative probabilities. The relative probability function will simplify the formulas for specific distributions in the bayesian framwork. We introduce the notion of the indeterminate wildcard value, which will inevitably arise when relative probability is inferred on messy, real world data. We discuss ways in which the relative probability concept can be applied to code and data structures.
+
+Finally, we discuss the ability of relative probability functions to retain information when taking limits.
+
+Ultimately, practicioners will find these features of relative probability attractive. Its sphere of application could easily be expanded beyond game theory and theoretical probability into fields like machine learning and category theory. This paper aspires to provide foundational analysis that future researchers need to expand that sphere.
 
 \section{Preliminaries}
 \subsection{Magnitude Space}
@@ -700,6 +704,7 @@ Theorem \ref{thm:absolute_prob_formula} states that \(P(h_1, h_2) :\cong \frac{P
 \end{proof}
 
 \subsection{Possibility Classes}
+\label{section:possibility_classes}
 
 In order to analyze the general case of RPFs, we need to consider classes of mutual possibility.
 
@@ -1159,7 +1164,9 @@ Therefore, if any of these conditions are broken, \(P\) is \textbf{not} totally 
 
 \section{Bayesian Inference on Relative Distributions}
 
-A relative probability function represents a belief over the set of potential hypotheses in \(\Omega\).
+A relative probability function represents a belief over the set of potential hypotheses in \(\Omega\). Bayesian inference on RPFs is the process of updating these beliefs given new data. The initial RPF is called the \textit{prior} and the updated RPF is called the \textit{posterior}. In many applications, the work is not finished once a formula for the posterior is computed. The practitioner might then want to search the hypothesis space \(\Omega\) for a model that is either optimal (\textit{maximum a posteriori}) or very good with respect to the posterior distribution. They might also wish to randomly sample one or more values \(h \in \Omega\) weighted according to the posterior.
+
+Almost all of these sampling and search algorithms rely exclusively on an iterative algorithm using the relative probability of a current state and certain nearby states\footnote{Examples include hill climbing, simulated annealing, Newton-Raphson, Markov Chain Monte Carlo, and the No U-Turn sampler. The role of these algorithms in supervised machine learning has been previously discussed by Local Maximum Labs in \quotes{Sampling Bias Correction for Supervised Machine Learning\cite{sklar_bias}}}. Because relative probability simplifies bayes rule and is ideal for many sampling and selection algorithms, statisticians and engineers should consider using the RPF framework for these purposes.
 
 Start with the Bayesian inference formula for conditional probability for \(h \in \Omega\) assuming that we recieve data \(D\).
 
@@ -1251,6 +1258,29 @@ Because the prior is uniform, the posterior is just equal to the likelihood.
 \[P(h_1, h_2 | c) = P_c(h_1, h_2) \cdot P(h_1, h_2) = \left(1 + \frac{pK}{1-p}\right)^{c_{h_1} - c_{h_2}} \]
 
 We now have an insight: the relative probability between two hypotheses is exponential on the difference between their counts. Formulating these problems in terms of relative probability often lead to easily interpretable results, even before converting into absolute probability (which may not be required). Using a different prior would be as easy as appending an additional term to the formula for \(P(h_1, h_2|c)\).
+
+\subsection{Digital Representation}
+
+Even if an inference problem starts with a mutually possible distribution, it could end up anywhere in the RPF chart in figure \ref{fig:flow_chart}. How can we represent an RPF digitally in a data structure that could account for all of these various possibilities?
+
+The analysis in section \ref{section:possibility_classes} on mutual possibility classes provides a good framework for this. Every outcome is a member of a mutual possibility class, and has a relative probability within that class.
+
+In addition, we need maintain a partial order of all the mutual possibility classes. The data structure for this purpose could be as simple as listing the outbound edges for each class (illustrated by the graphs in figures \ref{fig:anchored_rpf}, \ref{fig:unanchored_rpf}, and \ref{fig:totally_comparable_rpf}). There needs to be a method to compare two classes, and the comparison will return one of four values: greater, lesser, equal, or uncomparable - or in numerical terms \(\{\infty, 0, 1, \ast\}\).
+
+Each comparison might require a traversal of the mutual possibility graph which could get expensive in certain situations. The choice of data structure for partial orders comes with tradeoffs. For small outcome spaces, this question is negligible and graph traversal will usually be adequate. When bayesian inference is performed, the mutual possibility classes will sometimes need to be split up - either vertically as some items in a class become impossible with respect to others - or horizonally as they become uncomparable. The data structure should be able to account for this as well.
+
+Let \(\Omega\) be the outcome space, and let \(C\) be the set of mutually possible classes on \(\Omega\) with respect to the RPF. We maintain three functions 
+
+\begin{itemize}
+\item \(\alpha: \Omega \rightarrow C\) assigns outcomes to possibility classes.
+\item \(\ell: \Omega \rightarrow (-\infty, \infty)\) provides a log value for an outcome within its mutual possibility class. This allows us to use the full range of floating point numbers available on our machine.
+\item \(Q: C \times C \rightarrow \{\infty, 0, 1, \ast\}\) compares two probability classes.
+\end{itemize}
+
+From these, we can compute the value of an RPF with the following formula:
+\[P(h_1, h_2) = Q(\alpha(h_1), \alpha(h_2)) \cdot e^{\ell(h_1) - \ell(h_2)}\]
+
+The simplest RPF to represent in this form is the uniform RPF. In this case, there is a single possibility class so \(C = \{0\}\), and \(\ell\) is constant so it can be set as \(\ell(h) = 0\). No data is needed for Q because it has an identity rule where \(Q(0, 0) = 1\). In fact, Q is itself an RPF on C where instead of providing values in \(\mathbb{M}^{\ast}\) it provides values in the subspace \(\{\infty, 0, 1, \ast\}\).
 
 \section{Topology and Limits in Relative Probability Space}
 \label{section:topology}
@@ -1432,8 +1462,12 @@ It is also possible to hack a metric space for \(\text{RPF}(K)\) by assigning di
 \bibitem{ieee}Kahan, W. (1996). IEEE standard 754 for binary floating-point arithmetic. Lecture Notes on the Status of IEEE, 754(94720-1776), 11.
 \bibitem{kolmogorov}A. N. Kolmogorov. Foundations of the Theory of Probability. Chelsea Publishing Company, New York
 (1956). 
+\bibitem{renyi}Rényi, A. (1955). On a new axiomatic theory of probability. Acta Mathematica Hungarica, 6(3-4), 285-335.
 \bibitem{heinemann}Heinemann, F. (1997). Relative Probabilities. Working paper, http://www. sfm. vwl. uni-muenchen. de/heinemann/publics/relative probabilities-intro. htm.
+\bibitem{heinemann_econ}Heinemann, F. (1995). Closing Economic Models by Information Assumptions. Inst. für Volkswirtschaftslehre u. Statistik d. Univ. Mannheim.
+\bibitem{november}November, D. D. (2018). Zero Probability.
 \bibitem{discrete}Matoušek, J., \& Nešetřil, J. (2008). Invitation to discrete mathematics. OUP Oxford.
+\bibitem{kohlberg}Kohlberg, E., \& Reny, P. J. (1997). Independence on relative probability spaces and consistent assessments in game trees. Journal of Economic Theory, 75(2), 280-313.
 
 \end{thebibliography}
 
