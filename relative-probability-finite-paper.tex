@@ -129,7 +129,7 @@
 \thispagestyle{empty}
 
 \begin{abstract}
-This work develops and analyses of probability theory through the idea of probabilities being a relative value rather than an absolute one. As a proof of concept, we will construct a theory of relative probability on finite outcome spaces. After a discussion of axiomatic probability theory, our focus on probability as a function on outcome level will lead us to separate out three fundamental axioms distinct from those related to summation and measurability. We categorize the various relative probability functions that can be built from the axioms, along with examples. We then focus on the computational properties of Bayesian inference on relative probabilities and the ability of relative probability functions to retain information when taking limits.
+This work develops the foundations of probability theory by considering probability as a relative measure rather than an absolute one. As a proof of concept, we construct a theory of relative probability on finite outcome spaces. To this end, we identify three fundamental axioms of relative probability distinct from those related to summation. We categorize the various relative probability functions that can be built from these axioms, along with examples. We then focus on the computational properties of Bayesian inference on relative probabilities, its digital implementation, and its topological closure.
 \end{abstract}
 
 \tableofcontents
@@ -139,26 +139,25 @@ This work develops and analyses of probability theory through the idea of probab
 
 The foundations of probability theory are still very much open to explore!
 
-Since Kolmogorov published the standard axioms for probability\cite{kolmogorov} in 1933, there have been calls to alter them for various applications. In Kolmogorov's Axiomatisation and Its Discontents\cite{lyon}, Lyon lays out these cases and their justifications.
-One area of \quotes{discontentment} concerns conditional probability. We often want to identify the probability of event A given event B - or \(P(A|B)\) - but can this be done if \(B\) has probability zero\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution. November\ref{november} gave a more recent philosophical treatment of this phenomenon.}?
+Since Kolmogorov published the standard axioms for probability\cite{kolmogorov} in 1933, there have been calls to alter them in various cases. In \quotes{Kolmogorov's Axiomatisation and Its Discontents}, Lyon\cite{lyon} lays out these cases and their justifications. One area of \quotes{discontentment} concerns conditional probability. We often want to identify the probability of event A given event B, or \(P(A|B)\), even when \(B\) has probability zero\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution. November\cite{november} gave a more recent philosophical treatment of this phenomenon.}.
 
-We are out of luck with the Kolmogorov model, which defines \(P(A|B)\) as the ratio \(\frac{P(A \cap B)}{P(B)}\). When \(P(B) = 0\), the indeterminate form \(\frac{0}{0}\) appears leaving the conditional probability undefined. This will happen whenever one wishes to compare two events that each have an overall probability of zero.
+We are out of luck with the Kolmogorov model, which defines \(P(A|B)\) as the ratio \(\frac{P(A \cap B)}{P(B)}\). When \(P(B) = 0\), the indeterminate form \(\frac{0}{0}\) appears leaving the conditional probability undefined. In face, this happens any time one wishes to compare two events that each have probability zero.
 
-Undeterred, mathematicians and engineers refer to relative probabilities of this type all the time. For example, if we consider a probability distribution over \([0, 1]\) given by \(2x\), we know that the value at \(x = \frac{1}{2}\) is twice as much as the value at \(x = \frac{1}{4}\). In a sense, we believe that the former is twice as likely as the latter - even though we are only talking about \textit{probability density}. Hajek\cite{hajek} (citing Borel) gives a much more compelling example: if a random point on the Earth is selected, what is the probability that it is in the eastern hemisphere given that it is on the equator? Most people would not hesitate to answer one half, and yet the equator - being a mere 1-dimensional object - has probability 0 compared to the rest of the globe.
+Undeterred by the petty obstacle of indeterminate forms, mathematicians and engineers refer to relative probabilities of this type all the time. For example, if we consider a probability distribution over \([0, 1]\) given by \(f(x) = 2x\), we know that the value of \(f(\frac{1}{2})\) is twice as much as \(f(\frac{1}{4})\). In a sense, we believe that the outcome \(\frac{1}{2})\)  is twice as likely as outcome \(\frac{1}{2})\) even though we are only talking about \textit{probability density}. Hajek\cite{hajek} (citing Borel) gives a much more compelling example: if a random point on the Earth is selected, what is the probability that it is in the eastern hemisphere given that it is on the equator? It seems that one should not hesitate to answer one half, and yet the equator, being a mere 1-dimensional object, has probability 0 compared to the rest of the globe.
 
-Let us then model probability in a non-standard way, which we can do so as long our new framework is logically consistent and corresponds to the advertised applications\footnote{Lyon identifies this link between application and model as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting mathematics, but if that mathematics cannot be linked to any application that anyone would reasonably call probability, then it ought to go by a different name.}. We ought to understand whether a different framework for probability can take the relationships between outcomes and events as the fundamental unit.
+Let us then model probability in a non-standard way to account for the disprepancy between theory and practice. We can do so as long our new framework is logically consistent and corresponds to the advertised applications\footnote{Lyon identifies this link between application and model as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting mathematics, but if that mathematics cannot be linked to any application that anyone would reasonably call probability, then it ought to go by a different name.}. A different framework for probability can take the relationships between outcomes and events as the fundamental unit.
 
-This improves on the Kolmogorov model - that starts with an absolute probability function - by solving both the conditional probability question and giving rise to new objects to study. Furthermore, the model fits nicely into many modern frameworks such as category theory and bayesian distribution sampling.
+This improves on the Kolmogorov model by solving both the conditional probability question and giving rise to new objects to study. Furthermore, it fits nicely into many modern frameworks such as category theory and techniques in distribution sampling.
 
 \subsection{Previous Work and Goals}
 
-Leading probability theorists in the twentieth century have developed axiomatic systems for conditional probability, notably Renyi\cite{renyi}. Kohlberg and Reny\cite{kohlberg} introduced the idea of relative probability and applied it to game theory. Heinemann\cite{heinemann} further developed the idea of \textit{relative probability measures} along with their axioms and definitions, and found applications in bayesian inference and economics\cite{heinemann_econ}.
+Leading probability theorists in the twentieth century developed axiomatic systems for conditional probability, notably Renyi\cite{renyi}. Kohlberg and Reny\cite{kohlberg} introduced the idea of relative probability and applied it to game theory. Heinemann\cite{heinemann} further developed the idea of \textit{relative probability measures} along with their axioms and definitions, and found applications in bayesian inference and economics\cite{heinemann_econ}.
 
 This work will expand on the idea of relative probability in several ways.
 
-First, as a proof of concept, we will construct a theory of relative probability on finite outcome spaces. By omitting infinite outcome spaces, we temporarily set aside the concepts of measurable sets and countable additivity\footnote{In the textbook Invitation to Discrete Mathematics, Matoušek et al. write \quote{By restricting ourselves to finite probability spaces we have simplified the situation considerably... A true probability theorist would probably say that we have excluded everything interesting.}}. This work will demonstrate that even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental definitions, which we will construct without the distractions of infinite and continuous outcome spaces.
+First, as a proof of concept, we will construct a theory of relative probability on finite outcome spaces. By omitting infinite outcome spaces, we temporarily set aside the concepts of measurable sets and countable additivity\footnote{In the textbook Invitation to Discrete Mathematics, Matoušek et al. make the same simplifcation in order to illustrate concepts while at the same time writing \quote{By restricting ourselves to finite probability spaces we have simplified the situation considerably... A true probability theorist would probably say that we have excluded everything interesting.}}. Even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental definitions, which we will construct without the distractions of infinite and continuous outcome spaces.
 
-Our focus on probability at the outcome level will lead us to separate out three fundamental axioms of relative probability from those related to summation and measurability. These fundamental axioms establish relative probability as a thin category on an outcome space, ultimately providing a bridge to category theory.
+Our focus on probability at the outcome level will lead us to separate out three fundamental axioms of relative probability from those related to summation and measurability. These fundamental axioms establish relative probability as a thin category on an outcome space, providing a bridge from probability theory to category theory.
 
 Second, we will categorize the various patterns and states that arise when dealing with relative probability, including total comparability, possibility classes, and anchor outcomes. 
 
@@ -166,7 +165,7 @@ Third, we focus on the computational properties of Bayesian inference on relativ
 
 Finally, we discuss the ability of relative probability functions to retain information when taking limits.
 
-Ultimately, practitioners will find these features of relative probability attractive. Its sphere of application could easily be expanded beyond game theory and theoretical probability into fields like machine learning and category theory. This paper aspires to provide foundational analysis that future researchers need to expand that sphere.
+Ultimately, practitioners will find these features of relative probability attractive. Its sphere of application could easily be expanded beyond game theory and theoretical probability into fields like machine learning. This paper provides a foundational analysis that future researchers can use to expand that sphere.
 
 \section{Preliminaries}
 \subsection{Magnitude Space}
@@ -180,7 +179,7 @@ Magnitudes correspond with our intuition of size. The value of infinity is a \te
 
 \begin{enumerate}
 \item Compactness: Sequences that go off to infinity still have a limit (at \(\infty\)).
-\item Symmetry around ratios: When we compare the probability of two events, we get their \textit{odds}. If the odds are 0, then we are comparing an event with probability 0 to an event with probability \(>0\). We should be able to reverse this comparison, and say there are infinite odds when an event with probability \(>0\) is compared to an event with probability 0. It is also common to find the odds of an event and its converse as its \quotes{odds.} In this case, \(\infty\) corresponds to events that are certain.
+\item Symmetry around ratios: When we compare the probability of two events, we get their \textit{odds}. If the odds are 0, then we are comparing an event with probability 0 to an event with probability \(>0\). We should be able to reverse this comparison, and say there are infinite odds when an event with probability \(>0\) is compared to an event with probability 0. It is also common to define the odds of a single event as the odds of that event against its converse. In this case, \(\infty\) corresponds to events that are certain.
 \item The infinite element is introduced in measure theory because many mathematical systems (real and natural numbers for example) contain sets of infinite measure.
 \end{enumerate}
 
@@ -199,23 +198,21 @@ The wildcard element corresponds to several different concepts, each appearing i
   \item The \textit{wildcard pattern} used in pattern matching and regular expressions in type theory and computer science
 \end{itemize}
 
-The following properties on \(\ast\) to allow addition and multiplication of any two magnitude-wildcard values.
-\[0 \cdot \infty = \ast\]
-\[\ast + m = \ast\]
-\[\ast \cdot m = \ast\]
+The following properties on \(\ast\) allow multiplication of any two magnitude-wildcard values.
+\[0 \cdot \infty = \ast \qquad \ast \cdot m = \ast\]
 
-There is a cost to the wildcard introduction in that we now lose some basic properties of sums and products. For instance, we can no longer simplify an expression like \(0x\) to \(0\). This will take some getting used to, but programmers familiar with the floating point value \textit{NaN} have long adjusted to this.
+We may also define \(\ast + m = \ast\) even though it is not used, and there is an argument to  be made that because \(m \in \mathbb{M}\), the \(\ast + m\) should be a new value that only matches magnitudes greater than or equal to \(m\) and through these operations an arithmetic of intervals can arise. This question can be deferred for the purposes of this paper.
 
 \subsection{The Matching Relation}
 
 \begin{definition}
-The \textit{matching relation}\footnote{It helps to read \(:\cong\) as \quotes{is matched by}.} \(:\cong\) is a binary relation on \(\mathbb{M}^*\). \(m_1\) is matched by \(m_2\) when either \(m_1 = m_2\) or  \(m_2\) is the wildcard.
-\[m_1 :\cong m_2 \Longleftrightarrow (m_1 = m_1) \vee (m_2 = \ast)\]
+The \textit{matching relation} \(:\cong\) is a binary relation on \(\mathbb{M}^*\). The statement \(m_1 :\cong m_2\) is read \quotes{\(m_1\) is matched by \(m_2\)} and is true when either \(m_1\) equals \(m_2\) or \(m_2\) is a wildcard.
+\[m_1 :\cong m_2 \Longleftrightarrow (m_1 = m_2) \vee (m_2 = \ast)\]
 \end{definition}
 
 The left hand side of a matching relation is the \textit{parameter} and the right hand side is the \textit{constraint}. The wildcard element represents every single value, but it cannot be represented by any specific value. It also represents a loss of information about the parameter.
 
-We will need a few lemmas which quickly follow from the definition.
+A few lemmas quickly follow.
 
 \begin{lemma}
 \label{wild_prop_1} If a magnitude matches a non-wildcard element, then the two values are equal. \[m_1 :\cong m_2 \wedge m_2 \neq \ast \Longrightarrow m_1 = m_2\]
@@ -231,10 +228,10 @@ Every element is matched by the wildcard element. \(m :\cong \ast\)
 The wildcard element is matched only by itself. \(\ast :\cong m \Longrightarrow m = \ast\)
 \end{lemma}
 
-The matching relation looks a lot like equality and in many cases it is, but because of the wildcard it doesn't have all of same properties.
+The matching relation looks a lot like equality and in many cases it is, it doesn't have all of same properties.
 
 \begin{theorem}
-The matching relation is reflexive and transitive, but unlike equality is not symmetric.
+The matching relation is reflexive, transitive, and anti-symmetric but not symmetric.
 \end{theorem}
 
 \begin{proof}
@@ -242,28 +239,18 @@ Reflexive is obvious: \(m :\cong m \Longleftrightarrow (m = m) \vee (m = \ast)\)
 
 The transitive property states that for all \(m_1, m_2, m_3\) in \(\mathbb{M}\), if \(m_1 :\cong m_2\) and \(m_2 :\cong m_3\), then \(m_1 :\cong m_3\).
 
-Assume that \(m_1 :\cong m_2\) and \(m_2 :\cong m_3\). If none of these values are the wildcards, then by property \ref{wild_prop_1}, they are all equal and \(m_1 :\cong m_3\). If \(m_1 = \ast\) then by property \ref{wild_prop_3}, \(m_2 = \ast\) and finally \(m_3 = \ast\). In other words, if any of the three values are \(ast\), then \(m_3 = \ast\). By property \ref{wild_prop_2}, the theorem holds.
+Assume that \(m_1 :\cong m_2\) and \(m_2 :\cong m_3\). If none of these values are the wildcards, then by lemma \ref{wild_prop_1}, they are all equal and \(m_1 :\cong m_3\). If \(m_1 = \ast\) then by lemma \ref{wild_prop_3}, \(m_2 = \ast\) and finally \(m_3 = \ast\). In other words, if any of the three values are \(\ast\), then \(m_3 = \ast\). By lemma \ref{wild_prop_2}, the theorem holds.
 
-For non-symmetric, we present a counterexample: \(1 :\cong \ast\) but \(\ast :\ncong 1\)
-\end{proof}
+The anti-symmetric property states that if \(m_1 :\cong m_2\) and \(m_2 :\cong m_1\), then \(m_1 = m_2\).
 
-We could also define a symmetric matching relation \(m_1 :\cong: m_2\) to mean \(m_1 :\cong m_2 \vee m_2 :\cong m_1\). This would be symmetric, but not transitive.
+If both \(m_1\) nor \(m_2\) match each other, then \((m_1 = m_2) \vee (m_2 = \ast)\) and \((m_2 = m_1) \vee (m_1 = \ast)\). By boolean factorization, this means that \((m_1 = m_2) \vee ((m_2 = \ast) \wedge (m_1 = \ast))\). On both sides of the conjunction, \(m_1 = m_2\).
 
-Finally, we establish that the matching relation preserves most operations such as addition and multiplication.
-
-\begin{lemma}
-\label{lemma:matching_multiplication}
-The matching relation preserves multiplication and addition. \(\forall a,b,a',b' \in \mathbb{M^*}\) if \(a :\cong a'\) and \(b :\cong b'\), then \(ab :\cong a'b'\) and \(a+b :\cong a'+b'\).
-\end{lemma}
-
-\begin{proof}
-For multiplication: Let \(a,b,a',b' \in \mathbb{M^*}\), and let \(a :\cong a'\) and \(b :\cong b'\). If either \(a'\) or \(b'\) are wildcards, then \(a'b'\) is also a wildcard. If \(a'\) and \(b'\) are not wildcards, then \(a = a'\) and \(b = b'\), also making \(ab :\cong a'b'\).
-The same argument proves \(a+b :\cong a'+b'\).
+The matching relation is not symmetric because \(m :\cong \ast\) but \(\ast :\ncong m\) for any non-wildcard \(m\).
 \end{proof}
 
 \section{Categorical Distribution}
 
-Let \(\Omega\) be a set of mutually exclusive \textit{outcomes}\footnote{Each outcome could be thought of as a possible result of a random trial, or a possible outcome for an unknown variable}. We assume that \(\Omega\) is finite so that we can count its members as \(|\Omega| = K\). There are \(K\) outcomes, or \textit{categories}.
+Let \(\Omega\) be a set of mutually exclusive \textit{outcomes}\footnote{Each outcome could be thought of as a possible result of a random trial, or a possible value for an unknown variable}. We assume that \(\Omega\) is finite and there are \(K\) outcomes, or \textit{categories} so that \(|\Omega| = K\).
 
 \begin{definition}
 \label{def:categorical_abs}
@@ -312,35 +299,36 @@ The set of all categorical distributions of size \(K\) can be embedded in \(\mat
 
 \subsection{Events}
 
-An \textit{event} is a set of outcomes, and by convention \(\mathcal{F}\) is the set of all possible events. In general, \(\mathcal{F}\) is not the entire power set of \(\Omega\), but when \(\Omega\) is finite we can consider any subset \(e \subseteq \Omega\) to be an event\footnote{We need not concern ourselves with defining a \(\sigma\)-algebra of measurable sets here.} without concern.
+An \textit{event} is a set of outcomes, and by convention \(\mathcal{F}\) is the set of all possible events. In general, \(\mathcal{F}\) is not the entire power set of \(\Omega\), but when \(\Omega\) is finite we can consider any subset \(e \subseteq \Omega\) to be an event\footnote{We need not concern ourselves with defining a \(\sigma\)-algebra of measurable sets here.}.
 
-In the previous section, the probability function was defined on individual outcomes. We now define the probability function on an event. The probability of an event is  the probability that any one of its outcomes occur. Looking at probability on the event level rather than the outcome level is a crucial insight in the development of probability theory (and measure theory more generally). Even though the process is far simpler for finite distributions, we must pay attention to this layer in order for the framework to generalize. For all \(e\) in \(\mathcal{F}\),
-\[ P(e) = \sum_{h \in e}{P(h)}\]
+Definition \ref{def:categorical_abs} creates a probability function that assignes values on individual outcomes. We now define the probability function on an event. The probability of an event is the probability that any one of its outcomes occur. Looking at probability on the event level rather than the outcome level is a crucial insight in the development of probability theory (and measure theory more generally). Even though the process is far simpler for finite distributions, we must pay attention to this layer in order for the framework to generalize. 
 
-\(P\) acts on either outcomes or events using the obvious convention \(P(\{h\}) = P(h)\).
+\begin{definition}
+For all \(e\) in \(\mathcal{F}\), \[P(e) = \sum_{h \in e}{P(h)}.\]
+\end{definition}
 
-\(\Omega\) itself the \textit{universal event} of all outcomes, with probability 1. \(P(\Omega) = \sum_{h \in \Omega}{P(h)} = 1\)
+\(P\) acts on either outcomes or events using the obvious convention \(P(\{h\}) = P(h)\). \(\Omega\) is itself and event; the \textit{universal event} of all outcomes, with probability 1. \[P(\Omega) = \sum_{h \in \Omega}{P(h)} = 1\]
 
 \subsection{Relative Probability Function}
 \label{section:standard_relative_prob}
 
-A \textit{relative probability function}, or \textit{RPF}, measures the probability of one event with respect to another. For example, we may wish to talk about an event that is \quotes{twice as likely} as another, even if we don't know the absolute probability of either event.
+A \textit{relative probability function}, or \textit{RPF}, measures the probability of one event with respect to another. For example, we may wish to talk about an event that is \quotes{twice as likely} as another, even if we don't know the absolute probability of either event. An argument can be made that all probability is relative and conditional, because all probabilistic statements come with underlying assumptions.
 
 We continue to use P to represent the RPF but with two inputs instead of one. The expression \(P(e_1, e_2)\) can be read as the probability of \(e_1\) relative to \(e_2\).
 
 \[P: \mathcal{F} \times \mathcal{F} \rightarrow \mathbb{M}^*\]
 
-We define relative probability in terms of absolute probability as a ratio, in the style of the standard Kolmogorov framework.
+We define relative probability in terms of absolute probability as a ratio, in the style of Kolmogorov.
 
 \begin{definition}
 \label{def:ratio}
-The relative probability of events \(e_1\) and \(e_2\) on an categorical distribution \(P\) is given as
+The relative probability of events \(e_1\) and \(e_2\) on a categorical distribution \(P\) is as follows:
 \[P(e_1, e_2) = \frac{P(e_1)}{P(e_2)}\]
 \end{definition}
 
 If \(P(e_1) = P(e_2) = 0\), then \(P(e_1, e_2) = \ast\), representing the classical problem of zero-probability events being incomparable.
 
-With absolute probability, information is lost at the vertices where the probability of several outcomes might be assigned a value of zero. For example, if \(\Omega = {a, b, c}\) with \(P(a) = 1\) and \(P(b) = P(c) = 0\), we cannot compare the probabilities of \(b\) and \(c\) by ratio as we can in the rest of the simplex.
+With absolute probability, information is lost at the vertices of the simplex where the probability of several outcomes might be assigned a value of zero. For example, if \(\Omega = \{a, b, c\}\) with \(P(a) = 1\) and \(P(b) = P(c) = 0\), we cannot compare the probabilities of \(b\) and \(c\) by ratio as we can in the rest of the simplex.
 
 This poses an interesting problem for limits.
 
@@ -356,25 +344,12 @@ P(c) = \frac{1}{3}\epsilon
 
 This is clearly an absolute probability, and its limit as \(\epsilon\) goes to zero should be \(P(a) = 1, P(b) = P(c) = 0\). The fact that b is twice as likely as c is lost!
 
-One of the most important properties of relative probabilities is their ability to compose as follows:
-
-\begin{theorem}[Composition]
-\label{thm:abs_composition}
-For all events \(e_1, e_2, e_3\), \(P(e_1, e_3) :\cong P(e_1, e_2) \cdot P(e_2, e_3)\)
-\end{theorem}
-
-\begin{proof}
-Start with the case that \(P(e_2)\neq 0\). Then \(P(e_1, e_2) \cdot P(e_2, e_3) = \frac{P(e_1)}{P(e_2)}\frac{P(e_2)}{P(e_3)} = \frac{P(e_1)}{P(e_3)} = P(e_1, e_3)\). When \(P(e_2) = 0\), \(P(e_1, e_2) \cdot P(e_2, e_3) = \frac{P(e_1)}{P(e_2)}\frac{P(e_2)}{P(e_3)} = \ast\). Because \(\ast\) matches everything, then the matching statement holds. Because it holds in both cases, the theorem is true.
-\end{proof}
-
 \section{The Relative Probability Approach}
 \label{section:new_relative_prob}
 
-In section \ref{section:standard_relative_prob}, the relative probability function was derived from the absolute probability function. Here in section \ref{section:new_relative_prob}, we start with the relative probability function as the fundamental object of study.
+In section \ref{section:standard_relative_prob}, the relative probability function was derived from the absolute probability function. Here in section \ref{section:new_relative_prob}, we invert this process by starting with the relative probability as the fundamental building block.
 
 \subsection{Fundamental Axioms}
-
-Consider a relative probability function \(P\) that acts on outcomes in \(\Omega\).
 
 \begin{definition}
 \label{def:fundamental_laws}
@@ -388,15 +363,15 @@ Let \(\Omega\) be the set of outcomes, and \(P: \Omega \times \Omega \rightarrow
 
 \end{definition}
 
-\(P(h_1, h_2)\) can be read as the probability of \(h_1\) relative to \(h_2\). Outcomes \(h_1\) and \(h_2\) are \textit{comparable} if \(P(h_1, h_2) \neq \ast\).
+\(P(h_1, h_2)\) represents the probability of \(h_1\) relative to \(h_2\). Outcomes \(h_1\) and \(h_2\) are \textit{comparable} if \(P(h_1, h_2) \neq \ast\).
 
-Let us pause for a moment to discuss how these axioms were chosen. The star of the show is the composition axiom which succinctly encodes how relative probability works. If \(A\) is twice as likely as \(B\), and \(B\) is 3 times as likely as \(C\), then \(A\) had better be 6 times as likely as \(C\). If not, these relative probability assignments would have no meaning; they would just be numerical assignments without rhyme or reason\footnote{Many of our political and economic forecasts come in this form.}.
+Let us pause for a moment to discuss how these axioms were selected. The composition axiom is doing most of the work, and it succinctly encodes how relative probability works. If \(A\) is twice as likely as \(B\), and \(B\) is 3 times as likely as \(C\), then \(A\) had better be 6 times as likely as \(C\). If not, these relative probability assignments would have no meaning; they would just be numerical assignments without rhyme or reason\footnote{Many of our political and economic forecasts come in this form.}.
 
-The composition axiom is enough to show that the identity axiom works most of the time. For example, if \(h_1\) is comparable to any other outcome \(h_2\) then through composition we get \(P(h_1, h_2) :\cong P(h_1, h_1) \cdot P(h_1, h_2)\). So long as \(P(h_1, h_2)\) isn't \(0\), \(\infty\), or \(\ast\), then we would have to conclude \(P(h_1, h_1) = 1\).
+The composition axiom is enough to show that the identity axiom works most of the time. For any two outcomes \(h_1\) and \(h_2\) we get through composition \(P(h_1, h_2) :\cong P(h_1, h_1) \cdot P(h_1, h_2)\). As long as \(P(h_1, h_2)\) isn't \(0\), \(\infty\), or \(\ast\), then we would have to conclude \(P(h_1, h_1) = 1\) if \(h_1\) comparable to itself.
 
-But that doesn't get us all the way there! We can still construct scenarios where \(P(h, h) = \ast\). The self-comparisons in an outcome space should not be able to contain any information where there is a choice of values. Hence, the necessity of the identity axiom.
+But that doesn't get us all the way there! We can still construct scenarios where \(P(h, h) = \ast\). The question that must be asked then is should the the self-comparisons in an outcome space be able to contain any information where there is a choice of values between \(1\) and \(\ast\). Such information would not be relevant to relative probability. Therefore, the answer corresponding to our application would be in the negative - and if \(P(h, h)\) can only have a single value, it must be 1. Hence, the necessity of the identity axiom.
 
-Composition and identity can actually be combined into a single axiom about composition paths. It's a bit unweildy for the mathematical proofs, but nevertheless interesting.
+Composition and identity can actually be combined into a single axiom about composition paths. It's a bit unweildy, but nevertheless interesting.
 
 \begin{proposition}[Path Composition]
 Given a non-empty list of \(N\) outcomes \(h_0, h_1, h_2, ..., h_{N-1}\), \[P(h_0, h_{N-1}) :\cong \prod_{k=0}^{N-2} P(h_k, h_{k+1}) \]
@@ -404,11 +379,11 @@ Given a non-empty list of \(N\) outcomes \(h_0, h_1, h_2, ..., h_{N-1}\), \[P(h_
 
 In this case, \(P(h_0, h_0)\) would be matched by the empty product, which is 1.
 
-The inverse axiom is nearly redundant as well. Since \(P(h_0, h_0) \cong P(h_0, h_1) \cdot P(h_1, h_0)\), the terms in the constraint look like they must be inverses! But without stating the axiom explicitly, there could be a case where \(P(h_0, h_1)\) is some non-wildcard magnitude like 2 but \(P(h_1, h_0)\) is \(\ast\). This shouldn't be allowed because \(\ast\) represents a lack of knowledge about a value, and we consider \(P(h_1, h_0)\) and \(P(h_1, h_0)\) to be the same piece of information but in reverse.
+The inverse axiom is nearly redundant as well. Since \(P(h_0, h_0) \cong P(h_0, h_1) \cdot P(h_1, h_0)\), the terms in the constraint look like they must be inverses. But without stating the axiom explicitly, there could be a case where \(P(h_0, h_1)\) is some non-wildcard magnitude like 2 but \(P(h_1, h_0)\) is \(\ast\). This shouldn't be allowed because \(\ast\) represents a lack of knowledge about a value, and we consider \(P(h_1, h_0)\) and \(P(h_1, h_0)\) to be the same piece of information but in reverse.
 
 \subsection{Examples}
 
-Now that the definition of relative probability is squared away, we can construct a library of examples for common RPFs that will serve as building blocks to tackling common problems.
+Now that the definition of relative probability is squared away, we can construct a library of examples for common RPFs that will serve as building blocks to describing common situation.
 
 \begin{definition}
 \label{def:uniform_rpf}
@@ -436,7 +411,7 @@ It is surprising that there is still an RPF with \(\Omega = \varnothing\). This 
 The \textit{unit} RPF has a single outcome where \(K = 1\) and \(\Omega = h\). There is only one such RPF where \(P(h, h) = 1\).
 \end{definition}
 
-The unit RPF is a special case of the uniform RPF and the certain RPF. This matches the absolute case where the probability of the single outcome must be 1.
+The unit RPF is both uniform and certain. This corresponds to the absolute case where the probability of the single outcome must be 1.
 
 \begin{definition}
 \label{def:finite_geometric_rpf}
@@ -445,7 +420,7 @@ Let \(P\) be an RPF with K outcomes labeled \((h_0, h_1, ..., h_{K-1})\). \(P\) 
 When \(r\) is 0 or \(\infty\), we can call this the \textit{limit finite geometric} RPF.
 \end{definition}
 
-Finally, to include an example that is both common and has powerful applications, there is a relative version of the binomial distribution.
+Finally, to include an example that is both common and has powerful applications, the relative version of the binomial distribution can be defined as follows:
 
 \begin{definition}
 \label{def:binomial_rpf}
@@ -544,11 +519,23 @@ Figure \ref{fig:flow_chart} gives us a roadmap of these new concepts and their r
 \label{fig:flow_chart}
 \end{figure}
 
-\subsection{Absolute Probability Functions as a Special Case}
+\subsection{Absolute Probability as a Special Case}
 
-Fortunately, the absolute probability function is a special case an RPF through definition \ref{def:ratio}, defined by \(P(h_1, h_2) = \frac{P(h_1)}{P(h_2)}\) with the exception that if \(P(h) = 0\), then \(P(h, h) = 1\) instead of \(\ast\) in order to satisfy the identity axiom.
+Fortunately, the absolute probability function is a special case of an RPF (through definition \ref{def:ratio}), defined by \(P(h_1, h_2) = \frac{P(h_1)}{P(h_2)}\) with the exception that if \(P(h) = 0\), then \(P(h, h) = 1\) instead of \(\ast\) in order to satisfy the identity axiom.
 
-This formula was shown to follow the composition axiom in theorem \ref{thm:abs_composition}, and the inverse axiom follows easily from the formula as well.
+\begin{theorem}
+A relative probability function derived from an absolute probability function satisfies the fundamental axioms.
+\end{theorem}
+
+\begin{proof}
+For the identity axiom, we have \(P(h, h) = 1\) built into the definition.
+
+For the inverse axiom, we can see that for outcomes \(h_1\) and \(h_2\), \(P(h_1, h_2) = \frac{P(h_1)}{P(h_2)} = \left(\frac{P(h_2)}{P(h_1)}\right)^{-1} = P(h_2, h_1)^{-1}\).
+
+For composition, we must show that for all outcomes \(h_1, h_2, h_3\), \(P(h_1, h_3) :\cong P(h_1, h_2) \cdot P(h_2, h_3)\)
+
+Start with the case that \(P(h_2)\neq 0\). Then \(P(h_1, h_2) \cdot P(h_2, h_3) = \frac{P(h_1)}{P(h_2)}\frac{P(h_2)}{P(h_3)} = \frac{P(h_1)}{P(h_3)} = P(h_1, h_3)\). When \(P(h_2) = 0\), \(P(h_1, h_2) \cdot P(h_2, h_3) = \frac{P(h_1)}{P(h_2)}\frac{P(h_2)}{P(h_3)} = \ast\). Because \(\ast\) matches everything, then the matching statement holds. Because it holds in both when \(P(h_2) = 0\) and \(P(h_2) \neq 0\), the theorem holds true always.
+\end{proof}
 
 \subsection{Comparability, Possibility, and Anchors}
 
@@ -563,21 +550,21 @@ An absolute probability function is totally comparable if and only if \(P(h) = 0
 \end{theorem}
 
 \begin{proof}
-Let P be an \textbf{absolute} probability function, with \(h_1\) and \(h_2\) being two outcomes. If \(P(h_1) = P(h_2) = 0\), then \(P(h_1, h_2) = \frac{0}{0} = \ast\). If only outcome \(h_1\) is assigned 0, then \(P(h_1, h_1) = 1\), \(P(h_1, h_2) = 0\), and \(P(h_2, h_1) = \infty\). Any other pairing that does not involve \(h_1\) will be the quotient of two positive numbers, and thus is also comparable.
+Let P be an \textbf{absolute} probability function with outcomes \(h_1\) and \(h_2\). If \(P(h_1) = P(h_2) = 0\), then \(P(h_1, h_2) = \frac{0}{0} = \ast\). If only outcome \(h_1\) is assigned 0, then \(P(h_1, h_1) = 1\), \(P(h_1, h_2) = 0\), and \(P(h_2, h_1) = \infty\). Any other pairing that does not involve \(h_1\) will be the quotient of two positive numbers, and thus not \(\ast\).
 \end{proof}
 
-With relative probability, it is important to know not only which outcomes are comparable, but whether their relative probability is positive and finite (that is, not equal to 0, \(\infty\), or \(\ast\)).
+Once it is established that outcomes are comparable to one another, they form groupings. If an outcomes \(h_1\) and \(h_2\) both have probability 0 (or \(\infty\)) with respect to \(h_3\) then \(P(h_1, h_2)\) is not predetermined by composition. This leads us to the concept of possibility and impossibility.
 
 \begin{definition}
 Outcome \(h_1\) is \textit{impossible} with respect to \(h_2\) if \(P(h_1, h_2) = 0\). Outcome \(h_1\) is \textit{possible} with respect to \(h_2\) if it is comparable and \(P(h_1, h_2) > 0\).
 \end{definition}
 
+Anchor outcomes are those outcomes that have a non-zero absolute probability. The anchoring of a distribution ensures that it is well behaved.
+
 \begin{definition}
 \label{def:anchored_rpf}
 An \textit{anchor} of an RPF is an outcome that is possible with respect to every other outcome. An RPF that has at least 1 anchor is called an \textit{anchored RPF}.
 \end{definition}
-
-Anchor outcomes are those outcomes that have a non-zero absolute probability. The anchoring of a distribution ensures that it is well behaved.
 
 \begin{theorem}
 \label{thm:absolute_anchored}
@@ -585,7 +572,7 @@ All absolute probability distributions are anchored.
 \end{theorem}
 
 \begin{proof}
-Let P be an absolute probability distribution on \(\Omega\). Because \(\sum_{h \in \Omega} P(h) = 1\), there must be at least one \(h\) such that \(P(h) > 0\).  Therefore, for any comparison outcome \(h'\), \(P(h, h') = \frac{P(h)}{P(h')} > 0\)
+Let P be an absolute probability distribution on \(\Omega\). Because \(\sum_{h \in \Omega} P(h) = 1\), there must be at least one \(h\) such that \(P(h) > 0\).  Therefore, for any comparison outcome \(h'\), \(P(h, h') = \frac{P(h)}{P(h')} > 0\).
 \end{proof}
 
 \begin{lemma}
@@ -594,9 +581,9 @@ Every non-empty, totally comparable RPF is anchored.
 \end{lemma}
 
 \begin{proof}
-Let \(P\) be non-empty and totally comparable RPF. Assume the opposite - that for every outcome \(h\), there exists another outcome \(h'\) such that \(P(h, h') = 0\).
+Let \(P\) be a non-empty and totally comparable RPF. To prove by contradiction, assume that arbitrary outcome \(h\) is not an achor, and therefore there exists another outcome \(h'\) such that \(P(h, h') = 0\).
 
-Create a function \(f: \Omega \rightarrow \Omega\) so that for every \(h\), \(P(h, f(h)) = 0\).
+Create a function \(f: \Omega \rightarrow \Omega\) that finds a potential \(h' = f(h)\) so that \(P(h, f(h)) = 0\).
 
 Let \(f^n\) be the function \(f\) applied n times. Then \(P(h, f^n(h)) = 0\) for all n greater than 0. This is by induction because the case of \(n = 1\) was assumed above, and for for inductive step
 \[P(h, f^{n+1}(h)) :\cong P(h, f^n(h)) \cdot P(f^n(h), f(f^n(h)) = 0 \cdot 0 = 0\]
@@ -606,11 +593,11 @@ Because \(\Omega\) is finite, repeated applications of \(f\) on \(h\) must evenu
 This is a contradiction because \(P(f^i(h), f^N(h))\) should equal 0 by the argument above, but 1 by the identity axiom.
 \end{proof}
 
-A totally comparable RPF contains the maximum amount of information about the relative probability of its outcomes. Some RPFs have less information but are nevertheless consistent with RPFs that have more. The following definition encapsulates this relationship.
+A totally comparable RPF contains the maximum amount of information about the relative probability of its outcomes. Some RPFs have less information but are nevertheless consistent with those that have more. The following definition described this relationship.
 
 \begin{definition}
-Let \(P_1\) and \(P_2\) be relative probability functions. \(P_1\) is matched by \(P_2\) if and only if all of relative probabilities of \(P_1\) are matched by those of \(P_2\). For all outcomes \(h_1\) and \(h_2\),
-\[P_1(h_1, h_2) :\cong P_2(h_1, h_2)\]
+Let \(P_1\) and \(P_2\) be relative probability functions. \(P_1\) is matched by \(P_2\) if and only if for all outcomes \(h_1\) and \(h_2\),
+\[P_1(h_1, h_2) :\cong P_2(h_1, h_2).\]
 \end{definition}
 
 \begin{theorem}
@@ -646,17 +633,16 @@ Mutual possibility is an \textit{equivalence relation}, being reflexive, symmetr
 \end{theorem}
 
 \begin{proof}
-
 Reflexive: \(P(h_1, h_1) = 1\) by the identity axiom.
 
 Symmetric: \(P(h_1, h_2) = P(h_2, h_1)^{-1}\), which means that each can be in \(\{0, \infty, \ast\}\) if and only if the other is as well.
 
-Transitive: use the composition axiom which states that \(P(h_1, h_3) :\cong P(h_1, h_2) \cdot P(h_2, h_3)\). If the last 2 values are positive and finite, then their product is also positive and finite.
+Transitive:  The composition axiom states that \(P(h_1, h_3) :\cong P(h_1, h_2) \cdot P(h_2, h_3)\). If the factors in the constraint (\(P(h_1, h_2)\) and \(P(h_2, h_3)\)) are positive and finite, then their product is also positive and finite.
 \end{proof}
 
 \begin{definition}
 \label{def:totally_mutually_possible}
-An RPF is \textit{totally mutually possible} if all of its outcomes\footnote{Note that this one of the few definitions that cannot later be upgraded from outcomes to events. The empty event \(e = \{\}\) for example will be impossible with respect to any outcome by theorem \ref{thm:empty_event_impossible}.} are mutually possible - and therefore all anchors.
+An RPF is \textit{totally mutually possible} if all of its outcomes\footnote{This is one of the few definitions that cannot later be upgraded from outcomes to events. The empty event \(e = \{\}\) for example will be impossible with respect to any outcome by theorem \ref{thm:empty_event_impossible}.} are mutually possible or equivalently are all anchors.
 \end{definition}
 
 It is helpful to make diagrams of possibility and impossibility through a \textit{directed graph}. In these graphs, each outcome is represented by a point, and an arrow from A to B means that B is possible with respect to A. A bidirectional arrow means that A and B are mutually possible. Totally mutually possible RPFs have a simple diagram where all the outcomes are connected as in figure \ref{fig:mutually_possible_rpf}.
@@ -700,7 +686,7 @@ If \(P\) is totally mutually possible, then all of its outcomes are anchors. The
 Because every element of \(\Omega\) is an anchor, we can let \(a = h\) and get
 \[P(h) = \frac{P(h, h)}{\sum_{h' \in \Omega}P(h', h)}=\frac{1}{\sum_{h' \in \Omega}P(h', h)}\]
 
-Theorem \ref{thm:absolute_prob_formula} states that \(P(h_1, h_2) :\cong \frac{P(h_1)}{P(h_2)}\), but since the constraint is never \(\ast\), they must be equal.
+Theorem \ref{thm:absolute_prob_formula} states that \(P(h_1, h_2) :\cong \frac{P(h_1)}{P(h_2)}\), but since the constraint \(frac{P(h_1)}{P(h_2)}\) is never \(\ast\), they must be equal.
 \end{proof}
 
 \subsection{Possibility Classes}
@@ -709,14 +695,14 @@ Theorem \ref{thm:absolute_prob_formula} states that \(P(h_1, h_2) :\cong \frac{P
 In order to analyze the general case of RPFs, we need to consider classes of mutual possibility.
 
 \begin{theorem}
-The relationship of being possible is a \textit{preorder}, being both reflexive and transitive.
+The relationship of being possible is both reflexive and transitive, or in other words a \textit{preorder}.
 \end{theorem}
 
 \begin{proof}
 It must be reflexive because \(P(h, h) = 1\). If \(P(h_1, h_2) > 0\) and \(P(h_2, h_3) > 0\) then their product is also greater than zero, and by composition, equal to \(P(h_1, h_3)\). Thus \(h_1\) is also possible with respect to \(h_3\).
 \end{proof}
 
-If we consider a possibility relationship with respect to the equivalence classes of mutual possibility, then we have a \textit{partial order}. Figure \ref{fig:anchored_rpf} is an example of outcomes grouped by mutually possible equivalence classes, with each class being impossible with respect to the ones it points to. Figure \ref{fig:anchored_rpf} is anchored while figure \ref{fig:unanchored_rpf} is not anchored.
+If we consider the equivalence classes of mutual possibility and their relationship to one another, then we have a \textit{partial order}. Figure \ref{fig:anchored_rpf} is an example of a graph of outcomes grouped by mutually possible equivalence classes, with each class being impossible with respect to the ones it points to. Figure \ref{fig:anchored_rpf} is anchored while figure \ref{fig:unanchored_rpf} is not anchored.
 
 \begin{figure}[h]
 \centering
@@ -874,24 +860,21 @@ If we consider a possibility relationship with respect to the equivalence classe
 \path[-stealth,draw,line width=0.3mm] (r5) -- (r4);
 \end{tikzpicture}
 }
-\caption{This is the diagram for a single RPF that is not anchored. We cannot turn this into an absolute probability function.}
+\caption{A diagram for a single RPF that is not anchored. We cannot turn this into an absolute probability function.}
 \label{fig:unanchored_rpf} 
 \end{figure}
 
-Finally, we look at totally comparable RPFs, where the graph of mutually possible components is a straight line (see figure \ref{fig:totally_comparable_rpf}).
-
 \begin{theorem}
-If an RPF is totally comparable, then the equivalence classes of mutually possible outcomes are \textit{totally ordered}. That is, the relative probability of outcomes from one class with respect to outcomes from another are always the same, and are either 0 or \(\infty\).
+\label{thm:equivalence_class_same}
+Consider two distinct equivalence classes of mutually possible outcomes in an RPF and call them \(C_1, C_2 \subseteq \Omega\). Any pair of outcomes \(h_1 \in C_1\) or \(h_2 \in C_2\) will have the same relative probability \(P(h_1, h_2)\) as any other pair of outcomes in \(C_1 \times C_2\). 
 \end{theorem}
 
 \begin{proof}
-Let A and B be 2 distinct mutually possible equivalence classes on \(\Omega\), and let \(a \in A\) and \(b \in B\). Then \(P(a, b)\) must be either 0 or \(\infty\) because if it were in between then \(a\) and \(b\) would be in the same equivalence class, and if it were \(\ast\) then \(P\) wouldn't be totally comparable.
-
-Let \(a' \in A\) and \(b' \in B\). Then \(0 < P(a', a) < \infty\) and \(0 < P(b, b') < \infty\) due to the definition of mutual comparability. Thus with composition we get
-\[P(a', b') :\cong P(a', a) \cdot P(a, b) \cdot P(b, b') = P(a, b)\]
-
-Therefore, all comparisons between the 2 classes will be the same, and they will either be 0 or \(\infty\).
+\(P(h_1, h_2)\) must be in \(\{0, \infty, \ast\}\) because otherwise \(h_1\) and \(h_2\) would be mutually possible and in the same equivalence class. Let \(h'_1 \in C_1\) and \(h'_2 \in C_2\) be alternative representatives from equivalences classes \(C_1\) and \(C_2\). Then \(0 < P(h'_1, h_1) < \infty\) and \(0 < P(h_2, h'_2) < \infty\) due to the definition of mutual comparability. Thus with composition we get
+\[P(h'_1, h'_2) :\cong P(h'_1, h_1) \cdot P(h_1, h_2) \cdot P(h_2, h'_2) = P(h_1, h_2)\]
 \end{proof}
+
+Finally, we look at totally comparable RPFs, where mutually possible components form a \textit{total order} (see figure \ref{fig:totally_comparable_rpf}). We've established in the proof of theorem \ref{thm:equivalence_class_same} that the relative probability of outcomes from one equivalance class to another are constant and either 0, \(\infty\) or \(\ast\). If the RPF is totally comparable, then it can only be 0 or \(\infty\), providing a transitive, binary relation and thus a total order.
 
 \begin{figure}[h]
 \centering
@@ -938,11 +921,12 @@ Therefore, all comparisons between the 2 classes will be the same, and they will
 \path[-stealth,draw,line width=0.3mm] (r3) -- (r2);
 \end{tikzpicture}
 }
-\caption{This is a diagram of a totally comparable RPF that is not mutually possible. The mutually possible components form a total order, with the \textit{anchored component} on top.}
+\caption{A diagram of a totally comparable RPF that is not totally mutually possible. The mutually possible components form a total order, with the \textit{anchored component} on top and the graph forming a line.}
 \label{fig:totally_comparable_rpf}
 \end{figure}
 
 \section{From Outcomes to Events}
+\label{section:outcomes_to_events}
 
 Our next task is to upgrade \(P\) to operate on the event level. This is more difficult than it seems. For example, we may wish to declare that the probability of event \(e_1\) with respect to \(e_2\) is going to be additive on \(e_1\) as follows:
 \begin{equation}
@@ -950,55 +934,55 @@ Our next task is to upgrade \(P\) to operate on the event level. This is more di
 P(e_1, e_2) = \sum_{h_1 \in e_1}P(h_1, e_2)
 \end{equation}
 
-Equation \ref{eq:incorrect_additive_event_def} looks uncontroversial, but it actually contradicts the fundamental axioms! If we let \(e_1 = \varnothing\), then we have an empty sum on the right hand side of the equation, and we get \(P(\varnothing, e_2) = 0\). Likewise, if we allow \(e_2\) to be empty, we get \(P(e_1, \varnothing) = P(\varnothing, e_1)^{-1}=0^{-1}=\infty\). Both of these statements make sense until you realize that \(P(\varnothing, \varnothing) = 0 = \infty\), and what's worse is that they are also equal 1 under the identity axiom!
+Equation \ref{eq:incorrect_additive_event_def} looks uncontroversial, but it actually contradicts the fundamental axioms! If we let \(e_1 = \varnothing\), then we have an empty sum on the right hand side of the equation, and we get \(P(\varnothing, e_2) = 0\). Likewise, if we allow \(e_2\) to be empty, we get \(P(e_1, \varnothing) = P(\varnothing, e_1)^{-1}=0^{-1}=\infty\). Both of these statements make sense until they collide in \(P(\varnothing, \varnothing) = 0 = \infty\), and what's worse is that this is also equal 1 under the identity axiom!
 
-Another problem arises when an event is \textit{internally non-comparable}, meaning that it contains outcomes \(h_1\) and \(h_2\) where \(P(h_1, h_2) = \ast\). Perhaps there are interesting things we can say about such an events, but here we will constrain ourselves to totally comparable RPFs in order to avoid such questions.
+Another problem arises when an event is \textit{internally non-comparable}, meaning that it contains outcomes \(h_1\) and \(h_2\) where \(P(h_1, h_2) = \ast\). Perhaps there are interesting things we can say about such events, but here we will constrain ourselves to totally comparable RPFs in order to avoid such questions.
 
 \begin{definition}
 \label{def:event_comparison}
-Let \(P\) be a totally comparable RPF. \(P\) can also measure the probability of two events relative to each other using the following rules:
+Let \(P\) be a totally comparable RPF. \(P\) also measures the probability of two events relative to each other using the following rules:
 
 \begin{enumerate}[(i)]
   \item \label{event_def_1} \(P(e_1, e_2)\) obeys the fundamental axioms of relative probability.
-  \item \label{event_def_2} \(P(e_1, e_2)\) sums over any reference outcome \(r\), so long as the result isn't indeterminate.
+  \item \label{event_def_2} \(P(e_1, e_2)\) sums over any reference outcome \(r\) as follows:
     \begin{equation}
       \label{eq:event_def_ratio_match}
-      P(e_1, e_2) :\cong \frac{\sum_{h_1 \in e_1} P(h_1, r)}{\sum_{h_2 \in e_2} P(h_2, r)}
+      P(e_1, e_2) :\cong \frac{\sum_{h_1 \in e_1} P(h_1, r)}{\sum_{h_2 \in e_2} P(h_2, r)}.
     \end{equation}
 \end{enumerate}
 \end{definition}
 
-Because we no longer have access to absolute probability, the best we can do is measure it relative to a \textit{reference outcome} \(r\). This ratio might be indeterminate, so we use the matching relation instead of equality. Fortunately, we can show that there exists at least one reference outcome that will constrain \(P(e_1, e_2)\) in statement \ref{eq:event_def_ratio_match} if they are non-empty.
+Because we no longer have access to absolute probability, the best we can do is measure it relative to a \textit{reference outcome} \(r\). This ratio might be indeterminate, so we use the matching relation instead of equality. Fortunately, we can show that there exists at least one reference outcome that will constrain \(P(e_1, e_2)\) in statement \ref{eq:event_def_ratio_match} so long as \(e_1\) and \(e_2\) are not both empty.
 
-\begin{proof} Lemma \ref{lemma:totally_comp_anchored} states that all totally comparable RPFs have anchor outcomes, and therefore (by the same argument) every event must contain outcomes that are anchors internally for that event. Choose an internal anchor \(a\) from one of the events, say \(e_1\). Then the sum \(\sum_{h_1 \in e_1} P(h_1, a)\) will be non-infinite by definition of anchors, and non-zero because \(P(a, a) = 1\) is a term in the sum. Therefore, the constraint as a whole cannot be indeterminate.
-
-If both events are empty, then we are unable to create an anchor element, but by the identity axiom \(P(\varnothing, \varnothing) = 1\).
+\begin{proof} Lemma \ref{lemma:totally_comp_anchored} states that all totally comparable RPFs have anchor outcomes, and therefore (by the same argument) every event must contain \textbf{internal anchors}, defined as an anchor for the RPF that is restricted to outcomes in that event. Choose an \textit{internal anchor} \(a\) from one of the events, say \(e_1\). Then the sum \(\sum_{h_1 \in e_1} P(h_1, a)\) will be non-infinite\footnote{For anchor a, \(P(a, h) > 0\) but this also means that \(P(h, a) < \infty\).}, and non-zero because \(P(a, a) = 1\) is a term in the sum. Therefore, the constraint as a whole cannot be indeterminate.
 \end{proof}
 
-These requirements again seem reasonable, but how can we know for sure that they provide a complete and consistent definition of \(P: \mathcal{F} \times \mathcal{F} \rightarrow \mathbb{M}^*\)? The following must be shown:
+If both events are empty then they cannot have internal anchors, but by the identity axiom \(P(\varnothing, \varnothing) = 1\).
+
+These requirements again seem reasonable, but how can we know for sure that they provide a complete and consistent definition of \(P: \mathcal{F} \times \mathcal{F} \rightarrow \mathbb{M}\)? The following must be shown:
 
 \begin{enumerate}[(i)]
-  \item \label{event_def_proof_1} If two distinct values for \(r\) in statement \ref{eq:event_def_ratio_match} yield constraints on \(P\), then they must be equal.
+  \item \label{event_def_proof_1} If two distinct reference outcomes for \(r\) in statement \ref{eq:event_def_ratio_match} yield constraints on \(P\), then they must be equal.
   \item \label{event_def_proof_2} The constraint in statement \ref{eq:event_def_ratio_match} does not violate the fundamental axioms.
 \end{enumerate}
 
 \begin{proof}
 For \ref{event_def_proof_1}:
 
-Let \(r_1\) and \(r_2\) be distinct reference outcomes, and both constrain \(P(e_1, e_2)\). Then we want to check that
+Let \(r_1\) and \(r_2\) be distinct reference outcomes that constrain \(P(e_1, e_2)\). Then we want to check that
 
 \begin{equation}
 \label{eq:relative_event_unique}
 \frac{\sum_{h_1 \in e_1} P(h_1, r_1)}{\sum_{h_2 \in e_2} P(h_2, r_1)} = \frac{\sum_{h_1 \in e_1} P(h_1, r_2)}{\sum_{h_2 \in e_2} P(h_2, r_2)}
 \end{equation}
 
-Neither expression is a wildcard, and none of the individual terms are either. The key to this argument is in looking at the value of \(P(r_1, r_2)\).
+Neither expression is a wildcard, and none of the individual terms are either. The key to this argument is in the value of \(P(r_1, r_2)\).
 
 Assume \(P(r_1, r_2) = 0\). 
 
-If \(\sum_{h_1 \in e_1} P(h_1, r_1)\) is not infinite, then \(\sum_{h_1 \in e_1} P(h_1, r_2)\) must be zero. The same argument applies to \(\sum_{h_2 \in e_2} P(h_2, r_2)\). Since they can't both be zero, we can say that one of the sums on the left hand side is infinite, so that \(P(e_1, e_2)\) is either \(\infty\) or 0. Let's say it is 0. Then \(\sum_{h_1 \in e_1} P(h_1, r_1) = 0\) and \(\sum_{h_2 \in e_2} P(h_2, r_1) = \infty\) and by the argument above \(\sum_{h_1 \in e_1} P(h_1, r_2) = 0\). Because the right hand side is not \(\ast\) - it must resolve to zero as well. The same argument holds for \(P(e_1, e_2) = \infty\).
+If \(\sum_{h_1 \in e_1} P(h_1, r_1)\) is finite, then \(\sum_{h_1 \in e_1} P(h_1, r_2)\) must be matched by \(\sum_{h_1 \in e_1} P(h_1, r_1) \cdot P(r_1, r_2)\) which is 0. By the same argument, \(\sum_{h_2 \in e_2} P(h_2, r_2)\) is also 0. Since they can't both be zero, one of the sums involving \(r_1\) on the right hand side is infinite. Therefore \(P(e_1, e_2)\) is either \(\infty\) or 0. Let's say it is \(P(e_1, e_2) = 0\). Then \(\sum_{h_2 \in e_2} P(h_2, r_1) = \infty\) and by the argument above \(\sum_{h_1 \in e_1} P(h_1, r_2) = 0\). Because the right hand side is not \(\ast\) - it must resolve to zero as well.
 
-By an analogous argument, equation \ref{eq:relative_event_unique} must also hold when \(P(r_1, r_2) = \infty\).
+By analogous arguments, the equation \ref{eq:relative_event_unique} must also hold when \(P(e_1, e_2) = \infty\) or \(P(r_1, r_2) = \infty\) or both.
 
 So now we can assume that \(P(r_1, r_2) \notin \{0, \infty\} \). Multiply the left hand side of equation \ref{eq:relative_event_unique} by \(1 = \frac{P(r_1, r_2)}{P(r_1, r_2)}\) and distribute to get:
 
@@ -1006,11 +990,11 @@ So now we can assume that \(P(r_1, r_2) \notin \{0, \infty\} \). Multiply the le
 
 For \ref{event_def_proof_2}:
 
-The identity, inverse, and composition axioms follow from the fact that statement \ref{eq:event_def_ratio_match} is a ratio with identical expressions for \(e_1\) in the numerator and \(e_2\) in the denominator. Therefore, if it resolves it is just a ratio of positive numbers - which can be shown to follow the 3 axioms.
+The identity, inverse, and composition axioms follow from the fact that statement \ref{eq:event_def_ratio_match} is a ratio with identical expressions for \(e_1\) in the numerator and \(e_2\) in the denominator. Therefore, if it resolves it is just a ratio of positive numbers, which follow the fundamental axioms.
 \end{proof}
 
 \begin{theorem}
-If events \(e_1\) and \(e_2\) are not both empty, the following formula for calculating the relative probability of events is true:
+If events \(e_1\) and \(e_2\) are not both empty, the following formula calculates the relative probability of events:
 \[P(e_1, e_2) = \sum_{h_1 \in e_1} \frac{1}{\sum_{h_2 \in e_2} P(h_2, h_1)}.\]
 \end{theorem}
 
@@ -1018,7 +1002,7 @@ If events \(e_1\) and \(e_2\) are not both empty, the following formula for calc
 Find a suitable reference outcome \(h\) and multiply by \(1 = \frac{P(h_1, r)}{P(h_1, r)}\).
 \[\sum_{h_1 \in e_1} \frac{1}{\sum_{h_2 \in e_2} p(h_2, h_1)} :\cong \sum_{h_1 \in e_1} \frac{P(h_1, r)}{\sum_{h_2 \in e_2} P(h_2, h_1) P(h_1, r)} = \frac{\sum_{h_1 \in e_1} P(h_1, r)}{\sum_{h_2 \in e_2} P(h_2, r)}\]
 
-Since both \(P(e_1, e_2)\) and the formula above match the same thing which is not \(\ast\) for appropriate reference r, they must be equal.
+Since both \(P(e_1, e_2)\) and \(\sum_{h_1 \in e_1} \frac{1}{\sum_{h_2 \in e_2} p(h_2, h_1)}\) match  \(\frac{\sum_{h_1 \in e_1} P(h_1, r)}{\sum_{h_2 \in e_2} P(h_2, r)}\) which is not \(\ast\) for appropriate reference r, they must be equal.
 \end{proof}
 
 We then derive the absolute probability function as
@@ -1039,9 +1023,9 @@ The sum \(\sum_{h_2 \in e} P(h_2, h)\) cannot itself be zero because \(P(h, h)\)
 
 \section{Composing Relative Probability Functions}
 
-Let \(P_0, P_1, ..., P_{K-1}\) be relative probability functions. Each of these probability functions have a unique outcome space. Let \(P_k\) measure relative probability on outcome space \(\Omega_k\), so that \(P_k: \Omega_k \times \Omega_k \rightarrow \mathbb{M}^{\ast}\).
+Let \(P_0, P_1, ..., P_{K-1}\) be relative probability functions on outcome spaces \(\Omega_0, \Omega_1, ..., \Omega_{K-1}\) respectively so that each \(P_k\) is a function of type \(\Omega_k \times \Omega_k \rightarrow \mathbb{M}^{\ast}\).
 
-We can combine all of these relative probability functions together with a top level probability function \(P_\top\)\footnote{Pronounced \quotes{P-Top}.} with outcome space \(\Omega_\top = \{\Omega_0, \Omega_1, ... \Omega_{K- 1}\}\). The outcome space is hierarchical as shown in figure \ref{fig:compose_rpfs}.
+We can combine all of these relative probability functions together with a top level probability function \(P_\top\) (pronounced \quotes{P-Top}) with outcome space \(\Omega_\top = \{\Omega_0, \Omega_1, ... \Omega_{K- 1}\}\). The outcome space is hierarchical as shown in figure \ref{fig:compose_rpfs}.
 
 \begin{figure}[h]
 \begin{tikzpicture}
@@ -1069,7 +1053,7 @@ We can combine all of these relative probability functions together with a top l
 \label{fig:compose_rpfs}
 \end{figure}
 
-Now let \(\Omega\) be the set of all outcomes \(\Omega_0 \cup \Omega_1 \cup \dots \Omega_{K-1}\). We can create a new RPF - just called \(P\) acting on \(\Omega\) - with the following rules:
+Now let \(\Omega\) be the set of all outcomes \(\Omega_0 \cup \Omega_1 \cup \dots \Omega_{K-1}\). We can create a new relative probability function \(P\) acting on outcome space \(\Omega\) with the following rules:
 
 \begin{itemize}
 \item If the two outcomes fall under the same component, then their relative probabilities do not change:
@@ -1087,16 +1071,14 @@ P(h_{k_1, i}, h_{k_2, j}) = P_{k_1}(h_{k_1, i}, \Omega_{k_1}) \cdot  P_{\top}(\O
 \end{equation}
 \end{itemize}
 
-Note the use of the composition property to traverse up and down the tree. One could of course imagine this tree being many levels, and having a different height for each branch.
+Note the use of composition to traverse up and down the tree. One could of course imagine this tree being many levels, and having a different height for each branch.
 
 \begin{theorem}
-\(P\) respects the fundamental axioms.
+Composed function \(P\) as defined above respects the fundamental axioms.
 \end{theorem}
 
 \begin{proof}
-Identity is obvious because an outcome is on the same component as itself, so we can use equation \ref{rpf_composition_same_branch} to get \(P(h_{k, i}, h_{k, i}) = P_k(h_{k, i}, h_{k, i}) = 1\)
-
-The inverse and composition laws must be true if both inputs are in the same component, because that component already follows the axioms. We now look at two inputs from different components.
+The axioms already hold internally to each component, so the only thing left to show is that they hold when the two inputs to \(P\) are in \textbf{different} components. Because an outcome is always in the same component as itself, the identity axiom already follows from equation \(\label{rpf_composition_same_branch}\).
 
 The inverse law can be proven by calculation.
 \begin{equation}
@@ -1124,60 +1106,63 @@ Composition can be shown similarly - now naming the 3 separate indices in compon
 \begin{theorem}
 \(P\) is totally comparable if and only if the following are true:
 
-\begin{enumerate}
-\item \(P_{\top}\) is totally comparable.
-\item For all \(k \in \{0, 1, ..., K - 1\}\), \(P_k\) is totally comparable.
-\item All components except at most one are totally mutually possible.
-\item If there is a component that is not totally mutually possible, then every element of \(P_{\top}\) possible with respect to that component.
+\begin{enumerate}[(i)]
+\item \label{comp_recs_1} \(P_{\top}\) and \(P_k\) for all \(k \in \{0, 1, ..., K - 1\}\) are totally comparable.
+\item \label{comp_recs_2} All components except at most one are totally mutually possible.
+\item \label{comp_recs_3} If there is a component that is not totally mutually possible, then every element of \(P_{\top}\) possible with respect to that component.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
+First assume the conditions to show that the total comparability of \(P\) follows.
+
 If all the components are totally comparable, then any two outcomes in the same component are always going to be comparable in the overall RPF. We only need to prove that outcomes in \textbf{different} components are comparable. Starting with equation \ref{eq:rpf_composition_different_branch},
 
 \begin{equation}
 P(h_{k_1, i}, h_{k_2, j}) = P_{k_1}(h_{k_1, i}, \Omega_{k_1}) \cdot  P_{\top}(\Omega_{k_1}, \Omega_{k_2}) \cdot P_{k_2}(\Omega_{k_2}, h_{k_2, j})
 \end{equation}
 
-The only way that we can get \(P(h_{k_1, i}, h_{k_2, j}) = \ast\) is if there are both \(0\) and \(\infty\) as factors on the right hand side.
+The only way that \(P(h_{k_1, i}, h_{k_2, j}) = \ast\) is if both \(0\) and \(\infty\) are factors of the constraint \(P_{k_1}(h_{k_1, i}, \Omega_{k_1}) \cdot  P_{\top}(\Omega_{k_1}, \Omega_{k_2}) \cdot P_{k_2}(\Omega_{k_2}, h_{k_2, j}\)
 
 Because there is at most one component with outcomes impossible with respect to that component, we can say that either \(P_{k_1}(h_{k_1, i}, \Omega_{k_1}) = 0\) or \(P_{k_2}(h_{k_2, j}, \Omega_{k_2}) = 0\), or possibly neither, but not both.
 
-Neither can be infinite either by the definition of the event level in equation \ref{eq:event_def_ratio_match}. Here we look at the factor \(P_{k_1}(h_{k_1, i})\) and use \(k_1\) itself as the reference outcome.
+Using equation \ref{eq:event_def_ratio_match} with the factor \(P_{k_1}(h_{k_1, i}, \Omega_{k_1})\) and \(k_1\) itself as the reference outcome, we get
 \[
-P_{k_1}(h_{k_1, i}, \Omega_{k_1}) :\cong \frac{\sum_{h_1 \in \{k_1\}} P(h_1, k_1)}{\sum_{h \in \Omega_{k_1}} P(h_2, k_1)} = \frac{1}{\sum_{h \in \Omega_{k_1}} P(h_2, k_1)}
+P_{k_1}(h_{k_1, i}, \Omega_{k_1}) :\cong \frac{\sum_{h_1 \in \{k_1\}} P(h_1, k_1)}{\sum_{h \in \Omega_{k_1}} P(h_2, k_1)} = \frac{1}{\sum_{h \in \Omega_{k_1}} P(h_2, k_1)}.
 \]
 
-The sum in the denominator cannot be zero since \(P(k_1, k_1) = 1\) will be one of its terms.
+The sum in the denominator cannot be zero since \(P(k_1, k_1) = 1\) will be one of its terms. Therefore the factors \(P_{k_1}(h_{k_1, i}, \Omega_{k_1})\) and \(P_{k_2}(h_{k_2, j}, \Omega_{k_2})\) also must be finite.
 
-If the term \(P_{k_1}(h_{k_1, i}) = 0\), then the only way the entire right hand side can be \(\ast\) is if \(P_{\top}(\Omega_{k_1}, \Omega_{k_2}) = \infty\). But this can't be true because we assumed that \(\Omega_{k_2}\) is possible with respect to \(\Omega_{k_1}\), the sole component with impossible outcomes!
+If the term \(P_{k_1}(h_{k_1, i}, \Omega_{k_1}) = 0\), then the only way the entire right hand side can be \(\ast\) is if \(P_{\top}(\Omega_{k_1}, \Omega_{k_2}) = \infty\). But this can't be true because by \ref{comp_recs_3} we assumed that \(\Omega_{k_2}\) is possible with respect to \(\Omega_{k_1}\), the sole component with impossible outcomes.
 
 An analogous argument can be made if \(P_{k_2}(h_{k_2, j}, \Omega_{k_2}) = 0\).
 
 Therefore, the right hand side of the equation is not \(\ast\) and \(P\) is totally comparable.
 
-In the opposite direction, we can show that if any of the conditions are broken, then \(P\) is not totally comparable. Breaking any of the first two conditions would introduce an explicit \(\ast\) into equation \ref{eq:rpf_composition_different_branch}. If there are multiple components with impossible outcomes, then it would introduce a \(0\) into the first term of equation \ref{eq:rpf_composition_different_branch} and an \(\infty\) into the third term, yielding \(\ast\).
+In the opposite direction, we show that if any of the conditions are broken, then \(P\) is not totally comparable. Breaking condition \ref{comp_recs_1} would introduce an explicit \(\ast\) into equation \ref{eq:rpf_composition_different_branch}. If there are multiple components with impossible outcomes (breaking condition \ref{comp_recs_2}), then it would introduce a \(0\) into the first term of equation \ref{eq:rpf_composition_different_branch} and an \(\infty\) into the third term, yielding \(\ast\).
 
-And finally, if only the fourth condition is broken, it would introduce a 0 into the first term of equation \ref{eq:rpf_composition_different_branch} and an \(\infty\) into the \textbf{second} term of equation \ref{eq:rpf_composition_different_branch}.
+And finally, if only condition \ref{comp_recs_3} is broken, it would (with appropriate choices of \(h_1\) and \(h_2\)) introduce a 0 into the first term of equation \ref{eq:rpf_composition_different_branch} and an \(\infty\) into the \textbf{second} term of equation \ref{eq:rpf_composition_different_branch}.
 
 Therefore, if any of these conditions are broken, \(P\) is \textbf{not} totally comparable.
 \end{proof}
 
 \section{Bayesian Inference on Relative Distributions}
 
-A relative probability function represents a belief over the set of potential hypotheses in \(\Omega\). Bayesian inference on RPFs is the process of updating these beliefs given new data. The initial RPF is called the \textit{prior} and the updated RPF is called the \textit{posterior}. In many applications, the work is not finished once a formula for the posterior is computed. The practitioner might then want to search the hypothesis space \(\Omega\) for a model that is either optimal (\textit{maximum a posteriori}) or very good with respect to the posterior distribution. They might also wish to randomly sample one or more values \(h \in \Omega\) weighted according to the posterior.
+Bayesian inference is the practice of updating ones beliefs about the state of the world given new data.
 
-Almost all of these sampling and search algorithms rely exclusively on an iterative algorithm using the relative probability of a current state and certain nearby states\footnote{Examples include hill climbing, simulated annealing, Newton-Raphson, Markov Chain Monte Carlo, and the No U-Turn sampler. The role of these algorithms in supervised machine learning has been previously discussed by Local Maximum Labs in \quotes{Sampling Bias Correction for Supervised Machine Learning\cite{sklar_bias}}}. Because relative probability simplifies bayes rule and is ideal for many sampling and selection algorithms, statisticians and engineers should consider using the RPF framework for these purposes.
+A relative probability function represents a belief over the set of potential hypotheses in \(\Omega\), meaning that Bayesian inference can be performed on RPFs. The initial belief is called the \textit{prior} and the updated belief is called the \textit{posterior}. Once a formula for the posterior is is worked out, the practitioner might then want to search the hypothesis space \(\Omega\) for an outcome that is either most likely (\textit{maximum a posteriori}) or very good with respect to the posterior distribution. They might also wish to randomly sample one or more outcomes \(h \in \Omega\) from the posterior weighted according to the relative probabilities.
+
+Almost all of these sampling and search algorithms rely on an algorithm that starts at one or more initial hypotheses and iterately updates using the relative probability of a current outcome and its certain nearby outcome\footnote{Examples include hill climbing, simulated annealing, Newton-Raphson, Markov Chain Monte Carlo, and the No U-Turn sampler. The role of these algorithms in supervised machine learning has been previously discussed by Local Maximum Labs in \quotes{Sampling Bias Correction for Supervised Machine Learning\cite{sklar_bias}}}. Because relative probability simplifies bayes rule and is ideal for many sampling and selection algorithms, statisticians and engineers should consider using the RPF framework for these purposes.
 
 Start with the Bayesian inference formula for conditional probability for \(h \in \Omega\) assuming that we receive data \(D\).
 
 \[P(h|D) = \frac{P(D|h) \cdot P(h)}{P(D)} \qquad P(D) = \sum_{h \in \Omega} P(D|h) \cdot P(h)\]
 
-Now we convert to relative probability by looking at the two hypotheses and the ratio of their posterior probabilities.
+Now we convert to relative probability by looking at two hypotheses \(h_1\) and \(h_2\) and the ratio of their posterior probabilities.
 
 \[\frac{P(h_1|D)}{P(h_2| D)} = \frac{P(D|h_1) \cdot P(h_1)}{P(D)} \div \frac{P(D|h_2) \cdot P(h_2)}{P(D)} = \frac{P(D|h_1) \cdot P(h_1)}{P(D|h_2) \cdot P(h_2)} \]
 
-Notice that each component is represented by a ratio. By making the appropriate substitutions, we can express this entirely in terms of RPFs.
+Notice that each component is now represented by a ratio. By making the appropriate substitutions, we can express this entirely in terms of RPFs.
 
 For the ratio of prior probabilities, substitute the relative prior: \(\frac{P(h_1)}{P(h_2)} \rightarrow P(h_1, h_2) \)
 
@@ -1191,44 +1176,47 @@ Let \(P_D\) represent the likelihood ratio of the different hypotheses. The like
 
 The substitution for the likelihood ratio is now as follows: \(\frac{P(D|h_1)}{P(D|h_2)} \rightarrow P_D(h_1, h_2) \)
 
-These substitution create a bayes rule for relative probability:
+These substitutions create a bayes rule for relative probability:
 
 \begin{equation}
 P(h_1, h_2|D) = P_D(h_1, h_2) P(h_1, h_2)
 \end{equation}
  
-Bayesian inference is now reduced to an element-by-element multiplication of two different RPFs: \(P_D(h_1, h_2)\) and \(P(h_1, h_2)\). Fortunately, the product of two RPFs also obeys the fundamental axioms.
+Bayesian inference is now reduced to a term-by-term multiplication of two different RPFs: \(P_D(h_1, h_2)\) and \(P(h_1, h_2)\). Fortunately, the product of two RPFs also obeys the fundamental axioms.
 
 \begin{theorem} 
 Let \(P_1\) and \(P_2\) be relative probability functions on \(\Omega\). Define \(P(h_1, h_2) = P_1(h_1, h_2) \cdot P_2(h_1, h_2)\). Then, \(P\) is also an RPF because it obeys the fundamental axioms.
 \end{theorem}
 
-\begin{proof} 
-Use the multiplication property of the matching relation in equation \ref{lemma:matching_multiplication}.
- 
+\begin{proof}
 Identity: \(P(h_1, h_1) = P_1(h_1, h_1) P_2(h_1, h_1)=1 \cdot 1=1\)
  
 Inverse: \[P(h_1, h_2) = P_1(h_1, h_2) \cdot P_2(h_1, h_2)=P_1(h_2, h_1)^{-1} \cdot P_2(h_2, h_1)^{-1}=(P_1(h_2, h_1) \cdot P_2(h_2, h_1))^{-1}=P(h_2, h_1)^{-1}\]
  
-Composition: \[P(h_1, h_2)P(h_2, h_3)=P_1(h_1, h_2) P_2(h_1, h_2)P_1(h_2, h_3) P_2(h_2, h_3) :\cong P_1(h_1, h_3) P_2(h_1, h_3)=P(h_1, h_3)\]
+Composition:
+\[P(h_1, h_2)P(h_2, h_3)=P_1(h_1, h_2) P_2(h_1, h_2)P_1(h_2, h_3) P_2(h_2, h_3) :\cong P_1(h_1, h_3) P_2(h_1, h_3)=P(h_1, h_3)\]
 \end{proof}
 
-The following theorems drive home the preference for totally mutually comparable functions for bayesian inference, as pegging one outcome as impossible with respect to another would be a permanent belief. These situations also represent common error modes in bayesian computation.
+\subsection{Degeneration of Totally Mutually Possible Beliefs}
+
+The \textit{Cromwell rule} in Bayesian inference cautions against setting the probability of outcomes equal to 0 in a prior belief. For relative probability, this corresponds to a preference for totally mutually possible RPFs. If an outcome were considered impossible with respect to another, this would be a permanent belief that cannot be changed through evidence.
+
+\begin{theorem}
+If an outcome is impossible with respect to another outcome in the posterior distribution, it will either remain impossible or become uncomparable in the posterior. In other words,  if \(P(h_1, h_2)=0\), then \(P(h_1, h_2|D) \in \{0, \ast\}\).
+\end{theorem}
+
+\begin{proof}
+Assume \(P(h_1, h_2) = 0\). Then \(P(h_1, h_2|D) = P_D(h_1, h_2) P(h_1, h_2) = P_D(h_1, h_2) \cdot 0\). This final term would normally simplify to 0, but will be \(\ast\) if \(P_D(h_1, h_2) \in \{\infty, \ast\}\).
+\end{proof}
+
+If a bayesian setup allows an outcome to be declared impossible with respect to another outcome from one piece of evidence, and the reverse from another, then they become permanently uncomparable. This failure mode will be familiar to those machine learning practictioners who have ever recieved a model full of \textit{NaNs}.
 
 \begin{theorem}
 If two outcomes are uncomparable in a prior distribution, they will be uncomparable in the posterior distribution. In other words, if \(P(h_1, h_2)=\ast\), then \(P(h_1, h_2|D) = \ast\).
 \end{theorem}
 
 \begin{proof}
-\(P(h_1, h_2|D) = L(D|h_1, h_2) P(h_1, h_2) = P_D(h_1, h_2) \cdot \ast = \ast\)
-\end{proof}
-
-\begin{theorem}
-If an outcome is impossible with respect to another outcome in the posterior distribution, it will either remain impossible or become uncomparable in the posterior. In other words,  if \(P(h_1, h_2)=0\), then \(P(h_1, h_2|D) \in {0, \ast}\).
-\end{theorem}
-
-\begin{proof}
-\(P(h_1, h_2|D) = P_D(h_1, h_2) P(h_1, h_2) = P_D(h_1, h_2) \cdot 0\). This finally term would normally simplify to 0, but will be \(\ast\) if \(P_D(h_1, h_2) \in \{\infty, \ast\}\).
+Assume \(P(h_1, h_2) = \ast\). Then \(P(h_1, h_2|D) = L(D|h_1, h_2) P(h_1, h_2) = P_D(h_1, h_2) \cdot \ast = \ast\)
 \end{proof}
 
 \subsection{Example: A Noisy Channel}
@@ -1247,7 +1235,7 @@ We then use this to construct an RPF for the likelihood ratio if we receive a si
 If we receive multiple messages in the count vector \(c\), we get the following likelihood formula:
 \[P_c(h_1, h_2) = \prod_{k \in \Omega}\left(\frac{pK[h_1 = k] + 1-p}{pK[h_2 = k] + 1-p}\right)^{c_k}\]
 
-We should only care about terms where \(k \in \{h_1, h_2\}\) because otherwise the term becomes \(\frac{1-p}{1-p} = 1\). We will also assume \(h_1 \neq h_2\):
+Every factor of the product where \(k \notin \{h_1, h_2\}\) will be 1 and have no effect. Therefore we can remove all those terms from the product.
 \begin{equation}
 \begin{aligned}
 P_c(h_1, h_2) &= \left(\frac{pK[h_1 = h_1] + 1-p}{pK[h_2 = h_1] + 1-p}\right)^{c_{h_1}} \left(\frac{pK[h_1 = h_2] + 1-p}{pK[h_2 = h_2] + 1-p}\right)^{c_{h_2}} \\
@@ -1258,15 +1246,15 @@ P_c(h_1, h_2) &= \left(\frac{pK[h_1 = h_1] + 1-p}{pK[h_2 = h_1] + 1-p}\right)^{c
 Because the prior is uniform, the posterior is just equal to the likelihood.
 \[P(h_1, h_2 | c) = P_c(h_1, h_2) \cdot P(h_1, h_2) = \left(1 + \frac{pK}{1-p}\right)^{c_{h_1} - c_{h_2}} \]
 
-We now have an insight: the relative probability between two hypotheses is exponential on the difference between their counts. Formulating these problems in terms of relative probability often lead to easily interpretable results, even before converting into absolute probability (which may not be required). Using a different prior would be as easy as appending an additional term to the formula for \(P(h_1, h_2|c)\).
+We now have an insight: the relative probability between two hypotheses is exponential on the difference between their counts. Formulating these problems in terms of relative probability often lead to easily interpretable results, even before converting into absolute probability (which may or may not be required). Using a different prior would be as easy as appending an additional term to the formula for \(P(h_1, h_2|c)\).
 
 \subsection{Digital Representation}
 
-Even if an inference problem starts with a mutually possible distribution, it could end up anywhere in the RPF chart in figure \ref{fig:flow_chart}. How can we represent an RPF digitally in a data structure that could account for all of these various possibilities?
+Even if an inference problem starts with a mutually possible distribution, it could end up as any RPF, including all types in figure \ref{fig:flow_chart}. How can we represent an RPF digitally in a data structure that could account for all of these various possibilities?
 
-The analysis in section \ref{section:possibility_classes} on mutual possibility classes provides a good framework for this. Every outcome is a member of a mutual possibility class, and has a relative probability within that class.
+Mutual possibility classes from section \ref{section:possibility_classes} provide a good framework for organizing an RPF. Every outcome is a member of a mutual possibility class, and has a relative probability within that class.
 
-In addition, we need to maintain a partial order of all the mutual possibility classes. The data structure for this purpose could be as simple as listing the outbound edges for each class (illustrated by the graphs in figures \ref{fig:anchored_rpf}, \ref{fig:unanchored_rpf}, and \ref{fig:totally_comparable_rpf}). There needs to be a method to compare two classes, and the comparison will return one of four values: greater, lesser, equal, or uncomparable - or in numerical terms \(\{\infty, 0, 1, \ast\}\).
+To that end, we need to maintain a mapping from outcomes to classes, and a partial order of all the mutual possibility classes. The data structure for this purpose could be as simple as listing the outbound edges for each class (illustrated by the graphs in figures \ref{fig:anchored_rpf}, \ref{fig:unanchored_rpf}, and \ref{fig:totally_comparable_rpf}). There needs to be a method to compare two classes, and the comparison will return one of four values: greater, lesser, equal, or uncomparable - or in numerical terms \(\{\infty, 0, 1, \ast\}\).
 
 Each comparison might require a traversal of the mutual possibility graph which could get expensive in certain situations. The choice of data structure for partial orders comes with tradeoffs. For small outcome spaces, this question is negligible and graph traversal will usually be adequate. When bayesian inference is performed, the mutual possibility classes will sometimes need to be split up - either vertically as some items in a class become impossible with respect to others - or horizontally as they become uncomparable. The data structure should be able to account for this as well.
 
@@ -1288,11 +1276,9 @@ The simplest RPF to represent in this form is the uniform RPF. In this case, the
 
 Mathematics can be used to model the real world even through seemingly impossible ideas. For example, we might believe that a natural process can only repeat a finite number of times and that this is just a physical limitation of our universe. And yet at the same time, we will still speak of \quotes{infinite iterations} in order to get a bound or estimate on what that system looks like in \quotes{the long run}.
 
-One of the benefits of relative probability spaces is their properties with respect to limits. To this end, we prove here that when we take limits of totally comparable RPFs, the result will also be a totally comparable RPF.
+One of the benefits of relative probability spaces is their properties with respect to limits. This section will show that limits of totally comparable RPFs are also totally comparable RPFs. In other words, the space of RPFs is tologically closed.
 
-This effort caps off a significant argument in favor of relative probability. RPFs hold on to certain pieces information under the limit operation, while absolute probability does not.
-
-Some background in topology\footnote{See Mendelson (1990) \cite{mendelson} and Bradley et al. (2020) \cite{bradley} for texts with formal definitions and theorems.} required for this section.
+This effort caps off a significant argument in favor of relative probability. RPFs hold on to certain pieces information under the limit operation, while absolute probability does not. Some background in topology\footnote{Mendelson (1990) \cite{mendelson} and Bradley et al. (2020) \cite{bradley} the formal definitions and theorems which we will work off of here.} required for this section.
 
 \subsection{Relative Probability Spaces}
 
@@ -1302,30 +1288,28 @@ Some background in topology\footnote{See Mendelson (1990) \cite{mendelson} and B
 
 Because the set of absolute distributions with \(|\Omega| = K\) is embedded in \(\mathbb{R}^K\) as seen in figure \ref{fig:simplex}, its topological properties are well understood. The simplex is closed, bounded, and compact.
 
-For relative probability distributions, there is no obvious way to embed it into K-dimensional euclidean space\footnote{Though it may be possible! See section \ref{section:euclidean_embedding}}. The relative probability space is more complicated, because at the corners and edges of the simplex lurk entire subspaces where zero-probability outcomes are still being compared in different configurations.
+For relative probability distributions, there is no obvious way to embed it into K-dimensional euclidean space\footnote{Though it may be possible! See section \ref{section:euclidean_embedding}.}. The relative probability space is more complicated, because at the corners and edges of the simplex lurk entire subspaces where zero-probability outcomes are still being compared in different configurations.
 
-Fortunately, the set of all RPFs can still be embedded into a much larger euclidean space. Any \(P \in \text{RPF}(K)\) is a function of type \(\Omega \times \Omega \rightarrow \mathbb{M}\) that satisfies the fundamental properties. Therefore \(\text{RPF}(K)\) can at least be embedded into \(\mathbb{M}^{K^2}\).
+Fortunately, \(\text{RPF}(K)\) can still be embedded into a much larger euclidean space. Any \(P \in \text{RPF}(K)\) is a function of type \(\Omega \times \Omega \rightarrow \mathbb{M}\) that satisfies the fundamental properties. Therefore \(\text{RPF}(K)\) can at least be embedded into \(\mathbb{M}^{K^2}\).
 
-A topology can be defined by as \textit{basis of open sets}, and for euclidean space (and metric spaces more generally) the basis is the set of open balls on \(\mathbb{R}^n\).
+A topology can be defined by a \textit{basis of open sets}, and for euclidean space (and metric spaces more generally) the basis is the set of open balls on \(\mathbb{R}^n\).
 
 \begin{definition}
 An open ball of size \(\epsilon\) around point \(x \in \mathbb{R}^n\) is the set of all points y such that \(|x - y| < \epsilon\).
 \end{definition}
 
-Open balls do not work as a basis on the set \(\mathbb{M}\) because an open ball around \(\infty\) would contain only \(\infty\) - when in reality we want an open set around \(\infty\) to also contain some interval \((x, \infty]\). This is remedied by using the following transformation, which we take to be continuous (topology conserving) between \(\mathbb{M}\) and \([0, 1]\).
+Open balls do not work as a basis on the set \(\mathbb{M}\) because an open ball around \(\infty\) would contain only \(\infty\) when we instead want them to also contain some interval \((x, \infty]\). This is remedied by using the following transformation between \(\mathbb{M}\) and \([0, 1]\). We take this transformation to be continuous, or topology conserving, so that the topology of \(\mathbb{M}\) is defined by the topology of \([0, 1]\).
 
 \begin{definition}
 The \textit{inverse odds transform} is the function \(\text{odds}^{-1}: \mathbb{M} \rightarrow [0, 1]\) with \(\text{odds}^{-1}(0) = 0\) and \(\text{odds}^{-1}(\infty) = 1\) defined by
 \[\text{odds}^{-1}(x) = \frac{x}{x + 1}\]
 \end{definition}
 
-The inverse odds transformation establishes \(\mathbb{M}\) as topologically equivalent to the closed interval \([0, 1]\). Now \(\text{RPF}(K)\) can be embedded into a bounded region of euclidean space, namely \([0, 1]^{K^2}\).
-
-There are other ways to define a topology on \(\text{RPF}^K\). One in particular using compositions of open patches was discarded due to its complexity during the course of this research\footnote{Its usefulness is dubious, but it will be posted separately as an addendum note in case that assessment turns out to be incorrect}.
+The inverse odds transformation establishes \(\mathbb{M}\) as topologically equivalent to the closed interval \([0, 1]\). Now \(\text{RPF}(K)\) can be embedded into a bounded region of euclidean space, namely \([0, 1]^{K^2}\) by applying inverse odds to it. The result won't follow the fundamental axioms, but it will respect all of the topological properties\footnote{There are other ways to define a topology on \(\text{RPF}(K)\). One in particular using compositions of open patches that is perhaps more natural was discarded due to its complexity during the course of this research. Its usefulness is in doubt, but it will be posted separately as an addendum note in case that assessment turns out to be incorrect.}.
 
 \subsection{Limit Points and Compactness}
 
-We now close with an argument for the closure of \(\text{RPF}^{\ast}(K)\) under limits.
+We now present an argument for the closure of \(\text{RPF}(K)\) under limits.
 
 \begin{definition}
 A \textit{limit point} of a set \(A\) is a point \(x\) such that any open set containing \(x\) also contains points in \(A\). Equivalently for euclidean space, any open ball containing \(x\) also intersects with \(A\).
@@ -1333,7 +1317,7 @@ A \textit{limit point} of a set \(A\) is a point \(x\) such that any open set co
 
 \begin{theorem}
 \label{thm:rpf_closed}
-Let \(P\) be a \textit{limit point} of \(\text{RPF}(K)\). Then \(P\) satisfies all of the fundamental axioms and is therefore a member of \(\text{RPF}(K)\).
+Let \(P\) be a \textit{limit point} of \(\text{RPF}(K)\). Then \(P\) satisfies all of the fundamental axioms and is therefore a member of \(\text{RPF}(K)\). In other words, \(\text{RPF}(K)\) is topologically closed.
 \end{theorem}
 
 \begin{proof}
@@ -1343,9 +1327,9 @@ Identity: If \(P\) doesn't satisfy the identity axiom, then \(P(h, h) \neq 1\) f
 
 Inverse: A similar argument applies here if for some pair \(h_1\) and \(h_2\), \(P(h_1, h_2) \neq P(h_1, h_2)\). An \(\epsilon\) can be selected that is small enough so that \(P(h_1, h_2)\) is never equal to \(P(h_1, h_2)\)
 
-Composition: Suppose \(P(a, c) :\ncong P(a, b) \cdot P(b, c) \). This means that the constraint cannot be \(\ast\) by lemma \ref{wild_prop_2}, so by lemma \ref{wild_prop_1} we can conclude that \(P(a, c) \neq P(a, b) \cdot P(b, c) \). But then again, the same argument from identity and inverse apply; for some sufficiently small \(\epsilon\)-ball around \(P\), the composition axiom will still always be false.
+Composition: Suppose \(P(a, c) :\ncong P(a, b) \cdot P(b, c) \). This can only be true if \(P(a, c) \neq P(a, b) \cdot P(b, c) \). But then this gap allows us to make the same argument from before; for some sufficiently small \(\epsilon\)-ball around \(P\), the composition axiom will still be false.
 
-This means that only functions \(P\) which satisfy the fundamental axioms can be limit points to \(\text{RPF}(K)\), and therefore \(\text{RPF}(K)\) contains all its limit points.
+This means that only functions \(P\) which satisfy the fundamental axioms can be limit points to \(\text{RPF}(K)\), and therefore \(\text{RPF}(K)\) contains all its limit points and is closed.
 \end{proof}
 
 As a bonus, we can prove that \(\text{RPF}(K)\) is compact thanks to the Heine-Borel theorem, stated as follows (wording from Bradley \cite{bradley}).
@@ -1365,19 +1349,19 @@ Theorem \ref{thm:rpf_closed} states that \(\text{RPF}(K)\) is closed, and by the
 \section{Future Work}
 \label{section:future_work}
 \subsection{Expansions to infinite spaces}
-The obvious extention to this work is to expand relative probability to a generalized space which may be infinite, and thus capture all of the variety of probability distributions that one might wish to study and apply. This would start by modifying statement \ref{eq:event_def_ratio_match} to ask for an additive property. The relative probability function would then become a \textit{relative probability distribution}.
+The obvious extention to this work is to expand relative probability to a generalized space which may be infinite, and thus capture all of the variety of probability distributions that one might wish to study and apply. Section \ref{section:outcomes_to_events} sets of a good basic framework for this which would start by modifying statement \ref{eq:event_def_ratio_match} to ask for an additive property. The relative probability function would then become a \textit{relative probability distribution}.
 
-This raises certain question which - while decisions have been made in prior work and certainly in measure theory - should be open to discussion.
+This process raises certain questionsn.
 \begin{enumerate}
-\item Relative probability would provide an interesting bases for the theory of finitely additive probability measures, or charges\cite{charge}. If we relative countable additive, this would allow for constructions like a fair countable lottery (also known as a De Finetti Lottery\cite{de_finetti}). Finite additivity may also be a better mathematical model for computational methods in probability, on which additions must always be finite.
-\item If we derive a notion of probability density, then can these densities at a particular pair of events be used to compare the relative probability of those events? What specific properties of the relative probability distribution are required to make this work?
+\item Relative probability would provide an interesting bases for the theory of finitely additive probability measures, or charges\cite{charges}. If we do not require countable additivity and instead opt for the weaker finite additivity, this would allow for constructions like a fair countable lottery (also known as a De Finetti Lottery\cite{de_finetti}). In this interest of studying limits of RPFs, this would be desirable. Finite additivity may also be a better mathematical model for computational methods in probability, on which additions must always be finite.
+\item If we derive a notion of probability density, then can these densities at a particular pair of events be used to compare the relative probability of those events? What specific properties of the relative probability distribution are required to make this work? Can we start with a density function or PDF and work upwards?
 \end{enumerate}
 
 It appears possible to use these ideas to create a unified version of the Hausdorff measure - which finds the size of an object given its dimension. Instead of considering it to be multiple measures - we can have a single measure where bounded sets of equal dimension are mutually possible, and smaller-dimensional objects are mutually impossible with respect to larger dimensional objects.
 
 \subsection{Relationship to Category Theory}
 
-Category theorists will recognize that an RPF describes a category. Specifically, and RPF describes something called a \textit{thin category} where any pair of objects have at most one morphism connecting them (per direction). The relative probability axioms can analyzed and approached through the lens of category theory in order to learn more about them.
+Category theorists will recognize that an RPF describes a \textit{thin category} where any pair of objects have at most one morphism connecting them (per direction). The relative probability axioms can be analyzed and approached through the lens of category theory in order to learn more about them.
 
 \begin{center}
 \resizebox{0.3\textwidth}{!}{
@@ -1413,13 +1397,15 @@ Category theorists will recognize that an RPF describes a category. Specifically
 }
 \end{center}
 
-The recent work of Censi et al.\cite{censi} concerns negative information in categories, which corresponds to the wildcard element \(\ast\). It represents regions of the probability function that remain uncomparable. This work could be used to subsume and develop the indeterminate wildcard concept.
+The recent work of Censi et al.\cite{censi} concerns negative information in categories, which corresponds to the wildcard element \(\ast\). It represents regions of the probability function that remain uncomparable. This work could be used to subsume, develop, and refine the indeterminate wildcard concept.
 
-\subsection{Embedding in Euclidean Space}
+\subsection{Embedding in Lower Dimensional Euclidean Space}
 \label{section:euclidean_embedding}
 
-Absolute probability functions have this advantage where they can be embedded into a simplex in \(\mathbb{R}^K\). For relative probability functions it is not so straightforward but it should still be possible given that \(\text{RPF}^K\) is a (K-1)-dimensional set that can be embedded into \([0, 1]^{K^2}\). For example, the space \(\text{RPF}(3)\) can be mapped as a hexagon, where each point can be assigned a probability based on its distance between two parallel sides, which exist for each outcome.
+Absolute probability functions have this advantage where they can be embedded into a simplex in \(\mathbb{R}^K\). For relative probability functions it is not so straightforward but it should still be possible given that \(\text{RPF}(K)\) is a (K-1)-dimensional set that can be embedded into \([0, 1]^{K^2}\). For example, the space \(\text{RPF}(3)\) can be mapped as a hexagon, where each point can be assigned a probability based on its distance between two parallel sides as in figure \ref{fig:hexagon}.
 
+\begin{figure}[h]
+\label{fig:hegagon}
 \begin{center}
 \resizebox{0.25\textwidth}{!}{
 \begin{tikzpicture}
@@ -1448,16 +1434,17 @@ Absolute probability functions have this advantage where they can be embedded in
 \end{tikzpicture}
 }
 \end{center}
+\end{figure}
 
-In this case, the probability triangle has been truncated. For higher order simplices, this appears to become exceedingly unwieldy unless some simplifying trick is developed. If it is successfully done, then a new, cleaner, representation for memebers of \(\text{RPF}(K)\) falls into place.
+In this case, the triangular simplex has been truncated. For higher order simplices, this appears to become exceedingly unwieldy unless some simplifying trick is developed. If it is successfully done, then a cleaner representation for members of \(\text{RPF}(K)\) become available.
 
 \section{Conclusion}
 
-Assignment probability as a \quotes{relative} measure takes on a new significance given the proliferation of computational probability. Its nice properties include formula simplification, closure under limits, and the ability to model non-standard distributions.
+Modelling probability as a \quotes{relative} measure takes on a new significance given the proliferation of computational methods. The nice properties of RPFs include formula simplification, closure under limits, and the ability to model non-standard distributions.
 
 Should practitioners regularly use the language of relative probability when describing and deploying probabilistic models? It may not be beneficial in every situation, but they should certainly consider it! Computational techniques for bayesian inference and machine learning in many cases remove the need to normalize the distributions involved, so why not make it official?
 
-This paper has shored up some of the theoretical underpinnings of relative probability. The examples we highlight show that relative probability forces us to look at probabilistic questions from an expanded perspective.
+This paper has shored up some of the theoretical underpinnings of relative probability. The highlighted examples herein show that relative probability encourages us to look at probabilistic questions from an expanded perspective.
 
 %\subsubsection*{References}
 \begin{thebibliography}{20}

@@ -5,26 +5,27 @@
 \contentsline {subsection}{\numberline {2.2}The Wildcard Element}{5}{}%
 \contentsline {subsection}{\numberline {2.3}The Matching Relation}{5}{}%
 \contentsline {section}{\numberline {3}Categorical Distribution}{6}{}%
-\contentsline {subsection}{\numberline {3.1}Events}{6}{}%
+\contentsline {subsection}{\numberline {3.1}Events}{7}{}%
 \contentsline {subsection}{\numberline {3.2}Relative Probability Function}{7}{}%
 \contentsline {section}{\numberline {4}The Relative Probability Approach}{8}{}%
 \contentsline {subsection}{\numberline {4.1}Fundamental Axioms}{8}{}%
 \contentsline {subsection}{\numberline {4.2}Examples}{9}{}%
 \contentsline {section}{\numberline {5}Concepts for Relative Probability Functions}{10}{}%
-\contentsline {subsection}{\numberline {5.1}Absolute Probability Functions as a Special Case}{10}{}%
+\contentsline {subsection}{\numberline {5.1}Absolute Probability as a Special Case}{10}{}%
 \contentsline {subsection}{\numberline {5.2}Comparability, Possibility, and Anchors}{10}{}%
 \contentsline {subsection}{\numberline {5.3}Mutual Possibility}{13}{}%
 \contentsline {subsection}{\numberline {5.4}Possibility Classes}{14}{}%
 \contentsline {section}{\numberline {6}From Outcomes to Events}{15}{}%
 \contentsline {section}{\numberline {7}Composing Relative Probability Functions}{18}{}%
 \contentsline {section}{\numberline {8}Bayesian Inference on Relative Distributions}{20}{}%
-\contentsline {subsection}{\numberline {8.1}Example: A Noisy Channel}{22}{}%
-\contentsline {subsection}{\numberline {8.2}Digital Representation}{23}{}%
+\contentsline {subsection}{\numberline {8.1}Degeneration of Totally Mutually Possible Beliefs}{22}{}%
+\contentsline {subsection}{\numberline {8.2}Example: A Noisy Channel}{22}{}%
+\contentsline {subsection}{\numberline {8.3}Digital Representation}{23}{}%
 \contentsline {section}{\numberline {9}Topology and Limits in Relative Probability Space}{24}{}%
 \contentsline {subsection}{\numberline {9.1}Relative Probability Spaces}{24}{}%
 \contentsline {subsection}{\numberline {9.2}Limit Points and Compactness}{25}{}%
 \contentsline {section}{\numberline {10}Future Work}{26}{}%
 \contentsline {subsection}{\numberline {10.1}Expansions to infinite spaces}{26}{}%
 \contentsline {subsection}{\numberline {10.2}Relationship to Category Theory}{26}{}%
-\contentsline {subsection}{\numberline {10.3}Embedding in Euclidean Space}{27}{}%
+\contentsline {subsection}{\numberline {10.3}Embedding in Lower Dimensional Euclidean Space}{27}{}%
 \contentsline {section}{\numberline {11}Conclusion}{27}{}%
