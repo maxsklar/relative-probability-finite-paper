@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  28 OCT 2022 16:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  1 NOV 2022 19:28
 entering extended mode
 **./relative-probability-finite-paper.tex
 (relative-probability-finite-paper.tex
@@ -931,11 +931,7 @@ File: pgflibraryshapes.multipart.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \c@definition=\count330
 \c@example=\count331
 \c@case=\count332
- (relative-probability-finite-paper.aux
-
-LaTeX Warning: Label `rpf_composition_same_branch' multiply defined.
-
-)
+ (relative-probability-finite-paper.aux)
 \openout1 = `relative-probability-finite-paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
@@ -1049,7 +1045,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/it' in size <153.57375> not available
 
-(Font)              size <24.88> substituted on input line 377.
+(Font)              size <24.88> substituted on input line 379.
 
 [8] [9] [10] [11] [12]
 
@@ -1065,31 +1061,24 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26]
+[14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25]
+Underfull \vbox (badness 1142) has occurred while \output is active []
 
-LaTeX Warning: Reference `fig:hexagon' on page 27 undefined on input line 1405.
-
-
+ [26]
 [27] [28] (relative-probability-finite-paper.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 128.69374pt have occurred.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 30798 strings out of 478864
- 782554 string characters out of 2848660
- 1221106 words of memory out of 3000000
- 48158 multiletter control sequences out of 15000+600000
+ 30797 strings out of 478864
+ 782542 string characters out of 2848660
+ 1220967 words of memory out of 3000000
+ 48157 multiletter control sequences out of 15000+600000
  421171 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,13n,103p,934b,1158s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,13n,103p,879b,1158s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\maxsk\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1000.pk><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -1123,7 +1112,7 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/ma
 xsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/sym
 bols/msbm7.pfb>
-Output written on relative-probability-finite-paper.pdf (28 pages, 462442 bytes
+Output written on relative-probability-finite-paper.pdf (28 pages, 461612 bytes
 ).
 PDF statistics:
  240 PDF objects out of 1000 (max. 8388607)
