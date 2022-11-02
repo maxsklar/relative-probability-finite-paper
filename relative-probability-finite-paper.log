@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  1 NOV 2022 23:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  2 NOV 2022 00:27
 entering extended mode
 **./relative-probability-finite-paper.tex
 (relative-probability-finite-paper.tex
@@ -1028,7 +1028,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (relative-probability-finite-paper.toc
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <153.57375> not available
-(Font)              size <24.88> substituted on input line 13.
+(Font)              size <24.88> substituted on input line 12.
 
 [1{C:/Users/maxsk/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
@@ -1074,11 +1074,11 @@ LaTeX Font Warning: Size substitutions with differences
 Here is how much of TeX's memory you used:
  30797 strings out of 478864
  782542 string characters out of 2848660
- 1220967 words of memory out of 3000000
+ 1220965 words of memory out of 3000000
  48157 multiletter control sequences out of 15000+600000
  421171 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,13n,103p,879b,1158s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,13n,103p,894b,1158s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\maxsk\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1000.pk><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -1112,7 +1112,7 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/ma
 xsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/sym
 bols/msbm7.pfb>
-Output written on relative-probability-finite-paper.pdf (28 pages, 464435 bytes
+Output written on relative-probability-finite-paper.pdf (28 pages, 464778 bytes
 ).
 PDF statistics:
  240 PDF objects out of 1000 (max. 8388607)
