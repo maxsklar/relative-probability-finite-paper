@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  1 NOV 2022 19:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  1 NOV 2022 23:09
 entering extended mode
 **./relative-probability-finite-paper.tex
 (relative-probability-finite-paper.tex
@@ -1028,7 +1028,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (relative-probability-finite-paper.toc
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <153.57375> not available
-(Font)              size <24.88> substituted on input line 14.
+(Font)              size <24.88> substituted on input line 13.
 
 [1{C:/Users/maxsk/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
@@ -1045,7 +1045,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/it' in size <153.57375> not available
 
-(Font)              size <24.88> substituted on input line 379.
+(Font)              size <24.88> substituted on input line 385.
 
 [8] [9] [10] [11] [12]
 
@@ -1112,7 +1112,7 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/ma
 xsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pf
 b><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/sym
 bols/msbm7.pfb>
-Output written on relative-probability-finite-paper.pdf (28 pages, 461612 bytes
+Output written on relative-probability-finite-paper.pdf (28 pages, 464435 bytes
 ).
 PDF statistics:
  240 PDF objects out of 1000 (max. 8388607)

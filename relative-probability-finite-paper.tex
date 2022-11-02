@@ -118,11 +118,11 @@
 \title{
   Relative Probability on Finite Outcome Spaces \\
   \large{
-    A Discussion of its Axiomatization and Applications
+    Its Axiomatization, Categorization and Applications
   }
 }
 
-\author{Max Sklar\\ Local Maximum Labs \\ DATE HERE}
+\author{Max Sklar\\ Local Maximum Labs \\ Salem, NH}
 \date{}
 
 \maketitle
@@ -130,7 +130,13 @@
 
 \begin{abstract}
 This work explores the foundations of probability by modeling it as a relative measure rather than an absolute one. As a proof of concept, a theory of relative probability functions is developed on finite outcome spaces. Three fundamental axioms are identified. The various relative probability functions that can be built from these axioms are categorized along with a library of examples. The computational properties of Bayesian inference on relative probabilities, its digital implementation, and its topological closure are discussed.
+
+Keywords: Relative Probability, Axiomatization, Foundations of Probability, Philosophy of Probability, Conditional Probability
+MSC 2020 subject classifications. Primary 60A05.
 \end{abstract}
+
+%\keywords{Relative Probability, Axiomatization, Foundations of Probability, Philosophy of Probability, Conditional Probability}
+%\subjclass[2020]{60A05}
 
 \tableofcontents
 \newpage
@@ -250,7 +256,7 @@ If both \(m_1\) and \(m_2\) match each other, then \((m_1 = m_2) \vee (m_2 = \as
 The matching relation is not symmetric because \(m :\cong \ast\) but \(\ast :\ncong m\) for any non-wildcard \(m\).
 \end{proof}
 
-\section{Categorical Distribution}
+\section{Categorical Distributions}
 
 Let \(\Omega\) be a set of mutually exclusive \textit{outcomes}\footnote{Each outcome could be thought of as a possible result of a random trial, or a possible value for an unknown variable}. We assume that \(\Omega\) is finite and there are \(K\) outcomes or \textit{categories} so that \(|\Omega| = K\).
 
@@ -1199,7 +1205,7 @@ Composition:
 \[P(h_1, h_2)P(h_2, h_3)=P_1(h_1, h_2) P_2(h_1, h_2)P_1(h_2, h_3) P_2(h_2, h_3) :\cong P_1(h_1, h_3) P_2(h_1, h_3)=P(h_1, h_3)\]
 \end{proof}
 
-\subsection{Degeneration of Totally Mutually Possible Beliefs}
+\subsection{Degeneration of Mutually Possible Beliefs}
 
 The \textit{Cromwell rule} in Bayesian inference cautions against setting the probability of outcomes equal to 0 in a prior belief. For relative probability, this corresponds to a preference for totally mutually possible RPFs. If an outcome were considered impossible with respect to another, this would be a permanent belief that cannot be changed through evidence.
 
