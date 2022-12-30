@@ -1205,7 +1205,7 @@ If an outcome is impossible with respect to another outcome in the posterior dis
 Assume \(P(h_1, h_2) = 0\). Then \(P(h_1, h_2|D) = P_D(h_1, h_2) P(h_1, h_2) = P_D(h_1, h_2) \cdot 0\). This final term would normally simplify to 0, but will be \(\ast\) if \(P_D(h_1, h_2) \in \{\infty, \ast\}\).
 \end{proof}
 
-If a Bayesian setup allows an outcome to be declared impossible with respect to another from one piece of evidence, and the reverse from another piece of evidence, those outcomes will become permanently incomparable. This failure mode will be familiar to those machine learning practitioners who have ever recieved a model full of \textit{NaNs}.
+If a Bayesian setup allows an outcome to be declared impossible with respect to another from one piece of evidence, and the reverse from another piece of evidence, those outcomes will become permanently incomparable. This failure mode will be familiar to those machine learning practitioners who have ever received a model full of \textit{NaNs}.
 
 \begin{theorem}
 If two outcomes are incomparable in a prior distribution, they will be incomparable in the posterior distribution. In other words, if \(P(h_1, h_2)=\ast\), then \(P(h_1, h_2|D) = \ast\).
@@ -1446,7 +1446,7 @@ Should practitioners regularly use the language of relative probability when des
 
 In section \ref{section:topology}, we established a topology on \(\text{RPF}(K)\) by embedding it into Euclidean space, and demonstrated its compactness. Here is an alternative topology that defines a \textit{basis of open sets} directly. While this is not used in the context of this paper, it shows promise in providing a more natural framework for topological proofs and simplex partitioning.
 
-The notion of an open set changes when a topological space is restricted to a lower dimention. For example, on the real number line \(\mathbb{R}\), the open interval (0, 1) is an open set. However, once it is embedded into \(\mathbb{R}^2\), it is now a line segment in a plane and no longer open (see figure \ref{fig:sub_topology}). For example, the set \(\{(x, y): x \in (0, 1)\;  \text{and}\;  y \in (-\epsilon, +\epsilon)\}\) given an \(\epsilon > 0\) is such an open set on \(\mathbb{R}^2\). The line segment (0, 1) is open in \(\mathbb{R}\) because it is the restriction of this open set on \(\mathbb{R}^2\). 
+The notion of an open set changes when a topological space is restricted to a lower dimension. For example, on the real number line \(\mathbb{R}\), the open interval (0, 1) is an open set. However, once it is embedded into \(\mathbb{R}^2\), it is now a line segment in a plane and no longer open (see figure \ref{fig:sub_topology}). For example, the set \(\{(x, y): x \in (0, 1)\;  \text{and}\;  y \in (-\epsilon, +\epsilon)\}\) given an \(\epsilon > 0\) is such an open set on \(\mathbb{R}^2\). The line segment (0, 1) is open in \(\mathbb{R}\) because it is the restriction of this open set on \(\mathbb{R}^2\). 
 
 \begin{figure}[h]
 \centering
@@ -1486,7 +1486,7 @@ An \textit{interior open patch} of \(\text{RPF}(K)\) is one of the following:
 
 \begin{enumerate}
   \item If \(K = 2\), a subset parameterized by an interior open interval of magnitudes. \(\{P | a < P(h_1, h_2) < b\}\) for some \(a, b \in \mathbb{M}\) 
-  \item If \(K > 2\), a composition of interor patches with composing function \(P_{\top}\) also being an interior patch.
+  \item If \(K > 2\), a composition of interior patches with composing function \(P_{\top}\) also being an interior patch.
 \end{enumerate}
 \end{definition}
 
@@ -1555,7 +1555,7 @@ An \textit{exterior open patch} is a one of the following:
 \end{enumerate}
 \end{definition}
 
-As seen in figure \ref{fig:exterior_open_patch}, exterior open patches touch the hyperfaces (facets) of the simplex as well as the vertices and edges.  As the number of dimentions increases and the composition diagram changes, more permutations are possible.
+As seen in figure \ref{fig:exterior_open_patch}, exterior open patches touch the hyperfaces (facets) of the simplex as well as the vertices and edges.  As the number of dimensions increases and the composition diagram changes, more permutations are possible.
 
 \begin{figure}[h]
 \centering
