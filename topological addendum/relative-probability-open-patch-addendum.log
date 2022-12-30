@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  13 OCT 2022 13:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  29 NOV 2022 15:46
 entering extended mode
 **./relative-probability-open-patch-addendum.tex
 (relative-probability-open-patch-addendum.tex
@@ -828,29 +828,6 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 \c@@ppsavesec=\count325
 \c@@ppsaveapp=\count326
 )
-(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
-Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip61
-\enit@outerparindent=\dimen303
-\enit@toks=\toks50
-\enit@inbox=\box113
-\enit@count@id=\count327
-\enitdp@description=\count328
-)
-(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/draftwatermark\draftwat
-ermark.sty
-Package: draftwatermark 2020/12/08 3.0 Put a gray textual watermark on document
- pages
-
-(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
-Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
-(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
-Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-)
-(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/kvsetkeys\kvsetkeys.s
-ty
-Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
-)))
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarycalc.code.tex
 File: tikzlibrarycalc.code.tex 2021/05/15 v3.1.9a (3.1.9a)
@@ -906,31 +883,31 @@ File: tikzlibraryshapes.multipart.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\
 pgflibraryshapes.multipart.code.tex
 File: pgflibraryshapes.multipart.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-\pgfnodepartlowerbox=\box114
-\pgfnodeparttwobox=\box115
-\pgfnodepartthreebox=\box116
-\pgfnodepartfourbox=\box117
-\pgfnodeparttwentybox=\box118
-\pgfnodepartnineteenbox=\box119
-\pgfnodeparteighteenbox=\box120
-\pgfnodepartseventeenbox=\box121
-\pgfnodepartsixteenbox=\box122
-\pgfnodepartfifteenbox=\box123
-\pgfnodepartfourteenbox=\box124
-\pgfnodepartthirteenbox=\box125
-\pgfnodeparttwelvebox=\box126
-\pgfnodepartelevenbox=\box127
-\pgfnodeparttenbox=\box128
-\pgfnodepartninebox=\box129
-\pgfnodeparteightbox=\box130
-\pgfnodepartsevenbox=\box131
-\pgfnodepartsixbox=\box132
-\pgfnodepartfivebox=\box133
+\pgfnodepartlowerbox=\box113
+\pgfnodeparttwobox=\box114
+\pgfnodepartthreebox=\box115
+\pgfnodepartfourbox=\box116
+\pgfnodeparttwentybox=\box117
+\pgfnodepartnineteenbox=\box118
+\pgfnodeparteighteenbox=\box119
+\pgfnodepartseventeenbox=\box120
+\pgfnodepartsixteenbox=\box121
+\pgfnodepartfifteenbox=\box122
+\pgfnodepartfourteenbox=\box123
+\pgfnodepartthirteenbox=\box124
+\pgfnodeparttwelvebox=\box125
+\pgfnodepartelevenbox=\box126
+\pgfnodeparttenbox=\box127
+\pgfnodepartninebox=\box128
+\pgfnodeparteightbox=\box129
+\pgfnodepartsevenbox=\box130
+\pgfnodepartsixbox=\box131
+\pgfnodepartfivebox=\box132
 )))
-\c@theorem=\count329
-\c@definition=\count330
-\c@example=\count331
-\c@case=\count332
+\c@theorem=\count327
+\c@definition=\count328
+\c@example=\count329
+\c@case=\count330
 
 (relative-probability-open-patch-addendum.aux)
 \openout1 = `relative-probability-open-patch-addendum.aux'.
@@ -955,23 +932,55 @@ Package caption Info: End \AtBeginDocument code.
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count333
-\scratchdimen=\dimen304
-\scratchbox=\box134
-\nofMPsegments=\count334
-\nofMParguments=\count335
-\everyMPshowfont=\toks51
-\MPscratchCnt=\count336
-\MPscratchDim=\dimen305
-\MPnumerator=\count337
-\makeMPintoPDFobject=\count338
-\everyMPtoPDFconversion=\toks52
+\scratchcounter=\count331
+\scratchdimen=\dimen303
+\scratchbox=\box133
+\nofMPsegments=\count332
+\nofMParguments=\count333
+\everyMPshowfont=\toks50
+\MPscratchCnt=\count334
+\MPscratchDim=\dimen304
+\MPnumerator=\count335
+\makeMPintoPDFobject=\count336
+\everyMPtoPDFconversion=\toks51
 )
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+
+(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+
+(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+))
+(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/kvsetkeys\kvsetkeys.s
+ty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+))
+(C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
 
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
 fg
@@ -1026,96 +1035,48 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 128
 (C:\Users\maxsk\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(relative-probability-open-patch-addendum.toc
+[1
 
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <153.57375> not available
-(Font)              size <24.88> substituted on input line 15.
-
-[1{C:/Users/maxsk/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
-
-])
-\tf@toc=\write4
-\openout4 = `relative-probability-open-patch-addendum.toc'.
-
- [2]
-
-LaTeX Warning: Reference `section:standard_relative_prob' on page 3 undefined o
-n input line 141.
-
-[3]
-
-LaTeX Warning: Reference `def:ratio' on page 4 undefined on input line 228.
-
-
-LaTeX Warning: Reference `thm:abs_composition' on page 4 undefined on input lin
-e 228.
-
-[4]
-
-LaTeX Warning: Reference `def:categorical_abs' on page 5 undefined on input lin
-e 255.
-
-[5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[16]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[17] [18] [19] [20] [21] (relative-probability-open-patch-addendum.aux)
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 128.69374pt have occurred.
-
-
-LaTeX Warning: There were undefined references.
-
- ) 
+{C:/Users/maxsk/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2] [3]
+[4] [5] [6] (relative-probability-open-patch-addendum.aux) ) 
 Here is how much of TeX's memory you used:
- 30875 strings out of 478864
- 784324 string characters out of 2848660
- 1205384 words of memory out of 3000000
- 48235 multiletter control sequences out of 15000+600000
- 421160 words of font info for 92 fonts, out of 8000000 for 9000
+ 29888 strings out of 478864
+ 765609 string characters out of 2848660
+ 1170093 words of memory out of 3000000
+ 47243 multiletter control sequences out of 15000+600000
+ 418694 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,14n,103p,791b,1181s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\maxsk\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1000.pk><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmbx10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmbx12.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmbx5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/maxsk/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/maxsk/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/maxsk/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/
-maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C
-:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi
-7.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmmi8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmr10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmr12.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/maxsk/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/maxsk/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/maxsk/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/maxsk/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/max
-sk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Us
-ers/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.p
-fb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmsy5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmsy7.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmsy8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmti10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/maxsk/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/maxsk/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/ma
-xsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb
->
-Output written on relative-probability-open-patch-addendum.pdf (21 pages, 40889
-7 bytes).
+ 99i,14n,103p,790b,1180s stack positions out of 5000i,500n,10000p,200000b,80000s
+ <C:\Users\maxsk\Ap
+pData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/max
+sk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/
+Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12
+.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmbx5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmbx9.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmmi10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/maxsk/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/maxsk/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/maxsk/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/maxsk/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users
+/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C
+:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6
+.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmr7.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmr8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr9.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/maxsk/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/maxsk/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/maxsk/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/m
+axsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.p
+fb>
+Output written on relative-probability-open-patch-addendum.pdf (6 pages, 263679
+ bytes).
 PDF statistics:
- 214 PDF objects out of 1000 (max. 8388607)
+ 135 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  17 words of extra memory for PDF output out of 10000 (max. 10000000)
 

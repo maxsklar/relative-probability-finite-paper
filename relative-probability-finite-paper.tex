@@ -90,8 +90,6 @@
 \definecolor{darkgreen}{rgb}{0.01, 0.75, 0.24}
 \definecolor{shaded_green}{RGB}{151, 194, 157}
 
-\newcommand{\quotes}[1]{``#1''}
-
 \theoremstyle{plain}% default
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -122,23 +120,15 @@
   }
 }
 
-\author{Max Sklar\\ Local Maximum Labs, Salem, NH \\ November, 2022}
+\author{Max Sklar\\ Local Maximum Labs\\ December, 2022}
 \date{}
 
 \maketitle
 \thispagestyle{empty}
 
 \begin{abstract}
-This work explores and systematizes the foundations of probability theory as a relative measure rather than an absolute one. As a proof of concept, a theory of relative probability is developed on finite outcome spaces along with a deeper examination of its inner workings and generalizability. Three fundamental axioms are identified and justified which establish relative probability functions as thin categories. The various relative probability functions that can be built from these axioms are organized along with a library of examples and a system for composing them. We discuss a relative version of Bayesian inference and its digital implementation. Finally, the topological closure of relative probability space is proven to highlight its information preserving properties under limits.
-\\
-\\
-\textit{Keywords and Phrases}: Relative Probability, Axiomatization, Foundations of Probability, Philosophy of Probability, Conditional Probability, Bayesian Inference
-\\
-\textit{MSC 2020 subject classifications.} Primary 60A05.
+This work proposes a view of probability as a relative measure rather than an absolute one. To demonstrate this concept, we focus on finite outcome spaces and develop three fundamental axioms that establish requirements for relative probability functions. We then provide a library of examples of these functions and a system for composing them. Additionally, we discuss a relative version of Bayesian inference and its digital implementation. Finally, we prove the topological closure of the relative probability space, highlighting its ability to preserve information under limits. Overall, this work systematizes the foundations of probability theory and examines the inner workings and generalizability of relative probability.
 \end{abstract}
-
-%\keywords{Relative Probability, Axiomatization, Foundations of Probability, Philosophy of Probability, Conditional Probability}
-%\subjclass[2020]{60A05}
 
 \tableofcontents
 \newpage
@@ -147,7 +137,7 @@ This work explores and systematizes the foundations of probability theory as a r
 
 The foundations of probability theory are still very much open to explore!
 
-Since Kolmogorov published the standard axioms for probability\cite{kolmogorov} in 1933, there have been calls to alter them. In \quotes{Kolmogorov's Axiomatisation and Its Discontents}, Lyon\cite{lyon} examines arguments made in favor and against these alterations. One area of \quotes{discontentment} concerns conditional probability. We often want to identify the probability of event A given event B, or \(P(A|B)\), even when \(B\) has probability zero\footnote{Another unintuitive feature of probability theory is that zero probability events do indeed occur, particularly when given a continuous distribution. November\cite{november} gave a more recent philosophical treatment of this phenomenon.}.
+Since Kolmogorov published the standard axioms for probability\cite{kolmogorov} in 1933, there have been calls to alter them. In ``Kolmogorov's Axiomatisation and Its Discontents'', Lyon\cite{lyon} examines arguments made in favor and against these alterations. One area of ``discontentment'' concerns conditional probability. We often want to identify the probability of event A given event B, or \(P(A|B)\), even when \(B\) has probability zero\footnote{Note that zero probability events can indeed occur, particularly when given a continuous distribution. November\cite{november} gave a more recent philosophical treatment of this phenomenon.}.
 
 We are out of luck with the Kolmogorov model, which defines \(P(A|B)\) as the ratio \(\frac{P(A \cap B)}{P(B)}\). When \(P(B) = 0\), the indeterminate form \(\frac{0}{0}\) appears leaving the conditional probability undefined. In fact, this happens whenever one wishes to compare two events that have probability zero.
 
@@ -155,23 +145,21 @@ Undeterred by the petty obstacle of the indeterminate form, mathematicians and e
 
 Hajek\cite{hajek} (citing Borel) gives a much more compelling example: if a random point on the Earth is selected, what is the probability that it is in the eastern hemisphere given that it is on the equator? It seems that one should not hesitate to answer one half. And yet the equator, being a mere 1-dimensional object, has probability zero compared to the rest of the globe.
 
-Let us then model probability in a non-standard way to account for the discrepancy between theory and practice. We can do so as long our new framework is logically consistent and corresponds to the advertised applications\footnote{Lyon identifies this link between application and model as the bridge principle. A new set of axioms for probability could well give rise to a new and interesting mathematics, but if that mathematics cannot be linked to any application that anyone would reasonably call probability, then it ought to go by a different name.}. This framework will take the relationships between outcomes and events as the fundamental unit instead of trying to pin down their absolute likelihoods.
-
-This improves on the Kolmogorov model by solving the conditional probability question. It also fits nicely into modern frameworks such as category theory and techniques in distribution sampling.
+To address the discrepancy between theory and practice, we propose a non-standard model of probability. This model is built on the relationships between outcomes and events rather than their absolute likelihoods. By focusing on these relationships, this improves on the Kolmogorov model by solving the conditional probability question. As additional benefits, it fits nicely with most distribution sampling techniques and establishes probability functions as categories.
 
 \subsection{Previous Work and Goals}
 
-Leading probability theorists in the twentieth century developed axiomatic systems for conditional probability, notably Renyi\cite{renyi}. Later, Kohlberg and Reny\cite{kohlberg} introduced the idea of relative probability and applied it to game theory. Heinemann\cite{heinemann} further developed the idea into \textit{relative probability measures} along with their axioms and definitions, and found applications in bayesian inference and economics\cite{heinemann_econ}.
+Leading probability theorists in the twentieth century developed axiomatic systems for conditional probability, notably Renyi\cite{renyi}. Later, Kohlberg and Reny\cite{kohlberg} introduced the idea of relative probability and applied it to game theory. Heinemann\cite{heinemann} further developed the idea into \textit{relative probability measures} along with their axioms and definitions, and found applications in Bayesian inference and economics\cite{heinemann_econ}.
 
 This work is focused on the systematization of these concepts and will expand on them in several ways.
 
-First, we will construct a theory of relative probability on finite outcome spaces. By omitting infinite outcome spaces, we temporarily set aside the need to account for measurable sets and countable additivity\footnote{In the textbook Invitation to Discrete Mathematics\cite{discrete}, Matoušek et al. make the same simplification in order to illustrate concepts while at the same time writing \quote{By restricting ourselves to finite probability spaces we have simplified the situation considerably... A true probability theorist would probably say that we have excluded everything interesting.}}. Even with this vast simplification there is much to be learned. Relative probability requires a new set of fundamental definitions, which are more clearly constructed without the distractions that are introduced by continuous space.
+First, we will construct a theory of relative probability on finite outcome spaces. By omitting infinite outcome spaces, we temporarily set aside the need to account for measurable sets and countable additivity\footnote{In the textbook Invitation to Discrete Mathematics\cite{discrete}, Matoušek et al. make the same simplification in order to illustrate concepts while at the same time writing \quote{By restricting ourselves to finite probability spaces we have simplified the situation considerably... A true probability theorist would probably say that we have excluded everything interesting.}}. Even with this vast simplification there is much to be learned. The fundamental definitions for relative probability will be more clearly constructed without the distractions that are introduced by continuous space.
 
 Our focus on probability at the outcome level will lead us to separate out three fundamental axioms of relative probability. These fundamental axioms, acting on outcomes only, will be distinct from those related to summation and measurability. They will establish relative probability as a \textit{thin category} on outcomes.
 
 Second, we will categorize the various patterns and states that arise when dealing with relative probability, including total comparability, possibility classes, and anchor outcomes. 
 
-Third, we focus on the computational properties of Bayesian inference. The relative probability function will simplify the formulas for some distributions in the bayesian framework. We introduce the indeterminate wildcard value, which will inevitably arise when relative probability is inferred on messy, real world data. This discussion ends with how these concepts can be applied to code and data structures.
+Third, we focus on the computational properties of Bayesian inference. The relative probability function will simplify the formulas for some distributions in the Bayesian framework. We introduce the indeterminate wildcard value, which will inevitably arise when relative probability is inferred on messy, real world data. This discussion ends with how these concepts can be applied to code and data structures.
 
 Finally, we prove the ability of relative probability functions to retain information when taking limits, or in other words their topological closure.
 
@@ -203,7 +191,7 @@ Let the \textit{magnitude-wildcard space} \(\mathbb{M}^*= \mathbb{M} \cup \{\ast
 
 The wildcard element corresponds to several different concepts, each appearing in a unique discipline:
 \begin{itemize}
-  \item The \textit{NaN}, or \textit{Not a Number}\footnote{\quotes{Not a Number} may have been an unfortunate naming choice because it actually represents \textbf{any} number!} value in the IEEE standard for floating point arithmetic\cite{ieee}.
+  \item The \textit{NaN}, or \textit{Not a Number}\footnote{``Not a Number'' may have been an unfortunate naming choice because it actually represents \textbf{any} number!} value in the IEEE standard for floating point arithmetic\cite{ieee}.
   \item The indeterminate form \(\frac{0}{0}\) in arithmetic.
   \item The \textit{wildcard pattern} used in pattern matching and regular expressions in type theory and computer science
 \end{itemize}
@@ -211,12 +199,12 @@ The wildcard element corresponds to several different concepts, each appearing i
 The following properties on \(\ast\) allow multiplication of any two magnitude-wildcard values.
 \[0 \cdot \infty = \ast \qquad \ast \cdot m = \ast\]
 
-We may also define \(\ast + m = \ast\), but there is an argument to  be made that because there are no negative numbers in this system, \(\ast + m\) should be a new pattern that only matches magnitudes greater than or equal to \(m\). Fortunately, this question can be deferred for our purposes.
+We may also define \(\ast + m = \ast\), but there is an argument to  be made that because there are no negative numbers in this system, \(\ast + m\) should be a new pattern that only matches magnitudes greater than or equal to \(m\). For our purposes, the question of how to handle this can be deferred.
 
 \subsection{The Matching Relation}
 
 \begin{definition}
-The \textit{matching relation} \(:\cong\) is a binary relation on \(\mathbb{M}^*\). The statement \(m_1 :\cong m_2\) is read \quotes{\(m_1\) is matched by \(m_2\)} and is true when either \(m_1\) equals \(m_2\) or \(m_2\) is a wildcard.
+The \textit{matching relation} \(:\cong\) is a binary relation on \(\mathbb{M}^*\). The statement \(m_1 :\cong m_2\) is read ``\(m_1\) is matched by \(m_2\)'' and is true when either \(m_1\) equals \(m_2\) or \(m_2\) is a wildcard.
 \[m_1 :\cong m_2 \Longleftrightarrow (m_1 = m_2) \vee (m_2 = \ast)\]
 \end{definition}
 
@@ -317,14 +305,14 @@ Definition \ref{def:categorical_abs} creates a probability function that assigns
 For all \(e\) in \(\mathcal{F}\), \[P(e) = \sum_{h \in e}{P(h)}.\]
 \end{definition}
 
-\(P\) acts on either outcomes or events using the obvious convention \(P(\{h\}) = P(h)\). \(\Omega\) is itself an event; the \textit{universal event} of all outcomes, with probability 1. \[P(\Omega) = \sum_{h \in \Omega}{P(h)} = 1\]
+\(P\) acts on either outcomes or events using the convention \(P(\{h\}) = P(h)\). \(\Omega\) is itself an event; the \textit{universal event} of all outcomes, with probability 1. \[P(\Omega) = \sum_{h \in \Omega}{P(h)} = 1\]
 
 \subsection{Relative Probability Function}
 \label{section:standard_relative_prob}
 
-A \textit{relative probability function}, or \textit{RPF}, measures the probability of one event with respect to another. For example, we may wish to talk about an event that is \quotes{twice as likely} as another, even if we don't know the absolute probability of either event. An argument can be made that all probability is relative and conditional, because all probabilistic statements come with underlying assumptions.
+A \textit{relative probability function}, or \textit{RPF}, measures the probability of one event with respect to another. For example, we may wish to talk about an event that is ``twice as likely'' as another, even if we don't know the absolute probability of either event. In a sense, all probability is relative and conditional because all probabilistic statements come with underlying assumptions.
 
-We continue to use P to represent the RPF but with two inputs instead of one. The expression \(P(e_1, e_2)\) can be read as the probability of \(e_1\) relative to \(e_2\).
+We continue to use P to represent the RPF but now with two inputs instead of one. The expression \(P(e_1, e_2)\) can be read as the probability of \(e_1\) relative to \(e_2\).
 
 \[P: \mathcal{F} \times \mathcal{F} \rightarrow \mathbb{M}^*\]
 
@@ -379,7 +367,7 @@ Let us pause for a moment to discuss how these axioms were selected. The composi
 
 The composition axiom is enough to show that the identity axiom works most of the time. For any two outcomes \(h_1\) and \(h_2\) we get through composition \(P(h_1, h_2) :\cong P(h_1, h_1) \cdot P(h_1, h_2)\). As long as \(P(h_1, h_2)\) isn't \(0\), \(\infty\), or \(\ast\), then we would have to conclude \(P(h_1, h_1) = 1\) so long as \(h_1\) is comparable to itself.
 
-But that doesn't get us all the way there! There are still scenarios where \(P(h, h) = \ast\). The question that must be asked then is should the the self-comparisons in an outcome space be able to contain any information where there is a choice of values between \(1\) and \(\ast\). Such information would not be relevant to relative probability. Therefore, the answer corresponding to our application would be in the negative - and if \(P(h, h)\) can only have a single value, it must be 1. Hence, the necessity of the identity axiom.
+But that doesn't get us all the way there! There are still scenarios where \(P(h, h) = \ast\). The question that must be asked is: should the the self-comparisons in an outcome space contain information where there is a choice of values between \(1\) and \(\ast\)? Such information would not be relevant to relative probability. Therefore, \(P(h, h)\) can only have a single value and it must be 1. Hence, the necessity of the identity axiom.
 
 Composition and identity can actually be combined into a single axiom about composition paths. It's a bit unwieldy, but nevertheless interesting.
 
@@ -560,7 +548,7 @@ An absolute probability function is totally comparable if and only if \(P(h) = 0
 \end{theorem}
 
 \begin{proof}
-Let P be an \textbf{absolute} probability function with outcomes \(h_1\) and \(h_2\). If \(P(h_1) = P(h_2) = 0\), then \(P(h_1, h_2) = \frac{0}{0} = \ast\). If only outcome \(h_1\) is assigned 0, then \(P(h_1, h_1) = 1\), \(P(h_1, h_2) = 0\), and \(P(h_2, h_1) = \infty\). Any other pairing that does not involve \(h_1\) will be the quotient of two positive numbers, and thus not \(\ast\).
+Let P be an \textbf{absolute} probability function with distinct outcomes \(h_1\) and \(h_2\). If \(P(h_1) = P(h_2) = 0\), then \(P(h_1, h_2) = \frac{0}{0} = \ast\). If only outcome \(h_1\) is assigned 0, then \(P(h_1, h_1) = 1\), \(P(h_1, h_2) = 0\), and \(P(h_2, h_1) = \infty\). Any other pairing that does not involve \(h_1\) will be the quotient of two positive numbers, and thus not \(\ast\).
 \end{proof}
 
 Once it is established that outcomes are comparable to one another, they form groupings. If an outcomes \(h_1\) and \(h_2\) both have probability 0 (or \(\infty\)) with respect to \(h_3\) then \(P(h_1, h_2)\) is not predetermined by composition. This leads us to the concept of possibility and impossibility.
@@ -1035,7 +1023,7 @@ The sum \(\sum_{h_2 \in e} P(h_2, h)\) cannot itself be zero because \(P(h, h)\)
 
 Let \(P_0, P_1, ..., P_{K-1}\) be relative probability functions on outcome spaces \(\Omega_0, \Omega_1, ..., \Omega_{K-1}\) respectively so that each \(P_k\) is a function of type \(\Omega_k \times \Omega_k \rightarrow \mathbb{M}^{\ast}\).
 
-We can combine all of these relative probability functions together with a top level probability function \(P_\top\) (pronounced \quotes{P-Top}) with outcome space \(\Omega_\top = \{\Omega_0, \Omega_1, ... \Omega_{K- 1}\}\). The outcome space is hierarchical as shown in figure \ref{fig:compose_rpfs}.
+We can combine all of these relative probability functions together with a top level probability function \(P_\top\) (pronounced ``P-Top'') with outcome space \(\Omega_\top = \{\Omega_0, \Omega_1, ... \Omega_{K- 1}\}\). The outcome space is hierarchical as shown in figure \ref{fig:compose_rpfs}.
 
 \begin{figure}[h]
 \begin{tikzpicture}
@@ -1143,9 +1131,7 @@ P_{k_1}(h_{k_1, i}, \Omega_{k_1}) :\cong \frac{\sum_{h_1 \in \{k_1\}} P(h_1, k_1
 
 The sum in the denominator cannot be zero since \(P(k_1, k_1) = 1\) will be one of its terms. Therefore the factors \(P_{k_1}(h_{k_1, i}, \Omega_{k_1})\) and \(P_{k_2}(h_{k_2, j}, \Omega_{k_2})\) also must be finite.
 
-If the term \(P_{k_1}(h_{k_1, i}, \Omega_{k_1}) = 0\), then the only way the entire right hand side can be \(\ast\) is if \(P_{\top}(\Omega_{k_1}, \Omega_{k_2}) = \infty\). But this can't be true because by \ref{comp_recs_3} we assumed that \(\Omega_{k_2}\) is possible with respect to \(\Omega_{k_1}\), the sole component with impossible outcomes.
-
-An analogous argument can be made if \(P_{k_2}(h_{k_2, j}, \Omega_{k_2}) = 0\).
+If the term \(P_{k_1}(h_{k_1, i}, \Omega_{k_1}) = 0\), then the only way the entire right hand side can be \(\ast\) is if \(P_{\top}(\Omega_{k_1}, \Omega_{k_2}) = \infty\). But this can't be true because by \ref{comp_recs_3} we assumed that \(\Omega_{k_2}\) is possible with respect to \(\Omega_{k_1}\), the sole component with impossible outcomes. An analogous argument can be made if \(P_{k_2}(h_{k_2, j}, \Omega_{k_2}) = 0\).
 
 Therefore, the right hand side of the equation is not \(\ast\) and \(P\) is totally comparable.
 
@@ -1162,7 +1148,7 @@ Bayesian inference is the practice of updating ones beliefs about the state of t
 
 A relative probability function represents a belief over the set of potential hypotheses in \(\Omega\), meaning that Bayesian inference can be performed on RPFs. The initial belief is called the \textit{prior} and the updated belief is called the \textit{posterior}. Once a formula for the posterior is is worked out, the practitioner might then want to search the hypothesis space \(\Omega\) for an outcome that is either most likely (\textit{maximum a posteriori}) or very good with respect to the posterior distribution. They might also wish to randomly sample one or more outcomes \(h \in \Omega\) from the posterior weighted according to the relative probabilities.
 
-Almost all of these sampling and search methods rely on an algorithm that starts at one or more initial hypotheses and iterately updates using the relative probability of a current outcome and its nearby outcomes\footnote{Examples include hill climbing, simulated annealing, Newton-Raphson, Markov Chain Monte Carlo, and the No U-Turn sampler. The role of these algorithms in supervised machine learning has been previously discussed by Local Maximum Labs in \quotes{Sampling Bias Correction for Supervised Machine Learning\cite{sklar_bias}}}. Because relative probability simplifies bayes rule and is ideal for many sampling and selection algorithms, statisticians and engineers should consider using the RPF framework for these purposes.
+Almost all of these sampling and search methods rely on an algorithm that starts at one or more initial hypotheses and iterately updates using the relative probability of a current outcome and its nearby outcomes. Examples include hill climbing, simulated annealing, Newton-Raphson, Markov Chain Monte Carlo, and the No U-Turn sampler. The role of these algorithms in supervised machine learning has been previously discussed by Local Maximum Labs in ``Sampling Bias Correction for Supervised Machine Learning\cite{sklar_bias}''. Because relative probability simplifies Bayes rule and is ideal for many sampling and selection algorithms, statisticians and engineers should consider using the RPF framework for these purposes.
 
 Start with the Bayesian inference formula for conditional probability for \(h \in \Omega\) assuming that we receive data \(D\).
 
@@ -1186,7 +1172,7 @@ Let \(P_D\) represent the likelihood ratio of the different hypotheses. The like
 
 The substitution for the likelihood ratio is now as follows: \(\frac{P(D|h_1)}{P(D|h_2)} \rightarrow P_D(h_1, h_2) \)
 
-These substitutions create a bayes rule for relative probability:
+These substitutions create a Bayes rule for relative probability:
 
 \begin{equation}
 P(h_1, h_2|D) = P_D(h_1, h_2) P(h_1, h_2)
@@ -1284,8 +1270,6 @@ The simplest RPF to represent in this form is the uniform RPF. In this case, the
 \section{Topology and Limits in Relative Probability Space}
 \label{section:topology}
 
-Mathematics can be used to model the real world even through seemingly impossible ideas. For example, we might believe that a natural process can only repeat a finite number of times and that this is just a physical limitation of our universe. And yet at the same time, we will still speak of \quotes{infinite iterations} in order to get a bound or estimate on what that system looks like in \quotes{the long run}.
-
 One of the benefits of relative probability spaces is their properties with respect to limits. This section will show that limits of totally comparable RPFs are also totally comparable RPFs. In other words, the space of RPFs is topologically closed.
 
 This effort caps off a significant argument in favor of relative probability. RPFs hold on to certain pieces information under the limit operation, while absolute probability does not. Some background in topology\footnote{Mendelson (1990) \cite{mendelson} and Bradley et al. (2020) \cite{bradley} the formal definitions and theorems which we will work off of here.} required for this section.
@@ -1298,7 +1282,7 @@ This effort caps off a significant argument in favor of relative probability. RP
 
 Because the set of absolute distributions with \(|\Omega| = K\) is embedded in \(\mathbb{R}^K\) as seen in figure \ref{fig:simplex}, its topological properties are well understood. The simplex is closed, bounded, and compact.
 
-For relative probability distributions, there is no obvious way to embed it into K-dimensional euclidean space\footnote{Though it may be possible! See section \ref{section:euclidean_embedding}.}. The relative probability space is more complicated, because at the corners and edges of the simplex lurk entire subspaces where zero-probability outcomes are still being compared in different configurations.
+For relative probability distributions, there is no obvious way to embed it into K-dimensional euclidean space\footnote{Though it should be possible! See section \ref{section:euclidean_embedding}.}. The relative probability space is more complicated, because at the corners and edges of the simplex lurk entire subspaces where zero-probability outcomes are still being compared in different configurations.
 
 Fortunately, \(\text{RPF}(K)\) can still be embedded into a much larger euclidean space. Any \(P \in \text{RPF}(K)\) is a function of type \(\Omega \times \Omega \rightarrow \mathbb{M}\) that satisfies the fundamental properties. Therefore \(\text{RPF}(K)\) can at least be embedded into \(\mathbb{M}^{K^2}\).
 
@@ -1315,14 +1299,14 @@ The \textit{inverse odds transform} is the function \(\text{odds}^{-1}: \mathbb{
 \[\text{odds}^{-1}(x) = \frac{x}{x + 1}\]
 \end{definition}
 
-The inverse odds transformation establishes \(\mathbb{M}\) as topologically equivalent to the closed interval \([0, 1]\). Now \(\text{RPF}(K)\) can be embedded into a bounded region of euclidean space, namely \([0, 1]^{K^2}\) by applying inverse odds to it. The result won't follow the fundamental axioms, but it will respect all of the topological properties\footnote{There are other ways to define a topology on \(\text{RPF}(K)\). One in particular using compositions of open patches that is perhaps more natural was discarded due to its complexity during the course of this research. Its usefulness is in doubt, but it will be posted separately as an addendum note in case that assessment turns out to be incorrect.}.
+The inverse odds transformation establishes \(\mathbb{M}\) as topologically equivalent to the closed interval \([0, 1]\). Now \(\text{RPF}(K)\) can be embedded into a bounded region of euclidean space, namely \([0, 1]^{K^2}\) by applying inverse odds to it. The result won't follow the fundamental axioms, but it will respect all of the topological properties. Appendix \ref{appedix:topology} provides an alternative way to define a topology on \(\text{RPF}(K)\).
 
 \subsection{Limit Points and Compactness}
 
 We now present an argument for the closure of \(\text{RPF}(K)\) under limits.
 
 \begin{definition}
-A \textit{limit point} of a set \(A\) is a point \(x\) such that any open set containing \(x\) also contains points in \(A\). Equivalently for euclidean space, any open ball containing \(x\) also intersects with \(A\).
+\(x\) is a \textit{limit point} of set \(A\) if any open set containing \(x\) also contains points in \(A\). Equivalently for euclidean space, any open ball containing \(x\) also intersects with \(A\).
 \end{definition}
 
 \begin{theorem}
@@ -1342,7 +1326,7 @@ Composition: Suppose \(P(a, c) :\ncong P(a, b) \cdot P(b, c) \). This can only b
 This means that only functions \(P\) which satisfy the fundamental axioms can be limit points to \(\text{RPF}(K)\), and therefore \(\text{RPF}(K)\) contains all its limit points and is closed.
 \end{proof}
 
-As a bonus, we can prove that \(\text{RPF}(K)\) is compact thanks to the Heine-Borel theorem, stated as follows (wording from Bradley \cite{bradley}).
+We can now prove that \(\text{RPF}(K)\) is compact thanks to the Heine-Borel theorem, stated as follows (wording from Bradley \cite{bradley}).
 
 \begin{theorem}[Heine-Borel Theorem]
 A subset of \(\mathbb{R}^n\) is compact if and only if it is closed and bounded.
@@ -1447,15 +1431,230 @@ Absolute probability functions have this advantage where they can be embedded in
 \label{fig:hexagon}
 \end{figure}
 
-In this case, the triangular simplex has been truncated. For higher order simplices, this appears to become exceedingly unwieldy unless some simplifying trick is developed. If it is successfully done, then a cleaner representation for members of \(\text{RPF}(K)\) becomes available.
+In this case, the triangular simplex has been truncated. For higher order simplices, this appears to become increasingly unwieldy unless some simplifying trick is developed. If it is successfully done, then a cleaner representation for members of \(\text{RPF}(K)\) becomes available.
 
 \section{Conclusion}
 
-Modeling probability as a \quotes{relative} measure takes on a new significance given the proliferation of computational methods. The nice properties of RPFs include formula simplification, closure under limits, and the ability to model non-standard distributions.
+Modeling probability as a ``relative'' measure takes on a new significance given the proliferation of computational methods. The nice properties of RPFs include formula simplification, closure under limits, and the ability to model non-standard distributions.
 
-Should practitioners regularly use the language of relative probability when describing and deploying probabilistic models? It may not be beneficial in every situation, but they should certainly consider it! Computational techniques for bayesian inference and machine learning in many cases remove the need to normalize the distributions involved, so why not make it official?
+Should practitioners regularly use the language of relative probability when describing and deploying probabilistic models? It may not be beneficial in every situation, but they should certainly consider it! Computational techniques for Bayesian inference and machine learning in many cases remove the need to normalize the distributions involved, so why not make it official?
 
-This paper has shored up some of the theoretical underpinnings of relative probability. The highlighted examples herein show that relative probability encourages us to look at probabilistic questions from an expanded perspective.
+\begin{appendices}
+
+\section{Topology and Limits in Relative Probability Space}
+\label{appedix:topology}
+
+In section \ref{section:topology}, we established a topology on \(\text{RPF}(K)\) by embedding it into Euclidean space, and demonstrated its compactness. Here is an alternative topology that defines a \textit{basis of open sets} directly. While this is not used in the context of this paper, it shows promise in providing a more natural framework for topological proofs and simplex partitioning.
+
+The notion of an open set changes when a topological space is restricted to a lower dimention. For example, on the real number line \(\mathbb{R}\), the open interval (0, 1) is an open set. However, once it is embedded into \(\mathbb{R}^2\), it is now a line segment in a plane and no longer open (see figure \ref{fig:sub_topology}). For example, the set \(\{(x, y): x \in (0, 1)\;  \text{and}\;  y \in (-\epsilon, +\epsilon)\}\) given an \(\epsilon > 0\) is such an open set on \(\mathbb{R}^2\). The line segment (0, 1) is open in \(\mathbb{R}\) because it is the restriction of this open set on \(\mathbb{R}^2\). 
+
+\begin{figure}[h]
+\centering
+\resizebox{0.4\textwidth}{!}{
+\begin{tikzpicture} %episilon diagram
+\draw[<->] (-0.7,0)--(5,0) node[right] {\(x\)};
+\draw[<->] (0,-1,0)--(0,1) node[above] {\(y\)};
+\draw[densely dashed,red,thick] (0,-0.5) rectangle (4.5,0.5);
+\draw[draw=blue,thick] (0,0) circle (2pt) node[above left=-0.1,font=\ttfamily\tiny] {0};
+\draw[draw=blue,thick] (4.5,0) circle (2pt) node [above right=-0.1,font=\ttfamily\tiny] {1};
+
+\node[left=-0.05,font=\ttfamily\footnotesize] at (0,-0.5) {\(-\varepsilon\)};
+\node[left=-0.05,font=\ttfamily\footnotesize] at (0,0.5) {\(\varepsilon\)};
+\node[circle,inner sep=1pt] at (0,0) (0){};
+\node[circle,inner sep=1pt] at (4.5,0) (1){};
+\path[draw,blue,thick] (0)--(1);
+\end{tikzpicture}
+}
+\caption{The small box that is the interior of the dotted rectangle is an open set in \(\mathbb{R}^2\), and therefore its restriction to \(\mathbb{R}\) - the line segment - is an open set in \(\mathbb{R}\). But the line segment is not open in \(\mathbb{R}^2\).}
+\label{fig:sub_topology}
+\end{figure}
+
+Likewise, an open set on \(\text{RPF}(K)\) will not be an open set on \(\text{RPF}(K+1)\). Starting with \(\text{RPF}(2)\), we find a totally comparable RPF that corresponds 1:1 with the magnitude space.
+
+\begin{theorem}
+Let \(\Omega = \{0, 1\}\) have two elements, with relative probability function \(P\). Then, \(P\) is completely determined by \(P(0, 1)\).
+\end{theorem}
+
+\begin{proof}
+Let \(q = P(0, 1)\). By the inverse symmetric property, \(P(1, 0) = q^{-1}\). These values completely determine \(P\) on the outcome level.
+\end{proof}
+
+This gives us both a topology and a compactness proof for \(\text{RPF}(2)\) because it is isomorphic to \(\mathbb{M}\). Its basis for open sets are the open intervals of \(\mathbb{M}\), including those intervals that include 0 and \(\infty\). For \(K > 2\), we will need more powerful tools, namely \textit{open patches}. The set of open patches, which come in several flavors, will be a basis for the open sets on \(\text{RPF}(K)\).
+
+\begin{definition}
+An \textit{interior open patch} of \(\text{RPF}(K)\) is one of the following:
+
+\begin{enumerate}
+  \item If \(K = 2\), a subset parameterized by an interior open interval of magnitudes. \(\{P | a < P(h_1, h_2) < b\}\) for some \(a, b \in \mathbb{M}\) 
+  \item If \(K > 2\), a composition of interor patches with composing function \(P_{\top}\) also being an interior patch.
+\end{enumerate}
+\end{definition}
+
+Interior open patches contain only totally mutually possible functions as illustrated in figure \ref{fig:interior_open_patch}.
+
+\begin{figure}[h]
+\centering
+\resizebox{0.4\textwidth}{!}{
+\begin{tikzpicture}
+\node {\(P_\top\)} [sibling distance = 3cm]
+  child {node {\(P_0\)}  [sibling distance = 3cm]
+    child {node {A}}
+    child {node {B}}
+  }
+  child {node  {C}};
+\end{tikzpicture}
+}
+ \hspace{3em}
+\resizebox{0.4\textwidth}{!}{
+\begin{tikzpicture} %Triangle 3
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(1,0) node [font=\tiny\bf] {)};
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(0,0) node [font=\tiny\bf] {(};
+\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (0,1.2)--(0.66,1.2)--(0.43,2)--(0,2)--cycle;
+
+\node[rectangle,rotate=45,draw=none,pattern=crosshatch, pattern color=darkgreen] at (1.2,3) (P){};
+
+\node(Q)[rectangle,draw=none,align=center,below right=-0.3 and 0.1 of P,font=\ttfamily\footnotesize] {Interior Open\\ Patch};
+
+\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
+
+\node (A) at (-2,0) [below] {\(A\)}; 
+\node (B) at (2,0) [below] {\(B\)}; 
+\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
+
+\draw[thick, dashed,red] (0.8,2)--(-3,2) node[font=\tiny\bf,rotate=90] {)};
+\draw[thick, dashed,red] (1.2,1.2)--(-3,1.2) node[font=\tiny\bf,rotate=90] {(};
+
+\draw[thick, dashed,red] (1,-0.1)--(1,-0.9);
+\draw[thick, dashed,red] (0,-0.1)--(0,-0.9);
+
+\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
+
+\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (1,-1) {)}
+node[red,font=\tiny\bf] at (0,-1) {(};
+\end{tikzpicture}
+}
+\caption{An interior open patch captures a contiguous set inside the probability simplex. Above is an example of a composite probability distribution where the diagram on the left shows how \(P_\top\) and \(P_0\) are composed, and the right shows how the interior segments on both interact to form a patch. }
+\label{fig:interior_open_patch}
+\end{figure}
+
+\begin{definition}
+A \textit{facet\footnote{A facet of a simplex is a subset where one parameter is equal to zero - equivalent to a face on a 3D object.} patch} of \(\text{RPF}(K)\) is one of the following:
+
+\begin{enumerate}
+  \item If \(K = 2\), an interval of the form \(\{P | 0 < P(h_1, h_2) < a\}\) for some \(a \in \mathbb{M}\) 
+  \item If \(K > 2\), a composition where \(P_{\top}\) is drawn from an interior open patch, and all but one of the components are drawn from interior open patches. The final component - the \textit{facet component} - is itself drawn from a facet patch.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+An \textit{exterior open patch} is a one of the following:
+
+\begin{enumerate}
+  \item A facet patch.
+  \item A composition where \(P_{\top}\) is a facet patch. The \textit{facet component} is itself drawn from any open patch, and all the other components are drawn from interior open patches.
+\end{enumerate}
+\end{definition}
+
+As seen in figure \ref{fig:exterior_open_patch}, exterior open patches touch the hyperfaces (facets) of the simplex as well as the vertices and edges.  As the number of dimentions increases and the composition diagram changes, more permutations are possible.
+
+\begin{figure}[h]
+\centering
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture} %Triangle 2
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(-1,0) node [font=\tiny\bf] {)};
+\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (-1.3,1.2)--(-0.66,1.2)--(-0.43,2)--(-0.86,2)--cycle;
+
+\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
+
+\node (A) at (-2,0) [below] {\(A\)}; 
+\node (B) at (2,0) [below] {\(B\)}; 
+\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
+
+\draw[thick, dashed,red] (0.8,2)--(-3,2) node[font=\tiny\bf,rotate=90] {)};
+\draw[thick, dashed,red] (1.2,1.2)--(-3,1.2) node[font=\tiny\bf,rotate=90] {(};
+
+\draw[thick, dashed,red] (-1,-0.1)--(-1,-0.9);
+\draw[thick, darkgreen] (-1.3,1.2)--(-0.85,2);
+
+\draw[draw=darkgreen] (-1.3,1.2) circle (2pt);
+\draw[draw=darkgreen] (-0.85,2) circle (2pt);
+
+\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
+
+\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (-1,-1) {)};
+\end{tikzpicture}
+}
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture} %Triangle 1
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(-1,0) node [font=\tiny\bf] {)};
+\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (-0.36,2.2)--(0,{2*sqrt(3)})--(-0.75,2.2)--cycle;
+
+\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
+
+\node (A) at (-2,0) [below] {\(A\)}; 
+\node (B) at (2,0) [below] {\(B\)}; 
+\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
+\draw[thick, dashed,red] (0.8,2.2)--(-3,2.2) node[font=\tiny\bf,rotate=90] {(};
+\draw[thick, dashed,red] (-1,-0.1)--(-1,-0.9);
+\draw[thick, darkgreen] (-0.73,2.2)--(0,{2*sqrt(3)});
+
+\draw[draw=darkgreen] (-0.73,2.2) circle (2pt);
+
+\draw[draw=darkgreen] (0,{2*sqrt(3)}) circle (2pt);
+
+\fill[darkgreen] (0,{2*sqrt(3)}) + (0, 2pt) arc (90:270:2pt);
+
+\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
+
+\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)} node[red,font=\tiny\bf] at (-1,-1) {)};
+\end{tikzpicture}
+}
+\resizebox{0.3\textwidth}{!}{
+\begin{tikzpicture} %Triangle 1
+\path[draw=none,pattern=crosshatch, pattern color=darkgreen] (0.36,2.2)--(0,{2*sqrt(3)})--(0,2.2)--cycle;
+
+\draw[thick] (-2,0)--(2,0)--(0,{2*sqrt(3)})--cycle;
+
+\node (A) at (-2,0) [below] {\(A\)}; 
+\node (B) at (2,0) [below] {\(B\)}; 
+\node (C) at (0,{2*sqrt(3)}) [above] {\(C\)}; 
+\draw[thick, dashed,red] (0.8,2.2)--(-3,2.2) node[font=\tiny\bf,rotate=90] {(};
+
+\draw[draw=darkgreen] (0,{2*sqrt(3)}) circle (2pt);
+
+\fill[darkgreen] (0,{2*sqrt(3)}) + (0, 2pt) arc (90:270:2pt);
+
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(1,0) node [font=\tiny\bf] {)};
+\draw[thick, dashed,red] (0,{2*sqrt(3)})--(0,0) node [font=\tiny\bf] {(};
+
+\draw[thick,|-|] (-3,0)--(-3,{2*sqrt(3)}) node[right,pos=0.9] {\(P_{T}\)};
+\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)};
+
+\draw[thick, dashed,red] (1,-0.1)--(1,-0.9);
+\draw[thick, dashed,red] (0,-0.1)--(0,-0.9);
+
+\draw[thick,|-|] (-2,-1)--(2,-1) node[above,pos=0.9] {\(P_{0}\)}
+node[red,font=\tiny\bf] at (1,-1) {)}
+node[red,font=\tiny\bf] at (0,-1) {(};
+\end{tikzpicture}
+}
+\caption{Exterior open patches. On the left is the facet patch, because it only touches a side (facet) of the simplex and not a corner. In the center is an exterior open patch where the facet component \(P_0\) is itself a facet patch (touching an edge and a corner), and on the right is an exterior open patch that touches a corner only because \(P_0\) is an interior open patch. Note that the point containing the corner at \(C\) in the middle and right diagram is only half filled because the patch contains some values where \(P(C) = 1\) and not others, depending on the relative probability between \(A\) and \(B\).}
+\label{fig:exterior_open_patch}
+\end{figure}
+
+\begin{definition}
+An \textit{open patch} is a subset of \(\text{RPF}(K)\) that is either an interior or exterior open patch.
+\end{definition}
+
+Now let the open patches be a basis for an open set thus defining a topology on \(\text{RPF}(K)\).
+
+\begin{definition}
+An \textit{open set} of \(\text{RPF}(K)\) is any (potentially infinite) union of open patches on \(\text{RPF}(K)\), or any finite intersection of open patches on \(\text{RPF}(K)\).
+\end{definition}
+
+These open patches are useful building blocks to building recursive proofs of compactness and other topological properties we might want to prove in the future.
+
+\end{appendices}
 
 %\subsubsection*{References}
 \begin{thebibliography}{20}
@@ -1480,5 +1679,8 @@ This paper has shored up some of the theoretical underpinnings of relative proba
 
 \end{thebibliography}
 
-This document along with revisions is posted at github as https://github.com/maxsklar/relative-probability-finite-paper. See readme for contact information. Local Maximum Labs is an ongoing effort create an disseminate knowledge on intelligent computing. No funds, grants, or other support was received.
+\subsection*{Funding and Interests}
+
+Local Maximum Labs is an ongoing effort by the author create an disseminate knowledge on intelligent computing, and its current resource is only the author's time. No funds, grants, or other support was received to assist with the preparation of this manuscript. The author certifies that they have no affiliations with or involvement in any external organization or entity with any financial interest or non-financial interest in the subject matter or materials discussed in this manuscript.
+
 \end{document}
