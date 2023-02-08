@@ -385,7 +385,7 @@ Now that the definition of relative probability is squared away, we can construc
 
 \begin{definition}
 \label{def:uniform_rpf}
-The \textit{uniform} RPF on any \(\Omega\) considers each outcome equally likely. In order words, \(P(h_1, h_2) = 1\) for every pair of outcomes.
+The \textit{uniform} RPF on any \(\Omega\) considers each outcome equally likely. In other words, \(P(h_1, h_2) = 1\) for every pair of outcomes.
 \end{definition}
 
 \begin{definition}
@@ -583,7 +583,7 @@ Let \(P\) be a non-empty and totally comparable RPF. To prove by contradiction, 
 
 Create a function \(f: \Omega \rightarrow \Omega\) that finds a potential \(h' = f(h)\) so that \(P(h, f(h)) = 0\).
 
-Let \(f^n\) be the function \(f\) applied n times. Then \(P(h, f^n(h)) = 0\) for all n greater than 0. This is by induction because the case of \(n = 1\) was assumed above, and for for inductive step
+Let \(f^n\) be the function \(f\) applied n times. Then \(P(h, f^n(h)) = 0\) for all n greater than 0. This is by induction because the case of \(n = 1\) was assumed above, and for the inductive step
 \[P(h, f^{n+1}(h)) :\cong P(h, f^n(h)) \cdot P(f^n(h), f(f^n(h)) = 0 \cdot 0 = 0\]
 
 Because \(\Omega\) is finite, repeated applications of \(f\) on \(h\) must eventually return to an outcome that has already been visited. In more rigorous terms, there exists an \(N\) such that \(f^N(h) = f^i(h)\) for some \(i < N\).
@@ -772,7 +772,7 @@ If we consider the equivalence classes of mutual possibility and their relations
 
 \end{tikzpicture}
 }
-\caption{A diagram of an anchored RPF with its mutually possible classes. The anchor class (shaded) is the maximal class in the partial order.}
+\caption{A diagram of an anchored RPF with its mutually possible classes. Each point is an outcome, and each circle is mutually possible class. The anchor class (shaded) is the maximal class in the partial order.}
 \label{fig:anchored_rpf}
 \end{figure}
 
@@ -1164,7 +1164,7 @@ For the ratio of prior probabilities, substitute the relative prior: \(\frac{P(h
 
 For the ratio of posterior probabilities, substitute the relative posterior: \(\frac{P(h_1|D)}{P(h_2|D)} \rightarrow P(h_1, h_2|D) \)
 
-It is more difficult to see that the likelihood ratio is a relative probability, but the Kolmogorov definition to expand conditional probability suggests that it is:
+The liklihood ratio, also known as the \textit{bayes factor}, may not look like a relative probability, but the formula to expand conditional probability suggests that it is:
 
 \[\frac{P(D|h_1)}{P(D|h_2)} = \frac{\frac{P(D \cap h_1)}{P(D)}}{\frac{P(D \cap h_2)}{P(D)}} = \frac{P(D \cap h_1)}{P(D \cap h_2)} \]
 
@@ -1212,7 +1212,7 @@ If two outcomes are incomparable in a prior distribution, they will be incompara
 \end{theorem}
 
 \begin{proof}
-Assume \(P(h_1, h_2) = \ast\). Then \(P(h_1, h_2|D) = L(D|h_1, h_2) P(h_1, h_2) = P_D(h_1, h_2) \cdot \ast = \ast\)
+Assume \(P(h_1, h_2) = \ast\). Then \(P(h_1, h_2|D) = P_D(h_1, h_2) P(h_1, h_2) = P_D(h_1, h_2) \cdot \ast = \ast\)
 \end{proof}
 
 \subsection{Example: A Noisy Channel}
@@ -1681,6 +1681,6 @@ These open patches are useful building blocks to building recursive proofs of co
 
 \subsection*{Funding and Interests}
 
-Local Maximum Labs is an ongoing effort by the author create an disseminate knowledge on intelligent computing, and its current resource is only the author's time. No funds, grants, or other support was received to assist with the preparation of this manuscript. The author certifies that they have no affiliations with or involvement in any external organization or entity with any financial interest or non-financial interest in the subject matter or materials discussed in this manuscript.
+Local Maximum Labs is an ongoing effort to create and disseminate knowledge on intelligent computing, and its current resource is only the author's time. No funds, grants, or other support was received to assist with the preparation of this manuscript. The author certifies that they have no affiliations with or involvement in any external organization or entity with any financial interest or non-financial interest in the subject matter or materials discussed in this manuscript.
 
 \end{document}

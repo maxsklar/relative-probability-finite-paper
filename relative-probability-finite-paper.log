@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  30 DEC 2022 00:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  7 FEB 2023 19:29
 entering extended mode
 **./relative-probability-finite-paper.tex
 (relative-probability-finite-paper.tex
@@ -1057,7 +1057,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Here is how much of TeX's memory you used:
  30609 strings out of 478864
  779601 string characters out of 2848660
- 1199823 words of memory out of 3000000
+ 1199953 words of memory out of 3000000
  47961 multiletter control sequences out of 15000+600000
  421467 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1096,7 +1096,7 @@ onts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/maxsk/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/maxsk/AppData/Local/
 Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/maxsk/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on relative-probability-finite-paper.pdf (30 pages, 476731 bytes
+Output written on relative-probability-finite-paper.pdf (30 pages, 476571 bytes
 ).
 PDF statistics:
  252 PDF objects out of 1000 (max. 8388607)
