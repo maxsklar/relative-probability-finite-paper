@@ -665,6 +665,7 @@ It is helpful to make diagrams of possibility and impossibility through a \texti
 \path[stealth-stealth,draw,line width=0.3mm] (ml)--(bl);
 
 \path[stealth-stealth,draw,line width=0.3mm] (mr)--(br);
+\path[stealth-stealth,draw,line width=0.3mm] (mr)--(bl);
 \path[stealth-stealth,draw,line width=0.3mm] (bl)--(br);
 
 \end{tikzpicture}
@@ -723,6 +724,7 @@ If we consider the equivalence classes of mutual possibility and their relations
 \path[stealth-stealth,draw,line width=0.2mm] (ml)--(bl);
 
 \path[stealth-stealth,draw,line width=0.2mm] (mr)--(br);
+\path[stealth-stealth,draw,line width=0.2mm] (mr)--(bl);
 \path[stealth-stealth,draw,line width=0.2mm] (bl)--(br);
 
 \node[circle,fill=darkgreen, fill opacity = 0.5, draw=black,line width=0.3mm, fit=(t) (ml) (mr) (bl)(br), inner sep=-1pt] (r1) {};
@@ -797,6 +799,7 @@ If we consider the equivalence classes of mutual possibility and their relations
 \path[stealth-stealth,draw,line width=0.2mm] (ml)--(bl);
 
 \path[stealth-stealth,draw,line width=0.2mm] (mr)--(br);
+\path[stealth-stealth,draw,line width=0.2mm] (mr)--(bl);
 \path[stealth-stealth,draw,line width=0.2mm] (bl)--(br);
 
 \node[circle, draw=black,line width=0.3mm, fit=(t) (ml) (mr) (bl)(br), inner sep=-1pt] (r1) {};
@@ -997,7 +1000,7 @@ If events \(e_1\) and \(e_2\) are not both empty, the following formula calculat
 \end{theorem}
 
 \begin{proof}
-Find a suitable reference outcome \(h\) and multiply by \(1 = \frac{P(h_1, r)}{P(h_1, r)}\).
+Find a suitable reference outcome $r$ and multiply by \(1 = \frac{P(h_1, r)}{P(h_1, r)}\).
 \[\sum_{h_1 \in e_1} \frac{1}{\sum_{h_2 \in e_2} p(h_2, h_1)} :\cong \sum_{h_1 \in e_1} \frac{P(h_1, r)}{\sum_{h_2 \in e_2} P(h_2, h_1) P(h_1, r)} = \frac{\sum_{h_1 \in e_1} P(h_1, r)}{\sum_{h_2 \in e_2} P(h_2, r)}\]
 
 Since both \(P(e_1, e_2)\) and \(\sum_{h_1 \in e_1} \frac{1}{\sum_{h_2 \in e_2} p(h_2, h_1)}\) match  \(\frac{\sum_{h_1 \in e_1} P(h_1, r)}{\sum_{h_2 \in e_2} P(h_2, r)}\) which is not \(\ast\) for appropriate reference r, they must be equal.

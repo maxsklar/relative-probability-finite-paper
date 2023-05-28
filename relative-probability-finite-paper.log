@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  7 FEB 2023 19:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.7.14)  27 MAY 2023 21:16
 entering extended mode
 **./relative-probability-finite-paper.tex
 (relative-probability-finite-paper.tex
@@ -1053,50 +1053,54 @@ Underfull \vbox (badness 1077) has occurred while \output is active []
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[28] [29] [30] (relative-probability-finite-paper.aux) ) 
+[28] [29] [30] (relative-probability-finite-paper.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  30609 strings out of 478864
  779601 string characters out of 2848660
- 1199953 words of memory out of 3000000
+ 1200699 words of memory out of 3000000
  47961 multiletter control sequences out of 15000+600000
  421467 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,14n,103p,878b,1225s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\maxsk\AppDat
-a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/maxsk/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/User
-s/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mbx5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmbx8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmbx9.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmex10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Users/maxsk/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/maxsk/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/maxs
-k/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Us
-ers/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pf
+ <C:\Users\maxsk\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
+1000.pk><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmbx5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/maxsk/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/maxsk/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/maxsk/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:/Use
+rs/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pf
 b><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmmi8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmr10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmr12.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmr17.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/maxsk/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/maxsk/AppData/Local/P
-rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/maxsk/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/maxsk/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/
-maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
-C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cms
-y5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmsy7.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmsy8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmti10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/maxsk/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/maxsk/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/maxsk/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on relative-probability-finite-paper.pdf (30 pages, 476571 bytes
+cmmi12.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmmi5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmmi7.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/maxsk/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/maxsk/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/maxsk/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/max
+sk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Us
+ers/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb
+><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mr8.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmr9.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmsy5.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/maxsk/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/maxsk/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/maxsk/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/max
+sk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/U
+sers/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/ms
+bm10.pfb><C:/Users/maxsk/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/symbols/msbm7.pfb>
+Output written on relative-probability-finite-paper.pdf (30 pages, 476628 bytes
 ).
 PDF statistics:
  252 PDF objects out of 1000 (max. 8388607)
